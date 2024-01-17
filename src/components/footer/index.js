@@ -13,7 +13,7 @@ const Footer = () => {
           <NavLink to="/" exact active ClassName="active">
             Friend
           </NavLink>
-          <NavLink to="/review" active ClassName="active">
+          <NavLink to="/reviews" active ClassName="active">
             솔직후기
           </NavLink>
           <NavLink to="/apply" active ClassName="active">
@@ -47,6 +47,8 @@ const Footer = () => {
 };
 
 const Wrapper = styled.div`
+  position :absolute;
+  bottom : 0;
   font-weight: 600;
   width: 100vw;
   height: 18vh;
@@ -55,7 +57,7 @@ const Wrapper = styled.div`
   font-size: 16px;
   align-items: center;
   justify-content: center;
-  gap: 80px;
+  gap: 239px;
   img {
     width: 111px;
     height: 39px;
