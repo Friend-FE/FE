@@ -59,7 +59,6 @@ const HeaderContainer = styled.div`
   padding: 0px;
   
   display: flex;
-  position: fixed;
   width: 100vw;
   height: 75px;
   background-color: #fff;
