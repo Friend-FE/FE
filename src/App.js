@@ -7,23 +7,23 @@ import MembershipWithdrawal from './components/MyPage_Component/MembershipWithdr
 import ModifyingInfo from './components/MyPage_Component/ModifyingInfo';
 import ProfileCard from './components/MyPage_Component/ProfileCard';
 
+const App = ()=>{
+	return (
+	  <div>
+		<BrowserRouter>
+			<Routes>
+				<Route path="/MyPage" element={<MyPage/>}/>
 
-function App() {
-  return (
-    <div>
-      <BrowserRouter>
-				<Routes>
-					<Route path="/MyPage" element={<MyPage/>}/>
-
-					<Route path="/MyPage/DeactivateAccount" element={<DeactivateAccount/>}/>
-					<Route path="/MyPage/MatchingHistory" element={<MatchingHistory/>}/>
-					<Route path="/MyPage/MembershipWithdrawal" element={<MembershipWithdrawal/>}/>
-					<Route path="/MyPage/ModifyingInfo" element={<ModifyingInfo/>}/>
-					<Route path="/MyPage/ProfileCard" element={<ProfileCard/>}/>
-				</Routes>
-			</BrowserRouter>
-    </div>
-  );
-}
+				<Route path="/MyPage/DeactivateAccount" element={<DeactivateAccount/>}/>
+				<Route path="/MyPage/MatchingHistory" element={<MatchingHistory/>}/>
+				<Route path="/MyPage/MembershipWithdrawal" element={<MembershipWithdrawal/>}/>
+				<Route path="/MyPage/ModifyingInfo" element={<ModifyingInfo/>}/>
+				<Route path="/MyPage/ProfileCard" element={<ProfileCard/>}/>
+			</Routes>
+		</BrowserRouter>
+		<h1>hello</h1>
+	  </div>
+	);
+  }
 
 export default App;
