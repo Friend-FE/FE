@@ -20,7 +20,7 @@ export const TotalDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 100vh;
+  /* min-height: 100vh; */
 
   position: relative;
   top: 420px;
