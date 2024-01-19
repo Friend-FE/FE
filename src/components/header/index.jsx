@@ -7,7 +7,7 @@ function Header() {
   const [isLogined,setLogin]=useState(false);
 
   return (
-    <div>
+    <Container>
     <Wrapper>
       <div>사람이 해주는 진심어린 매칭, Friend!</div>
       <div>
@@ -50,7 +50,7 @@ function Header() {
           </NavLink>
       </LinkContainer>
     </HeaderContainer>
-    </div>
+    </Container>
   );
 }
 
@@ -63,11 +63,16 @@ const HeaderContainer = styled.div`
   height: 75px;
   background-color: #fff;
   justify-content : space-around;
-  gap : 675px;
+  gap : 46vw;
   align-items : center;
   img {
     
     left: 100px;
+  }
+
+  @media screen and (max-width: 1070px) {
+    font-size : 1.5vw;
+    gap : 5px;
   }
 
 `;
@@ -95,7 +100,7 @@ const Wrapper = styled.div`
   font-weight: 400;
 
   justify-content : space-around;
-  gap : 923px;
+  gap : 58vw;
   align-items : center;
 
   div{
@@ -106,6 +111,17 @@ const Wrapper = styled.div`
     text-decoration-line: none;
     color:black;
   }
+
+  @media screen and (max-width: 1070px) {
+    font-size : 1.5vw;
+    gap : 1vw;
+  }
 `;
+const Container = styled.div`
+  min-width : 1070px;
+    @media screen and (max-width: 1070px) {
+      font-size : 1.5vw;
+    }
+`
 
 export default Header;
