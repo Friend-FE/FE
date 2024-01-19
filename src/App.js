@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 
-import MyPage from './components/MyPage';
+import MyPage from './components/MyPage_Component/MyPage';
 import DeactivateAccount from './components/MyPage_Component/DeactivateAccount';
 import MatchingHistory from './components/MyPage_Component/MatchingHistory';
 import MembershipWithdrawal from './components/MyPage_Component/MembershipWithdrawal';
