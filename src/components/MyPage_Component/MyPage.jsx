@@ -11,7 +11,7 @@ import Title from '../title/index'
 export default function MyPage() {
   return (
     <>
-      <Header/>
+      {/* <Header/> */}
       <Title title="마이페이지"/>
       <TotalHr></TotalHr>
       <TotalDiv>
@@ -25,9 +25,9 @@ export default function MyPage() {
           <MoveToPageLink to="/MyPage/MembershipWithdrawal">회원 탈퇴</MoveToPageLink>
         </MoveToDiv>
       </TotalDiv>
-      <FooterContainer>
+      {/* <FooterContainer>
         <Footer/>
-      </FooterContainer>
+      </FooterContainer> */}
     </>
   )
 }
@@ -76,6 +76,7 @@ export const MoveToDiv = styled.div`
 export const MoveToPageLink = styled(Link)`
   font-size: 20px;
   text-decoration: none;
+  color: #000;
 
   display: block;
   margin: 60px 368px 20px 40px;
@@ -86,8 +87,8 @@ export const MoveToPageLink = styled(Link)`
 `;
 
 const FooterContainer = styled.div`
-  position: absolute;
-  bottom: -1100px;
+  position: relative;
+  top: 40vh;
   width: 100%;
 `;
 

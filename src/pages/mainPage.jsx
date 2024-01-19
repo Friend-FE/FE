@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import mainBg from "../images/main_bg.png";
 import ImageBox from "../components/ImageBox";
-import Footer from "../components/footer/index"
+//import Footer from "../components/footer/index"
 import Main1 from "../images/main_1.png";
 import Main2 from "../images/main_2.png";
 import Main3 from "../images/main_3.png";
@@ -78,9 +78,9 @@ const MainPage = () => {
           altText="6. 매니저가 알려주는 주의사항 숙지 후 만남!"
         ></ImageBox>
       </FlexBox>
-      <FooterContainer>
+      {/* <FooterContainer>
         <Footer/>
-      </FooterContainer>
+      </FooterContainer> */}
     </div>
   );
 };
@@ -157,45 +157,43 @@ const TextBox = styled.div`
   }
 `;
 const Box = styled.div`
-  position : relative;
-  top:12vh;
-  left:68px;
-  max-width:1300px;
+  position: relative;
+  top: 12vh;
+  left: 68px;
+  max-width: 1300px;
 
   @media screen and (max-width: 1030px) {
-    left : 5vw;
+    left: 5vw;
   }
 
-  h5{
+  h5 {
     color: #000;
     font-size: 14px;
     font-weight: 800;
-    max-width:1300px;
+    max-width: 1300px;
   }
 
-  p{
+  p {
     font-size: 48px;
     font-style: normal;
-    font-weight: 900;  
+    font-weight: 900;
   }
 
-  h4{
+  h4 {
     font-size: 20px;
     font-style: normal;
     font-weight: 800;
     @media screen and (max-width: 800px) {
-      margin :0;
-      font-size : 2.7vw;
-
+      margin: 0;
+      font-size: 2.7vw;
     }
   }
-  
 
-  h1{
+  h1 {
     font-size: 3.2vw;
     font-weight: 900;
   }
-  `;
+`;
 const FlexBox = styled.div`
   position: relative;
   max-width: 1300px;
@@ -209,12 +207,12 @@ const FlexBox = styled.div`
   @media screen and (max-width: 700px) {
     grid-template-columns: repeat(2, 1fr);
     left: 1vw;
-    gap:1vw;
+    gap: 1vw;
   }
 `;
-const FooterContainer = styled.div`
-  position: relative;
-  top: 28vh;
-  width: 100%;
-`;
+// const FooterContainer = styled.div`
+//   position: relative;
+//   top: 28vh;
+//   width: 100%;
+// `;
 export default MainPage;
