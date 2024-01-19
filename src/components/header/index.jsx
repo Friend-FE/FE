@@ -4,7 +4,7 @@ import styled from "styled-components";
 import logo from "../../images/logo.png"
 
 function Header() {
-  const [isLogined,setLogin]=useState(false);
+  const [isLogined,setLogin]=useState(true);
 
   return (
     <Container>
