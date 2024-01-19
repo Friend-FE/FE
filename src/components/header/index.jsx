@@ -88,7 +88,8 @@ const LinkContainer = styled.div`
   }
   .active {
     color: #23CAFF;
-`;
+  }
+`  
 const Wrapper = styled.div`
   width : 100vw;
   height : 32px;
