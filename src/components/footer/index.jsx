@@ -48,7 +48,7 @@ const Footer = () => {
 
 const Wrapper = styled.div`
   position :relative;
-  bottom : 0;
+  top : 10vh;
   font-weight: 600;
   width: 100vw;
   height: 18vh;
@@ -74,16 +74,29 @@ const Wrapper = styled.div`
   .active {
     font-weight: 900;
   }
+
+  @media screen and (max-width: 1070px) {
+    font-size : 1.5vw;
+    gap : 110px;
+  }
 `;
 
 const Bottom = styled.div`
   display: flex;
   justify-content: center;
-  gap: 40px;
+  gap: 100px;
+  @media screen and (max-width: 1070px) {
+    font-size : 1.5vw;
+    gap : 20px;
+  }
 `;
 const Top = styled.div`
   display: flex;
   justify-content: center;
   gap: 40px;
+  @media screen and (max-width: 1070px) {
+    font-size : 1.5vw;
+    gap : 13px;
+  }
 `;
 export default Footer;

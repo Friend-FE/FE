@@ -29,7 +29,7 @@ position:relative;
 top:5vh;
 img{
     width : 16.3vw;
-    height : 11vh;
+    height: 5.6vw; /* 가로 세로 비율을 16.3:11로 설정 (가로가 더 길기 때문에 세로에 비해 작음) */
 
 }
 h3{
@@ -38,6 +38,11 @@ h3{
     font-weight: 900;
     margin :0;
     margin-top :2vh;
+    @media screen and (max-width: 1070px) {
+        font-size : 2.5vw;
+        gap : 5px;
+        margin-top :1.3vh;
+      }
 }
 
 p{
@@ -45,8 +50,13 @@ p{
     text-align: center;
     font-size: 1.8rem;
     font-weight: 800;
+    @media screen and (max-width: 1070px) {
+        font-size : 2.5vw;
+        gap : 5px;
+      }
 }
 &.gap{
     gap:10vh;
 }
+
 `
