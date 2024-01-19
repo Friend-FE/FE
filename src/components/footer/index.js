@@ -1,79 +1,89 @@
 import styled from "styled-components";
-import logo from "../../images/logo.png"
+import logo from "../../images/logo.png";
+import { NavLink } from "react-router-dom";
+import { useState } from "react";
 
-const Footer = ()=>{
-    return (
-      <Wrapper>
-        <img src={logo} alt="로고"></img>
-        <div>
-            <UlTop>
-                <StyledMenuItem >Friend</StyledMenuItem>
-                <li>솔직후기</li>
-                <li>매칭신청</li>
-                <li>Q&A</li>
-                <li>공지사항</li>
-            </UlTop>
-            <section>
-            <UlBottom>
-                <li>LOGIN</li>
-                <li>회원가입</li>
-            </UlBottom>                
-            </section>
+const Footer = () => {
+  const [isLogined, setLogin] = useState(false);
+  return (
+    <Wrapper>
+      <img src={logo} alt="로고"></img>
+      <div>
+        <Top>
+          <NavLink to="/" exact active ClassName="active">
+            Friend
+          </NavLink>
+          <NavLink to="/reviews" active ClassName="active">
+            솔직후기
+          </NavLink>
+          <NavLink to="/apply" active ClassName="active">
+            매칭신청
+          </NavLink>
+          <NavLink to="/QnA" active ClassName="active">
+            Q&A
+          </NavLink>
+          <NavLink to="/notice" active ClassName="active">
+            공지사항
+          </NavLink>
+        </Top>
+        <section>
+          <Bottom>
+            {isLogined ? (
+              <>
+                <NavLink to="/logout">LOGOUT</NavLink>
+                <NavLink to="/mypage">마이페이지</NavLink>
+              </>
+            ) : (
+              <>
+                <NavLink to="/login">LOGIN</NavLink>
+                <NavLink to="/join">회원가입</NavLink>
+              </>
+            )}
+          </Bottom>
+        </section>
+      </div>
+    </Wrapper>
+  );
+};
 
-        </div>
-      </Wrapper>
-    );
-  }
-  
-  const Wrapper = styled.div`
-  font-weight : 600;
-  width : 100vw;
-  height : 18vh;
-  background-color : #DAF6FF;
-  display : flex;
-  font-size : 16px;
+const Wrapper = styled.div`
+  position :relative;
+  bottom : 0;
+  font-weight: 600;
+  width: 100vw;
+  height: 18vh;
+  background-color: #daf6ff;
+  display: flex;
+  font-size: 16px;
   align-items: center;
-  justify-content :center;
-  gap: 80px;
-    img{
-        width : 111px;
-        height : 39px;
-        
-    }
-    div{
-        align-self :center;
-        display :flex;
-        flex-direction: column;
-        width : 65%;
-        height : 80%;
-        justify-content : space-around;
-      
-    }
-    li{
-        list-style: none;
-    }
-    ul{
-        display : flex;
-        padding:0;
-        margin : 0;
-        width : 70%;
-    }
-    
+  justify-content: center;
+  gap: 239px;
+  img {
+    width: 111px;
+    height: 39px;
+  }
+  div {
+    width: 65%;
+    height: 60%;
+  }
+  a {
+    text-decoration-line: none;
+    color: #000;
+    font-weight: 600;
+  }
+  .active {
+    font-weight: 900;
+  }
+`;
 
-  `
-  const StyledMenuItem = styled.li`
-  color: #23CAFF;
-  font-weight: bold;
-  font-weight: 900;
-  `
-  const UlBottom = styled.ul`
-  justify-content :center;
+const Bottom = styled.div`
+  display: flex;
+  justify-content: center;
   gap: 40px;
-
-  `
-  const UlTop = styled.ul`
-  justify-content : center;
+`;
+const Top = styled.div`
+  display: flex;
+  justify-content: center;
   gap: 40px;
-  `
-  export default Footer;
-  
+`;
+export default Footer;

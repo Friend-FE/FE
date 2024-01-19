@@ -3,68 +3,67 @@ import ProfileBasic from '../../images/ProfileBasic.png'
 import * as T from '../MyPage'
 import styled from 'styled-components'
 
-export default function Profile_card() {
-  
-  const NameH4 = styled.h4`
+const NameH4 = styled.h4`
     font-size: 36px;
     font-weight: 600;
 
     margin: 20px 0;
   `;
 
-  const SectionDiv = styled.div`
-    text-align: center;
-    /* min-height: 100vh; */
+const SectionDiv = styled.div`
+  text-align: center;
+  /* min-height: 100vh; */
 
-    width: 630px;
-    height: 897px;
+  width: 630px;
+  height: 897px;
 
-    background-color: #DAF6FF;
-    border-radius: 20px;
-    box-shadow: 10px 15px 5px rgba(0, 0, 0, 0.2);
+  background-color: #DAF6FF;
+  border-radius: 20px;
+  box-shadow: 10px 15px 5px rgba(0, 0, 0, 0.2);
 
-    margin: 0 25px;
+  margin: 0 25px;
 
-  `;
+`;
 
-  
-  const SectionContainer = styled.div`
-    display: flex;
-    justify-content: space-between;
-    margin: 80px 0;
-  `;
 
-  const ProfileBasicImg = styled.img`
-    margin: 30px 110px;
+const SectionContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin: 80px 0;
+`;
 
-    width: 410px;
-    height: 434px;
-  `;
+const ProfileBasicImg = styled.img`
+  margin: 30px 110px;
 
-  const InfoP = styled.p`
-    font-size: 32px;
-    margin: 60px 110px;
-    text-align: left;
-  `;
+  width: 410px;
+  height: 434px;
+`;
 
-  const SelfIntroductionTitleP = styled.p`
-    font-size: 32px;
+const InfoP = styled.p`
+  font-size: 32px;
+  margin: 60px 110px;
+  text-align: left;
+`;
 
-    margin: 100px 10px 0 0;
-  `;
+const SelfIntroductionTitleP = styled.p`
+  font-size: 32px;
 
-  const SelfIntroductionDiv = styled.div`
-    background-color: white;
+  margin: 100px 10px 0 0;
+`;
 
-    padding: 20px 70px;
-    margin: 40px;
-    text-align: left;
-  `;
+const SelfIntroductionDiv = styled.div`
+  background-color: white;
 
-  const SelfIntroductionP = styled.p`
-    font-size: 20px;
-  `;
+  padding: 20px 70px;
+  margin: 40px;
+  text-align: left;
+`;
 
+const SelfIntroductionP = styled.p`
+  font-size: 20px;
+`;
+
+export default function Profile_card() {
   return (
     // 하드 코딩
     <T.TotalDiv>

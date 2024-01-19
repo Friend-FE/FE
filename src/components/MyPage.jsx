@@ -63,11 +63,8 @@ export const MoveToPageLink = styled(Link)`
 export default function MyPage() {
   return (
     <TotalDiv>
-      <GlobalStyle /> 
-      {/* 하드 코딩 */}
       <ProfileBasicImg src={ProfileBasic} alt ="ProfileBasic"/>
       <TitleH3>제니 님, 안녕하세요.</TitleH3>
-      {/* 하드 코딩 */}
       <MoveToDiv>
         <MoveToPageLink to="/MyPage/ModifyingInfo">회원정보 수정</MoveToPageLink>
         <MoveToPageLink to="/MyPage/MatchingHistory">매칭 내역</MoveToPageLink>

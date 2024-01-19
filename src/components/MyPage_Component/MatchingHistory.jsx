@@ -2,9 +2,7 @@ import React from 'react'
 import * as T from '../MyPage'
 import styled from 'styled-components'
 
-export default function Matching_history() {
-
-  const ContainerDiv = styled.div`
+const ContainerDiv = styled.div`
 
     width: 700px;
     margin: 60px 0;
@@ -15,10 +13,13 @@ export default function Matching_history() {
 
   `;
 
-  const MatchingHistoryP = styled.p`
-    font-size: 20px;
-    margin: 80px 40px;
-  `;
+const MatchingHistoryP = styled.p`
+  font-size: 20px;
+  margin: 80px 40px;
+`;
+
+
+export default function Matching_history() {
 
   return (
     <T.TotalDiv>
