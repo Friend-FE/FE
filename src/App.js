@@ -10,6 +10,8 @@ import MainPage from './pages/mainPage';
 import Header from './components/header';
 import Footer from './components/footer';
 
+import CertifyEmail from './pages/Certify/CertifyEmail';
+import SignupInfo from './pages/Signup/SignupInfo';
 
 const App = ()=>{
 	return (
@@ -18,11 +20,14 @@ const App = ()=>{
 			<Routes>
 				<Route path="/" element={<MainPage/>}/>
 				<Route path="/MyPage" element={<MyPage/>}/>
+
 				<Route path="/MyPage/DeactivateAccount" element={<DeactivateAccount/>}/>
 				<Route path="/MyPage/MatchingHistory" element={<MatchingHistory/>}/>
 				<Route path="/MyPage/MembershipWithdrawal" element={<MembershipWithdrawal/>}/>
 				<Route path="/MyPage/ModifyingInfo" element={<ModifyingInfo/>}/>
 				<Route path="/MyPage/ProfileCard" element={<ProfileCard/>}/>
+				<Route path="/CertifyEmail" element={<CertifyEmail/>}/> 
+				<Route path="/SignupInfo" element={<SignupInfo/>}/> 
 			</Routes>
 			<Footer></Footer>
 	  </div>
