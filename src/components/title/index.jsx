@@ -3,7 +3,7 @@ import logo from "../../images/logo.png"
 
 const Title = (props)=>{
   return (
-    <Wrapper>
+    <Wrapper className={props.title === "로그인/회원가입" ? 'gap' : ''}>
         <p>지인 매칭 100% 방지 와 개인정보 노출 부담없는 교내 매칭 서비스</p>
         <LogoWrapper>
             <img src={logo} alt="logo"/>
@@ -39,10 +39,14 @@ h3{
     margin :0;
     margin-top :2vh;
 }
+
 p{
     color: #000;
     text-align: center;
     font-size: 1.8rem;
     font-weight: 800;
+}
+&.gap{
+    gap:10vh;
 }
 `
