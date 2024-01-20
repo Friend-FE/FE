@@ -6,14 +6,14 @@ import Header from '../header/index'
 import Footer from '../footer/index'
 import Title from '../title/index'
 
-const NameH4 = styled.h4`
+export const NameH4 = styled.h4`
     font-size: 36px;
     font-weight: 600;
 
     margin: 20px 0;
   `;
 
-const SectionDiv = styled.div`
+export const SectionDiv = styled.div`
   text-align: center;
   /* min-height: 100vh; */
 
@@ -29,32 +29,32 @@ const SectionDiv = styled.div`
 `;
 
 
-const SectionContainer = styled.div`
+export const SectionContainer = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 80px 0;
 `;
 
-const ProfileBasicImg = styled.img`
+export const ProfileBasicImg = styled.img`
   margin: 30px 110px;
 
   width: 410px;
   height: 434px;
 `;
 
-const InfoP = styled.p`
+export const InfoP = styled.p`
   font-size: 32px;
   margin: 60px 110px;
   text-align: left;
 `;
 
-const SelfIntroductionTitleP = styled.p`
+export const SelfIntroductionTitleP = styled.p`
   font-size: 32px;
 
-  margin: 100px 10px 0 0;
+  margin: 100px 0 0 0;
 `;
 
-const SelfIntroductionDiv = styled.div`
+export const SelfIntroductionDiv = styled.div`
   background-color: white;
 
   padding: 20px 70px;
@@ -62,11 +62,11 @@ const SelfIntroductionDiv = styled.div`
   text-align: left;
 `;
 
-const SelfIntroductionP = styled.p`
+export const SelfIntroductionP = styled.p`
   font-size: 20px;
 `;
 
-const FooterContainer = styled.div`
+export const FooterContainer = styled.div`
   position: absolute;
   bottom: -1200px;
   width: 100%;

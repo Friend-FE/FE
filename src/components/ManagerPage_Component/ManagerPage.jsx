@@ -5,7 +5,6 @@ import React from 'react'
 
 import ProfileBasic from '../../images/ProfileBasic.png'
 
-import styled from 'styled-components'
 import * as T from '../MyPage_Component/MyPage'
 
 import Header from '../header/index'
@@ -31,15 +30,9 @@ export default function ManagerPage() {
           <T.MoveToPageLink to="/ManagerPage/ViewMembershipList">회원 목록 보기</T.MoveToPageLink>
         </T.MoveToDiv>
       </T.TotalDiv>
-      <FooterContainer>
+      <T.FooterContainer>
         <Footer/>
-      </FooterContainer>
+      </T.FooterContainer>
     </>
   )
 }
-
-const FooterContainer = styled.div`
-  position: absolute;
-  bottom: -1100px;
-  width: 100%;
-`;

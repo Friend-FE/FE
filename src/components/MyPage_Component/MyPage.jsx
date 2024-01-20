@@ -87,7 +87,7 @@ export const MoveToPageLink = styled(Link)`
   }
 `;
 
-const FooterContainer = styled.div`
+export const FooterContainer = styled.div`
   position: absolute;
   bottom: -1100px;
   width: 100%;

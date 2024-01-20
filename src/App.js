@@ -16,6 +16,7 @@ import QnA from './components/ManagerPage_Component/QnA';
 import ReportReceiptHistory from './components/ManagerPage_Component/ReportReceiptHistory';
 import ViewMembershipList from './components/ManagerPage_Component/ViewMembershipList';
 import WritingNotices from './components/ManagerPage_Component/WritingNotices';
+import MatchingAHDetail from './components/ManagerPage_Component/MatchingAHDetail';
 
 import CertifyEmail from './pages/Certify/CertifyEmail';
 import SignupInfo from './pages/Signup/SignupInfo';
@@ -34,6 +35,7 @@ const App = ()=>{
 
 				<Route path="/ManagerPage" element={<ManagerPage/>}/>
 				<Route path="/ManagerPage/MatchingApplicationHistory" element={<MatchingApplicationHistory/>}/>
+				<Route path="/ManagerPage/MatchingApplicationHistory/MatchingAHDetail" element={<MatchingAHDetail/>}/>
 				<Route path="/ManagerPage/MatchingCompletionHistory" element={<MatchingCompletionHistory/>}/>
 				<Route path="/ManagerPage/ModifyingManagerInfo" element={<ModifyingManagerInfo/>}/>
 				<Route path="/ManagerPage/QnA" element={<QnA/>}/>
