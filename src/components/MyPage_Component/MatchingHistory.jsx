@@ -37,7 +37,7 @@ const ContainerDiv = styled.div`
     border-radius: 20px;
     box-shadow: 10px 15px 5px rgba(0, 0, 0, 0.2);
 
-  `;
+`;
 
 const MatchingHistoryP = styled.p`
   font-size: 20px;
