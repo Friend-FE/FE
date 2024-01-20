@@ -81,6 +81,7 @@ export const MoveToPageLink = styled(Link)`
   display: block;
   margin: 60px 368px 20px 40px;
 
+  color: black;
   &:hover {
     color: #23CAFF;
   }
