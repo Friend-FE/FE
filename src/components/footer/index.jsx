@@ -48,7 +48,7 @@ const Footer = () => {
 
 const Wrapper = styled.div`
   position :relative;
-  top : 10vh;
+  top : 50vh;
   font-weight: 600;
   width: 100vw;
   height: 18vh;

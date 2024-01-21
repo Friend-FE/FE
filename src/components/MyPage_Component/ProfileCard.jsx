@@ -2,8 +2,8 @@ import React from 'react'
 import ProfileBasic from '../../images/ProfileBasic.png'
 import * as T from './MyPage'
 import styled from 'styled-components'
-import Header from '../header/index'
-import Footer from '../footer/index'
+// import Header from '../header/index'
+// import Footer from '../footer/index'
 import Title from '../title/index'
 
 export const NameH4 = styled.h4`
@@ -75,7 +75,7 @@ export const FooterContainer = styled.div`
 export default function Profile_card() {
   return (
     <>
-      <Header/>
+      {/* <Header/> */}
       <Title title="마이페이지"/>
       <T.TotalHr></T.TotalHr>
       <T.TotalDiv>
@@ -100,9 +100,9 @@ export default function Profile_card() {
             </SectionDiv>
         </SectionContainer>
       </T.TotalDiv>
-      <FooterContainer>
+      {/* <FooterContainer>
         <Footer/>
-      </FooterContainer>
+      </FooterContainer> */}
     </>
     
   )

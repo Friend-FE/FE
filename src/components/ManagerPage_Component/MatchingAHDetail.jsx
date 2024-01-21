@@ -5,15 +5,15 @@ import ProfileBasic from '../../images/ProfileBasic.png'
 import * as T from '../MyPage_Component/MyPage'
 import * as P from '../MyPage_Component/ProfileCard'
 import styled from 'styled-components'
-import Header from '../header/index'
-import Footer from '../footer/index'
+// import Header from '../header/index'
+// import Footer from '../footer/index'
 import Title from '../title/index'
 
 
 export default function MatchingAHDetail() {
   return (
     <>
-        <Header/>
+        {/* <Header/> */}
         <Title title="마이페이지"/>
         <T.TotalHr></T.TotalHr>
         <T.TotalDiv>
@@ -49,9 +49,9 @@ export default function MatchingAHDetail() {
                 <InfoP>매칭 완료 회수 : 1회</InfoP>
             </SectionDiv>
         </T.TotalDiv>
-        <FooterContainer>
+        {/* <FooterContainer>
             <Footer/>
-        </FooterContainer>
+        </FooterContainer> */}
     </>
   )
 }

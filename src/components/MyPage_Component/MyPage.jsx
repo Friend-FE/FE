@@ -2,8 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import ProfileBasic from '../../images/ProfileBasic.png'
 import styled from 'styled-components'
-import Header from '../header/index'
-import Footer from '../footer/index'
+// import Header from '../header/index'
+// import Footer from '../footer/index'
 import Title from '../title/index'
 
 
@@ -11,7 +11,7 @@ import Title from '../title/index'
 export default function MyPage() {
   return (
     <>
-      <Header/>
+      {/* <Header/> */}
       <Title title="마이페이지"/>
       <TotalHr></TotalHr>
       <TotalDiv>
@@ -26,9 +26,9 @@ export default function MyPage() {
           <MoveToPageLink to="/MyPage/NonMannerUsers">비매너 유저 신고하기</MoveToPageLink>
         </MoveToDiv>
       </TotalDiv>
-      <FooterContainer>
+      {/* <FooterContainer>
         <Footer/>
-      </FooterContainer>
+      </FooterContainer> */}
     </>
   )
 }
@@ -77,6 +77,7 @@ export const MoveToDiv = styled.div`
 export const MoveToPageLink = styled(Link)`
   font-size: 20px;
   text-decoration: none;
+  color: #000;
 
   display: block;
   margin: 60px 368px 20px 40px;
@@ -87,11 +88,11 @@ export const MoveToPageLink = styled(Link)`
   }
 `;
 
-export const FooterContainer = styled.div`
-  position: absolute;
-  bottom: -1100px;
-  width: 100%;
-`;
+// export const FooterContainer = styled.div`
+//   position: relative;
+//   top: 40vh;
+//   width: 100%;
+// `;
 
 // 꾸밈 //
 

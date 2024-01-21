@@ -3,8 +3,8 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 
-import Header from '../header/index'
-import Footer from '../footer/index'
+// import Header from '../header/index'
+// import Footer from '../footer/index'
 import Title from '../title/index'
 import * as T from '../MyPage_Component/MyPage'
 import * as M from './MatchingApplicationHistory'
@@ -74,7 +74,7 @@ export default function ViewMembershipList() {
 
   return (
     <>
-      <Header/>
+      {/* <Header/> */}
       <Title title="관리자 페이지"/>
       <T.TotalHr></T.TotalHr>
       <T.TotalDiv>
@@ -126,7 +126,7 @@ export default function ViewMembershipList() {
             </M.PersonDiv>
           </CoupleDiv>
           </M.PeopleDiv>
-          <Footer/>
+          {/* <Footer/> */}
       </T.TotalDiv>
     </>
   )
