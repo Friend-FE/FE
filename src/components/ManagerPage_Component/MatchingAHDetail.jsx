@@ -56,9 +56,12 @@ export default function MatchingAHDetail() {
   )
 }
 
-const HeadTitleH3 = styled.h3`
+export const HeadTitleH3 = styled.h3`
     color: #23CAFF;
     font-size: 40px;
+    @media screen and (max-width: 1070px) {
+        font-size : 5vw;
+    }
     font-weight: 900;
 
     position: relative;
