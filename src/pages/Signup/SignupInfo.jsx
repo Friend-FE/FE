@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import {useNavigate} from 'react-router-dom';
-import Header from '../../components/header/index'
-import Footer from '../../components/footer/index'
 import Title from '../../components/title';
 import CircleCheckbox from '../../components/CircleCheckbox/CircleCheckbox';
 import styled from 'styled-components';
@@ -36,7 +34,6 @@ const SignupInfo = () => {
 
     return (
         <>
-            <Header/>
             <Title title = "회원가입"/>
             <Separator />
 
@@ -132,7 +129,6 @@ const SignupInfo = () => {
                 </ButtonContainer>
                 
             </AppContainer>
-            <Footer/>
         </>
     )
 }

@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import {useNavigate} from 'react-router-dom';
-import Header from '../../components/header/index'
-import Footer from '../../components/footer/index'
 import styled from 'styled-components';
 import Title from '../../components/title';
 
@@ -24,37 +22,32 @@ const CertifyEmail = () => {
         console.log('Submitted:', verificationCode);
 
         //코드가 일치하는 경우 다음페이지로 넘어가는 navigate 코드 필요 (api 호출로 조건문 필요)
-        //navigate('/CertifyEnd');
+        navigate('/CertifyEnd');
     }; 
 
     return (
-        <>
-            <Header/>
             <AppContainer>
-                    <Title title = "회원가입"/>
-                    <RoundedBox>
-                        <DiscriptionText>부경대학교 학교 이메일을 입력해주세요.</DiscriptionText>
-                        <InputField type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                        <SubmitButton disabled={!isEmailFormValid} onClick={handleEmailSubmit}>인증번호 전송</SubmitButton>
-                        
-                        <DiscriptionText>이메일로 온 인증번호를 입력해주세요.</DiscriptionText>
-                        <InputField type="text" value={verificationCode} onChange={(e) => setVerificationCode(e.target.value)} />
-                        <SubmitButton disabled={!isVerificationCodeFormValid} onClick={handleVerificationCodeSubmit}>확인</SubmitButton>
-                    </RoundedBox>
+              <Title title = "회원가입"/>
+              <RoundedBox>
+                <DiscriptionText>부경대학교 학교 이메일을 입력해주세요.</DiscriptionText>
+                <InputField type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                <SubmitButton disabled={!isEmailFormValid} onClick={handleEmailSubmit}>인증번호 전송</SubmitButton>
+                
+                <DiscriptionText>이메일로 온 인증번호를 입력해주세요.</DiscriptionText>
+                <InputField type="text" value={verificationCode} onChange={(e) => setVerificationCode(e.target.value)} />
+                <SubmitButton disabled={!isVerificationCodeFormValid} onClick={handleVerificationCodeSubmit}>확인</SubmitButton>
+              </RoundedBox>
             </AppContainer>
-            <Footer/>
-        </>
     )
 } 
 export default CertifyEmail;
 
 // 전체를 담고 있는 컨테이너
 const AppContainer = styled.div`
-  height: 80vh;
-  width: 40%; /* 원하는 크기로 조정 가능 */
-  margin: 0 auto; /* 수평 가운데 정렬을 */
+    justify-content: center;
+    width: 40%; /* 원하는 크기로 조정 (가로의 반 정도로 설정) */
+    margin: 0 auto; /* 수평 가운데 정렬을 위해 margin을 auto로 설정 */
 `;
-
 // 네모 박스 그리기 
 const RoundedBox = styled.div`
   border: 2px solid #23CAFF; 
