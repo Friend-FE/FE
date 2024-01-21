@@ -8,7 +8,9 @@ import axios from "axios";
 
 const CertifyEmail = () => {
   const [email, setEmail] = useState("");
-  const [verificationCode, setVerificationCode] = useState(0);
+  const [WrongEmail, setWrongEmail] = useState(false);
+  const [WrongCode, setWrongCode] = useState(false);
+  const [verificationCode, setVerificationCode] = useState("");
 
   const isEmailFormValid = email !== "";
   const isVerificationCodeFormValid = verificationCode !== "";
@@ -16,19 +18,16 @@ const CertifyEmail = () => {
   const handleEmailSubmit = (event) => {
     event.preventDefault();
     console.log("Submitted:", email);
-    console.log("Submitted:", typeof(email));
+    console.log("Submitted:", typeof email);
 
     if (isEmailFormValid) {
-      const requestBody = {
-        "email": email
-      };
-  
-      axios.post("http://13.209.145.28:8080/api/v1/certify/send",{"email" : email} )
+      axios.post("http://13.209.145.28:8080/api/v1/certify/send", { email: email })
         .then((response) => {
           console.log("POST 응답 데이터:", response.data);
         })
         .catch((error) => {
           console.error("POST 에러:", error);
+          setWrongEmail(true);
         });
     } else {
       console.error("이메일 형식이 유효하지 않습니다.");
@@ -38,26 +37,28 @@ const CertifyEmail = () => {
   const navigate = useNavigate();
   const handleVerificationCodeSubmit = (event) => {
     event.preventDefault();
-    console.log("Submitted: 111", typeof(verificationCode));
-
-    //코드가 일치하는 경우 다음페이지로 넘어가는 navigate 코드 필요 (api 호출로 조건문 필요)
-    //navigate('/CertifyEnd');
-    axios.get(`http://13.209.145.28:8080/api/v1/certify/verify?email=${email}&code=${verificationCode}`)
-  .then(function (response) {
-    // 성공적으로 응답 받았을 때의 처리
-    console.log('응답 데이터:', response.data);
-  })
-  .catch(function (error) {
-    // 오류 발생 시의 처리
-    console.error('오류 발생:', error);
-  });
+    axios.get(
+        `http://13.209.145.28:8080/api/v1/certify/verify?email=${email}&code=${parseInt(
+          verificationCode
+        )}`
+      )
+      .then(function (response) {
+        // 성공적으로 응답 받았을 때의 처리
+        console.log("응답 데이터:", response.data);
+        //navigate('/CertifyEnd');
+      })
+      .catch(function (error) {
+        // 오류 발생 시의 처리
+        console.error("오류 발생:", error);
+        setWrongCode(true);
+      });
   };
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
+      <Title title="회원가입" />
       <AppContainer>
-        <Title title="회원가입" />
         <RoundedBox>
           <DiscriptionText>
             부경대학교 학교 이메일을 입력해주세요.
@@ -73,7 +74,7 @@ const CertifyEmail = () => {
           >
             인증번호 전송
           </SubmitButton>
-
+          {WrongEmail && <p>잘못된 이메일 형식입니다</p>}
           <DiscriptionText>
             이메일로 온 인증번호를 입력해주세요.
           </DiscriptionText>
@@ -88,9 +89,10 @@ const CertifyEmail = () => {
           >
             확인
           </SubmitButton>
+          {WrongCode && <p>잘못된 인증번호입니다</p>}
         </RoundedBox>
       </AppContainer>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };
@@ -109,6 +111,9 @@ const RoundedBox = styled.div`
   border-radius: 10px; /* 모서리를 둥글게 */
   padding: 40px; /* 네모박스 내부 여백 */
   margin-top: 100px;
+  p {
+    color: 		#4169E1;
+  }
 `;
 
 //무엇을 입력해야하는지 설명하는 텍스트
