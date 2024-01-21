@@ -5,7 +5,7 @@ import Header from '../header/index'
 import Footer from '../footer/index'
 import Title from '../title/index'
 import * as T from '../MyPage_Component/MyPage'
-import * as M from './MatchingAHDetail'
+import * as MAHD from './MatchingAHDetail'
 
 import left from '../../images/Vector10.png'
 import right from '../../images/Vector9.png'
@@ -91,7 +91,7 @@ export default function MatchingApplicationHistory() {
       <Title title="관리자 페이지"/>
       <T.TotalHr></T.TotalHr>
       <T.TotalDiv>
-        <M.HeadTitleH3>매칭 신청 내역 모아보기</M.HeadTitleH3>
+        <MAHD.HeadTitleH3>매칭 신청 내역 모아보기</MAHD.HeadTitleH3>
         <FlexDiv>
           <DateDiv>
             <DirectionImg onClick={onClickLeft} src={left} alt ="left"/>
@@ -157,14 +157,14 @@ export default function MatchingApplicationHistory() {
   )
 }
 
-const FlexDiv = styled.div`
+export const FlexDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
 `;
 
-const DateDiv = styled.div`
+export const DateDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -185,7 +185,7 @@ const DateDiv = styled.div`
   box-shadow: 1vw 0.7vw 0.5vw rgba(0, 0, 0, 0.2);
 `;
 
-const DirectionImg = styled.img`
+export const DirectionImg = styled.img`
   width: 20px;
   height: 29px;
   margin: 0 3vw; /* 가로 여백 추가 */
@@ -199,7 +199,7 @@ const DirectionImg = styled.img`
   cursor: pointer;
 `;
 
-const P = styled.p`
+export const P = styled.p`
   font-size: 16px;
   @media screen and (max-width: 1070px) {
     font-size : 2vw;
@@ -207,16 +207,14 @@ const P = styled.p`
   }
 `;
 
-const PeopleDiv = styled.div`
-  /* background-color: tomato; */
-
+export const PeopleDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
 `;
 
-const PersonDiv = styled.div`
+export const PersonDiv = styled.div`
   text-align: center;
 
   width: 13vw;
@@ -239,7 +237,7 @@ const PersonDiv = styled.div`
 
 `;
 
-const NameH5 = styled.h5`
+export const NameH5 = styled.h5`
   font-size: 32px;
   font-weight: bold;
 
@@ -248,26 +246,7 @@ const NameH5 = styled.h5`
   }
 `;
 
-// const GenderBtn = styled.button`
-//   width: 12vw; 
-//   height: 8vh; 
-//   margin: 2vw 2vw 0 2vw;
-  
-//   font-size: 16px;
-//   @media screen and (max-width: 1070px) {
-//     font-size : 2vw;
-//   }
-//   color: white;
-  
-//   border: none;
-//   border-radius: 30px;
-//   background-color: #23CAFF;
-//   box-shadow: 1vw 0.7vw 0.5vw rgba(0, 0, 0, 0.2);
-  
-//   cursor: pointer;
-// `;
-
-const GenderBtn = styled.button`
+export const GenderBtn = styled.button`
   width: 12vw; 
   height: 8vh; 
   margin: 2vw 2vw 0 2vw;
