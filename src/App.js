@@ -10,8 +10,14 @@ import MainPage from './pages/mainPage';
 import Header from './components/header';
 import Footer from './components/footer';
 
+import Login from './pages/Login/Login';
+import CertifyBeginning from './pages/Certify/CertifyBeginning';
 import CertifyEmail from './pages/Certify/CertifyEmail';
+import CertifyEnd from './pages/Certify/CertifyEnd';
 import SignupInfo from './pages/Signup/SignupInfo';
+import SignupTerms from './pages/Signup/SignupTerms';
+import FindID from './pages/FindAccount/FindID';
+import FindPassword from './pages/FindAccount/FindPassword';
 
 const App = ()=>{
 	return (
@@ -26,8 +32,15 @@ const App = ()=>{
 				<Route path="/MyPage/MembershipWithdrawal" element={<MembershipWithdrawal/>}/>
 				<Route path="/MyPage/ModifyingInfo" element={<ModifyingInfo/>}/>
 				<Route path="/MyPage/ProfileCard" element={<ProfileCard/>}/>
+
+				<Route path="/Login" element={<Login/>}/> 
+				<Route path="/CertifyBeginning" element={<CertifyBeginning/>}/> 
 				<Route path="/CertifyEmail" element={<CertifyEmail/>}/> 
+				<Route path="/CertifyEnd" element={<CertifyEnd/>}/> 
 				<Route path="/SignupInfo" element={<SignupInfo/>}/> 
+				<Route path="/SignupTerms" element={<SignupTerms/>}/> 
+				<Route path="/FindID" element={<FindID/>}/> 
+				<Route path="/FindPassword" element={<FindPassword/>}/> 
 			</Routes>
 			<Footer></Footer>
 	  </div>
