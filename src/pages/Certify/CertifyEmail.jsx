@@ -1,8 +1,10 @@
-
-import React, { useState } from 'react';
-import {useNavigate} from 'react-router-dom';
-import styled from 'styled-components';
-import Title from '../../components/title';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Header from "../../components/header/index";
+import Footer from "../../components/footer/index";
+import styled from "styled-components";
+import Title from "../../components/title";
+import axios from "axios";
 
 const CertifyEmail = () => {
   const [email, setEmail] = useState("");
@@ -99,7 +101,7 @@ export default CertifyEmail;
 
 // 전체를 담고 있는 컨테이너
 const AppContainer = styled.div`
-    justify-content: center;
+    height: 80vh;
     width: 40%; /* 원하는 크기로 조정 (가로의 반 정도로 설정) */
     margin: 0 auto; /* 수평 가운데 정렬을 위해 margin을 auto로 설정 */
 `;
