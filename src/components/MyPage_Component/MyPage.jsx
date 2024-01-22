@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import ProfileBasic from '../../images/ProfileBasic.png'
-import styled, { createGlobalStyle } from 'styled-components'
-import Header from '../header/index'
-import Footer from '../footer/index'
+import styled from 'styled-components'
+// import Header from '../header/index'
+// import Footer from '../footer/index'
 import Title from '../title/index'
 
 
@@ -23,6 +23,7 @@ export default function MyPage() {
           <MoveToPageLink to="/MyPage/ProfileCard">내 프로필 카드 확인하기</MoveToPageLink>
           <MoveToPageLink to="/MyPage/DeactivateAccount">계정 비활성화</MoveToPageLink>
           <MoveToPageLink to="/MyPage/MembershipWithdrawal">회원 탈퇴</MoveToPageLink>
+          <MoveToPageLink to="/MyPage/NonMannerUsers">비매너 유저 신고하기</MoveToPageLink>
         </MoveToDiv>
       </TotalDiv>
       {/* <FooterContainer>
@@ -81,16 +82,17 @@ export const MoveToPageLink = styled(Link)`
   display: block;
   margin: 60px 368px 20px 40px;
 
+  color: black;
   &:hover {
     color: #23CAFF;
   }
 `;
 
-const FooterContainer = styled.div`
-  position: relative;
-  top: 40vh;
-  width: 100%;
-`;
+// export const FooterContainer = styled.div`
+//   position: relative;
+//   top: 40vh;
+//   width: 100%;
+// `;
 
 // 꾸밈 //
 
