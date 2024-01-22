@@ -1,10 +1,8 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import Header from "../../components/header/index";
-import Footer from "../../components/footer/index";
-import styled from "styled-components";
-import Title from "../../components/title";
-import axios from "axios";
+
+import React, { useState } from 'react';
+import {useNavigate} from 'react-router-dom';
+import styled from 'styled-components';
+import Title from '../../components/title';
 
 const CertifyEmail = () => {
   const [email, setEmail] = useState("");
@@ -96,16 +94,17 @@ const CertifyEmail = () => {
     </>
   );
 };
+
 export default CertifyEmail;
 
 // 전체를 담고 있는 컨테이너
 const AppContainer = styled.div`
-  height: 80vh;
-  width: 40%; /* 원하는 크기로 조정 가능 */
-  margin: 0 auto; /* 수평 가운데 정렬을 */
+    justify-content: center;
+    width: 40%; /* 원하는 크기로 조정 (가로의 반 정도로 설정) */
+    margin: 0 auto; /* 수평 가운데 정렬을 위해 margin을 auto로 설정 */
 `;
 
-// 네모 박스 그리기
+// 네모 박스 그리기 
 const RoundedBox = styled.div`
   border: 2px solid #23caff;
   border-radius: 10px; /* 모서리를 둥글게 */
