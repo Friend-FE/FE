@@ -137,19 +137,14 @@ export const DateDiv = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  width: 40vw; 
-  height: 8vh;
-  margin: 2vw 0 3vw 0;
-
-  font-size: 16px;
-  @media screen and (max-width: 1070px) {
-    font-size : 2vw;
-  }
-
+  width: 40vw;
+  height: 4vw;
+  margin: 3vw 0 2vw 0;
+  
   color: black;
   text-align: center;
 
-  border-radius: 30px;
+  border-radius: 2vw;
   box-shadow: 1vw 0.7vw 0.5vw rgba(0, 0, 0, 0.2);
 `;
 
@@ -160,9 +155,4 @@ const CoupleDiv = styled.div`
   flex-wrap: wrap;
 
   margin: 1vw 8vw;
-
-  @media screen and (max-width: 1070px) {
-    margin: 3vw 1vw;
-  }
-
 `;

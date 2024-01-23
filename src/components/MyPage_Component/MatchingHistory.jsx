@@ -1,8 +1,8 @@
 import React from 'react'
 import * as T from './MyPage'
 import styled from 'styled-components'
-import Header from '../header/index'
-import Footer from '../footer/index'
+// import Header from '../header/index'
+// import Footer from '../footer/index'
 import Title from '../title/index'
 
 export default function Matching_history() {
@@ -30,22 +30,22 @@ export default function Matching_history() {
 
 const ContainerDiv = styled.div`
 
-    width: 700px;
-    margin: 60px 0;
+  width: 45vw;
+  margin: 4vw 0;
 
-    background-color: #DAF6FF;
-    border-radius: 20px;
-    box-shadow: 10px 15px 5px rgba(0, 0, 0, 0.2);
+  background-color: #DAF6FF;
+  border-radius: 1.3vw;
+  box-shadow: 0.6vw 1vw 0.3vw rgba(0, 0, 0, 0.2);
 
 `;
 
 const MatchingHistoryP = styled.p`
-  font-size: 20px;
-  margin: 80px 40px;
+  font-size: 1.33vw;
+  margin: 5.3vw 2.66vw;
 `;
 
-const FooterContainer = styled.div`
-  position: relative;
-  bottom: -100px;
-  width: 100%;
-`;
+// const FooterContainer = styled.div`
+//   position: relative;
+//   bottom: -100px;
+//   width: 100%;
+// `;
