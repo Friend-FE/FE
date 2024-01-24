@@ -88,9 +88,15 @@ export const MoveToPageLink = styled(Link)`
 `;
 
 // export const FooterContainer = styled.div`
-//   position: relative;
-//   top: 40vh;
 //   width: 100%;
+
+//   /* position: relative; */
+//   /* top: 1vh; */
+
+//   @media screen and (max-width: 767px) {
+//     position: relative;
+//     top: -30vh;
+//   }
 // `;
 
 // 꾸밈 //
