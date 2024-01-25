@@ -38,7 +38,7 @@ h3{
     font-weight: 900;
     margin :0;
     margin-top :2vh;
-    @media screen and (max-width: 1070px) {
+    @media screen and (max-width: 1165px) {
         font-size : 2.5vw;
         gap : 5px;
         margin-top :1.3vh;
@@ -56,7 +56,10 @@ p{
       }
 }
 &.gap{
-    gap:10vh;
+    gap:3vh;
+    p{
+      font-size :1.5rem;
+    }
 }
 
 `

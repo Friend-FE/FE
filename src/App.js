@@ -18,7 +18,7 @@ import ViewMembershipList from './components/ManagerPage_Component/ViewMembershi
 import WritingNotices from './components/ManagerPage_Component/WritingNotices';
 import MatchingAHDetail from './components/ManagerPage_Component/MatchingAHDetail';
 
-import MainPage from './pages/mainPage';
+import MainPage from './pages/Main/MainPage';
 import Header from './components/header';
 import Footer from './components/footer';
 
@@ -65,7 +65,6 @@ const App = ()=>{
 				<Route path="/FindID" element={<FindID/>}/> 
 				<Route path="/FindPassword" element={<FindPassword/>}/> 
 			</Routes>
-			<Footer></Footer>
 	  </div>
 	);
   }
