@@ -15,8 +15,8 @@ const ImageBox = ({ imageUrl, altText, sub }) => {
 export default ImageBox;
 
 const Box = styled.div`
-  width: 20vw;
-  max-width: 230px;
+  width: 22vw;
+  max-width: 265px;
   height: 22vh;
   border-radius: 30px;
   background: #fae1e4;
@@ -31,6 +31,10 @@ const Box = styled.div`
   p {
     position: relative;
     top: 50px;
+    font-size :1.5vw;
+    @media screen and (max-width: 700px) {
+      font-size :2.5vw;
+    }
   }
   @media screen and (max-width: 700px) {
     width: 40vw;
@@ -44,12 +48,6 @@ const StyledP = styled.div`
   font-size: 20px;
   font-style: normal;
   font-weight: 800;
-  p{
-    font-size :1.5vw;
-    @media screen and (max-width: 700px) {
-      font-size :2.5vw;
-    }
-  }
 
   h5{
     line-height: 0%;

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import ProfileBasic from '../../images/ProfileBasic.png'
 import styled from 'styled-components'
 // import Header from '../header/index'
-// import Footer from '../footer/index'
+import Footer from '../footer/index'
 import Title from '../title/index'
 
 
@@ -26,9 +26,9 @@ export default function MyPage() {
           <MoveToPageLink to="/MyPage/NonMannerUsers">비매너 유저 신고하기</MoveToPageLink>
         </MoveToDiv>
       </TotalDiv>
-      {/* <FooterContainer>
+      <FooterContainer>
         <Footer/>
-      </FooterContainer> */}
+      </FooterContainer>
     </>
   )
 }
@@ -88,11 +88,11 @@ export const MoveToPageLink = styled(Link)`
   }
 `;
 
-// export const FooterContainer = styled.div`
-//   position: relative;
-//   top: 40vh;
-//   width: 100%;
-// `;
+export const FooterContainer = styled.div`
+  position: relative;
+  top: 40vh;
+  width: 100%;
+`;
 
 // 꾸밈 //
 
