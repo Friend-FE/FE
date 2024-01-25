@@ -88,6 +88,9 @@ export default SignupTerms;
 const AppContainer = styled.div`
     justify-content: center;
     width: 40%; /* 원하는 크기로 조정 (가로의 반 정도로 설정) */
+    @media (max-width: 768px) {
+      width: 80%;
+    }
     margin: 0 auto; /* 수평 가운데 정렬을 위해 margin을 auto로 설정 */
 `;
 
@@ -95,17 +98,17 @@ const AppContainer = styled.div`
 const Separator = styled.div`
   height: 1px;
   background-color: Gray;
-  margin: 100px; 
+  margin: 5rem; 
 `;
 
 const Checkbox = styled.input`
-  margin-right: 10px;
+  margin-right: 0.3rem;
 `;
 
 const InfoBox = styled.div`
   border: 1px solid #333;
-  padding: 20px;
-  margin: 20px 0;
+  padding: 1.5rem;
+  margin: 1rem 0;
 `;
 
 const ButtonContainer = styled.div`
@@ -115,18 +118,20 @@ const ButtonContainer = styled.div`
 
 const CancelButton = styled.button`
     background-color: #FFF;
+    font-size : 0.8rem;
     color: black;
     border: none;
-    padding: 10px;
+    padding: 1rem;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 10px;
 `;
 
 const SubmitButton = styled.button`
   background-color: #23CAFF;
+  font-size : 0.8rem;
   color: white;
   border: none;
-  padding: 10px;
+  padding: 0.6rem;
   cursor: pointer;
   border-radius: 5px;
 
