@@ -136,11 +136,11 @@ export default function NonMannerUsers() {
                 <Form /* action="제출할 서버 경로" method="post"*/>
                     <ul>
                         <FormLi>
-                            <label htmlFor="user1">00년생 / 부경대최고 / 경영대학 / 2024.01.03</label>
+                            <Label htmlFor="user1">00년생 / 부경대최고 / 경영대학 / 2024.01.03</Label>
                             <FormCheckbox type="checkbox" id="user1"/>
                         </FormLi>
                         <FormLi>
-                            <label htmlFor="user2">02년생 / 부경대미남 / 인문사회과학대학 / 2024.01.02</label>
+                            <Label htmlFor="user2">02년생 / 부경대미남 / 인문사회과학대학 / 2024.01.02</Label>
                             <FormCheckbox type="checkbox" id="user2"/>
                         </FormLi>
                     </ul>
@@ -159,81 +159,85 @@ export default function NonMannerUsers() {
 
 const Form = styled.form`
 
-    width: 700px;
-    margin: 0px 0 80px 0;
+    width: 46vw;
+    margin: 0 0 5.3vw 0;
 
     background-color: #DAF6FF;
-    border-radius: 20px;
-    box-shadow: 10px 15px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 1.3vw;
+    box-shadow: 0.6vw 1vw 0.3vw rgba(0, 0, 0, 0.2);
 `;
 
 const FormLi = styled.li`
-  margin: 80px 40px;
-  list-style-type: none;
+    margin: 5.3vw 2.6vw;
+    list-style-type: none;
+`;
+
+const Label = styled.label`
+    font-size: 1vw;
 `;
 
 const FormCheckbox = styled.input`
-    width: 20px;
-    height: 20px;
-    margin: 0 0 0 20px;
+    width: 1.3vw;
+    height: 1.3vw;
+    margin: 0 0 0 1.3vw;
 
     position: relative;
-    top: 5px;
+    top: 0.33vw;
 
     appearance: none;
-    border: 2px solid black;
+    border: 0.13vw solid black;
     background-color: transparent;
     outline: none;
     cursor: pointer;
-    border-radius: 2px;
+    border-radius: 0.13vw;
 
     &:checked::before {
         content: '\u2713';
         position: absolute;
-        left: 2px;
-        top: -2px;
-        font-size: 15px;
+        left: 0.13vw;
+        top: -0.13vw;
+        font-size: 1vw;
         font-weight: bold;
     }
 `;
 
 const CencleBtn = styled.button`
-    width: 177px;
-    height: 50px;
+    width: 11.8vw;
+    height: 3.33vw;
 
-    margin: 0 20px 20px 20px;
+    margin: 0 1.3vw 1.3vw 1.3vw;
 
-    font-size: 15px;
+    font-size: 1vw;
     font-weight: bold;  
 
     border:none;
     background-color: white;
 
-    box-shadow: -5px 10px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: -0.3vw 0.6vw 0.3vw rgba(0, 0, 0, 0.2);
     
     cursor: pointer;
 `;
 
 const SubmitBtn = styled.button`
-    width: 177px;
-    height: 50px;
+    width: 11.8vw;
+    height: 3.33vw;
 
-    margin: 0 20px 20px 20px;
+    margin: 0 1.3vw 1.3vw 1.3vw;
 
-    font-size: 15px;
+    font-size: 1vw;
     font-weight: bold; 
     color: white;
 
     border:none;
     background-color: #8BE3FF;
 
-    box-shadow: -5px 10px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: -0.3vw 0.6vw 0.3vw rgba(0, 0, 0, 0.2);
     
     cursor: pointer;
 `;
 
-const FooterContainer = styled.div`
-    position: absolute;
-    bottom: -100px;
-    width: 100%;
-`;
+// const FooterContainer = styled.div`
+//     position: absolute;
+//     bottom: -100px;
+//     width: 100%;
+// `;
