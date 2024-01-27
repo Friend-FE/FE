@@ -34,12 +34,13 @@ const CheckboxLabel = styled.label`
   margin-left: 8px;
 `;
 
-const CircleCheckbox = ({ options }) => {
+const CircleCheckbox = ({ options, name, value, onChange }) => {
   const [checkedOption, setCheckedOption] = useState(null);
 
-  const handleCheckboxChange = (option) => {
-    setCheckedOption(option);
-  };
+  // const handleCheckboxChange = (option) => {
+  //   // setCheckedOption(option);
+  //   handleChange(option);
+  // };
 
   return (
     <div>
@@ -47,8 +48,8 @@ const CircleCheckbox = ({ options }) => {
         <CheckboxContainer key={index}>
           <StyledCheckbox
             type="checkbox"
-            checked={checkedOption === option}
-            onChange={() => handleCheckboxChange(option)}
+            checked={value  === option}
+            onChange={() => onChange({ target: { name, value: option } })}
           />
           <CheckboxLabel>{option}</CheckboxLabel>
         </CheckboxContainer>
