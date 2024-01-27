@@ -20,8 +20,12 @@ import ModifyingInfo from './components/MyPage_Component/ModifyingInfo';
 import ModifyingManagerInfo from './components/ManagerPage_Component/ModifyingManagerInfo';
 import MyPage from './components/MyPage_Component/MyPage';
 import NonMannerUsers from './components/MyPage_Component/NonMannerUsers';
+import Notice from './pages/Notice/notice';
 import ProfileCard from './components/MyPage_Component/ProfileCard';
 import QnA from './components/ManagerPage_Component/QnA';
+import Question from './pages/QnA/qna';
+import QuestionWrite from './pages/QnA/qnaWrite';
+import Report from './pages/Report/report';
 import ReportReceiptHistory from './components/ManagerPage_Component/ReportReceiptHistory';
 import Review from './pages/Review/review';
 import ReviewWrite from './pages/Review/write';
@@ -65,6 +69,9 @@ const App = ()=>{
 				<Route path="/FindPassword" element={<FindPassword/>}/> 
 				<Route path="/reviews" element={<Review/>}/> 
 				<Route path="/write" element={<ReviewWrite />}/>
+				<Route path="/notice" element={<Notice/>} />
+				<Route path="/QnA" element={<Question/>} />
+
 			</Routes>
 			<Footer></Footer>
 	  </div>

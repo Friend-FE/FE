@@ -46,23 +46,23 @@ const HeaderRow = styled(Row)`
   font-size: 1.2em;
 `
 
-const Board = ({ info = [] }) => {
+const Board = ({ info }) => {
   const infoLength = info.length; 
   return (
     <BoardWrapper>
       <HR />
-      <HeaderRow>
+      <HeaderRow as="div">
         <Title>제목</Title>
         <Author>작성자</Author>
         <Time>작성 시간</Time>
       </HeaderRow>
       <ThinHR />
-      {info && info.map((info, index) => (
-        <div className='info' key={info.id}>
-          <Row to={`/detail/${info.id}`}>
-            <Title>{info.title}</Title>
-            <Author>{info.author}</Author>
-            <Time>{info.time}</Time>
+      {info && info.map((item, index) => (
+        <div key={item.id}>
+          <Row to={`/reviews/${item.id}`}>
+            <Title>{item.title}</Title>
+            <Author>{item.author}</Author>
+            <Time>{item.time}</Time>
           </Row>
           {index !== infoLength - 1 ? <ThinHR /> : <HR />}
         </div>
@@ -70,6 +70,5 @@ const Board = ({ info = [] }) => {
     </BoardWrapper>
   );
 };
-
 
 export default Board;
