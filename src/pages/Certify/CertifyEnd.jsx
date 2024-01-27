@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {useNavigate} from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -25,33 +25,35 @@ export default CertifyEmail;
 const AppContainer = styled.div`
     justify-content: center;
     width: 40%; /* 원하는 크기로 조정 (가로의 반 정도로 설정) */
+    @media (max-width: 768px) {
+      width: 80%;
+    }
     margin: 0 auto; /* 수평 가운데 정렬을 위해 margin을 auto로 설정 */
 `;
 
 const RoundedBox = styled.div`
   border: 2px solid #23CAFF;
   border-radius: 10px;
-  padding: 40px;
-  margin-top: 100px;
+  padding: 1rem;
+  margin-top: 3rem;
   display: flex;
   flex-direction: column;
   align-items: center; 
 `;
 
 const DiscriptionText = styled.div`
-  font-size: 25px;
+  font-size: 1.5rem;
   text-align : center;
-  margin : 20px;
+  margin : 0.5rem;
 `;
 
 const SubmitButton = styled.button`
   background-color: #3498db;
   color: white;
   border: none;
-  padding: 10px;
+  padding: 1rem;
   cursor: pointer;
   border-radius: 5px;
-  width : 100px;
-  margin-top : 100px;
-  height : 40px;
+  width : 6rem;
+  margin-top : 3rem;
 `;

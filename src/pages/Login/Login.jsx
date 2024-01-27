@@ -24,12 +24,30 @@ const Login = () => {
     const handleManagerLogin = (event) => {
         setManagerLogin(event.target.checked);
     };
-    const handleSubmit = (event) => {
-        //api 호출이 필요한 부분 
-
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log('Submitted:', { email, password });
-    }; 
+        // API 호출
+        try {
+          const response = await fetch('http://13.209.145.28:8080//api/v1/login', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ email, password }),
+          });
+
+          if (!response.ok) {
+              // 에러 처리
+              throw new Error('Failed to log in');
+          }
+          console.log({email,password})
+          const data = await response.json();
+          // 서버에서 받은 데이터 처리
+          console.log('Login successful:', data);
+      } catch (error) {
+          console.error('Error during login:', error.message);
+      }
+    };
 
     const navigate = useNavigate();
     const handleSignupClick = () => {
@@ -72,6 +90,9 @@ export default Login;
 const AppContainer = styled.div`
     justify-content: center;
     width: 40%; /* 원하는 크기로 조정 (가로의 반 정도로 설정) */
+    @media (max-width: 768px) {
+      width: 80%;
+    }
     margin: 0 auto; /* 수평 가운데 정렬을 위해 margin을 auto로 설정 */
 `;
 
@@ -79,33 +100,33 @@ const AppContainer = styled.div`
 const LoginForm = styled.form`
   display: flex;
   flex-direction: column;
-  margin-top: 100px;
+  margin-top: 5rem;
 `;
 
 const Input = styled.input`
-  height: 30px;
-  padding: 10px;
-  margin-top: 10px;
+  height: 2rem;
+  padding: 0.5rem;
+  margin-top: 1rem;
 `;
 
 // 로그인 상태, 관리자 로그인을 선택하기 위한 것들 
 const CheckboxContainer = styled.div`
     display: flex; 
-    margin-top: 10px; 
+    margin-top: 1rem; 
 `
 const Checkbox = styled.input.attrs({ type: 'checkbox' })`
-    margin-right: 10px;
+    margin-right: 0.5rem;
 `;
 
 const CheckText = styled.div`
-    font-size: 12px;
+    font-size: 0.8rem;
     margin-right: 10px;
 `
 
 //로그인 버튼
 const SubmitButton = styled.button`
-  margin-top: 10px;
-  padding: 10px;
+  margin-top: 1rem;
+  padding: 0.7rem;
   background-color: #23CAFF;
   color: white;
   border: none;
