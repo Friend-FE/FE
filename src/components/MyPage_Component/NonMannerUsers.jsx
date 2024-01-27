@@ -8,7 +8,7 @@ import {useNavigate} from 'react-router-dom';
 import * as T from './MyPage'
 import styled from 'styled-components'
 // import Header from '../header/index'
-// import Footer from '../footer/index'
+import Footer from '../footer/index'
 import Title from '../title/index'
 
 /* 서버 연동 시 코드. 일단은 주석 처리 */
@@ -149,9 +149,9 @@ export default function NonMannerUsers() {
                     <CencleBtn type="button" onClick={cancel}>취소</CencleBtn>
                     <SubmitBtn type="button" onClick={submitForm}>선택</SubmitBtn>
                 </div>
-                {/* <FooterContainer>
+                <FooterContainer>
                     <Footer/>
-                </FooterContainer> */}
+                </FooterContainer>
             </T.TotalDiv>
         </>
     )
@@ -236,8 +236,12 @@ const SubmitBtn = styled.button`
     cursor: pointer;
 `;
 
-// const FooterContainer = styled.div`
-//     position: absolute;
-//     bottom: -100px;
-//     width: 100%;
-// `;
+const FooterContainer = styled.div`
+    position: relative;
+    bottom: -2vw;
+    width: 100%;
+
+    @media (max-width: 768px) {
+    top: 8vw;
+  }
+`;

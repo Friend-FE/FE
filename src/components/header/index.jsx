@@ -14,7 +14,7 @@ function Header() {
       {isLogined ? (
             <>
               <NavLink to="/logout">LOGOUT</NavLink>
-              <NavLink to="/mypage">마이페이지</NavLink>
+              <NavLink to="/Mypage">마이페이지</NavLink>
             </>
           ) : (
             <>

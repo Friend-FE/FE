@@ -3,6 +3,7 @@ import {useNavigate} from 'react-router-dom';
 import styled from 'styled-components';
 import CertifyGirl from "../../images/CertifyGirl.png"
 import Title from '../../components/title';
+import Footer from '../../components/footer';
 
 const CertifyBeginning = () => {
     const navigate = useNavigate();
@@ -11,8 +12,9 @@ const CertifyBeginning = () => {
     };
 
     return (
+      <>
+      <Title title = "회원가입"/>
         <AppContainer>
-            <Title title = "회원가입"/>
 
             <LogoContainer>
                 <SignupGirl src={CertifyGirl} alt="signup_girl" />
@@ -25,6 +27,10 @@ const CertifyBeginning = () => {
                 <SignUpButton onClick={handleClick}>부경대 학생 인증하기</SignUpButton>
             </ParentContainer>
         </AppContainer>
+        <FooterDiv>
+          <Footer/>
+        </FooterDiv>
+      </>
     )
 }
 
@@ -33,11 +39,14 @@ export default CertifyBeginning
 // 전체를 담고 있는 컨테이너
 const AppContainer = styled.div`
     justify-content: center;
-    width: 40%; /* 원하는 크기로 조정 (가로의 반 정도로 설정) */
+    position: relative;
+    top: 8vw;
+
+    /* width: 40%;
     @media (max-width: 768px) {
       width: 80%;
     }
-    margin: 0 auto; /* 수평 가운데 정렬을 위해 margin을 auto로 설정 */
+    margin: 0 auto; */
 `;
 
 
@@ -49,14 +58,19 @@ const LogoContainer = styled.div`
 
 const SignupGirl = styled.img`
   display : flex;
-  margin : 7rem;
+  margin : 7vw 0 1vw 0;
+
+  width: 15vw;
+  height: 15vw;
 `
 
 //지금 --- 인증해주세요  를 표시
 const DiscriptionText = styled.div`
   text-align: center;
-  font-size: 1.5rem;
-  margin : 1rem;
+  font-size: 1.5vw;
+  font-weight: bold; 
+
+  margin : 3vw 0 3vw 0;
 `;
 
 // 부모 컨테이너
@@ -66,11 +80,30 @@ const ParentContainer = styled.div`
 
 //부경대 인증 버튼 
 const SignUpButton = styled.button`
-  padding: 1rem;
-  background-color: #23CAFF; 
-  color: #fff;
-  border-radius: 10px; 
-  font-size: 1rem;
-  font-weight: bold;
+
+  padding: 0.7vw;
+  background-color: #8BE3FF;
+  color: white;
+  border: none;
   cursor: pointer;
+
+  width: 30vw;
+  height: 3vw;
+  margin-top: 2vw;
+
+  box-shadow: -0.6vw 0.5vw 0.3vw rgba(0, 0, 0, 0.2);
+  font-size: 1.3vw;
+  font-weight: bold; 
+
+
+`;
+
+const FooterDiv = styled.div`
+  width: 100%;
+  position: relative;
+  top: 12vw;
+
+  @media (max-width: 768px) {
+    top: 22vw;
+  }
 `;

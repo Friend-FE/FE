@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react'
 
 // import Header from '../header/index'
-// import Footer from '../footer/index'
+import Footer from '../footer/index'
 import Title from '../title/index'
 import * as T from '../MyPage_Component/MyPage'
 import * as M from './MatchingApplicationHistory'
@@ -153,7 +153,7 @@ export default function ViewMembershipList() {
                 <M.P>2024/01/05 07:00</M.P>
               </M.PersonDiv>
           </M.PeopleDiv>
-          {/* <Footer/> */}
+          <Footer/>
       </T.TotalDiv>
     </>
   )

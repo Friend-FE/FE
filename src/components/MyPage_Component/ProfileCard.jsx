@@ -3,7 +3,7 @@ import ProfileBasic from '../../images/ProfileBasic.png'
 import * as T from './MyPage'
 import styled from 'styled-components'
 // import Header from '../header/index'
-// import Footer from '../footer/index'
+import Footer from '../footer/index'
 import Title from '../title/index'
 
 export default function Profile_card() {
@@ -34,9 +34,9 @@ export default function Profile_card() {
             </SectionDiv>
         </SectionContainer>
       </T.TotalDiv>
-      {/* <FooterContainer>
+      <FooterContainer>
         <Footer/>
-      </FooterContainer> */}
+      </FooterContainer>
     </>
     
   )
@@ -103,8 +103,12 @@ export const SelfIntroductionP = styled.p`
   font-size: 1.33vw;
 `;
 
-// export const FooterContainer = styled.div`
-//   position: absolute;
-//   bottom: -1200px;
-//   width: 100%;
-// `;
+export const FooterContainer = styled.div`
+  position: relative;
+  bottom: -18vw;
+  width: 100%;
+
+  @media (max-width: 768px) {
+    top: -12vw;
+  }
+`;
