@@ -1,35 +1,34 @@
-import { Routes, Route } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 
-import MyPage from './components/MyPage_Component/MyPage';
-import DeactivateAccount from './components/MyPage_Component/DeactivateAccount';
-import MatchingHistory from './components/MyPage_Component/MatchingHistory';
-import MembershipWithdrawal from './components/MyPage_Component/MembershipWithdrawal';
-import ModifyingInfo from './components/MyPage_Component/ModifyingInfo';
-import ProfileCard from './components/MyPage_Component/ProfileCard';
-import NonMannerUsers from './components/MyPage_Component/NonMannerUsers';
-
-import ManagerPage from './components/ManagerPage_Component/ManagerPage';
-import MatchingApplicationHistory from './components/ManagerPage_Component/MatchingApplicationHistory';
-import MatchingCompletionHistory from './components/ManagerPage_Component/MatchingCompletionHistory';
-import ModifyingManagerInfo from './components/ManagerPage_Component/ModifyingManagerInfo';
-import QnA from './components/ManagerPage_Component/QnA';
-import ReportReceiptHistory from './components/ManagerPage_Component/ReportReceiptHistory';
-import ViewMembershipList from './components/ManagerPage_Component/ViewMembershipList';
-import WritingNotices from './components/ManagerPage_Component/WritingNotices';
-import MatchingAHDetail from './components/ManagerPage_Component/MatchingAHDetail';
-
-import MainPage from './pages/mainPage';
-import Header from './components/header';
-import Footer from './components/footer';
-
-import Login from './pages/Login/Login';
 import CertifyBeginning from './pages/Certify/CertifyBeginning';
 import CertifyEmail from './pages/Certify/CertifyEmail';
 import CertifyEnd from './pages/Certify/CertifyEnd';
-import SignupInfo from './pages/Signup/SignupInfo';
-import SignupTerms from './pages/Signup/SignupTerms';
+import DeactivateAccount from './components/MyPage_Component/DeactivateAccount';
 import FindID from './pages/FindAccount/FindID';
 import FindPassword from './pages/FindAccount/FindPassword';
+import Footer from './components/footer';
+import Header from './components/header';
+import Login from './pages/Login/Login';
+import MainPage from './pages/mainPage';
+import ManagerPage from './components/ManagerPage_Component/ManagerPage';
+import MatchingAHDetail from './components/ManagerPage_Component/MatchingAHDetail';
+import MatchingApplicationHistory from './components/ManagerPage_Component/MatchingApplicationHistory';
+import MatchingCompletionHistory from './components/ManagerPage_Component/MatchingCompletionHistory';
+import MatchingHistory from './components/MyPage_Component/MatchingHistory';
+import MembershipWithdrawal from './components/MyPage_Component/MembershipWithdrawal';
+import ModifyingInfo from './components/MyPage_Component/ModifyingInfo';
+import ModifyingManagerInfo from './components/ManagerPage_Component/ModifyingManagerInfo';
+import MyPage from './components/MyPage_Component/MyPage';
+import NonMannerUsers from './components/MyPage_Component/NonMannerUsers';
+import ProfileCard from './components/MyPage_Component/ProfileCard';
+import QnA from './components/ManagerPage_Component/QnA';
+import ReportReceiptHistory from './components/ManagerPage_Component/ReportReceiptHistory';
+import Review from './pages/Review/review';
+import ReviewWrite from './pages/Review/write';
+import SignupInfo from './pages/Signup/SignupInfo';
+import SignupTerms from './pages/Signup/SignupTerms';
+import ViewMembershipList from './components/ManagerPage_Component/ViewMembershipList';
+import WritingNotices from './components/ManagerPage_Component/WritingNotices';
 
 const App = ()=>{
 	return (
@@ -64,6 +63,8 @@ const App = ()=>{
 				<Route path="/SignupTerms" element={<SignupTerms/>}/> 
 				<Route path="/FindID" element={<FindID/>}/> 
 				<Route path="/FindPassword" element={<FindPassword/>}/> 
+				<Route path="/reviews" element={<Review/>}/> 
+				<Route path="/write" element={<ReviewWrite />}/>
 			</Routes>
 			<Footer></Footer>
 	  </div>

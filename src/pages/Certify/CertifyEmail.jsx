@@ -1,8 +1,9 @@
-
 import React, { useState } from 'react';
-import {useNavigate} from 'react-router-dom';
-import styled from 'styled-components';
+
 import Title from '../../components/title';
+import axios from 'axios'
+import styled from 'styled-components';
+import {useNavigate} from 'react-router-dom';
 
 const CertifyEmail = () => {
   const [email, setEmail] = useState("");
