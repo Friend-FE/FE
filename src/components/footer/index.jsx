@@ -16,7 +16,7 @@ const Footer = () => {
           <NavLink to="/reviews" active ClassName="active">
             솔직후기
           </NavLink>
-          <NavLink to="/apply" active ClassName="active">
+          <NavLink to="/Apply" active ClassName="active">
             매칭신청
           </NavLink>
           <NavLink to="/QnA" active ClassName="active">
