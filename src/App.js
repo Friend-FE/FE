@@ -30,6 +30,7 @@ import SignupInfo from './pages/Signup/SignupInfo';
 import SignupTerms from './pages/Signup/SignupTerms';
 import FindID from './pages/FindAccount/FindID';
 import FindPassword from './pages/FindAccount/FindPassword';
+import Apply from './pages/MatchApply/Apply';
 
 const App = ()=>{
 	return (
@@ -64,6 +65,7 @@ const App = ()=>{
 				<Route path="/SignupTerms" element={<SignupTerms/>}/> 
 				<Route path="/FindID" element={<FindID/>}/> 
 				<Route path="/FindPassword" element={<FindPassword/>}/> 
+				<Route path="/Apply" element={<Apply/>}/> 
 			</Routes>
 	  </div>
 	);
