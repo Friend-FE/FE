@@ -121,7 +121,7 @@ const RoundedBox = styled.div`
   padding: 40px; /* 네모박스 내부 여백 */
   margin-top: 100px;
   p {
-    color:       #4169E1;
+    color: 		#4169E1;
   }
 `;
 
@@ -154,4 +154,4 @@ const SubmitButton = styled.button`
     background-color: #b9eeff;
     cursor: not-allowed;
   }
-`;  
+`;

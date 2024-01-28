@@ -34,18 +34,18 @@ const ButtonLink = styled(Link)`
 `;
 
 const Review = () => {
-  const reviews = [
-    { id: 1, title: '제목 1', author: '작성자 1', time: '2024-01-18' },
-    { id: 2, title: '제목 2', author: '작성자 2', time: '2024-01-18' },
-    { id: 3, title: '제목 3', author: '작성자 3', time: '2024-01-18' },
-    { id: 4, title: '제목 4', author: '작성자 4', time: '2024-01-18' }
+  const review = [
+    { id: 1, title: '제목 1', author: '작성자 1', time: '2024-01-18', body: '어쩌고 저쩌고 어쩌고 저쩌고'},
+    { id: 2, title: '제목 2', author: '작성자 2', time: '2024-01-18', body: '어쩌고 저쩌고 어쩌고 저쩌고' },
+    { id: 3, title: '제목 3', author: '작성자 3', time: '2024-01-18', body: '어쩌고 저쩌고 어쩌고 저쩌고' },
+    { id: 4, title: '제목 4', author: '작성자 4', time: '2024-01-18', body: '어쩌고 저쩌고 어쩌고 저쩌고' }
   ];
 
   return (
     <ReviewWrapper>
       <Title title = "솔직후기"/>
       <TitleHR/>
-      <Board info={reviews} />
+      <Board info={review}/>
       <ButtonLink to ="/write">후기 작성하기</ButtonLink>
     </ReviewWrapper>
   );

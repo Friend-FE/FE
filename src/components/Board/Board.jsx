@@ -1,13 +1,14 @@
-import { Link } from 'react-router-dom';
 import React from 'react';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
-const Row = styled(Link)`
+const Row = styled.div`
   display: flex;
   justify-content: space-around;
   padding: 10px;
-  text-decoration: none; 
-  color: inherit; 
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
 `;
 
 const Title = styled.div`
@@ -31,23 +32,34 @@ const HR = styled.hr`
 `;
 
 const ThinHR = styled(HR)`
-  height : 1px;
+  height: 1px;
   background: #B8B8B8;
 `;
 
 const BoardWrapper = styled.div`
   margin-top: 20vh;
   margin: 0 auto;
-  width : 80vw;
+  width: 80vw;
 `;
 
-const HeaderRow = styled(Row)`
+const HeaderRow = styled.div`
   font-weight: bold;
   font-size: 1.2em;
-`
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+  text-decoration: none;
+  color: inherit;
+`;
 
 const Board = ({ info }) => {
-  const infoLength = info.length; 
+  const infoLength = info.length;
+  const navigate = useNavigate();
+
+  const handleRowClick = (item) => {
+    navigate(`/reviews/${item.id}`, { state: { item } });
+  };
+
   return (
     <BoardWrapper>
       <HR />
@@ -59,8 +71,8 @@ const Board = ({ info }) => {
       <ThinHR />
       {info && info.map((item, index) => (
         <div key={item.id}>
-          <Row to={`/reviews/${item.id}`}>
-            <Title>{item.title}</Title> 
+          <Row onClick={() => handleRowClick(item)}>
+            <Title>{item.title}</Title>
             <Author>{item.author}</Author>
             <Time>{item.time}</Time>
           </Row>
