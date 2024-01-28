@@ -1,19 +1,18 @@
-<<<<<<< HEAD
+
 import React, { useState } from 'react';
 
 import Title from '../../components/title';
 import axios from 'axios'
 import styled from 'styled-components';
 import {useNavigate} from 'react-router-dom';
-=======
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import Header from "../../components/header/index";
-import Footer from "../../components/footer/index";
-import styled from "styled-components";
-import Title from "../../components/title";
-import axios from "axios";
->>>>>>> dev
+
+// import React, { useState } from "react";
+// import { useNavigate } from "react-router-dom";
+// import Header from "../../components/header/index";
+// import Footer from "../../components/footer/index";
+// import styled from "styled-components";
+// import Title from "../../components/title";
+// import axios from "axios";
 
 const CertifyEmail = () => {
   const [email, setEmail] = useState("");
