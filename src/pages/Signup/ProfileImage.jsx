@@ -1,22 +1,36 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import ProfileBasic from "../../images/ProfileBasic.png"
-const ProfileImage = () => {
+const ProfileImage = ({ onFileChange }) => {
     const [selectedImage, setSelectedImage] = useState(null);
 
+    // const handleImageChange = ({ onFileChange }) => {
+    //     const file = event.target.files[0];
+
+    //     if (file) {
+    //         const reader = new FileReader();
+
+    //         reader.onloadend = () => {
+    //             setSelectedImage(reader.result);
+    //         };
+
+    //         reader.readAsDataURL(file);
+    //     }
+    // };
     const handleImageChange = (event) => {
         const file = event.target.files[0];
-
+    
         if (file) {
-            const reader = new FileReader();
-
-            reader.onloadend = () => {
-                setSelectedImage(reader.result);
-            };
-
-            reader.readAsDataURL(file);
+          const reader = new FileReader();
+    
+          reader.onloadend = () => {
+            setSelectedImage(reader.result);
+            onFileChange(file); // 부모 컴포넌트로 파일 전달     
+          };
+    
+          reader.readAsDataURL(file);
         }
-    };
+      };
 
     return(
         <Label>
