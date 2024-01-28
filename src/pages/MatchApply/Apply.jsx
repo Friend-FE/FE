@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import {useNavigate} from 'react-router-dom';
 import checkImage from "../../images/checkImage.png";
 import Title from '../../components/title';
+import Footer from '../../components/footer';
 
 const Apply = () => {
 
@@ -17,45 +18,56 @@ const Apply = () => {
   useEffect(() => {
     const drawCanvas = (canvas, isChecked) => {
       const ctx = canvas.getContext('2d');
-
+  
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-
+  
       const radius = 13.2;
       const centerX = 20;
       const centerY = 20;
-
+  
       ctx.beginPath();
       ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
-
+  
       if (isChecked) {
         ctx.fillStyle = 'palegreen';
         ctx.fill();
       }
-      ctx.strokeStyle = '#000';
+      ctx.strokeStyle = 'black';
       ctx.lineWidth = 1.5;
       ctx.stroke();
-
-      const checkSize = 6.8;
-      const offsetY = 1.5; 
-      const checkX1 = centerX - checkSize;
-      const checkY1 = centerY - offsetY;
-      const checkX2 = centerX - checkSize / 4;
-      const checkY2 = centerY + checkSize - offsetY;
-      const checkX3 = centerX + checkSize;
-      const checkY3 = centerY - checkSize / 3 - offsetY;
-
-      ctx.beginPath();
-      ctx.moveTo(checkX1, checkY1);
-      ctx.lineTo(checkX2, checkY2);
-      ctx.lineTo(checkX3, checkY3);
-      ctx.lineWidth = 1.5;
-      ctx.stroke();
+  
+      drawCheckMark(ctx, centerX, centerY, isChecked);
     };
-
+  
     drawCanvas(canvasRef1.current, isChecked1);
     drawCanvas(canvasRef2.current, isChecked2);
     drawCanvas(canvasRef3.current, isChecked3);
   }, [isChecked1, isChecked2, isChecked3]);
+
+  const drawCheckMark = (ctx, centerX, centerY, isChecked) => {
+    const checkSize = 6.8;
+    const offsetY = 1.5; 
+    const checkX1 = centerX - checkSize;
+    const checkY1 = centerY - offsetY;
+    const checkX2 = centerX - checkSize / 4;
+    const checkY2 = centerY + checkSize - offsetY;
+    const checkX3 = centerX + checkSize;
+    const checkY3 = centerY - checkSize / 3 - offsetY;
+
+    ctx.beginPath();
+    ctx.moveTo(checkX1, checkY1);
+    ctx.lineTo(checkX2, checkY2);
+    ctx.lineTo(checkX3, checkY3);
+    ctx.lineWidth = 1.5;
+
+    if (isChecked) {
+      ctx.strokeStyle = 'black';
+    } else {
+      ctx.strokeStyle = 'gray';
+    }
+  
+    ctx.stroke();
+  };
 
   const handleCheckboxChange1 = () => {
     setIsChecked1(!isChecked1);
@@ -97,7 +109,15 @@ const Apply = () => {
   };
 
   const handleCancelClick = () => {
-    navigate('/');
+    if(showModal){
+      if (window.confirm("이미 매칭 신청이 완료되었습니다.\n메인 페이지로 이동하시겠습니까?")) {
+         navigate('/');
+      } else {
+      }
+    }
+    else{
+      navigate('/');
+    }
   };
 
   const [showModal, setShowModal] = useState(false);
@@ -146,7 +166,8 @@ const Apply = () => {
         <ApplyButton onClick={handleApplyClick}>매칭 신청하기</ApplyButton>
         </ButtonsContainer>
       </Container>
-
+      <Footer/>
+      
       <ModalContainer showModal={showModal}>
       <CheckImage src={checkImage} alt="Check Image" />
         <ModalText>매칭 신청이 완료되었습니다!</ModalText>
@@ -283,6 +304,7 @@ const ModalContainer = styled.div`
   padding: 100px 200px;
   border-radius: 10px;
   z-index: 1;
+  user-select: none;
 `;
 
 const CheckImage = styled.img`
