@@ -60,7 +60,7 @@ const Board = ({ info }) => {
       {info && info.map((item, index) => (
         <div key={item.id}>
           <Row to={`/reviews/${item.id}`}>
-            <Title>{item.title}</Title>
+            <Title>{item.title}</Title> 
             <Author>{item.author}</Author>
             <Time>{item.time}</Time>
           </Row>

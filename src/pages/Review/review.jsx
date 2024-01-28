@@ -34,7 +34,7 @@ const ButtonLink = styled(Link)`
 `;
 
 const Review = () => {
-  const review = [
+  const reviews = [
     { id: 1, title: '제목 1', author: '작성자 1', time: '2024-01-18' },
     { id: 2, title: '제목 2', author: '작성자 2', time: '2024-01-18' },
     { id: 3, title: '제목 3', author: '작성자 3', time: '2024-01-18' },
@@ -45,7 +45,7 @@ const Review = () => {
     <ReviewWrapper>
       <Title title = "솔직후기"/>
       <TitleHR/>
-      <Board info={review} />
+      <Board info={reviews} />
       <ButtonLink to ="/write">후기 작성하기</ButtonLink>
     </ReviewWrapper>
   );
