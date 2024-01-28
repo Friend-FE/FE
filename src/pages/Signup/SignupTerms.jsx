@@ -87,10 +87,7 @@ export default SignupTerms;
 // 전체를 담고 있는 컨테이너
 const AppContainer = styled.div`
     justify-content: center;
-    width: 40%; /* 원하는 크기로 조정 (가로의 반 정도로 설정) */
-    @media (max-width: 768px) {
-      width: 80%;
-    }
+    width: 70%; /* 원하는 크기로 조정 (가로의 반 정도로 설정) */
     margin: 0 auto; /* 수평 가운데 정렬을 위해 margin을 auto로 설정 */
 `;
 
@@ -98,7 +95,7 @@ const AppContainer = styled.div`
 const Separator = styled.div`
   height: 1px;
   background-color: Gray;
-  margin: 5rem; 
+  margin : 15vw 10vw 5vw 10vw;
 `;
 
 const Checkbox = styled.input`
@@ -107,33 +104,38 @@ const Checkbox = styled.input`
 
 const InfoBox = styled.div`
   border: 1px solid #333;
-  padding: 1.5rem;
-  margin: 1rem 0;
+  padding: 1.5vw;
+  margin: 2vw 0;
 `;
 
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: center; /* 가로축에서 가운데 정렬 */
+  margin-top : 5vw;
 `;
 
 const CancelButton = styled.button`
     background-color: #FFF;
-    font-size : 0.8rem;
+    font-size : 1vw;
     color: black;
     border: none;
-    padding: 1rem;
+    padding: 1.5vw;
+    width : 15vw;
     cursor: pointer;
     border-radius: 10px;
+    box-shadow: -0.6vw 0.5vw 0.3vw rgba(0, 0, 0, 0.2);
 `;
 
 const SubmitButton = styled.button`
   background-color: #23CAFF;
-  font-size : 0.8rem;
+  font-size : 1vw;
   color: white;
   border: none;
   padding: 0.6rem;
+  width : 15vw;
   cursor: pointer;
   border-radius: 5px;
+  box-shadow: -0.6vw 0.5vw 0.3vw rgba(0, 0, 0, 0.2);
 
   /* isFormValid가 false일 때 버튼 비활성화 스타일 추가 */
   &:disabled {

@@ -1,6 +1,7 @@
 import React from 'react';
 import {useNavigate} from 'react-router-dom';
 import styled from 'styled-components';
+import Footer from '../../components/footer';
 
 const CertifyEmail = () => {
     const navigate = useNavigate();
@@ -9,6 +10,7 @@ const CertifyEmail = () => {
     };
 
     return (
+      <>
         <AppContainer>
                 <RoundedBox>
                     <DiscriptionText>부경대 학생 인증이 완료되었습니다.</DiscriptionText>
@@ -16,6 +18,10 @@ const CertifyEmail = () => {
                     <SubmitButton onClick={handleClick}>확인</SubmitButton>
                 </RoundedBox>
         </AppContainer>
+        <FooterDiv>
+          <Footer/>
+        </FooterDiv>
+      </>
     )
 } 
 
@@ -23,37 +29,53 @@ export default CertifyEmail;
 
 // 전체를 담고 있는 컨테이너
 const AppContainer = styled.div`
+    /* height: 80vh;
+    width: 40%; 
+    margin: 0 auto; */
+
+    display: flex;
+    align-items: center;
     justify-content: center;
-    width: 40%; /* 원하는 크기로 조정 (가로의 반 정도로 설정) */
-    @media (max-width: 768px) {
-      width: 80%;
-    }
-    margin: 0 auto; /* 수평 가운데 정렬을 위해 margin을 auto로 설정 */
+    flex-wrap: wrap;
 `;
+
 
 const RoundedBox = styled.div`
   border: 2px solid #23CAFF;
   border-radius: 10px;
-  padding: 1rem;
-  margin-top: 3rem;
+  padding: 3vw;
+  margin-top: 20vw;
+  width: 50vw;
+  height: 30vw;
   display: flex;
   flex-direction: column;
   align-items: center; 
 `;
 
 const DiscriptionText = styled.div`
-  font-size: 1.5rem;
+  font-size: 2.5vw;
   text-align : center;
-  margin : 0.5rem;
+  margin : 1vw;
 `;
 
 const SubmitButton = styled.button`
-  background-color: #3498db;
+  background-color: #23caff;
   color: white;
   border: none;
-  padding: 1rem;
+  padding: 2vw;
   cursor: pointer;
   border-radius: 5px;
-  width : 6rem;
-  margin-top : 3rem;
+  width : 15vw;
+  margin-top : 10vw;
+  box-shadow: -0.6vw 0.5vw 0.3vw rgba(0, 0, 0, 0.2);
 `;
+
+const FooterDiv = styled.div`
+  width: 100%;
+  position: relative;
+  top: 12vw;
+
+  @media (max-width: 768px) {
+    top: 22vw;
+  }
+  `;
