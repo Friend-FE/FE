@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import Title from '../../components/title';
+import Footer from "../../components/footer/index";
 import axios from 'axios'
 import styled from 'styled-components';
 import {useNavigate} from 'react-router-dom';
@@ -8,7 +9,6 @@ import {useNavigate} from 'react-router-dom';
 // import React, { useState } from "react";
 // import { useNavigate } from "react-router-dom";
 // import Header from "../../components/header/index";
-// import Footer from "../../components/footer/index";
 // import styled from "styled-components";
 // import Title from "../../components/title";
 // import axios from "axios";
@@ -100,7 +100,9 @@ const CertifyEmail = () => {
           {WrongCode && <p>잘못된 인증번호입니다</p>}
         </RoundedBox>
       </AppContainer>
-      {/* <Footer /> */}
+      <FooterContainer>
+        <Footer />
+      </FooterContainer>
     </>
   );
 };
@@ -109,9 +111,9 @@ export default CertifyEmail;
 
 // 전체를 담고 있는 컨테이너
 const AppContainer = styled.div`
-    /* height: 80vh;
-    width: 40%; 
-    margin: 0 auto; */
+    // height: 100vh;
+    // width: 40%; 
+    // margin: 0 auto; */
 
   display: flex;
   align-items: center;
@@ -123,11 +125,11 @@ const AppContainer = styled.div`
 const RoundedBox = styled.div`
   border: 2px solid #23caff;
   border-radius: 10px; /* 모서리를 둥글게 */
-  /* padding: 40px; */
+  padding: 5vw;
   margin-top: 10vw;
 
-  width: 50vw;
-  height: 30vw;
+  width: 45vw;
+  height: 25vw;
 
   p {
     color: 		#4169E1;
@@ -140,7 +142,7 @@ const DiscriptionText = styled.div`
   font-size: 1.5vw;
   font-weight: bold;
 
-  margin: 2vw 0 0 5vw;
+  margin: 2vw 0 2vw 5vw;
 
   
 `;
@@ -150,6 +152,7 @@ const InputField = styled.input`
   height: 30px;
   padding: 8px;
   margin-right: 10px;
+  margin-bottom: 5vh;
   border: 1px solid #ddd;
   border-radius: 5px;
 `;
@@ -168,4 +171,10 @@ const SubmitButton = styled.button`
     background-color: #b9eeff;
     cursor: not-allowed;
   }
+`;
+
+const FooterContainer = styled.div`
+  bottom: 0px;
+  position: realtive;
+  width: 100%;
 `;
