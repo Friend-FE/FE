@@ -34,6 +34,7 @@ import SignupInfo from './pages/Signup/SignupInfo';
 import SignupTerms from './pages/Signup/SignupTerms';
 import ViewMembershipList from './components/ManagerPage_Component/ViewMembershipList';
 import WritingNotices from './components/ManagerPage_Component/WritingNotices';
+import ReviewDetail from './components/Board/detail';
 
 const App = ()=>{
 	return (
@@ -72,6 +73,9 @@ const App = ()=>{
 				<Route path="/write" element={<ReviewWrite />}/>
 				<Route path="/notice" element={<Notice/>} />
 				<Route path="/QnA" element={<Question/>} />
+
+				<Route path="/reviews/:id" element={<ReviewDetail/>} />
+
 
 			</Routes>
 	  </div>
