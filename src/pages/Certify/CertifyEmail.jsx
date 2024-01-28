@@ -1,9 +1,19 @@
+<<<<<<< HEAD
 import React, { useState } from 'react';
 
 import Title from '../../components/title';
 import axios from 'axios'
 import styled from 'styled-components';
 import {useNavigate} from 'react-router-dom';
+=======
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Header from "../../components/header/index";
+import Footer from "../../components/footer/index";
+import styled from "styled-components";
+import Title from "../../components/title";
+import axios from "axios";
+>>>>>>> dev
 
 const CertifyEmail = () => {
   const [email, setEmail] = useState("");
@@ -23,6 +33,7 @@ const CertifyEmail = () => {
       axios.post("http://13.209.145.28:8080/api/v1/certify/send", { email: email })
         .then((response) => {
           console.log("POST 응답 데이터:", response.data);
+          setWrongEmail(false);
         })
         .catch((error) => {
           console.error("POST 에러:", error);
@@ -44,7 +55,7 @@ const CertifyEmail = () => {
       .then(function (response) {
         // 성공적으로 응답 받았을 때의 처리
         console.log("응답 데이터:", response.data);
-        //navigate('/CertifyEnd');
+       // navigate('/CertifyEnd');
       })
       .catch(function (error) {
         // 오류 발생 시의 처리
@@ -100,7 +111,7 @@ export default CertifyEmail;
 
 // 전체를 담고 있는 컨테이너
 const AppContainer = styled.div`
-    justify-content: center;
+    height: 80vh;
     width: 40%; /* 원하는 크기로 조정 (가로의 반 정도로 설정) */
     margin: 0 auto; /* 수평 가운데 정렬을 위해 margin을 auto로 설정 */
 `;

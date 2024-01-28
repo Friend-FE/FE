@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {useNavigate} from 'react-router-dom';
 import Title from '../../components/title';
 import CircleCheckbox from '../../components/CircleCheckbox/CircleCheckbox';
+import LimitInputForm from '../../components/LimitInputForm/LimitInputForm';
 import styled from 'styled-components';
 import ProfileBasic from "../../images/ProfileBasic.png"
 
@@ -95,12 +96,12 @@ const SignupInfo = () => {
 
                 <InfoName>자기소개를 입력해주세요.</InfoName>
                 <LoginForm>
-                    <Input type="text" />
+                    <LimitInputForm/>
                 </LoginForm>
 
                 <InfoName>나의 이상형에 대해서 알려주세요!</InfoName>
                 <LoginForm>
-                    <Input type="text" placeholder='자세하게 적어주실 수록 좋아요!' />
+                    <LimitInputForm/>
                 </LoginForm>
 
                 <InfoName>매칭되고 싶지 않은 학과를 적어주세요! 없으면 없음이라고 적어주세요.</InfoName>
@@ -140,6 +141,9 @@ export default SignupInfo;
 const AppContainer = styled.div`
     justify-content: center;
     width: 40%; /* 원하는 크기로 조정 (가로의 반 정도로 설정) */
+    @media (max-width: 768px) {
+      width: 80%;
+    }
     margin: 0 auto; /* 수평 가운데 정렬을 위해 margin을 auto로 설정 */
 `;
 
@@ -151,42 +155,42 @@ const LogoContainer = styled.div`
 
 //ProfileBasic 이미지 삽입
 const ProfileImage = styled.img`
-    margin : 20px;
-    height: 200px;
+    margin : 1rem;
+    height: 15rem;
 `;
 
 //수평선 스타일
 const Separator = styled.div`
   height: 1px;
   background-color: Gray;
-  margin: 100px; 
+  margin: 5rem; 
 `;
 
 //어떤 정보를 입력해야하는지, 알려주는 텍스트
 const InfoMessage = styled.div`
     text-align: center;
-    margin-top : 100px;
-    margin-bottom : 20px;
+    margin-top : 1.5rem;
+    margin-bottom : 1rem;
     font-size: 25px; 
     width: 100%; /* 텍스트가 max-width를 넘어가더라도 크기를 조절할 수 있도록 */
 `;
 
-// 이메일과 패스워드를 입력할 칸들
+// 이메일과 패스워드 등을 입력할 칸들
 const LoginForm = styled.form`
   display: flex;
   flex-direction: column;
-  margin-top: 20px;
+  margin-top: 1rem;
 `;
 
 const Input = styled.input`
-  height: 30px;
-  padding: 8px;
-  margin-bottom: 20px;
+  height: 1.5rem;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
 `;
 
 // 칸 마다 입력해야하는 정보 알려주는 작은 텍스트
 const InfoName = styled.div`
-    font-size: 15px;
+    font-size: 1rem;
 `;
 
 
@@ -197,21 +201,25 @@ const ButtonContainer = styled.div`
 `;
 
 const CancelButton = styled.button`
-  background-color: white;
-  color: black;
-  border: none;
-  cursor: pointer;
+    background-color: #FFF;
+    font-size : 0.8rem;
+    color: black;
+    border: none;
+    padding: 1rem;
+    cursor: pointer;
+    border-radius: 10px;
 `;
 
 const SubmitButton = styled.button`
   background-color: #23CAFF;
+  font-size : 0.8rem;
   color: white;
   border: none;
-  padding: 10px;
+  padding: 0.6rem;
   cursor: pointer;
   border-radius: 5px;
 
-  /* isFormValid가 언제 false로 설정할지 필요 */
+  /* isFormValid가 false일 때 버튼 비활성화 스타일 추가 */
   &:disabled {
     background-color: #B9EEFF;
     cursor: not-allowed;

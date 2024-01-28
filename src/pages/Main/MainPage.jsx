@@ -1,13 +1,13 @@
 import styled from "styled-components";
-import mainBg from "../images/main_bg.png";
-import ImageBox from "../components/ImageBox";
-//import Footer from "../components/footer/index"
-import Main1 from "../images/main_1.png";
-import Main2 from "../images/main_2.png";
-import Main3 from "../images/main_3.png";
-import Main4 from "../images/main_4.png";
-import Main5 from "../images/main_5.png";
-import Main6 from "../images/main_6.png";
+import mainBg from "../../images/main_bg.png";
+import ImageBox from "../../components/ImageBox";
+import Footer from "../../components/footer/index"
+import Main1 from "../../images/main_1.png"
+import Main2 from "../../images/main_2.png";
+import Main3 from "../../images/main_3.png";
+import Main4 from "../../images/main_4.png";
+import Main5 from "../../images/main_5.png";
+import Main6 from "../../images/main_6.png";
 
 const MainPage = () => {
   return (
@@ -78,9 +78,9 @@ const MainPage = () => {
           altText="6. 매니저가 알려주는 주의사항 숙지 후 만남!"
         ></ImageBox>
       </FlexBox>
-      {/* <FooterContainer>
+      <FooterContainer>
         <Footer/>
-      </FooterContainer> */}
+      </FooterContainer>
     </div>
   );
 };
@@ -119,11 +119,12 @@ const Wrapper = styled.div`
     }
   }
   button {
-    width: 190px;
+    width: 12vw;
     height: 36px;
     flex-shrink: 0;
     position: relative;
     top: 7vh;
+    left : 2vw;
     background: #8be3ff;
     box-shadow: -2px 8px 6.1px 0px rgba(0, 0, 0, 0.25);
     border: none;
@@ -131,8 +132,11 @@ const Wrapper = styled.div`
     text-align: center;
     font-size: 13px;
     font-weight: 700;
+    @media screen and (max-width: 1010px) {
+      top: 5vw;
+    }
   }
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 1020px) {
     top: 25vw;
   }
 `;
@@ -203,16 +207,16 @@ const FlexBox = styled.div`
   flex-wrap: nowrap;
   justify-content: space-around;
   gap: 3vw;
-  left: 5vw;
+  left: 8vw;
   @media screen and (max-width: 700px) {
     grid-template-columns: repeat(2, 1fr);
     left: 1vw;
     gap: 1vw;
   }
 `;
-// const FooterContainer = styled.div`
-//   position: relative;
-//   top: 28vh;
-//   width: 100%;
-// `;
+const FooterContainer = styled.div`
+  position: relative;
+  top: 28vh;
+  width: 100%;
+`;
 export default MainPage;

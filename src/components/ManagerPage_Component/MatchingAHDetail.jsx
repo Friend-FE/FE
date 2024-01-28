@@ -34,7 +34,7 @@ export default function MatchingAHDetail() {
                     <P.InfoP>단과대 : 경영대학</P.InfoP>
                     <SelfIntroductionTitleP>자기 소개</SelfIntroductionTitleP>
                     <SelfIntroductionDiv>
-                        <SelfIntroductionP> 처음에는 많이 뚝딱거릴 수도 있지만 친해지면 엄청 애교도 많고 활발해요! 좋은 인연 만들어 가고 싶어요!</SelfIntroductionP>       
+                        <SelfIntroductionP> 처음에는 많이 뚝딱거릴 수도 있지만 친해지면 엄청 애교도 많고 활발해요! 좋은 인연 만들어 가고 싶어요! </SelfIntroductionP>       
                     </SelfIntroductionDiv>
                     <SelfIntroductionTitleP>내 이상형</SelfIntroductionTitleP>
                     <SelfIntroductionDiv>
@@ -58,64 +58,64 @@ export default function MatchingAHDetail() {
 
 export const HeadTitleH3 = styled.h3`
     color: #23CAFF;
-    font-size: 40px;
-    @media screen and (max-width: 1070px) {
+    font-size: 3vw;
+    /* @media screen and (max-width: 1070px) {
         font-size : 5vw;
-    }
+    } */
     font-weight: 900;
 
     position: relative;
-    top: -40px;
-    margin: -10px;
+    top: -1vw;
+    margin: -0.6vw;
 `;
 
 const SelfIntroductionTitleP = styled.p`
-    font-size: 32px;
+    font-size: 2.1vw;
 
     margin: 0;
 
     position: relative;
-    top: -20px;
+    top: -1.5vw;
 `;
 
 const SelfIntroductionDiv = styled.div`
     background-color: white;
 
-    padding: 10px 60px;
-    margin: 15px 50px;
+    padding: 0.66vw 4vw;
+    margin: 1vw 3vw;
 
     position: relative;
-    top: -20px;
+    top: -1.33vw;
 
     text-align: left;
 `;
 
 const SelfIntroductionP = styled.p`
-    font-size: 20px;
+    font-size: 1.33vw;
 `;
 
 const SectionDiv = styled.div`
   text-align: left;
 
-  width: 630px;
-  height: 370px;
+  width: 41vw;
+  height: 24vw;
 
   background-color: #DAF6FF;
-  border-radius: 20px;
-  box-shadow: 10px 15px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 1.3vw;
+  box-shadow: 0.6vw 1vw 0.3vw rgba(0, 0, 0, 0.2);
 
-  margin: 0 25px;
+  margin: 0 2vw;
 `;
 
 const InfoP = styled.p`
-    font-size: 32px;
+    font-size: 2.1vw;
 
-    margin: 40px 0 20px 90px;
+    margin: 2.66vw 0 1.33vw 6vw;
     text-align: left;
 `;
 
-const FooterContainer = styled.div`
-    position: absolute;
-    bottom: -1600px;
-    width: 100%;
-`;
+// const FooterContainer = styled.div`
+//     position: absolute;
+//     bottom: -1600px;
+//     width: 100%;
+// `;

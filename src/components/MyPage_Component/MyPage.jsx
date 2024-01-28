@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import ProfileBasic from '../../images/ProfileBasic.png'
 import styled from 'styled-components'
 // import Header from '../header/index'
-// import Footer from '../footer/index'
+import Footer from '../footer/index'
 import Title from '../title/index'
 
 
@@ -26,9 +26,9 @@ export default function MyPage() {
           <MoveToPageLink to="/MyPage/NonMannerUsers">비매너 유저 신고하기</MoveToPageLink>
         </MoveToDiv>
       </TotalDiv>
-      {/* <FooterContainer>
+      <FooterContainer>
         <Footer/>
-      </FooterContainer> */}
+      </FooterContainer>
     </>
   )
 }
@@ -37,7 +37,7 @@ export default function MyPage() {
 
 export const TotalHr = styled.hr`
   position: relative;
-  top: 100px;
+  top: 10vw;
 
   width : 90%;
 
@@ -48,39 +48,38 @@ export const TotalDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* min-height: 100vh; */
 
   position: relative;
-  top: 220px;
+  top: 15vw;
 `;
 
 export const ProfileBasicImg = styled.img`
-  width: 184px;
-  height: 183px;
+  width: 16.7vw;
+  height: 16.7vw;
 `;
 
 export const TitleH3 = styled.h3`
-  font-size: 32px;
+  font-size: 2vw;
   font-weight: 500;
 `;
 
 export const MoveToDiv = styled.div`
-  width: 630px;
-  max-width: 100%;
-  height: 734px;
+  width: 41vw;
+  /* max-width: 100%; */
+  height: 48vw;
 
   background-color: #DAF6FF;
-  border-radius: 20px;
-  box-shadow: 10px 15px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 1.3vw;
+  box-shadow: 0.6vw 1vw 0.3vw rgba(0, 0, 0, 0.2);
 `;
 
 export const MoveToPageLink = styled(Link)`
-  font-size: 20px;
+  font-size: 1.3vw;
   text-decoration: none;
   color: #000;
 
   display: block;
-  margin: 60px 368px 20px 40px;
+  margin: 4vw 24.5vw 1.3vw 2.6vw;
 
   color: black;
   &:hover {
@@ -88,11 +87,11 @@ export const MoveToPageLink = styled(Link)`
   }
 `;
 
-// export const FooterContainer = styled.div`
-//   position: relative;
-//   top: 40vh;
-//   width: 100%;
-// `;
+export const FooterContainer = styled.div`
+  position: relative;
+  top: 40vh;
+  width: 100%;
+`;
 
 // 꾸밈 //
 

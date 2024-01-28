@@ -170,41 +170,38 @@ export const DateDiv = styled.div`
   justify-content: space-between;
 
   width: 40vw; 
-  height: 8vh;
+  height: 4vw;
   margin: 2vw 8vw 0 0;
 
-  font-size: 16px;
-  @media screen and (max-width: 1070px) {
-    font-size : 2vw;
-  }
+  /* font-size: 20vw; */
 
   color: black;
   text-align: center;
 
-  border-radius: 30px;
+  border-radius: 6vw;
   box-shadow: 1vw 0.7vw 0.5vw rgba(0, 0, 0, 0.2);
 `;
 
 export const DirectionImg = styled.img`
-  width: 20px;
-  height: 29px;
-  margin: 0 3vw; /* 가로 여백 추가 */
+  width: 1.33vw;
+  height: 2vw;
+  margin: 0 3vw;
 
-  @media screen and (max-width: 1070px) {
+  /* @media screen and (max-width: 1070px) {
     width: 2.5vw;
     height: 3.6vw;
     margin: 0 2.5vw;
-  }
+  } */
 
   cursor: pointer;
 `;
 
 export const P = styled.p`
-  font-size: 16px;
-  @media screen and (max-width: 1070px) {
+  font-size: 1vw;
+
+  /* @media screen and (max-width: 1070px) {
     font-size : 2vw;
-    /* margin: 3.5vw 0; */
-  }
+  } */
 `;
 
 export const PeopleDiv = styled.div`
@@ -212,13 +209,15 @@ export const PeopleDiv = styled.div`
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+
+  margin: 1vw 0;
 `;
 
 export const PersonDiv = styled.div`
   text-align: center;
 
   width: 13vw;
-  height: 204px;
+  height: 13.5vw;
 
   background-color: #DAF6FF;
   border-radius: 1.2vw;
@@ -226,35 +225,35 @@ export const PersonDiv = styled.div`
  
   margin: 4vw 1vw;
 
-  @media screen and (max-width: 1070px) {
+  /* @media screen and (max-width: 1070px) {
     margin: 3vw 1vw;
 
     width: 24.6vw;
     height: 25.5vw;
 
     box-shadow: 1.25vw 1.87vw 0.62vw rgba(0, 0, 0, 0.2);
-  }
+  } */
 
 `;
 
 export const NameH5 = styled.h5`
-  font-size: 32px;
+  font-size: 2vw;
   font-weight: bold;
 
-  @media screen and (max-width: 1070px) {
+  /* @media screen and (max-width: 1070px) {
     font-size: 4vw;
-  }
+  } */
 `;
 
 export const GenderBtn = styled.button`
   width: 12vw; 
-  height: 8vh; 
+  height: 4vw;
   margin: 2vw 2vw 0 2vw;
   
-  font-size: 16px;
-  @media screen and (max-width: 1070px) {
+  font-size: 1vw;
+  /* @media screen and (max-width: 1070px) {
     font-size : 2vw;
-  }
+  } */
   color: black;
   background-color: white;
 
@@ -262,7 +261,7 @@ export const GenderBtn = styled.button`
   background-color: ${(props) => (props.isSelected ? '#23CAFF' : 'white')};
   
   border: none;
-  border-radius: 30px;
+  border-radius: 2vw;
   box-shadow: 1vw 0.7vw 0.5vw rgba(0, 0, 0, 0.2);
   
   cursor: pointer;

@@ -6,72 +6,6 @@ import styled from 'styled-components'
 // import Footer from '../footer/index'
 import Title from '../title/index'
 
-export const NameH4 = styled.h4`
-    font-size: 36px;
-    font-weight: 600;
-
-    margin: 20px 0;
-  `;
-
-export const SectionDiv = styled.div`
-  text-align: center;
-  /* min-height: 100vh; */
-
-  width: 630px;
-  height: 897px;
-
-  background-color: #DAF6FF;
-  border-radius: 20px;
-  box-shadow: 10px 15px 5px rgba(0, 0, 0, 0.2);
-
-  margin: 0 25px;
-
-`;
-
-
-export const SectionContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin: 80px 0;
-`;
-
-export const ProfileBasicImg = styled.img`
-  margin: 30px 110px;
-
-  width: 410px;
-  height: 434px;
-`;
-
-export const InfoP = styled.p`
-  font-size: 32px;
-  margin: 60px 110px;
-  text-align: left;
-`;
-
-export const SelfIntroductionTitleP = styled.p`
-  font-size: 32px;
-
-  margin: 100px 0 0 0;
-`;
-
-export const SelfIntroductionDiv = styled.div`
-  background-color: white;
-
-  padding: 20px 70px;
-  margin: 40px;
-  text-align: left;
-`;
-
-export const SelfIntroductionP = styled.p`
-  font-size: 20px;
-`;
-
-export const FooterContainer = styled.div`
-  position: absolute;
-  bottom: -1200px;
-  width: 100%;
-`;
-
 export default function Profile_card() {
   return (
     <>
@@ -107,3 +41,70 @@ export default function Profile_card() {
     
   )
 }
+
+
+export const NameH4 = styled.h4`
+    font-size: 2.4vw;
+    font-weight: 600;
+
+    margin: 1.3vw 0;
+  `;
+
+export const SectionDiv = styled.div`
+  text-align: center;
+  /* min-height: 100vh; */
+
+  width: 41vw;
+  height: 58.5vw;
+
+  background-color: #DAF6FF;
+  border-radius: 1.3vw;
+  box-shadow: 0.6vw 1vw 0.3vw rgba(0, 0, 0, 0.2);
+
+  margin: 0 2vw;
+
+`;
+
+
+export const SectionContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin: 5.3vw 0;
+`;
+
+export const ProfileBasicImg = styled.img`
+  margin: 2vw 7.33vw;
+
+  width: 27vw;
+  height: 27vw;
+`;
+
+export const InfoP = styled.p`
+  font-size: 2.1vw;
+  margin: 4vw 7.2vw;
+  text-align: left;
+`;
+
+export const SelfIntroductionTitleP = styled.p`
+  font-size: 2.1vw;
+
+  margin: 6.5vw 0 0 0;
+`;
+
+export const SelfIntroductionDiv = styled.div`
+  background-color: white;
+
+  padding: 1.3vw 4.5vw;
+  margin: 2.6vw;
+  text-align: left;
+`;
+
+export const SelfIntroductionP = styled.p`
+  font-size: 1.33vw;
+`;
+
+// export const FooterContainer = styled.div`
+//   position: absolute;
+//   bottom: -1200px;
+//   width: 100%;
+// `;

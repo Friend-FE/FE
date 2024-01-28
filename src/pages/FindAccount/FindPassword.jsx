@@ -29,7 +29,7 @@ const FindID = () => {
                     <Input type="text" value={email} onChange={handleEmailChange} placeholder="이메일을 입력해주세요."/>
                 </LoginForm>
                 <ButtonContainer>
-                    <SubmitButton onClick={handleCancleClick} bgColor = "white">취소</SubmitButton>
+                    <CancelButton onClick={handleCancleClick} bgColor = "white">취소</CancelButton>
                     <SubmitButton onClick={handleAllowClick} bgColor = "#23CAFF">확인</SubmitButton>
                 </ButtonContainer>    
             </RoundedBox>
@@ -42,7 +42,10 @@ export default FindID;
 // 전체를 담고 있는 컨테이너
 const AppContainer = styled.div`
     justify-content: center;
-    width: 60%; /* 원하는 크기로 조정 (가로의 반 정도로 설정) */
+    width: 40%; /* 원하는 크기로 조정 (가로의 반 정도로 설정) */
+    @media (max-width: 768px) {
+      width: 80%;
+    }
     margin: 0 auto; /* 수평 가운데 정렬을 위해 margin을 auto로 설정 */
 `;
 
@@ -65,41 +68,55 @@ const RoundedBox = styled.div`
   border: 2px solid #23CAFF; 
   border-radius: 10px; 
   padding: 50px; /* 좌우 여백 설정 */
-  margin-top: 100px;
+  margin-top: 5rem;
 `;
 
-
+//네모 박스 내 설명 텍스트
 const DescriptionText = styled.div`
-  font-size: 25px;
-  margin: 20px;
-  color: ${(props) => props.textColor || 'black'}; /* 동적으로 입력받은 textColor 값으로 설정하고, 없으면 기본값은 black */
+  font-size: 1.5rem;
+  margin: 1rem;
+  color: ${(props) => props.textColor || 'black'}; /* 동적으로 입력받은 textColor 값으로 설정, 없으면 기본값 black */
 `;
 
 // 이메일과 패스워드를 입력할 칸들
 const LoginForm = styled.form`
   flex-direction: column;
-  margin-top: 20px;
+  margin-top: 1rem;
 `;
 
 const Input = styled.input`
-  height: 30px;
-  padding: 8px;
-  margin-top: 10px;
+  height: 1.5rem;
+  padding: 0.5rem;
+  margin-top: 1rem;
 `;
 
 const ButtonContainer = styled.div`
 
 `
 
+const CancelButton = styled.button`
+    background-color: #FFF;
+    font-size : 0.8rem;
+    color: black;
+    border: none;
+    padding: 1rem;
+    cursor: pointer;
+    border-radius: 10px;
+`;
+
 const SubmitButton = styled.button`
-  background-color: ${(props) => props.bgColor || 'white'}; 
-  color: ${(props) => (props.bgColor === 'white' ? 'black' : 'white')}; 
+  background-color: #23CAFF;
+  font-size : 0.8rem;
+  color: white;
   border: none;
-  padding: 10px;
+  padding: 0.6rem;
   cursor: pointer;
   border-radius: 5px;
-  width : 100px;
-  margin-top : 100px;
-  height : 40px;
-  margin : 20px;
+  
+
+  /* isFormValid가 false일 때 버튼 비활성화 스타일 추가 */
+  &:disabled {
+    background-color: #B9EEFF;
+    cursor: not-allowed;
+  }
 `;
