@@ -5,10 +5,12 @@ import { useNavigate } from 'react-router-dom';
 const Row = styled.div`
   display: flex;
   justify-content: space-around;
-  padding: 10px;
+  padding: 1vw;
   text-decoration: none;
   color: inherit;
   cursor: pointer;
+
+  font-size: 1vw;
 `;
 
 const Title = styled.div`
@@ -25,39 +27,44 @@ const Time = styled.div`
 `;
 
 const HR = styled.hr`
-  height: 2px;
+  height: 0.1vw;
   background: #000;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 0.5vw;
+  margin-bottom:  0.5vw;
 `;
 
 const ThinHR = styled(HR)`
-  height: 1px;
+  height: 0.05vw;
   background: #B8B8B8;
 `;
 
 const BoardWrapper = styled.div`
-  margin-top: 20vh;
+  margin-top: 200vw;
   margin: 0 auto;
   width: 80vw;
+
+  @media (max-width: 768px) {
+    position: relative;
+    top: 10vw;
+  }
 `;
 
 const HeaderRow = styled.div`
   font-weight: bold;
-  font-size: 1.2em;
+  font-size: 1.2vw;
   display: flex;
   justify-content: space-around;
-  padding: 10px;
+  padding: 0.8vw;
   text-decoration: none;
   color: inherit;
 `;
 
-const Board = ({ info }) => {
+const QnABoard = ({ info }) => {
   const infoLength = info.length;
   const navigate = useNavigate();
 
   const handleRowClick = (item) => {
-    navigate(`/reviews/${item.id}`, { state: { item } });
+    navigate(`/QnA/${item.id}`, { state: { item } });
   };
 
   return (
@@ -83,4 +90,4 @@ const Board = ({ info }) => {
   );
 };
 
-export default Board;
+export default QnABoard;

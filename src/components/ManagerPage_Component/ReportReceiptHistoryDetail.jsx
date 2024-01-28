@@ -1,12 +1,12 @@
+import React from 'react'
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
-
-import NoticeBoard from '../../components/Board/NoticeBoard';
-import React from 'react';
+import Board from '../../components/Board/ReviewBoard';
 import Title from '../../components/title';
 import styled from 'styled-components';
-import Footer from '../../components/footer';
+import * as MAHD from '../ManagerPage_Component/MatchingAHDetail';
+import Footer from '../footer';
 
-const NoticeWrapper = styled.div`
+const ReviewWrapper = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -21,7 +21,14 @@ const TitleHR = styled.hr`
   margin-bottom: 10vh;
 `;
 
-const NoticeBox = styled.div`
+// const HR = styled.hr`
+//   height: 2px;
+//   background: #000;
+//   margin-top: 10px;
+//   margin-bottom: 10px;
+// `;
+
+const ReviewBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -34,33 +41,35 @@ const NoticeBox = styled.div`
   text-align: center;
 
   margin-top: 3vw;
+
 `;
 
-const NoticeDetail = () => {
+const ReportReceiptHistoryDetail = () => {
   const { id } = useParams();
   const { state } = useLocation();
   const navigate = useNavigate();
 
-  const notice = state?.item;
+  const review = state?.item;
 
-  if (!notice) {
+  if (!review) {
     navigate('/not-found');
     return null;
   }
 
   return (
     <>
-    <NoticeWrapper>
-      <Title title = "공지사항 자세히 보기"/>
+    <ReviewWrapper>
+      <Title title = "관리자 페이지"/>
       <TitleHR/>
-      <NoticeBoard info={[notice]} />
-      <NoticeBox>
-        {notice.body}
-      </NoticeBox>
-    </NoticeWrapper>
+      <MAHD.HeadTitleH3> {id}번째 신고 접수 내용 자세히 보기</MAHD.HeadTitleH3>
+      <Board info={[review]} />
+      <ReviewBox>
+        {review.body}
+      </ReviewBox>
+    </ReviewWrapper>
     <Footer/>
     </>
   );
 };
 
-export default NoticeDetail;
+export default ReportReceiptHistoryDetail;

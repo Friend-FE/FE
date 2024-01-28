@@ -1,37 +1,64 @@
-import Board from '../../components/Board/Board';
+import QnABoard from '../../components/Board/QnABoard';
 import { Link } from 'react-router-dom';
 import React from 'react';
 import Title from '../../components/title';
 import styled from 'styled-components';
+import Footer from '../../components/footer';
 
 const ReviewWrapper = styled.div`
-  position: relative;
-  height: 100vh;
+  /* position: relative; */
+  /* height: 10vw; */
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `
 const TitleHR = styled.hr`
-  margin-top: 10vh;
+  margin-top: 5vw;
   width: 80vw;
-  margin-bottom: 10vh;
+  margin-bottom: 5vw;
+
+  @media (max-width: 768px) {
+    position: relative;
+    top: 10vw;
+  }
 `;
 
 const ButtonLink = styled(Link)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 36px;
-  position: absolute;
-  right: 0;
-  bottom: 0;
+  width: 15vw;
+  height: 3vw;
   background: #8be3ff;
   box-shadow: -2px 8px 6.1px 0px rgba(0, 0, 0, 0.25);
   border: none;
   color: #fff;
   text-align: center;
-  font-size: 13px;
-  font-weight: 700;
+  font-size: 1vw;
+  font-weight: bold;
   text-decoration: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 2vw;
+  margin-left: 65vw;
+
+  @media (max-width: 768px) {
+    position: relative;
+    top: 10vw;
+  }
 `;
 
+const FooterContainer = styled.div`
+    position: relative;
+    bottom: -2vw;
+    width: 100%;
+
+    @media (max-width: 768px) {
+    top: 25vw;
+  }
+`;
 const Question = () => {
   const question = [
     { id: 1, title: '제목 1', author: '작성자 1', time: '2024-01-18' },
@@ -41,12 +68,17 @@ const Question = () => {
   ];
 
   return (
+    <>
+    <Title title = "Q&A"/>
+    <TitleHR/>
     <ReviewWrapper>
-      <Title title = "Q&A"/>
-      <TitleHR/>
-      <Board info={question} />
-      <ButtonLink to ="/write">문의하기</ButtonLink>
+      <QnABoard info={question} />
+      <ButtonLink to ="/QnA/write">문의하기</ButtonLink>
     </ReviewWrapper>
+    <FooterContainer>
+      <Footer/>
+    </FooterContainer>
+  </>
   );
 };
 
