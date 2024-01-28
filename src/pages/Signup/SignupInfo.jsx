@@ -32,7 +32,7 @@ const SignupInfo = () => {
     }
     const handleSubmitButton = async () => {
         try {
-          const response = await fetch('http://13.209.145.28:8080/api/v1/signup/Info', {
+          const response = await fetch('http://13.209.145.28:8080/api/v1/users', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
