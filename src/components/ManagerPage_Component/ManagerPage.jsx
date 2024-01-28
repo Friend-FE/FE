@@ -8,7 +8,7 @@ import ProfileBasic from '../../images/ProfileBasic.png'
 import * as T from '../MyPage_Component/MyPage'
 
 // import Header from '../header/index'
-// import Footer from '../footer/index'
+import Footer from '../footer/index'
 import Title from '../title/index'
 
 export default function ManagerPage() {
@@ -30,9 +30,9 @@ export default function ManagerPage() {
           <T.MoveToPageLink to="/ManagerPage/ViewMembershipList">회원 목록 보기</T.MoveToPageLink>
         </T.MoveToDiv>
       </T.TotalDiv>
-      {/* <T.FooterContainer>
+      <T.FooterContainer>
         <Footer/>
-      </T.FooterContainer> */}
+      </T.FooterContainer>
     </>
   )
 }

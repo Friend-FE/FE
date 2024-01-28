@@ -6,7 +6,7 @@ import * as T from '../MyPage_Component/MyPage'
 import * as P from '../MyPage_Component/ProfileCard'
 import styled from 'styled-components'
 // import Header from '../header/index'
-// import Footer from '../footer/index'
+import Footer from '../footer/index'
 import Title from '../title/index'
 
 
@@ -49,9 +49,9 @@ export default function MatchingAHDetail() {
                 <InfoP>매칭 완료 회수 : 1회</InfoP>
             </SectionDiv>
         </T.TotalDiv>
-        {/* <FooterContainer>
+        <FooterContainer>
             <Footer/>
-        </FooterContainer> */}
+        </FooterContainer>
     </>
   )
 }
@@ -114,8 +114,12 @@ const InfoP = styled.p`
     text-align: left;
 `;
 
-// const FooterContainer = styled.div`
-//     position: absolute;
-//     bottom: -1600px;
-//     width: 100%;
-// `;
+const FooterContainer = styled.div`
+    position: relative;
+    bottom: -20vw;
+    width: 100%;
+
+    @media (max-width: 768px) {
+        top: 15vw;
+    }
+`;

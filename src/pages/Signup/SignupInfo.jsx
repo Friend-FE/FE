@@ -11,6 +11,7 @@ const SignupInfo = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [passwordCheck, setPasswordCheck] = useState('');
+
     const navigate = useNavigate();
 
     const handleEmailChange = (event) => {
@@ -24,14 +25,35 @@ const SignupInfo = () => {
     const handlePasswordCheckChange = (event) => {
         setPasswordCheck(event.target.value);
     };
-
+      
     const handleCancleButton = (event) => {
         //취소 시 이전 페이지로
         navigate(-1);
     }
-    const handleSubmitButton = (event) => {
-        //가입완료, 정보들 서버로 전송하는 api 필요
-    }
+    const handleSubmitButton = async () => {
+        try {
+          const response = await fetch('http://13.209.145.28:8080/api/v1/users', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              email,
+              password
+            }),
+          });
+      
+          if (response.ok) {
+            const data = await response.json();
+            console.log('회원가입 성공:', data);
+            navigate('/');
+          } else {
+            console.error('회원가입 실패:', response.status);
+          }
+        } catch (error) {
+          console.error('회원가입 오류:', error);
+        }
+      };
 
     return (
         <>
@@ -56,7 +78,7 @@ const SignupInfo = () => {
                 <LoginForm>
                     <Input type="text" placeholder="닉네임을 입력해주세요."/>
                 </LoginForm>
-
+ 
                 <InfoName>연락처</InfoName>
                 <LoginForm>
                     <Input type="tel"  placeholder="***-****-****"/>
@@ -126,7 +148,7 @@ const SignupInfo = () => {
                 
                 <ButtonContainer>
                     <CancelButton onClick={handleCancleButton}>취소</CancelButton>
-                    <SubmitButton  onClick={handleSubmitButton}>이어서 가입하기</SubmitButton>
+                    <SubmitButton  onClick={handleSubmitButton}>회원가입 완료하기</SubmitButton>
                 </ButtonContainer>
                 
             </AppContainer>
