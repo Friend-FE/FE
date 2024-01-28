@@ -21,12 +21,13 @@ import ModifyingManagerInfo from './components/ManagerPage_Component/ModifyingMa
 import MyPage from './components/MyPage_Component/MyPage';
 import NonMannerUsers from './components/MyPage_Component/NonMannerUsers';
 import Notice from './pages/Notice/notice';
+import NoticeDetail from './pages/Notice/NoticeDetail';
 import ProfileCard from './components/MyPage_Component/ProfileCard';
 import QnA from './components/ManagerPage_Component/QnA';
 import Question from './pages/QnA/qna';
 import ReportReceiptHistory from './components/ManagerPage_Component/ReportReceiptHistory';
 import Review from './pages/Review/review';
-import ReviewDetail from './components/Board/ReviewDetail';
+import ReviewDetail from './pages/Review/ReviewDetail';
 import ReviewWrite from './pages/Review/write';
 import SignupInfo from './pages/Signup/SignupInfo';
 import SignupTerms from './pages/Signup/SignupTerms';
@@ -101,6 +102,7 @@ const App = ()=>{
 				<Route path="/notice" element={<Notice/>} />
 				<Route path="/QnA" element={<Question/>} />
 				<Route path="/reviews/:id" element={<ReviewDetail/>} />
+				<Route path="/notice/:id" element={<NoticeDetail/>} />
 				<Route path="/Apply" element={<Apply/>}/> 
 			</Routes>
 	  </div>

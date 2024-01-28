@@ -1,8 +1,8 @@
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
-import Board from './Board';
+import Board from '../../components/Board/Board';
 import React from 'react';
-import Title from '../title';
+import Title from '../../components/title';
 import styled from 'styled-components';
 
 const ReviewWrapper = styled.div`
@@ -54,7 +54,7 @@ const ReviewDetail = () => {
 
   return (
     <ReviewWrapper>
-      <Title title = "솔직후기"/>
+      <Title title = "솔직후기 자세히보기"/>
       <TitleHR/>
       <Board info={[review]} />
       <ReviewBox>
