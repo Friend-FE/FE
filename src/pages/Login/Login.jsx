@@ -29,7 +29,7 @@ const Login = () => {
         event.preventDefault();
         // API 호출
         try {
-          const response = await fetch('http://13.209.145.28:8080//api/v1/login', {
+          const response = await fetch('http://13.209.145.28:8080/api/v1/login', {
               method: 'POST',
               headers: {
                   'Content-Type': 'application/json',
