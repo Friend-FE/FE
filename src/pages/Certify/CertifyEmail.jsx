@@ -102,17 +102,26 @@ export default CertifyEmail;
 
 // 전체를 담고 있는 컨테이너
 const AppContainer = styled.div`
-    height: 80vh;
-    width: 40%; /* 원하는 크기로 조정 (가로의 반 정도로 설정) */
-    margin: 0 auto; /* 수평 가운데 정렬을 위해 margin을 auto로 설정 */
+    /* height: 80vh;
+    width: 40%; 
+    margin: 0 auto; */
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
 `;
 
 // 네모 박스 그리기 
 const RoundedBox = styled.div`
   border: 2px solid #23caff;
   border-radius: 10px; /* 모서리를 둥글게 */
-  padding: 40px; /* 네모박스 내부 여백 */
-  margin-top: 100px;
+  /* padding: 40px; */
+  margin-top: 10vw;
+
+  width: 50vw;
+  height: 30vw;
+
   p {
     color: 		#4169E1;
   }
@@ -120,8 +129,13 @@ const RoundedBox = styled.div`
 
 //무엇을 입력해야하는지 설명하는 텍스트
 const DiscriptionText = styled.div`
-  font-size: 25px;
-  margin: 20px;
+  /* font-size: 24px; */
+  font-size: 1.5vw;
+  font-weight: bold;
+
+  margin: 2vw 0 0 5vw;
+
+  
 `;
 
 const InputField = styled.input`

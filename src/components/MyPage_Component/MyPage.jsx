@@ -91,6 +91,10 @@ export const FooterContainer = styled.div`
   position: relative;
   top: 40vh;
   width: 100%;
+
+  @media (max-width: 768px) {
+    top: 15vw;
+  }
 `;
 
 // 꾸밈 //

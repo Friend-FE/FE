@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 
 // import Header from '../header/index'
-// import Footer from '../footer/index'
+import Footer from '../footer/index'
 import Title from '../title/index'
 import * as T from '../MyPage_Component/MyPage'
 import * as MAHD from './MatchingAHDetail'
@@ -151,7 +151,7 @@ export default function MatchingApplicationHistory() {
                 <P>2024/01/05 07:00</P>
               </PersonDiv>
           </PeopleDiv>
-          {/* <Footer/> */}
+          <Footer/>
       </T.TotalDiv>
     </>
   )
