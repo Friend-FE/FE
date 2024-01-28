@@ -10,19 +10,19 @@ const Footer = () => {
       <img src={logo} alt="로고"></img>
       <div>
         <Top>
-          <NavLink to="/" exact active ClassName="active">
+          <NavLink to="/" exact="true" activeclassname="active">
             Friend
           </NavLink>
-          <NavLink to="/reviews" active ClassName="active">
+          <NavLink to="/reviews" activeclassname="active">
             솔직후기
           </NavLink>
-          <NavLink to="/apply" active ClassName="active">
+          <NavLink to="/apply" activeclassname="active">
             매칭신청
           </NavLink>
-          <NavLink to="/QnA" active ClassName="active">
+          <NavLink to="/QnA" activeclassname="active">
             Q&A
           </NavLink>
-          <NavLink to="/notice" active ClassName="active">
+          <NavLink to="/notice" activeclassname="active">
             공지사항
           </NavLink>
         </Top>
