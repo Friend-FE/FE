@@ -1,8 +1,10 @@
+import React from 'react'
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import Board from '../../components/Board/ReviewBoard';
-import React from 'react';
-import Title from '../../components/title';
+
+import Board from '../../components/Board/ManagerQnABoard';
+import Title from '../../components/title/index';
 import styled from 'styled-components';
+import * as MAHD from '../../components/ManagerPage_Component/MatchingAHDetail'
 import Footer from '../../components/footer';
 
 const ReviewWrapper = styled.div`
@@ -38,36 +40,36 @@ const ReviewBox = styled.div`
   background: #FFF;
   padding: 20px;
   text-align: center;
-
+  
   margin-top: 3vw;
 `;
 
-const ReviewDetail = () => {
-  const { id } = useParams();
-  const { state } = useLocation();
-  const navigate = useNavigate();
-
-  const review = state?.item;
-
-  if (!review) {
-    navigate('/not-found');
-    return null;
-  }
-
-  return (
-    <>
+const QnADetail = () => {
+    const { id } = useParams();
+    const { state } = useLocation();
+    const navigate = useNavigate();
+  
+    const review = state?.item;
+  
+    if (!review) {
+      navigate('/not-found');
+      return null;
+    }
+  
+    return (
+      <>
       <ReviewWrapper>
-      <Title title = "솔직후기 자세히 보기"/>
-      <TitleHR/>
-      <Board info={[review]} />
-      <ReviewBox>
-        {review.body}
-      </ReviewBox>
-      </ReviewWrapper>
+        <Title title = "관리자 페이지"/>
+        <TitleHR/>
+        <MAHD.HeadTitleH3>Q&A 자세히 보기</MAHD.HeadTitleH3>
+        <Board info={[review]} />
+        <ReviewBox>
+          {review.body}
+        </ReviewBox>
+      </ReviewWrapper>  
       <Footer/>
     </>
-    
-  );
-};
-
-export default ReviewDetail;
+    );
+  };
+  
+  export default QnADetail;
