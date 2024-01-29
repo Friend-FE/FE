@@ -7,6 +7,8 @@ import CertifyEnd from './pages/Certify/CertifyEnd';
 import DeactivateAccount from './components/MyPage_Component/DeactivateAccount';
 import FindID from './pages/FindAccount/FindID';
 import FindPassword from './pages/FindAccount/FindPassword';
+import JudgePage from './components/JudgePage/JudgePage';
+
 import Header from './components/header';
 import Login from './pages/Login/Login';
 import MainPage from './pages/Main/MainPage';
@@ -33,6 +35,7 @@ import SignupInfo from './pages/Signup/SignupInfo';
 import SignupTerms from './pages/Signup/SignupTerms';
 import ViewMembershipList from './components/ManagerPage_Component/ViewMembershipList';
 import WritingNotices from './components/ManagerPage_Component/WritingNotices';
+
 import Report from './pages/Report/report';
 import QuestionWrite from './pages/QnA/qnaWrite'
 import QnADetail from './pages/QnA/qnaDetail'
@@ -80,6 +83,9 @@ const App = ()=>{
 				<Route path="/SignupTerms" element={<SignupTerms/>}/> 
 				<Route path="/FindID" element={<FindID/>}/> 
 				<Route path="/FindPassword" element={<FindPassword/>}/> 
+
+
+				<Route path="/JudgePage" element={<JudgePage/>}/> 
 
 				<Route path="/reviews" element={<Review/>}/> 
 				<Route path="/reviews/:id" element={<ReviewDetail/>} />

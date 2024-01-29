@@ -29,7 +29,7 @@ const Login = () => {
         event.preventDefault();
         // API 호출
         try {
-          const response = await fetch('http://13.209.145.28:8080//api/v1/login', {
+          const response = await fetch('http://13.209.145.28:8080/api/v1/login', {
               method: 'POST',
               headers: {
                   'Content-Type': 'application/json',
@@ -42,9 +42,16 @@ const Login = () => {
               throw new Error('Failed to log in');
           }
           console.log({email,password})
-          const data = await response.json();
+          const responseData  = await response.json();
           // 서버에서 받은 데이터 처리
-          console.log('Login successful:', data);
+          console.log('Login successful:', responseData);
+          console.log('Login successful:', responseData.data.status);
+          if(responseData.data.status ==='ACTIVE'){
+            navigate('/CertifyBeginning');
+          }
+          else{
+            navigate('/JudgePage');
+          }
       } catch (error) {
           console.error('Error during login:', error.message);
       }
