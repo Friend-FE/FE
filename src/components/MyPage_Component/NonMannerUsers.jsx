@@ -10,6 +10,7 @@ import styled from 'styled-components'
 // import Header from '../header/index'
 import Footer from '../footer/index'
 import Title from '../title/index'
+import Report from '../../pages/Report/report';
 
 /* 서버 연동 시 코드. 일단은 주석 처리 */
 // export default function NonMannerUsers() {
@@ -122,8 +123,8 @@ export default function NonMannerUsers() {
     };
 
     const submitForm = () => {
-        navigate(-1);
-        alert('신고 접수 되었습니다. 이전으로 돌아갑니다');
+        navigate('/MyPage/NonMannerUsers/Report');
+        // alert('신고 접수 되었습니다. 이전으로 돌아갑니다');
     };
 
 

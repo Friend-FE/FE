@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import Title from '../../components/title';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import * as MAHD from '../../components/ManagerPage_Component/MatchingAHDetail'
+import Footer from '../../components/footer';
 
 const TitleHR = styled.hr`
   margin-top: 10vh;
@@ -12,15 +14,39 @@ const TitleHR = styled.hr`
 `;
 
 const TextInput = styled.input`
-  width: 80vw;
+  width: 60vw;
   height: 7vh;
-  flex-shrink: 0;
+  /* flex-shrink: 0; */
+  font-weight: bold;
+  font-size: 1.1vw;
+  padding-left: 1vw;
+
+  border: 0.05vw solid #888;
+
+  @media (max-width: 768px) {
+    width: 60vw;
+    height: 2vh;
+  }
 `;
 
 const TextArea = styled.textarea`
-  width: 80vw;
-  height: 576px;
-  flex-shrink: 0;
+  width: 60vw;
+  height: 50vh;
+  /* flex-shrink: 0; */
+  font-weight: bold;
+  font-size: 1.1vw;
+  resize: none;
+  padding-left: 1vw;
+  padding-top: 0.5vw;
+
+  border: 0.05vw solid #888;
+
+  @media (max-width: 768px) {
+    position: relative;
+    top: -6vw;
+    width: 60vw;
+    height: 10vh;
+  }
 `;
 
 const TextBox = styled.div`
@@ -28,49 +54,55 @@ const TextBox = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: 5vw 0 0 0;
 `;
 
 const TitleInPut = styled.div`
   margin-top: 5vh;
-  font-size: 20px;
+  font-size: 1vw;
   font-weight: 400;
+  
 `;
 
 const ContentInPut = styled.div`
   margin-top: 5vh;
-  font-size: 20px;
+  font-size: 1vw;
   font-weight: 400;
 `;
 
 const ButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 3vw;
+
+  @media (max-width: 768px) {
+    margin-top: 1vw;
+  }
 `;
 
 const CancelButton = styled.button`
-  width: 190px;
-  height: 36px;
+  width: 13vw;
+  height: 2.5vw;
   background: #fff;
   border: none;
   color: #000;
   text-align: center;
-  font-size: 13px;
+  font-size: 1vw;
   font-weight: 700;
-  margin-right: 10px;
+  margin-right: 1vw;
   box-shadow: -2px 8px 6.1px 0px rgba(0, 0, 0, 0.25);
 `;
 
 const SubmitButton = styled.button`
-  width: 190px;
-  height: 36px;
+  width: 13vw;
+  height: 2.5vw;
   background: #8be3ff;
   border: none;
   color: #fff;
   text-align: center;
-  font-size: 13px;
+  font-size: 1vw;
   font-weight: 700;
-  margin-left: 10px;
+  margin-left: 1vw;
   box-shadow: -2px 8px 6.1px 0px rgba(0, 0, 0, 0.25);
 `;
 
@@ -81,6 +113,8 @@ const Report = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    alert('접수 되었습니다.');
+    navigate('/Mypage'); 
   };
 
   const handleCancel = () => {
@@ -88,10 +122,12 @@ const Report = () => {
   };
 
   return (
-    <TextBox>
-      <Title title = "신고 내용 작성하기"/>
+    <>
+      <Title title = "마이페이지"/>
       <TitleHR />
-      <form onSubmit={handleSubmit}>
+      <TextBox>
+        <MAHD.HeadTitleH3>신고 내용 작성하기</MAHD.HeadTitleH3>
+        <form onSubmit={handleSubmit}>
         <TitleInPut>
           <TextInput type="text" placeholder='제목을 입력해주세요.' value={title} onChange={e => setTitle(e.target.value)} />
         </TitleInPut>
@@ -102,8 +138,10 @@ const Report = () => {
           <CancelButton type="button" onClick={handleCancel}>취소</CancelButton>
           <SubmitButton type="submit">완료</SubmitButton>
         </ButtonWrapper>
-      </form>   
-    </TextBox>
+        </form>   
+      </TextBox>
+      <Footer/>
+    </>
   );
 };
 

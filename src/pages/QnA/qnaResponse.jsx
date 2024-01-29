@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 
-import Title from '../../components/title';
+import Title from '../../components/title/index';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../../components/footer';
+import * as MAHD from '../../components/ManagerPage_Component/MatchingAHDetail'
 
 const TitleHR = styled.hr`
   margin-top: 10vh;
@@ -53,7 +54,7 @@ const TextBox = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 2vw 0 0 0;
+  margin: 5vw 0 0 0;
 `;
 
 const TitleInPut = styled.div`
@@ -105,7 +106,8 @@ const SubmitButton = styled.button`
   box-shadow: -2px 8px 6.1px 0px rgba(0, 0, 0, 0.25);
 `;
 
-const ReviewWrite = () => {
+export default function QnAResponse() {
+
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const navigate = useNavigate();
@@ -116,13 +118,14 @@ const ReviewWrite = () => {
 
   const handleCancel = () => {
     navigate(-1); 
-  };
+  }; 
 
   return (
     <>
-      <Title title = "후기 작성하기"/>
+      <Title title = "관리자 페이지"/>
       <TitleHR />
       <TextBox>
+        <MAHD.HeadTitleH3>답변하기</MAHD.HeadTitleH3>
         <form onSubmit={handleSubmit}>
         <TitleInPut>
           <TextInput type="text" placeholder='제목을 입력해주세요.' value={title} onChange={e => setTitle(e.target.value)} />
@@ -138,7 +141,5 @@ const ReviewWrite = () => {
       </TextBox>
       <Footer/>
     </>
-  );
-};
-
-export default ReviewWrite;
+  )
+}

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import {useNavigate} from 'react-router-dom';
 import styled from 'styled-components';
+import Footer from '../../components/footer';
+import Title from '../../components/title';
 
 const FindID = () => {
     const navigate = useNavigate();
@@ -18,11 +20,12 @@ const FindID = () => {
         // 확인 버튼 누를 수 api 호출 필요함
     }
 
+    const isPasswordFormValid = email !== "";
+
     return (
+      <>
+        <Title/>
         <AppContainer>
-            <Wrapper>
-                지인 매칭 100% 방지 와 개인정보 노출 부담없는 교내 매칭 서비스
-            </Wrapper>
             <RoundedBox>
                 <DescriptionText textColor = "#23CAFF">비밀번호 찾기</DescriptionText>
                 <LoginForm>
@@ -30,10 +33,19 @@ const FindID = () => {
                 </LoginForm>
                 <ButtonContainer>
                     <CancelButton onClick={handleCancleClick} bgColor = "white">취소</CancelButton>
-                    <SubmitButton onClick={handleAllowClick} bgColor = "#23CAFF">확인</SubmitButton>
+                    <SubmitButton
+                          disabled={!isPasswordFormValid}
+                          onClick={handleAllowClick}
+                        >
+                          확인
+                        </SubmitButton>
                 </ButtonContainer>    
             </RoundedBox>
         </AppContainer>
+        <FooterDiv>
+          <Footer/>
+        </FooterDiv>
+    </>
     )
 } 
 
@@ -41,82 +53,93 @@ export default FindID;
 
 // 전체를 담고 있는 컨테이너
 const AppContainer = styled.div`
-    justify-content: center;
-    width: 40%; /* 원하는 크기로 조정 (가로의 반 정도로 설정) */
-    @media (max-width: 768px) {
-      width: 80%;
-    }
-    margin: 0 auto; /* 수평 가운데 정렬을 위해 margin을 auto로 설정 */
-`;
+    /* height: 80vh;
+    width: 40%; 
+    margin: 0 auto; */
 
-const Wrapper = styled.div`
-    display :flex;
-    flex-direction : column;
-    align-items:center;
-    position:relative;
-    top:5vh;
-    text-align: center;
-    font-size: 1.8rem;
-    font-weight: 800;
-`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+`;
 
 // 네모 박스 그리기 
 const RoundedBox = styled.div`
   display: flex;
+  font-weight : bold;
   flex-direction: column; 
+  width: 50vw;
+  height: 40vw;
   align-items: center;
   border: 2px solid #23CAFF; 
   border-radius: 10px; 
-  padding: 50px; /* 좌우 여백 설정 */
-  margin-top: 5rem;
+  padding: 1vw; /* 좌우 여백 설정 */
+  margin-top: 10vw;
 `;
 
 //네모 박스 내 설명 텍스트
 const DescriptionText = styled.div`
-  font-size: 1.5rem;
-  margin: 1rem;
+  font-size: 2vw;
+  margin-top: 3vw;
+  margin-bottom : 8vw;
   color: ${(props) => props.textColor || 'black'}; /* 동적으로 입력받은 textColor 값으로 설정, 없으면 기본값 black */
 `;
 
 // 이메일과 패스워드를 입력할 칸들
 const LoginForm = styled.form`
   flex-direction: column;
-  margin-top: 1rem;
+  margin-top: 2vw;
 `;
 
 const Input = styled.input`
-  height: 1.5rem;
-  padding: 0.5rem;
-  margin-top: 1rem;
+  height: 2vw;
+  width : 25vw;
+  padding: 1vw;
+  margin-top: 1vw;
+  margin-bottom : 2vw;
+  font-size : 1.5vw;
 `;
 
 const ButtonContainer = styled.div`
-
+  margin-top : 3vw;
 `
 
 const CancelButton = styled.button`
     background-color: #FFF;
-    font-size : 0.8rem;
+    font-size : 1vw;
     color: black;
     border: none;
-    padding: 1rem;
+    padding: 1.5vw;
+    height: 4vw;
+    width : 12vw;
     cursor: pointer;
-    border-radius: 10px;
+    box-shadow: -0.6vw 0.5vw 0.3vw rgba(0, 0, 0, 0.2);
 `;
 
 const SubmitButton = styled.button`
   background-color: #23CAFF;
-  font-size : 0.8rem;
+  font-size : 1vw;
   color: white;
   border: none;
-  padding: 0.6rem;
+  padding: 1.5vw;
+  height: 4vw;
+  width : 12vw;
   cursor: pointer;
-  border-radius: 5px;
-  
+  box-shadow: -0.6vw 0.5vw 0.3vw rgba(0, 0, 0, 0.2);
 
   /* isFormValid가 false일 때 버튼 비활성화 스타일 추가 */
   &:disabled {
     background-color: #B9EEFF;
     cursor: not-allowed;
+  }
+`;
+
+const FooterDiv = styled.div`
+  width: 100%;
+  position: relative;
+  top: 12vw;
+
+  @media (max-width: 768px) {
+    top: 22vw;
   }
 `;
