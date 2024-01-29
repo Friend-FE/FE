@@ -41,12 +41,6 @@ const AppContainer = styled.div`
     justify-content: center;
     position: relative;
     top: 8vw;
-
-    /* width: 40%;
-    @media (max-width: 768px) {
-      width: 80%;
-    }
-    margin: 0 auto; */
 `;
 
 
