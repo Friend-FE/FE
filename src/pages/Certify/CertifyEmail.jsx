@@ -5,14 +5,6 @@ import Footer from "../../components/footer/index";
 import axios from 'axios'
 import styled from 'styled-components';
 import {useNavigate} from 'react-router-dom';
-import Footer from '../../components/footer';
-
-// import React, { useState } from "react";
-// import { useNavigate } from "react-router-dom";
-// import Header from "../../components/header/index";
-// import styled from "styled-components";
-// import Title from "../../components/title";
-// import axios from "axios";
 
 const CertifyEmail = () => {
   const [email, setEmail] = useState("");
