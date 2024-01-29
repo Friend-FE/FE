@@ -66,7 +66,6 @@ const App = ()=>{
 				<Route path="/ManagerPage/ModifyingManagerInfo" element={<ModifyingManagerInfo/>}/>
 				
 				<Route path="/ManagerPage/QnA" element={<QnA/>}/>
-				QnAResponse
 				<Route path="/ManagerPage/QnA/QnAResponse" element={<QnAResponse/>}/>
 
 

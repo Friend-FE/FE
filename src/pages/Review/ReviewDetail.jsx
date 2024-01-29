@@ -1,5 +1,5 @@
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import Board from '../../components/Board/ReviewBoard';
+import ReviewBoard from '../../components/Board/ReviewBoard';
 import React from 'react';
 import Title from '../../components/title';
 import styled from 'styled-components';
@@ -59,7 +59,7 @@ const ReviewDetail = () => {
       <ReviewWrapper>
       <Title title = "솔직후기 자세히 보기"/>
       <TitleHR/>
-      <Board info={[review]} />
+      <ReviewBoard info={[review]} />
       <ReviewBox>
         {review.body}
       </ReviewBox>
