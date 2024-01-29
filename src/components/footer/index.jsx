@@ -36,7 +36,7 @@ const Footer = () => {
             ) : (
               <>
                 <NavLink to="/login">LOGIN</NavLink>
-                <NavLink to="/join">회원가입</NavLink>
+                <NavLink to="/CertifyBeginning">회원가입</NavLink>
               </>
             )}
           </Bottom>

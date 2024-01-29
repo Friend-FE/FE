@@ -50,6 +50,6 @@ const FooterContainer = styled.div`
   width: 100%;
 
   @media (max-width: 768px) {
-    top: 9.5vw;
+    top: 10vw;
   }
 `;

@@ -1,8 +1,10 @@
+// ManagerRBD
+
 import React from 'react'
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
-const ManagerReportBoard = ({ info }) => {
+const ManagerRBD = ({ info }) => {
   const infoLength = info.length;
   const navigate = useNavigate();
 
@@ -25,7 +27,7 @@ const ManagerReportBoard = ({ info }) => {
     <BoardWrapper>
       <HR />
       <HeaderRow as="div">
-        <Title>제목</Title>
+        <Title>신고하는 대상</Title>
         <Author>작성자</Author>
         <Time>작성 시간</Time>
       </HeaderRow>
@@ -33,7 +35,7 @@ const ManagerReportBoard = ({ info }) => {
       {info && info.map((item, index) => (
         <div key={item.id}>
           <Row onClick={() => handleRowClick(item, index)}>
-            <Title>{item.title}</Title>
+            <Title>{item.badMemberId}</Title>
             <Author>{item.author}</Author>
             <Time>{formatDate(item.updatedAt)}</Time>
           </Row>
@@ -44,7 +46,7 @@ const ManagerReportBoard = ({ info }) => {
   );
 };
   
-  export default ManagerReportBoard;
+  export default ManagerRBD;
 
   
 const Row = styled.div`
