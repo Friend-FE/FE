@@ -33,19 +33,19 @@ function Header() {
         />
       </Link>
       <LinkContainer>
-      <NavLink to="/" exact activeClassName="active">
+      <NavLink to="/" exact="true" activeclassname="active">
             Friend
           </NavLink>
-          <NavLink to="/reviews" activeClassName="active">
+          <NavLink to="/reviews" activeclassname="active">
             솔직후기
           </NavLink>
-          <NavLink to="/apply" activeClassName="active">
+          <NavLink to="/apply" activeclassname="active">
             매칭신청
           </NavLink>
-          <NavLink to="/QnA" activeClassName="active">
+          <NavLink to="/QnA" activeclassname="active">
             Q&A
           </NavLink>
-          <NavLink to="/notice" activeClassName="active">
+          <NavLink to="/notice" activeclassname="active">
             공지사항
           </NavLink>
       </LinkContainer>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import Title from '../../components/title';
+import Footer from "../../components/footer/index";
 import axios from 'axios'
 import styled from 'styled-components';
 import {useNavigate} from 'react-router-dom';
@@ -9,7 +10,6 @@ import Footer from '../../components/footer';
 // import React, { useState } from "react";
 // import { useNavigate } from "react-router-dom";
 // import Header from "../../components/header/index";
-// import Footer from "../../components/footer/index";
 // import styled from "styled-components";
 // import Title from "../../components/title";
 // import axios from "axios";
@@ -112,9 +112,9 @@ export default CertifyEmail;
 
 // 전체를 담고 있는 컨테이너
 const AppContainer = styled.div`
-    /* height: 80vh;
-    width: 40%; 
-    margin: 0 auto; */
+    // height: 100vh;
+    // width: 40%; 
+    // margin: 0 auto; */
 
     display: flex;
     align-items: center;
@@ -128,9 +128,8 @@ const RoundedBox = styled.div`
   border-radius: 10px; /* 모서리를 둥글게 */
   padding: 4vw;
   margin-top: 12vw;
-
-  width: 50vw;
-  height: 30vw;
+  width: 45vw;
+  height: 25vw;
 
   p {
     color: 		#4169E1;
@@ -184,3 +183,4 @@ const FooterDiv = styled.div`
     top: 22vw;
   }
 `;
+
