@@ -114,8 +114,41 @@ export default function WritingNotices() {
   const [content, setContent] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+
+    // API 엔드포인트와 기타 세부 정보 설정
+    const apiUrl = 'http://13.209.145.28:8080/api/v1/post'; // 실제 엔드포인트로 변경해야 합니다.
+
+    // Request body 구성
+    const requestBody = {
+      title: title,
+      body: content,
+      author: 'author',
+      password: 'password', 
+    };
+
+    try {
+      // API 호출
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestBody),
+      });
+
+      if (response.ok) {
+        console.log('API 호출 성공');
+        navigate(-1); 
+      } else {
+        // API 호출이 실패한 경우에 대한 처리
+        console.error('API 호출 실패');
+      }
+    } catch (error) {
+      // 네트워크 오류 등의 예외 처리
+      console.error('API 호출 중 오류:', error);
+    }
   };
 
   const handleCancel = () => {
@@ -137,7 +170,7 @@ export default function WritingNotices() {
         </ContentInPut>
         <ButtonWrapper>      
           <CancelButton type="button" onClick={handleCancel}>취소</CancelButton>
-          <SubmitButton type="submit">완료</SubmitButton>
+          <SubmitButton type="submit" onClick={handleSubmit}>완료</SubmitButton>
         </ButtonWrapper>
         </form>   
       </TextBox>

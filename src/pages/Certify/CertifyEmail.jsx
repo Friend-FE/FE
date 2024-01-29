@@ -5,7 +5,6 @@ import Footer from "../../components/footer/index";
 import axios from 'axios'
 import styled from 'styled-components';
 import {useNavigate} from 'react-router-dom';
-import Footer from '../../components/footer';
 
 // import React, { useState } from "react";
 // import { useNavigate } from "react-router-dom";
