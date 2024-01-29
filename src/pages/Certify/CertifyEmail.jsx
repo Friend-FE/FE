@@ -4,6 +4,7 @@ import Title from '../../components/title';
 import axios from 'axios'
 import styled from 'styled-components';
 import {useNavigate} from 'react-router-dom';
+import Footer from '../../components/footer';
 
 // import React, { useState } from "react";
 // import { useNavigate } from "react-router-dom";
@@ -100,7 +101,9 @@ const CertifyEmail = () => {
           {WrongCode && <p>잘못된 인증번호입니다</p>}
         </RoundedBox>
       </AppContainer>
-      {/* <Footer /> */}
+      <FooterDiv>
+        <Footer/>
+      </FooterDiv>
     </>
   );
 };
@@ -113,18 +116,18 @@ const AppContainer = styled.div`
     width: 40%; 
     margin: 0 auto; */
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
 `;
 
 // 네모 박스 그리기 
 const RoundedBox = styled.div`
   border: 2px solid #23caff;
   border-radius: 10px; /* 모서리를 둥글게 */
-  /* padding: 40px; */
-  margin-top: 10vw;
+  padding: 4vw;
+  margin-top: 12vw;
 
   width: 50vw;
   height: 30vw;
@@ -140,32 +143,44 @@ const DiscriptionText = styled.div`
   font-size: 1.5vw;
   font-weight: bold;
 
-  margin: 2vw 0 0 5vw;
-
-  
+  margin: 2vw 0 0 7vw;
 `;
 
 const InputField = styled.input`
-  width: 70%;
-  height: 30px;
-  padding: 8px;
-  margin-right: 10px;
+  // height: 30px;
+  // padding: 8px;
+  // margin-right: 10px;
+
+  width : 50%;
+  height : 3vw;
   border: 1px solid #ddd;
   border-radius: 5px;
+  margin: 2vw 1vw 5vw 7vw;
 `;
 
 const SubmitButton = styled.button`
   background-color: #23caff;
   width: 20%;
-  height: 50px;
+  height : 3vw;
   color: white;
   border: none;
   cursor: pointer;
-  border-radius: 5px;
+  font-size: 1vw;
+  box-shadow: -0.6vw 0.5vw 0.3vw rgba(0, 0, 0, 0.2);
 
   /* 입력 안했을 때 */
   &:disabled {
     background-color: #b9eeff;
     cursor: not-allowed;
+  }
+`;
+
+const FooterDiv = styled.div`
+  width: 100%;
+  position: relative;
+  top: 12vw;
+
+  @media (max-width: 768px) {
+    top: 22vw;
   }
 `;

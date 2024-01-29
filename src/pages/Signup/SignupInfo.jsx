@@ -177,23 +177,24 @@ const LogoContainer = styled.div`
 
 //ProfileBasic 이미지 삽입
 const ProfileImage = styled.img`
-    margin : 1rem;
-    height: 15rem;
+  width: 16.7vw;
+  height: 16.7vw;
 `;
 
 //수평선 스타일
 const Separator = styled.div`
   height: 1px;
   background-color: Gray;
-  margin: 5rem; 
+  margin : 15vw 10vw 5vw 10vw;
 `;
+
 
 //어떤 정보를 입력해야하는지, 알려주는 텍스트
 const InfoMessage = styled.div`
     text-align: center;
-    margin-top : 1.5rem;
-    margin-bottom : 1rem;
-    font-size: 25px; 
+    margin-top : 8vw;
+    margin-bottom : 2vw;
+    font-size: 2vw; 
     width: 100%; /* 텍스트가 max-width를 넘어가더라도 크기를 조절할 수 있도록 */
 `;
 
@@ -201,18 +202,18 @@ const InfoMessage = styled.div`
 const LoginForm = styled.form`
   display: flex;
   flex-direction: column;
-  margin-top: 1rem;
+  margin-top: 1vw;
 `;
 
 const Input = styled.input`
-  height: 1.5rem;
-  padding: 0.5rem;
-  margin-bottom: 1rem;
+  height: 2vw;
+  padding: 0.8rem;
+  margin-bottom: 1vw;
 `;
 
 // 칸 마다 입력해야하는 정보 알려주는 작은 텍스트
 const InfoName = styled.div`
-    font-size: 1rem;
+    font-size: 1.5vw;
 `;
 
 
@@ -224,22 +225,24 @@ const ButtonContainer = styled.div`
 
 const CancelButton = styled.button`
     background-color: #FFF;
-    font-size : 0.8rem;
+    font-size : 1.5vw;
     color: black;
     border: none;
-    padding: 1rem;
+    padding: 1vw;
     cursor: pointer;
     border-radius: 10px;
+    box-shadow: -0.6vw 0.5vw 0.3vw rgba(0, 0, 0, 0.2);
 `;
 
 const SubmitButton = styled.button`
   background-color: #23CAFF;
-  font-size : 0.8rem;
+  font-size : 1.5vw;
   color: white;
   border: none;
-  padding: 0.6rem;
+  padding: 1vw;
   cursor: pointer;
   border-radius: 5px;
+  box-shadow: -0.6vw 0.5vw 0.3vw rgba(0, 0, 0, 0.2);
 
   /* isFormValid가 false일 때 버튼 비활성화 스타일 추가 */
   &:disabled {
