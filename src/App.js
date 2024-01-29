@@ -33,36 +33,11 @@ import SignupInfo from './pages/Signup/SignupInfo';
 import SignupTerms from './pages/Signup/SignupTerms';
 import ViewMembershipList from './components/ManagerPage_Component/ViewMembershipList';
 import WritingNotices from './components/ManagerPage_Component/WritingNotices';
-
-// import Footer from './components/footer';
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import QuestionWrite from './pages/QnA/qnaWrite';
-// import Report from './pages/Report/report';
-
-
-
-
-
-
-
-
-
+import Report from './pages/Report/report';
+import QuestionWrite from './pages/QnA/qnaWrite'
+import QnADetail from './pages/QnA/qnaDetail'
+import ReportReceiptHistoryDetail from './components/ManagerPage_Component/ReportReceiptHistoryDetail'
+import QnAResponse from './pages/QnA/qnaResponse'
 
 const App = ()=>{
 	return (
@@ -78,14 +53,23 @@ const App = ()=>{
 				<Route path="/MyPage/ProfileCard" element={<ProfileCard/>}/>
 
 				<Route path="/MyPage/NonMannerUsers" element={<NonMannerUsers/>}/>
+				<Route path="/MyPage/NonMannerUsers/Report" element={<Report/>}/>
+
 
 				<Route path="/ManagerPage" element={<ManagerPage/>}/>
 				<Route path="/ManagerPage/MatchingApplicationHistory" element={<MatchingApplicationHistory/>}/>
 				<Route path="/ManagerPage/MatchingApplicationHistory/MatchingAHDetail" element={<MatchingAHDetail/>}/>
 				<Route path="/ManagerPage/MatchingCompletionHistory" element={<MatchingCompletionHistory/>}/>
 				<Route path="/ManagerPage/ModifyingManagerInfo" element={<ModifyingManagerInfo/>}/>
+				
 				<Route path="/ManagerPage/QnA" element={<QnA/>}/>
+				QnAResponse
+				<Route path="/ManagerPage/QnA/QnAResponse" element={<QnAResponse/>}/>
+
+
 				<Route path="/ManagerPage/ReportReceiptHistory" element={<ReportReceiptHistory/>}/>
+				<Route path="/ManagerPage/ReportReceiptHistory/:id" element={<ReportReceiptHistoryDetail/>}/>
+				
 				<Route path="/ManagerPage/ViewMembershipList" element={<ViewMembershipList/>}/>
 				<Route path="/ManagerPage/WritingNotices" element={<WritingNotices/>}/>
 
@@ -97,13 +81,19 @@ const App = ()=>{
 				<Route path="/SignupTerms" element={<SignupTerms/>}/> 
 				<Route path="/FindID" element={<FindID/>}/> 
 				<Route path="/FindPassword" element={<FindPassword/>}/> 
+
 				<Route path="/reviews" element={<Review/>}/> 
-				<Route path="/write" element={<ReviewWrite />}/>
-				<Route path="/notice" element={<Notice/>} />
-				<Route path="/QnA" element={<Question/>} />
 				<Route path="/reviews/:id" element={<ReviewDetail/>} />
+				<Route path="/reviews/write" element={<ReviewWrite />}/>
+
+				<Route path="/notice" element={<Notice/>} />
 				<Route path="/notice/:id" element={<NoticeDetail/>} />
-				<Route path="/Apply" element={<Apply/>}/> 
+
+				<Route path="/QnA" element={<Question/>} />
+				<Route path="/QnA/:id" element={<QnADetail/>} />
+				<Route path="/QnA/write" element={<QuestionWrite/>} />
+
+				<Route path="/Apply" element={<Apply/>}/>
 			</Routes>
 	  </div>
 	);
