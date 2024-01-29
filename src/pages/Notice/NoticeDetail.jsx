@@ -1,7 +1,6 @@
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
-
 import NoticeBoard from '../../components/Board/NoticeBoard';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Title from '../../components/title';
 import styled from 'styled-components';
 import Footer from '../../components/footer';
@@ -41,7 +40,31 @@ const NoticeDetail = () => {
   const { state } = useLocation();
   const navigate = useNavigate();
 
-  const notice = state?.item;
+  const [notice, setNotice] = useState(state?.item);
+
+  useEffect(() => {
+    const fetchNoticeDetail = async () => {
+      try {
+        const response = await fetch(`http://13.209.145.28:8080/api/v1/post/${id}`);
+        if (response.ok) {
+          const data = await response.json();
+          //API 결과 중에서 body를 notice의 body로 설정
+          setNotice((prevNotice) => ({ ...prevNotice, body: data.data.body }));
+        } else {
+          // API 호출이 실패한 경우에 대한 처리
+          console.error('API 호출 실패');
+        }
+      } catch (error) {
+        // 네트워크 오류 등의 예외 처리
+        console.error('API 호출 중 오류:', error);
+      }
+    };
+
+    // id가 존재하고 notice에 body가 없을 때만 API 호출
+    if (id && !notice?.body) {
+      fetchNoticeDetail();
+    }
+  }, [id, notice]);
 
   if (!notice) {
     navigate('/not-found');
