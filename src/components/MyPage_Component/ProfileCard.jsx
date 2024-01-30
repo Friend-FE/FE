@@ -5,8 +5,19 @@ import styled from 'styled-components'
 // import Header from '../header/index'
 import Footer from '../footer/index'
 import Title from '../title/index'
+import axios from 'axios';
 
 export default function Profile_card() {
+  const email = "1234@pukyong.com"; // 실제 이메일 주소로 대체
+axios.get(`http://13.209.145.28:8080/api/v1/myPage/getProfile?email=${email}`)
+  .then(function (response) {
+    // 성공적으로 응답 받았을 때의 처리
+    console.log("프로필 데이터:", response.data);
+  })
+  .catch(function (error) {
+    // 오류 발생 시의 처리
+    console.error("오류 발생:", error);
+  });
   return (
     <>
       {/* <Header/> */}
