@@ -68,6 +68,7 @@ const SubmitButton = styled.button`
   font-size: 1vw;
   font-weight: 700;
   margin-left: 1vw;
+  cursor: pointer;
   box-shadow: -2px 8px 6.1px 0px rgba(0, 0, 0, 0.25);
 `;
 
@@ -132,7 +133,12 @@ const NoticeDetail = () => {
 
 
   const handleModify = () => {
-    //수정하기 api
+      const data = {
+        id : id,
+        title : notice.title,
+        body : notice.body
+      };
+      navigate("/ManagerPage/WritingNotices" , {state : {data}} );
   };
 
   return (
@@ -147,7 +153,7 @@ const NoticeDetail = () => {
     </NoticeWrapper>
     <ButtonWrapper>      
           <CancelButton type="button" onClick={handleDelete}>삭제하기</CancelButton>
-          <SubmitButton type="submit" onClick={handleModify}>저장하기</SubmitButton>
+          <SubmitButton type="button" onClick={handleModify}>수정하기</SubmitButton>
         </ButtonWrapper>
     <Footer/>
     </>
