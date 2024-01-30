@@ -1,3 +1,5 @@
+// 회원가입 - 3에 쓰이는 110자 제한 textarea Component
+
 import React, { useState } from 'react';
 import styled from 'styled-components';
 

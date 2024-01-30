@@ -1,4 +1,4 @@
-// ManagerRBD
+// 비매너 유저 신고하기 - 더 자세한 신고 내용 입력에 쓰이는 Board입니다.
 
 import React from 'react'
 import styled from 'styled-components';

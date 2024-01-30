@@ -1,6 +1,43 @@
+// 솔직후기에 쓰이는 Board입니다.
+
 import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+
+const Board = ({ info }) => {
+  const infoLength = info.length;
+  const navigate = useNavigate();
+
+  const handleRowClick = (item) => {
+    navigate(`/reviews/${item.id}`, { state: { item } });
+  };
+
+  return (
+    <BoardWrapper>
+      <HR />
+      <HeaderRow as="div">
+        <Title>제목</Title>
+        <Author>작성자</Author>
+        <Time>작성 시간</Time>
+        <View>조회수</View>
+      </HeaderRow>
+      <ThinHR />
+      {info && info.map((item, index) => (
+        <div key={item.id}>
+          <Row onClick={() => handleRowClick(item)}>
+            <Title>{item.title}</Title>
+            <Author>{item.author}</Author>
+            <Time>{item.time}</Time>
+            <ViewCount>{item.view}</ViewCount>
+          </Row>
+          {index !== infoLength - 1 ? <ThinHR /> : <HR />}
+        </div>
+      ))}
+    </BoardWrapper>
+  );
+};
+
+export default Board;
 
 const Row = styled.div`
   display: flex;
@@ -68,38 +105,3 @@ const HeaderRow = styled.div`
   text-decoration: none;
   color: inherit;
 `;
-
-const Board = ({ info }) => {
-  const infoLength = info.length;
-  const navigate = useNavigate();
-
-  const handleRowClick = (item) => {
-    navigate(`/reviews/${item.id}`, { state: { item } });
-  };
-
-  return (
-    <BoardWrapper>
-      <HR />
-      <HeaderRow as="div">
-        <Title>제목</Title>
-        <Author>작성자</Author>
-        <Time>작성 시간</Time>
-        <View>조회수</View>
-      </HeaderRow>
-      <ThinHR />
-      {info && info.map((item, index) => (
-        <div key={item.id}>
-          <Row onClick={() => handleRowClick(item)}>
-            <Title>{item.title}</Title>
-            <Author>{item.author}</Author>
-            <Time>{item.time}</Time>
-            <ViewCount>{item.view}</ViewCount>
-          </Row>
-          {index !== infoLength - 1 ? <ThinHR /> : <HR />}
-        </div>
-      ))}
-    </BoardWrapper>
-  );
-};
-
-export default Board;

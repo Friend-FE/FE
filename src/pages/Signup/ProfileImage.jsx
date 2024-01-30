@@ -1,6 +1,9 @@
+// 회원가입 - 3 API 연결 (임의로 작성. 수정 바랍니다)에 쓰인 Image 삽입 Component
+
 import React, { useState } from "react";
 import styled from "styled-components";
 import ProfileBasic from "../../images/ProfileBasic.png"
+
 const ProfileImage = ({ onFileChange }) => {
     const [selectedImage, setSelectedImage] = useState(null);
 

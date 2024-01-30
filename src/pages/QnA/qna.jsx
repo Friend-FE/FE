@@ -1,9 +1,36 @@
+// Q&A (이용자가 헤더에서 접근하는 경우!!)
+
 import QnABoard from '../../components/Board/QnABoard';
 import { Link } from 'react-router-dom';
 import React from 'react';
 import Title from '../../components/title';
 import styled from 'styled-components';
 import Footer from '../../components/footer';
+
+const Question = () => {
+  const question = [
+    { id: 1, title: '제목 1', author: '작성자 1', time: '2024-01-18' },
+    { id: 2, title: '제목 2', author: '작성자 2', time: '2024-01-18' },
+    { id: 3, title: '제목 3', author: '작성자 3', time: '2024-01-18' },
+    { id: 4, title: '제목 4', author: '작성자 4', time: '2024-01-18' }
+  ];
+
+  return (
+    <>
+    <Title title = "Q&A"/>
+    <TitleHR/>
+    <ReviewWrapper>
+      <QnABoard info={question} />
+      <ButtonLink to ="/QnA/write">문의하기</ButtonLink>
+    </ReviewWrapper>
+    <FooterContainer>
+      <Footer/>
+    </FooterContainer>
+  </>
+  );
+};
+
+export default Question;
 
 const ReviewWrapper = styled.div`
   /* position: relative; */
@@ -59,27 +86,3 @@ const FooterContainer = styled.div`
     top: 25vw;
   }
 `;
-const Question = () => {
-  const question = [
-    { id: 1, title: '제목 1', author: '작성자 1', time: '2024-01-18' },
-    { id: 2, title: '제목 2', author: '작성자 2', time: '2024-01-18' },
-    { id: 3, title: '제목 3', author: '작성자 3', time: '2024-01-18' },
-    { id: 4, title: '제목 4', author: '작성자 4', time: '2024-01-18' }
-  ];
-
-  return (
-    <>
-    <Title title = "Q&A"/>
-    <TitleHR/>
-    <ReviewWrapper>
-      <QnABoard info={question} />
-      <ButtonLink to ="/QnA/write">문의하기</ButtonLink>
-    </ReviewWrapper>
-    <FooterContainer>
-      <Footer/>
-    </FooterContainer>
-  </>
-  );
-};
-
-export default Question;

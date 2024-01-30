@@ -1,3 +1,5 @@
+// 메인 페이지
+
 import styled from "styled-components";
 import mainBg from "../../images/main_bg.png";
 import ImageBox from "../../components/ImageBox";

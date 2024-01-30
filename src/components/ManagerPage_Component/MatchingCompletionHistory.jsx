@@ -1,9 +1,8 @@
-// 매칭 완료 내역 모아보기
+// 매칭 완료 내역
 
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 
-// import Header from '../header/index'
 import Footer from '../footer/index'
 import Title from '../title/index'
 import * as T from '../MyPage_Component/MyPage'

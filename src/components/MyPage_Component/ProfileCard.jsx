@@ -1,8 +1,9 @@
+// 내 프로필 카드 확인하기
+
 import React from 'react'
 import ProfileBasic from '../../images/ProfileBasic.png'
 import * as T from './MyPage'
 import styled from 'styled-components'
-// import Header from '../header/index'
 import Footer from '../footer/index'
 import Title from '../title/index'
 

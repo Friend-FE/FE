@@ -1,5 +1,33 @@
+// 회원가입 - 3에 쓰이는 원형 체크박스
+
 import React, { useState } from 'react';
 import styled from 'styled-components';
+
+const CircleCheckbox = ({ options, name, value, onChange }) => {
+  const [selectedIndex, setSelectedIndex] = useState(null);
+
+  const handleCheckboxChange = (index) => {
+    setSelectedIndex(index);
+    onChange({ target: { name, value: index } });
+  };
+
+  return (
+    <div>
+      {options.map((option, index) => (
+        <CheckboxContainer key={index}>
+          <StyledCheckbox
+            type="checkbox"
+            checked={selectedIndex  === index}
+            onChange={() =>handleCheckboxChange(index)}
+          />
+          <CheckboxLabel>{option}</CheckboxLabel>
+        </CheckboxContainer>
+      ))}
+    </div>
+  );
+};
+
+export default CircleCheckbox;
 
 const StyledCheckbox = styled.input`
   appearance: none;
@@ -33,29 +61,3 @@ const CheckboxContainer = styled.div`
 const CheckboxLabel = styled.label`
   margin-left: 8px;
 `;
-
-const CircleCheckbox = ({ options, name, value, onChange }) => {
-  const [selectedIndex, setSelectedIndex] = useState(null);
-
-  const handleCheckboxChange = (index) => {
-    setSelectedIndex(index);
-    onChange({ target: { name, value: index } });
-  };
-
-  return (
-    <div>
-      {options.map((option, index) => (
-        <CheckboxContainer key={index}>
-          <StyledCheckbox
-            type="checkbox"
-            checked={selectedIndex  === index}
-            onChange={() =>handleCheckboxChange(index)}
-          />
-          <CheckboxLabel>{option}</CheckboxLabel>
-        </CheckboxContainer>
-      ))}
-    </div>
-  );
-};
-
-export default CircleCheckbox;
