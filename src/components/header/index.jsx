@@ -19,7 +19,7 @@ function Header() {
           ) : (
             <>
               <NavLink to="/login">LOGIN</NavLink>
-              <NavLink to="/Signup">회원가입</NavLink>
+              <NavLink to="/CertifyBeginning">회원가입</NavLink>
             </>
           )}
       </div>

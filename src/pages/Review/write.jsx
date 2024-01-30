@@ -53,7 +53,7 @@ const TextBox = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 2vw 0 0 0;
+  margin: 6vw 0 0 0;
 `;
 
 const TitleInPut = styled.div`
@@ -105,6 +105,16 @@ const SubmitButton = styled.button`
   box-shadow: -2px 8px 6.1px 0px rgba(0, 0, 0, 0.25);
 `;
 
+const FooterContainer = styled.div`
+    position: relative;
+    bottom: -10vw;
+    width: 100%;
+
+    @media (max-width: 768px) {
+        bottom: -10vw;
+    }
+`;
+
 const ReviewWrite = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
@@ -136,7 +146,9 @@ const ReviewWrite = () => {
         </ButtonWrapper>
         </form>   
       </TextBox>
-      <Footer/>
+      <FooterContainer>
+        <Footer/>
+      </FooterContainer>
     </>
   );
 };

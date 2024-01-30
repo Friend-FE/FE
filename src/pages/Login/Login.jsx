@@ -101,7 +101,12 @@ export default Login;
 // 전체를 담고 있는 컨테이너
 const AppContainer = styled.div`
     justify-content: center;
-    margin-top: 10vw;
+    margin-top: 15vw;
+
+  @media (max-width: 768px) {
+    position: relative;
+    top: 10vw;
+  }
 `;
 
 // 이메일과 패스워드를 입력할 칸들
@@ -198,4 +203,8 @@ const FooterDiv = styled.div`
   position: relative;
   top: 14vw;
   width: 100%;  
+
+  @media (max-width: 768px) {
+    top: 30vw;
+  }
 `;

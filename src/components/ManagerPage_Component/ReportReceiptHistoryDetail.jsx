@@ -1,10 +1,44 @@
 import React from 'react'
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import Board from '../../components/Board/ReviewBoard';
+import { useLocation, useNavigate/*, useParams*/ } from 'react-router-dom';
+import ManagerRBD from '../../components/Board/ManagerRBD';
 import Title from '../../components/title';
 import styled from 'styled-components';
 import * as MAHD from '../ManagerPage_Component/MatchingAHDetail';
 import Footer from '../footer';
+
+const ReportReceiptHistoryDetail = () => {
+  // const { id } = useParams();
+  const { state } = useLocation();
+  const navigate = useNavigate();
+
+  const content = state?.item;
+  console.log(state);
+  const index = state?.index;
+
+
+  if (!content) {
+    navigate('/not-found');
+    return null;
+  }
+
+  return (
+    <>
+    <ReviewWrapper>
+      <Title title = "관리자 페이지"/>
+      <TitleHR/>
+      <MAHD.HeadTitleH3> {index + 1}번째 신고 접수 내용 자세히 보기</MAHD.HeadTitleH3>
+      <ManagerRBD info={[content]} />
+      <ReviewBox>
+        {content.body}
+      </ReviewBox>
+    </ReviewWrapper>
+    <Footer/>
+    </>
+  );
+};
+
+export default ReportReceiptHistoryDetail;
+
 
 const ReviewWrapper = styled.div`
   position: relative;
@@ -43,33 +77,3 @@ const ReviewBox = styled.div`
   margin-top: 3vw;
 
 `;
-
-const ReportReceiptHistoryDetail = () => {
-  const { id } = useParams();
-  const { state } = useLocation();
-  const navigate = useNavigate();
-
-  const review = state?.item;
-
-  if (!review) {
-    navigate('/not-found');
-    return null;
-  }
-
-  return (
-    <>
-    <ReviewWrapper>
-      <Title title = "관리자 페이지"/>
-      <TitleHR/>
-      <MAHD.HeadTitleH3> {id}번째 신고 접수 내용 자세히 보기</MAHD.HeadTitleH3>
-      <Board info={[review]} />
-      <ReviewBox>
-        {review.body}
-      </ReviewBox>
-    </ReviewWrapper>
-    <Footer/>
-    </>
-  );
-};
-
-export default ReportReceiptHistoryDetail;

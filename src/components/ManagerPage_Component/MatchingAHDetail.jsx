@@ -13,7 +13,6 @@ import Title from '../title/index'
 export default function MatchingAHDetail() {
   return (
     <>
-        {/* <Header/> */}
         <Title title="마이페이지"/>
         <T.TotalHr></T.TotalHr>
         <T.TotalDiv>
@@ -120,6 +119,6 @@ const FooterContainer = styled.div`
     width: 100%;
 
     @media (max-width: 768px) {
-        top: 15vw;
+        bottom: -20vw;
     }
 `;

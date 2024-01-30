@@ -105,6 +105,16 @@ const SubmitButton = styled.button`
   box-shadow: -2px 8px 6.1px 0px rgba(0, 0, 0, 0.25);
 `;
 
+const FooterContainer = styled.div`
+    position: relative;
+    bottom: -5vw;
+    width: 100%;
+
+    @media (max-width: 768px) {
+        bottom: -10vw;
+    }
+`;
+
 export default function QuestionWrite() {
 
   const [title, setTitle] = useState('');
@@ -136,7 +146,9 @@ export default function QuestionWrite() {
         </ButtonWrapper>
         </form>   
       </TextBox>
-      <Footer/>
+      <FooterContainer>
+        <Footer/>
+      </FooterContainer>
     </>
   );
 };
