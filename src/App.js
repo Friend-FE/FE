@@ -41,6 +41,7 @@ import QuestionWrite from './pages/QnA/qnaWrite'
 import QnADetail from './pages/QnA/qnaDetail'
 import ReportReceiptHistoryDetail from './components/ManagerPage_Component/ReportReceiptHistoryDetail'
 import QnAResponse from './pages/QnA/qnaResponse'
+import Signup from './pages/Signup/Signup';
 
 const App = ()=>{
 	return (
@@ -79,7 +80,7 @@ const App = ()=>{
 				<Route path="/CertifyBeginning" element={<CertifyBeginning/>}/> 
 				<Route path="/CertifyEmail" element={<CertifyEmail/>}/> 
 				<Route path="/CertifyEnd" element={<CertifyEnd/>}/> 
-				<Route path="/SignupInfo" element={<SignupInfo/>}/> 
+				<Route path="/SignupInfo" element={<Signup/>}/> 
 				<Route path="/SignupTerms" element={<SignupTerms/>}/> 
 				<Route path="/FindID" element={<FindID/>}/> 
 				<Route path="/FindPassword" element={<FindPassword/>}/> 

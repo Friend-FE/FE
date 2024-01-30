@@ -6,13 +6,6 @@ import axios from 'axios'
 import styled from 'styled-components';
 import {useNavigate} from 'react-router-dom';
 
-// import React, { useState } from "react";
-// import { useNavigate } from "react-router-dom";
-// import Header from "../../components/header/index";
-// import styled from "styled-components";
-// import Title from "../../components/title";
-// import axios from "axios";
-
 const CertifyEmail = () => {
   const [email, setEmail] = useState("");
   const [WrongEmail, setWrongEmail] = useState(false);
@@ -53,7 +46,7 @@ const CertifyEmail = () => {
       .then(function (response) {
         // 성공적으로 응답 받았을 때의 처리
         console.log("응답 데이터:", response.data);
-       // navigate('/CertifyEnd');
+       navigate('/CertifyEnd');
       })
       .catch(function (error) {
         // 오류 발생 시의 처리
