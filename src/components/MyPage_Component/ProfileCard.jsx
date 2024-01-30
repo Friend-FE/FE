@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import ProfileBasic from '../../images/ProfileBasic.png'
 import * as T from './MyPage'
 import styled from 'styled-components'
@@ -8,41 +8,49 @@ import Title from '../title/index'
 import axios from 'axios';
 
 export default function Profile_card() {
-  const email = "1234@pukyong.com"; // 실제 이메일 주소로 대체
-axios.get(`http://13.209.145.28:8080/api/v1/myPage/getProfile?email=${email}`)
-  .then(function (response) {
-    // 성공적으로 응답 받았을 때의 처리
-    console.log("프로필 데이터:", response.data);
-  })
-  .catch(function (error) {
-    // 오류 발생 시의 처리
-    console.error("오류 발생:", error);
-  });
-  return (
+  const [profileData, setProfileData] = useState({});
+
+
+  useEffect(()=>{
+    const email = "1234@gmail.com";
+    axios.get(`http://13.209.145.28:8080/api/v1/myPage/getProfile/${email}`)
+    .then(function (response) {
+      // 성공적으로 응답 받았을 때의 처리
+      console.log("프로필 데이터:", response.data);
+      setProfileData(response.data);
+    })
+    .catch(function (error) {
+      // 오류 발생 시의 처리
+      console.error("오류 발생:", error);
+    });
+
+  },[])
+
+    return (
     <>
       {/* <Header/> */}
       <Title title="마이페이지"/>
       <T.TotalHr></T.TotalHr>
       <T.TotalDiv>
-        <T.TitleH3>제니 님의 프로필 카드</T.TitleH3>
+        <T.TitleH3>{profileData.data ? `${profileData.data.nickname} 님의 프로필 카드` : '로딩 중...'}</T.TitleH3>
         <SectionContainer>
-            <SectionDiv>
-              <ProfileBasicImg src={ProfileBasic} alt ="ProfileBasic"/>
-              <NameH4>제니</NameH4>
-              <InfoP>년생 : 00년생</InfoP>
-              <InfoP>키 : 163cm</InfoP>
-              <InfoP>지역 : 부산광역시 남구</InfoP>
-            </SectionDiv>
-            <SectionDiv>
-              <InfoP>장거리 가능 여부 : 불가능</InfoP>
-              <InfoP>흡연 여부 : 비흡연</InfoP>
-              <InfoP>음주 여부 : 음주</InfoP>
-              <InfoP>단과대 : 경영대학</InfoP>
-                <SelfIntroductionTitleP>자기 소개</SelfIntroductionTitleP>
-                <SelfIntroductionDiv>
-                  <SelfIntroductionP> 처음에는 많이 뚝딱거릴 수도 있지만 친해지면 엄청 애교도 많고 활발해요! 좋은 인연 만들어 가고 싶어요!</SelfIntroductionP>       
-              </SelfIntroductionDiv>
-            </SectionDiv>
+          <SectionDiv>
+            <ProfileBasicImg src={profileData.data ? profileData.data.imgUrl : ''} alt="ProfileBasic" />
+            <NameH4>{profileData.data ? profileData.data.nickname : '로딩 중...'}</NameH4>
+            <InfoP>년생: {profileData.data ? profileData.data.birthday : '로딩 중...'}</InfoP>
+            <InfoP>키: {profileData.data ? profileData.data.height : '로딩 중...'}</InfoP>
+            <InfoP>지역: {profileData.data ? profileData.data.region : '로딩 중...'}</InfoP>
+          </SectionDiv>
+          <SectionDiv>
+            <InfoP>장거리 가능 여부: {profileData.data ? profileData.data.region : '로딩 중...'}</InfoP>
+            <InfoP>흡연 여부: {profileData.data ? (profileData.data.smoking === "SMOKER" ? "흡연" : "비흡연") : '로딩 중...'}</InfoP>
+            <InfoP>음주 여부: {profileData.data ? (profileData.data.drinking === "DRINKER" ? "음주" : "비음주") : '로딩 중...'}</InfoP>
+            <InfoP>단과대: {profileData.data ? profileData.data.department : '로딩 중...'}</InfoP>
+            <SelfIntroductionTitleP>자기 소개</SelfIntroductionTitleP>
+            <SelfIntroductionDiv>
+              <SelfIntroductionP> {profileData.data ? profileData.data.introduction : '로딩 중...'}</SelfIntroductionP>
+            </SelfIntroductionDiv>
+          </SectionDiv>
         </SectionContainer>
       </T.TotalDiv>
       <FooterContainer>
