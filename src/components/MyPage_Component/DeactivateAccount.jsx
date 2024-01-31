@@ -1,3 +1,5 @@
+// 계정 비활성화
+
 import React from 'react'
 
 export default function Deactivate_account() {

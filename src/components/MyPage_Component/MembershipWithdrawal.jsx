@@ -1,3 +1,5 @@
+// 회원 탈퇴
+
 import React from 'react'
 
 export default function Membership_withdrawal() {

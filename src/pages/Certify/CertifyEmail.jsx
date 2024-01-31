@@ -1,3 +1,5 @@
+// 부경대 학생 인증 - 1
+
 import React, { useState } from 'react';
 
 import Title from '../../components/title';

@@ -1,9 +1,49 @@
+// Q&A - 글 작성 (이용자가 질문 남기는 경우)
+
 import React, { useState } from 'react';
 
 import Title from '../../components/title/index';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../../components/footer';
+
+export default function QuestionWrite() {
+
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
+  const navigate = useNavigate();
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+  };
+
+  const handleCancel = () => {
+    navigate(-1); 
+  };
+  return (
+    <>
+      <Title title = "글 작성하기"/>
+      <TitleHR />
+      <TextBox>
+        <form onSubmit={handleSubmit}>
+        <TitleInPut>
+          <TextInput type="text" placeholder='제목을 입력해주세요.' value={title} onChange={e => setTitle(e.target.value)} />
+        </TitleInPut>
+        <ContentInPut>
+          <TextArea type="text" placeholder='글을 입력해주세요.' value={content} onChange={e => setContent(e.target.value)} />
+        </ContentInPut>
+        <ButtonWrapper>      
+          <CancelButton type="button" onClick={handleCancel}>취소</CancelButton>
+          <SubmitButton type="submit">완료</SubmitButton>
+        </ButtonWrapper>
+        </form>   
+      </TextBox>
+      <FooterContainer>
+        <Footer/>
+      </FooterContainer>
+    </>
+  );
+};
 
 const TitleHR = styled.hr`
   margin-top: 10vh;
@@ -114,41 +154,3 @@ const FooterContainer = styled.div`
         bottom: -10vw;
     }
 `;
-
-export default function QuestionWrite() {
-
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
-  const navigate = useNavigate();
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-  };
-
-  const handleCancel = () => {
-    navigate(-1); 
-  };
-  return (
-    <>
-      <Title title = "글 작성하기"/>
-      <TitleHR />
-      <TextBox>
-        <form onSubmit={handleSubmit}>
-        <TitleInPut>
-          <TextInput type="text" placeholder='제목을 입력해주세요.' value={title} onChange={e => setTitle(e.target.value)} />
-        </TitleInPut>
-        <ContentInPut>
-          <TextArea type="text" placeholder='글을 입력해주세요.' value={content} onChange={e => setContent(e.target.value)} />
-        </ContentInPut>
-        <ButtonWrapper>      
-          <CancelButton type="button" onClick={handleCancel}>취소</CancelButton>
-          <SubmitButton type="submit">완료</SubmitButton>
-        </ButtonWrapper>
-        </form>   
-      </TextBox>
-      <FooterContainer>
-        <Footer/>
-      </FooterContainer>
-    </>
-  );
-};

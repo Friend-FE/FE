@@ -1,6 +1,42 @@
+// Q&A (이용자가 헤더에서 접근하는 경우!!)에 쓰이는 Board입니다.
+
 import React from 'react';
 import styled from 'styled-components';
 // import { useNavigate } from 'react-router-dom';
+
+const QnABoard = ({ info }) => {
+  const infoLength = info.length;
+//   const navigate = useNavigate();
+
+  const handleRowClick = (item) => {
+    // navigate(`/notice/${item.id}`, { state: { item } });
+    alert('접근하실 수 없습니다.');
+  };
+
+  return (
+    <BoardWrapper>
+      <HR />
+      <HeaderRow as="div">
+        <Title>제목</Title>
+        <Author>작성자</Author>
+        <Time>작성 시간</Time>
+      </HeaderRow>
+      <ThinHR />
+      {info && info.map((item, index) => (
+        <div key={item.id}>
+          <Row onClick={() => handleRowClick(item)}>
+            <Title>{item.title}</Title>
+            <Author>{item.author}</Author>
+            <Time>{item.time}</Time>
+          </Row>
+          {index !== infoLength - 1 ? <ThinHR /> : <HR />}
+        </div>
+      ))}
+    </BoardWrapper>
+  );
+};
+
+export default QnABoard;
 
 const Row = styled.div`
   display: flex;
@@ -58,37 +94,3 @@ const HeaderRow = styled.div`
   text-decoration: none;
   color: inherit;
 `;
-
-const QnABoard = ({ info }) => {
-  const infoLength = info.length;
-//   const navigate = useNavigate();
-
-  const handleRowClick = (item) => {
-    // navigate(`/notice/${item.id}`, { state: { item } });
-    alert('접근하실 수 없습니다.');
-  };
-
-  return (
-    <BoardWrapper>
-      <HR />
-      <HeaderRow as="div">
-        <Title>제목</Title>
-        <Author>작성자</Author>
-        <Time>작성 시간</Time>
-      </HeaderRow>
-      <ThinHR />
-      {info && info.map((item, index) => (
-        <div key={item.id}>
-          <Row onClick={() => handleRowClick(item)}>
-            <Title>{item.title}</Title>
-            <Author>{item.author}</Author>
-            <Time>{item.time}</Time>
-          </Row>
-          {index !== infoLength - 1 ? <ThinHR /> : <HR />}
-        </div>
-      ))}
-    </BoardWrapper>
-  );
-};
-
-export default QnABoard;

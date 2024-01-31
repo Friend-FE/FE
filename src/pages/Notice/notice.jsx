@@ -1,3 +1,4 @@
+// 공지사항
 
 import React, { useEffect, useState } from 'react';
 import {useNavigate} from 'react-router-dom';
@@ -5,49 +6,6 @@ import Board from '../../components/Board/NoticeBoard';
 import Title from '../../components/title';
 import styled from 'styled-components';
 import Footer from '../../components/footer';
-
-const ReviewWrapper = styled.div`
-  /* position: relative; */
-  /* height: 10vw; */
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`
-
-const TitleHR = styled.hr`
-  margin-top: 5vw;
-  width: 80vw;
-  margin-bottom: 5vw;
-
-  @media (max-width: 768px) {
-    position: relative;
-    top: 10vw;
-  }
-`;
-
-const RecordButton = styled.button`
-  width: 13vw;
-  height: 2.5vw;
-  background: #8be3ff;
-  border: none;
-  color: #fff;
-  text-align: center;
-  font-size: 1vw;
-  font-weight: 700;
-  box-shadow: -2px 8px 6.1px 0px rgba(0, 0, 0, 0.25);
-`;
-
-const FooterContainer = styled.div`
-    position: relative;
-    bottom: -2vw;
-    width: 100%;
-
-    @media (max-width: 768px) {
-    top: 25vw;
-  }
-`;
 
 const Notice = () => {
   const [notice, setNotice] = useState([]);
@@ -101,3 +59,46 @@ const Notice = () => {
 };
 
 export default Notice;
+
+const ReviewWrapper = styled.div`
+  /* position: relative; */
+  /* height: 10vw; */
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`
+
+const TitleHR = styled.hr`
+  margin-top: 5vw;
+  width: 80vw;
+  margin-bottom: 5vw;
+
+  @media (max-width: 768px) {
+    position: relative;
+    top: 10vw;
+  }
+`;
+
+const RecordButton = styled.button`
+  width: 13vw;
+  height: 2.5vw;
+  background: #8be3ff;
+  border: none;
+  color: #fff;
+  text-align: center;
+  font-size: 1vw;
+  font-weight: 700;
+  box-shadow: -2px 8px 6.1px 0px rgba(0, 0, 0, 0.25);
+`;
+
+const FooterContainer = styled.div`
+    position: relative;
+    bottom: -2vw;
+    width: 100%;
+
+    @media (max-width: 768px) {
+    top: 25vw;
+  }
+`;

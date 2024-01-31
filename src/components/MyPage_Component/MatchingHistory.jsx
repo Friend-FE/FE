@@ -1,7 +1,8 @@
+// 매칭 내역
+
 import React from 'react'
 import * as T from './MyPage'
 import styled from 'styled-components'
-// import Header from '../header/index'
 import Footer from '../footer/index'
 import Title from '../title/index'
 

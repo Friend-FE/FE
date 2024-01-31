@@ -1,3 +1,4 @@
+// Footer
 import styled from "styled-components";
 import logo from "../../images/logo.png";
 import { NavLink } from "react-router-dom";

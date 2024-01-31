@@ -1,3 +1,5 @@
+// 부경대 학생 인증 - 2
+
 import React from 'react';
 import {useNavigate} from 'react-router-dom';
 import styled from 'styled-components';

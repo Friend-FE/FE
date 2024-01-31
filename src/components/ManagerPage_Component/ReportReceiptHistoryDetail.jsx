@@ -1,3 +1,5 @@
+// 관리자 페이지 - 신고 접수 내역 보기 - 자세히
+
 import React from 'react'
 import { useLocation, useNavigate/*, useParams*/ } from 'react-router-dom';
 import ManagerRBD from '../../components/Board/ManagerRBD';

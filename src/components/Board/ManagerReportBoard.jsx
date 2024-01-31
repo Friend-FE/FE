@@ -1,3 +1,5 @@
+// 관리자 페이지 - 신고 접수 내역 모아보기에 쓰이는 Board입니다.
+
 import React from 'react'
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';

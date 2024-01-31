@@ -1,9 +1,51 @@
+// 솔직후기 - 글 작성하기
+
 import React, { useState } from 'react';
 
 import Title from '../../components/title';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../../components/footer';
+
+const ReviewWrite = () => {
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
+  const navigate = useNavigate();
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+  };
+
+  const handleCancel = () => {
+    navigate(-1); 
+  };
+
+  return (
+    <>
+      <Title title = "후기 작성하기"/>
+      <TitleHR />
+      <TextBox>
+        <form onSubmit={handleSubmit}>
+        <TitleInPut>
+          <TextInput type="text" placeholder='제목을 입력해주세요.' value={title} onChange={e => setTitle(e.target.value)} />
+        </TitleInPut>
+        <ContentInPut>
+          <TextArea type="text" placeholder='글을 입력해주세요.' value={content} onChange={e => setContent(e.target.value)} />
+        </ContentInPut>
+        <ButtonWrapper>      
+          <CancelButton type="button" onClick={handleCancel}>취소</CancelButton>
+          <SubmitButton type="submit">완료</SubmitButton>
+        </ButtonWrapper>
+        </form>   
+      </TextBox>
+      <FooterContainer>
+        <Footer/>
+      </FooterContainer>
+    </>
+  );
+};
+
+export default ReviewWrite;
 
 const TitleHR = styled.hr`
   margin-top: 10vh;
@@ -114,43 +156,3 @@ const FooterContainer = styled.div`
         bottom: -10vw;
     }
 `;
-
-const ReviewWrite = () => {
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
-  const navigate = useNavigate();
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-  };
-
-  const handleCancel = () => {
-    navigate(-1); 
-  };
-
-  return (
-    <>
-      <Title title = "후기 작성하기"/>
-      <TitleHR />
-      <TextBox>
-        <form onSubmit={handleSubmit}>
-        <TitleInPut>
-          <TextInput type="text" placeholder='제목을 입력해주세요.' value={title} onChange={e => setTitle(e.target.value)} />
-        </TitleInPut>
-        <ContentInPut>
-          <TextArea type="text" placeholder='글을 입력해주세요.' value={content} onChange={e => setContent(e.target.value)} />
-        </ContentInPut>
-        <ButtonWrapper>      
-          <CancelButton type="button" onClick={handleCancel}>취소</CancelButton>
-          <SubmitButton type="submit">완료</SubmitButton>
-        </ButtonWrapper>
-        </form>   
-      </TextBox>
-      <FooterContainer>
-        <Footer/>
-      </FooterContainer>
-    </>
-  );
-};
-
-export default ReviewWrite;

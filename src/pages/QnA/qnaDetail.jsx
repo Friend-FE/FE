@@ -1,13 +1,45 @@
+// 관리자 페이지 - Q&A 모아보기 - 자세히 보기
+
 import React from 'react'
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
-import Board from '../../components/Board/ManagerQnABoard';
+import ManagerQnABoard from '../../components/Board/ManagerQnABoard';
 import Title from '../../components/title/index';
 import styled from 'styled-components';
 import * as MAHD from '../../components/ManagerPage_Component/MatchingAHDetail'
 import Footer from '../../components/footer';
 
-const ReviewWrapper = styled.div`
+const QnADetail = () => {
+    const { id } = useParams();
+    const { state } = useLocation();
+    const navigate = useNavigate();
+  
+    const review = state?.item;
+  
+    if (!review) {
+      navigate('/not-found');
+      return null;
+    }
+  
+    return (
+      <>
+      <ReviewWrapper>
+        <Title title = "관리자 페이지"/>
+        <TitleHR/>
+        <MAHD.HeadTitleH3>Q&A 자세히 보기</MAHD.HeadTitleH3>
+        <ManagerQnABoard info={[review]} />
+        <ReviewBox>
+          {review.body}
+        </ReviewBox>
+      </ReviewWrapper>  
+      <Footer/>
+    </>
+    );
+  };
+  
+  export default QnADetail;
+
+  const ReviewWrapper = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -43,33 +75,3 @@ const ReviewBox = styled.div`
   
   margin-top: 3vw;
 `;
-
-const QnADetail = () => {
-    const { id } = useParams();
-    const { state } = useLocation();
-    const navigate = useNavigate();
-  
-    const review = state?.item;
-  
-    if (!review) {
-      navigate('/not-found');
-      return null;
-    }
-  
-    return (
-      <>
-      <ReviewWrapper>
-        <Title title = "관리자 페이지"/>
-        <TitleHR/>
-        <MAHD.HeadTitleH3>Q&A 자세히 보기</MAHD.HeadTitleH3>
-        <Board info={[review]} />
-        <ReviewBox>
-          {review.body}
-        </ReviewBox>
-      </ReviewWrapper>  
-      <Footer/>
-    </>
-    );
-  };
-  
-  export default QnADetail;

@@ -1,46 +1,11 @@
+// 솔직후기 - 자세히
+
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import ReviewBoard from '../../components/Board/ReviewBoard';
 import React from 'react';
 import Title from '../../components/title';
 import styled from 'styled-components';
 import Footer from '../../components/footer';
-
-const ReviewWrapper = styled.div`
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-`;
-
-const TitleHR = styled.hr`
-  margin-top: 10vh;
-  width: 80vw;
-  margin-bottom: 10vh;
-`;
-
-// const HR = styled.hr`
-//   height: 2px;
-//   background: #000;
-//   margin-top: 10px;
-//   margin-bottom: 10px;
-// `;
-
-const ReviewBox = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 80vw;
-  height: 40vh;
-  border-radius: 30px;
-  border: 1.5px solid #2ECAFD;
-  background: #FFF;
-  padding: 20px;
-  text-align: center;
-
-  margin-top: 3vw;
-`;
 
 const ReviewDetail = () => {
   const { id } = useParams();
@@ -71,3 +36,33 @@ const ReviewDetail = () => {
 };
 
 export default ReviewDetail;
+
+const ReviewWrapper = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+`;
+
+const TitleHR = styled.hr`
+  margin-top: 10vh;
+  width: 80vw;
+  margin-bottom: 10vh;
+`;
+
+const ReviewBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80vw;
+  height: 40vh;
+  border-radius: 30px;
+  border: 1.5px solid #2ECAFD;
+  background: #FFF;
+  padding: 20px;
+  text-align: center;
+
+  margin-top: 3vw;
+`;

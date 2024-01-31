@@ -1,17 +1,15 @@
+// 마이 페이지
+
 import React from 'react'
 import { Link } from 'react-router-dom'
 import ProfileBasic from '../../images/ProfileBasic.png'
 import styled from 'styled-components'
-// import Header from '../header/index'
 import Footer from '../footer/index'
 import Title from '../title/index'
-
-
 
 export default function MyPage() {
   return (
     <>
-      {/* <Header/> */}
       <Title title="마이페이지"/>
       <TotalHr></TotalHr>
       <TotalDiv>
@@ -32,8 +30,6 @@ export default function MyPage() {
     </>
   )
 }
-
-// 꾸밈 //
 
 export const TotalHr = styled.hr`
   position: relative;
@@ -65,7 +61,6 @@ export const TitleH3 = styled.h3`
 
 export const MoveToDiv = styled.div`
   width: 41vw;
-  /* max-width: 100%; */
   height: 48vw;
 
   background-color: #DAF6FF;
@@ -97,5 +92,4 @@ export const FooterContainer = styled.div`
   }
 `;
 
-// 꾸밈 //
 

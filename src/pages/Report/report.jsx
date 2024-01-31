@@ -1,3 +1,5 @@
+// 비매너 유저 신고하기 - 더 자세한 신고 내용 입력
+
 import React, { useState } from 'react';
 
 import Title from '../../components/title';
