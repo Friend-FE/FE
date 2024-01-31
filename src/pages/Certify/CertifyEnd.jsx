@@ -1,6 +1,7 @@
 import React from 'react';
 import {useNavigate} from 'react-router-dom';
 import styled from 'styled-components';
+import Title from '../../components/title';
 import Footer from '../../components/footer';
 
 const CertifyEmail = () => {
@@ -11,6 +12,7 @@ const CertifyEmail = () => {
 
     return (
       <>
+        <Title title="회원가입" />
         <AppContainer>
                 <RoundedBox>
                     <DiscriptionText>부경대 학생 인증이 완료되었습니다.</DiscriptionText>
@@ -53,23 +55,25 @@ const RoundedBox = styled.div`
 `;
 
 const DiscriptionText = styled.div`
-  font-size: 2.5vw;
+  font-size: 1.5vw;
   text-align : center;
   margin : 1vw;
+  font-weight: bold; 
 `;
 
 const SubmitButton = styled.button`
   background-color: #8BE3FF;
   color: white;
   border: none;
-  padding: 2vw;
+  padding: 1vw;
+  font-size: 1.5vw;
   cursor: pointer;
   border-radius: 5px;
-  width : 15vw;
-  margin-top : 10vw;
+  width: 10vw;
+  margin-top: 10vw;
   box-shadow: -0.6vw 0.5vw 0.3vw rgba(0, 0, 0, 0.2);
+  align-items: center; /* 세로 기준 가운데 정렬 */
 `;
-
 const FooterDiv = styled.div`
   width: 100%;
   position: relative;
