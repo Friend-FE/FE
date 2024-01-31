@@ -33,14 +33,15 @@ const TextInput = styled.input`
 const TextArea = styled.textarea`
   width: 60vw;
   height: 50vh;
-  /* flex-shrink: 0; */
   font-weight: bold;
   font-size: 1.1vw;
   resize: none;
   padding-left: 1vw;
   padding-top: 0.5vw;
-
   border: 0.05vw solid #888;
+
+  /* white-space 속성 추가 */
+  white-space: normal;
 
   @media (max-width: 768px) {
     position: relative;
