@@ -49,7 +49,7 @@ const Login = () => {
           console.log('Login successful:', responseData);
           console.log('Login successful:', responseData.data.status);
           if(responseData.data.status ==='ACTIVE'){
-            navigate('/CertifyBeginning');
+            navigate('/');
           }
           else{
             navigate('/JudgePage');

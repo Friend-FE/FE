@@ -1,6 +1,7 @@
 // 공지사항
 
 import React, { useEffect, useState } from 'react';
+import {useNavigate} from 'react-router-dom';
 import Board from '../../components/Board/NoticeBoard';
 import Title from '../../components/title';
 import styled from 'styled-components';
@@ -8,7 +9,7 @@ import Footer from '../../components/footer';
 
 const Notice = () => {
   const [notice, setNotice] = useState([]);
-
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchNoticeData = async () => {
       try {
@@ -37,12 +38,18 @@ const Notice = () => {
     fetchNoticeData();
   }, []); // 빈 배열을 넣어 한 번만 실행되도록 설정
 
+
+  const handleRecord = () => {
+    navigate("/ManagerPage/WritingNotices");
+  }
+
   return (
     <>
       <Title title = "공지사항"/>
       <TitleHR/>
       <ReviewWrapper>
         <Board info={notice} />
+        <RecordButton type='button' onClick={handleRecord}> 작성하기 </RecordButton>
       </ReviewWrapper>
       <FooterContainer>
         <Footer/>
@@ -72,6 +79,18 @@ const TitleHR = styled.hr`
     position: relative;
     top: 10vw;
   }
+`;
+
+const RecordButton = styled.button`
+  width: 13vw;
+  height: 2.5vw;
+  background: #8be3ff;
+  border: none;
+  color: #fff;
+  text-align: center;
+  font-size: 1vw;
+  font-weight: 700;
+  box-shadow: -2px 8px 6.1px 0px rgba(0, 0, 0, 0.25);
 `;
 
 const FooterContainer = styled.div`

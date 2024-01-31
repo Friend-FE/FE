@@ -36,9 +36,7 @@ const Signup = () => {
     nondepartment: "",
     nonstudentid: "",
     nonage: "",
-
   });
-
 
   const handleFileChange = (file) => {
     setSelectedFile(file);
@@ -64,7 +62,6 @@ const Signup = () => {
     alert(JSON.stringify(values, null, 2));
   };
 
-
   const handleCancleButton = (event) => {
     //취소 시 이전 페이지로
     navigate(-1);
@@ -74,62 +71,32 @@ const Signup = () => {
     //console.log(values);
     //가입완료, 정보들 서버로 전송하는 api 필요
 
-
     event.preventDefault();
-    if (true) { //selectedFile
+    if (selectedFile) {
+      //selectedFile
       const formData = new FormData();
       formData.append("image", selectedFile);
 
+      const json = JSON.stringify(values);
 
-      const request = {
-
-          email: "123456@gmail.com",
-          password: "1234",
-          role: 0,
-          nickname: "난초",
-          phone: "01012341234",
-          birthday: "1111-11-11",
-          gender: 0,
-          height: 180,
-          region: "부산",
-          department: "컴공",
-          distance: 0,
-          smoking: 0,
-          drinking: 0,
-          introduction: "자기소개",
-          preference: "test",
-          nondepartment: "원하지 않는 단과대",
-          nonstudentid: "원하지 않는 학번",
-          nonage: "원하지 않는 나이"
-      };
-      
-      formData.append("request", JSON.stringify(values));
-      
-
+      const blob = new Blob([json], { type: "application/json" });
+      formData.append("request", blob);
 
       axios
-        .post(`http://13.209.145.28:8080/api/v1/users`,formData , {
+        .post(`http://13.209.145.28:8080/api/v1/users`, formData, {
           headers: {
-            'Content-Type': "multipart/form-data",
+            "Content-Type": "multipart/form-data",
           },
         })
         .then(function (response) {
           // 성공적으로 응답 받았을 때의 처리
-          console.log("응답 데이터:", response.data);
           navigate("/JudgePage");
         })
         .catch(function (error) {
           // 오류 발생 시의 처리
           console.error("오류 발생:", error);
-          console.log(request);
-          let values = formData.keys();
-          for (const pair of values) {
-              console.log(pair,'폼데이터'); 
-}
-          
         });
     }
-    
   };
 
   return (
@@ -140,7 +107,10 @@ const Signup = () => {
       <AppContainer>
         <InfoMessage>먼저 프로필 사진을 등록해주세요 </InfoMessage>
         <LogoContainer>
-          <ProfileImage onFileChange={handleFileChange} selectedFile={selectedFile}/>
+          <ProfileImage
+            onFileChange={handleFileChange}
+            selectedFile={selectedFile}
+          />
         </LogoContainer>
 
         <InfoMessage>아이디와 비밀번호를 입력해주세요</InfoMessage>
@@ -162,6 +132,7 @@ const Signup = () => {
           />
           <Input
             type="password"
+            name="pwck"
             value={values.passwordCheck}
             onBlur={checkWrongPW}
             placeholder="패스워드 확인"

@@ -43,7 +43,7 @@ const AppContainer = styled.div`
 
 
 const RoundedBox = styled.div`
-  border: 2px solid #23CAFF;
+  border: 2px solid #2ECAFD;
   border-radius: 10px;
   padding: 3vw;
   margin-top: 20vw;
@@ -61,7 +61,7 @@ const DiscriptionText = styled.div`
 `;
 
 const SubmitButton = styled.button`
-  background-color: #23caff;
+  background-color: #8BE3FF;
   color: white;
   border: none;
   padding: 2vw;
