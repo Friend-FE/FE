@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 
 import Title from '../../components/title';
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import Footer from '../../components/footer';
 
 const TitleHR = styled.hr`
@@ -116,12 +116,97 @@ const FooterContainer = styled.div`
 `;
 
 const ReviewWrite = () => {
+  //수정을 하는 경우 값 받아오기
+  const { state } = useLocation();
+  const [id, setId] = useState('');
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const [isEditing, setIsEditing] = useState(false);
   const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
+  useEffect(() => {
+    // state에 데이터가 있으면 수정 모드로 간주
+    if (state && state.data) {
+      const { id , title, body } = state.data;
+      setId(id || '');
+      setTitle(title || '');
+      setContent(body || '');
+      setIsEditing(true);
+    }
+  }, [state]);
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    
+    //게시글 작성
+    if(!isEditing)
+    {
+        // API 엔드포인트와 기타 세부 정보 설정
+        const apiUrl = 'http://13.209.145.28:8080/api/v1/review'; // 실제 엔드포인트로 변경해야 합니다.
+
+        // Request body 구성
+        const requestBody = {
+          title: title,
+          body: content,
+          author: 'author',
+          password: 'password', 
+        };
+
+        try {
+          // API 호출
+          const response = await fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(requestBody),
+          });
+
+          if (response.ok) {
+            console.log('API 호출 성공');
+            navigate('/reviews');
+          } else {
+            // API 호출이 실패한 경우에 대한 처리
+            console.error('API 호출 실패');
+          }
+        } catch (error) {
+          // 네트워크 오류 등의 예외 처리
+          console.error('API 호출 중 오류:', error);
+        };
+    }
+    
+
+    //게시글 수정
+    else
+    {
+        // API 엔드포인트와 기타 세부 정보 설정
+        const apiUrl = `http://13.209.145.28:8080/api/v1/review/${id}`; // 실제 엔드포인트로 변경해야 합니다.
+
+        const requestBody = {
+          title: title,
+          body: content,
+        };
+        try {
+          const response = await fetch(apiUrl, {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(requestBody),
+          });
+      
+          if (response.ok) {
+            console.log('수정 성공');
+            navigate('/notice');
+          } else {
+            console.error('수정 실패');
+          }
+        } catch (error) {
+          console.error('수정 중 오류:', error);
+        }
+    }
+
+
   };
 
   const handleCancel = () => {

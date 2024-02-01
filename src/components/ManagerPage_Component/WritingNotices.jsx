@@ -180,9 +180,7 @@ export default function WritingNotices() {
           const requestBody = {
             title: title,
             body: content,
-            
           };
-          console.log(id );
           try {
             const response = await fetch(apiUrl, {
               method: 'PUT',
