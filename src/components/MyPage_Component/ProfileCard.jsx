@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import ProfileBasic from '../../images/ProfileBasic.png'
 import * as T from './MyPage'
 import styled from 'styled-components'
-// import Header from '../header/index'
 import Footer from '../footer/index'
 import Title from '../title/index'
 import axios from 'axios';

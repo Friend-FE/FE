@@ -1,7 +1,8 @@
+// 매칭 신청 내역
+
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 
-// import Header from '../header/index'
 import Footer from '../footer/index'
 import Title from '../title/index'
 import * as T from '../MyPage_Component/MyPage'

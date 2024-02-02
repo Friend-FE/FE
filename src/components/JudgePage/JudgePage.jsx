@@ -1,3 +1,5 @@
+// 마이페이지 - 심사 중 페이지
+
 import styled from "styled-components";
 import Logo from "../../images/logo.png";
 import Judge from "../../images/Judge.png";
@@ -15,6 +17,7 @@ const JudgePage = () => {
     </div>
   );
 };
+
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;

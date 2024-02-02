@@ -1,3 +1,5 @@
+// 메인 페이지에 쓰이는 Image Box Component
+
 import styled from "styled-components";
 
 const ImageBox = ({ imageUrl, altText, sub }) => {

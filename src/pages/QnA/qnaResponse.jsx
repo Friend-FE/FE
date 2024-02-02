@@ -1,3 +1,5 @@
+// 관리자 페이지 - Q&A 답변하기
+
 import React, { useState } from 'react';
 
 import Title from '../../components/title/index';
@@ -5,6 +7,44 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../../components/footer';
 import * as MAHD from '../../components/ManagerPage_Component/MatchingAHDetail'
+
+export default function QnAResponse() {
+
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
+  const navigate = useNavigate();
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+  };
+
+  const handleCancel = () => {
+    navigate(-1); 
+  }; 
+
+  return (
+    <>
+      <Title title = "관리자 페이지"/>
+      <TitleHR />
+      <TextBox>
+        <MAHD.HeadTitleH3>답변하기</MAHD.HeadTitleH3>
+        <form onSubmit={handleSubmit}>
+        <TitleInPut>
+          <TextInput type="text" placeholder='제목을 입력해주세요.' value={title} onChange={e => setTitle(e.target.value)} />
+        </TitleInPut>
+        <ContentInPut>
+          <TextArea type="text" placeholder='글을 입력해주세요.' value={content} onChange={e => setContent(e.target.value)} />
+        </ContentInPut>
+        <ButtonWrapper>      
+          <CancelButton type="button" onClick={handleCancel}>취소</CancelButton>
+          <SubmitButton type="submit">완료</SubmitButton>
+        </ButtonWrapper>
+        </form>   
+      </TextBox>
+      <Footer/>
+    </>
+  )
+}
 
 const TitleHR = styled.hr`
   margin-top: 10vh;
@@ -105,41 +145,3 @@ const SubmitButton = styled.button`
   margin-left: 1vw;
   box-shadow: -2px 8px 6.1px 0px rgba(0, 0, 0, 0.25);
 `;
-
-export default function QnAResponse() {
-
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
-  const navigate = useNavigate();
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-  };
-
-  const handleCancel = () => {
-    navigate(-1); 
-  }; 
-
-  return (
-    <>
-      <Title title = "관리자 페이지"/>
-      <TitleHR />
-      <TextBox>
-        <MAHD.HeadTitleH3>답변하기</MAHD.HeadTitleH3>
-        <form onSubmit={handleSubmit}>
-        <TitleInPut>
-          <TextInput type="text" placeholder='제목을 입력해주세요.' value={title} onChange={e => setTitle(e.target.value)} />
-        </TitleInPut>
-        <ContentInPut>
-          <TextArea type="text" placeholder='글을 입력해주세요.' value={content} onChange={e => setContent(e.target.value)} />
-        </ContentInPut>
-        <ButtonWrapper>      
-          <CancelButton type="button" onClick={handleCancel}>취소</CancelButton>
-          <SubmitButton type="submit">완료</SubmitButton>
-        </ButtonWrapper>
-        </form>   
-      </TextBox>
-      <Footer/>
-    </>
-  )
-}

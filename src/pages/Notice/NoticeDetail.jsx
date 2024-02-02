@@ -1,80 +1,11 @@
+// 공지사항 - 자세히
+
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import NoticeBoard from '../../components/Board/NoticeBoard';
 import React, { useState, useEffect } from 'react';
 import Title from '../../components/title';
 import styled from 'styled-components';
 import Footer from '../../components/footer';
-
-const NoticeWrapper = styled.div`
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-`;
-
-const TitleHR = styled.hr`
-  margin-top: 10vh;
-  width: 80vw;
-  margin-bottom: 10vh;
-`;
-
-const NoticeBox = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 80vw;
-  height: 40vh;
-  border-radius: 30px;
-  border: 1.5px solid #2ECAFD;
-  background: #FFF;
-  padding: 20px;
-  text-align: center;
-  margin-top: 3vw;
-`;
-
-const NoticeText = styled.div`
-  white-space: pre-line; /* 줄바꿈 허용 */
-`;
-
-const ButtonWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-top: 3vw;
-
-  @media (max-width: 768px) {
-    margin-top: 1vw;
-  }
-`;
-
-const CancelButton = styled.button`
-  width: 13vw;
-  height: 2.5vw;
-  background: #fff;
-  border: none;
-  color: #000;
-  text-align: center;
-  font-size: 1vw;
-  font-weight: 700;
-  margin-right: 1vw;
-  cursor: pointer;
-  box-shadow: -2px 8px 6.1px 0px rgba(0, 0, 0, 0.25);
-`;
-
-const SubmitButton = styled.button`
-  width: 13vw;
-  height: 2.5vw;
-  background: #8be3ff;
-  border: none;
-  color: #fff;
-  text-align: center;
-  font-size: 1vw;
-  font-weight: 700;
-  margin-left: 1vw;
-  cursor: pointer;
-  box-shadow: -2px 8px 6.1px 0px rgba(0, 0, 0, 0.25);
-`;
 
 const NoticeDetail = () => {
   const { id } = useParams();
@@ -167,3 +98,74 @@ const NoticeDetail = () => {
 };
 
 export default NoticeDetail;
+
+const NoticeWrapper = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+`;
+
+const TitleHR = styled.hr`
+  margin-top: 10vh;
+  width: 80vw;
+  margin-bottom: 10vh;
+`;
+
+const NoticeBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80vw;
+  height: 40vh;
+  border-radius: 30px;
+  border: 1.5px solid #2ECAFD;
+  background: #FFF;
+  padding: 20px;
+  text-align: center;
+  margin-top: 3vw;
+`;
+
+const NoticeText = styled.div`
+  white-space: pre-line; /* 줄바꿈 허용 */
+`;
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 3vw;
+
+  @media (max-width: 768px) {
+    margin-top: 1vw;
+  }
+`;
+
+const CancelButton = styled.button`
+  width: 13vw;
+  height: 2.5vw;
+  background: #fff;
+  border: none;
+  color: #000;
+  text-align: center;
+  font-size: 1vw;
+  font-weight: 700;
+  margin-right: 1vw;
+  cursor: pointer;
+  box-shadow: -2px 8px 6.1px 0px rgba(0, 0, 0, 0.25);
+`;
+
+const SubmitButton = styled.button`
+  width: 13vw;
+  height: 2.5vw;
+  background: #8be3ff;
+  border: none;
+  color: #fff;
+  text-align: center;
+  font-size: 1vw;
+  font-weight: 700;
+  margin-left: 1vw;
+  cursor: pointer;
+  box-shadow: -2px 8px 6.1px 0px rgba(0, 0, 0, 0.25);
+`;
