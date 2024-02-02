@@ -4,16 +4,37 @@ import styled from 'styled-components'
 import logo from '../../images/logo.png'
 import '../../styles/font.css'
 import Footer from '../../components/footer/index'
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function Membership_withdrawal() {
+  const navigate = useNavigate();
+
+  const handleCancleButton = () => {
+   //취소 시 이전 페이지로
+   navigate(-1);
+ };
+  const handleCheckButton = () => {
+    axios
+    .post(`http://13.209.145.28:8080/api/v1/경로수정`, {
+    })
+    .then(function (response) {
+      // 성공적으로 응답 받았을 때의 처리
+      //navigate("/");
+    })
+    .catch(function (error) {
+      // 오류 발생 시의 처리
+      console.error("오류 발생:", error);
+    });
+ };
   return (
     <>
     <AppContainer>
       <img src={logo} alt="logo" />
       <p>정말 탈퇴하실건가요?</p>
       <Wrapper>
-        <StyledButton>취소</StyledButton>
-        <StyledButton>확인</StyledButton>
+        <StyledButton onClick={handleCancleButton}>취소</StyledButton>
+        <StyledButton onClick={handleCheckButton}>확인</StyledButton>
       </Wrapper>
     </AppContainer>
     <FooterContainer>
