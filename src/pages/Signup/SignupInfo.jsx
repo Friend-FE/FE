@@ -1,4 +1,3 @@
-// 회원가입 - 3 
 
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -9,6 +8,7 @@ import ProfileImage from "./ProfileImage";
 import Footer from "../../components/footer";
 import axios from "axios";
 import LimitInputForm from "../../components/LimitInputForm/LimitInputForm";
+
 
 const SignupInfo = () => {
   //로그인 정보 관리
@@ -293,6 +293,7 @@ const SignupInfo = () => {
   );
 };
 
+
 export default SignupInfo;
 
 // 전체를 담고 있는 컨테이너
@@ -374,3 +375,4 @@ const FooterContainer = styled.div`
   top: 10vh;
   width: 100%;
 `;
+

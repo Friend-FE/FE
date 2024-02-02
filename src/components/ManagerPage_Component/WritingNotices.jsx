@@ -1,11 +1,12 @@
+import React, { useState,useEffect } from 'react';
 // 공지사항 쓰러가기
 
-import React, { useState,useEffect } from 'react';
 import Title from '../title/index';
 import styled from 'styled-components';
 import { useNavigate, useLocation } from 'react-router-dom';
 import * as MAHD from '../ManagerPage_Component/MatchingAHDetail'
 import Footer from '../footer/index';
+
 
 export default function WritingNotices() {
 
@@ -77,9 +78,7 @@ export default function WritingNotices() {
           const requestBody = {
             title: title,
             body: content,
-            
           };
-          console.log(id );
           try {
             const response = await fetch(apiUrl, {
               method: 'PUT',
@@ -138,6 +137,7 @@ const TitleHR = styled.hr`
   width: 80vw; 
 `;
 
+
 const TextInput = styled.input`
   width: 60vw;
   height: 7vh;
@@ -157,14 +157,15 @@ const TextInput = styled.input`
 const TextArea = styled.textarea`
   width: 60vw;
   height: 50vh;
-  /* flex-shrink: 0; */
   font-weight: bold;
   font-size: 1.1vw;
   resize: none;
   padding-left: 1vw;
   padding-top: 0.5vw;
-
   border: 0.05vw solid #888;
+
+  /* white-space 속성 추가 */
+  white-space: normal;
 
   @media (max-width: 768px) {
     position: relative;

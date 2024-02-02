@@ -1,20 +1,48 @@
 // 솔직후기
 
 import ReviewBoard from '../../components/Board/ReviewBoard';
+import {useNavigate} from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Title from '../../components/title';
 import styled from 'styled-components';
 import Footer from '../../components/footer';
 
-
 const Review = () => {
-  const review = [
-    { id: 1, title: '제목 1', author: '작성자 1', time: '2024-01-18', view: 8, body: '어쩌고 저쩌고 어쩌고 저쩌고'},
-    { id: 2, title: '제목 2', author: '작성자 2', time: '2024-01-18', view: 8, body: '어쩌고 저쩌고 어쩌고 저쩌고' },
-    { id: 3, title: '제목 3', author: '작성자 3', time: '2024-01-18', view: 8, body: '어쩌고 저쩌고 어쩌고 저쩌고' },
-    { id: 4, title: '제목 4', author: '작성자 4', time: '2024-01-18', view: 8, body: '어쩌고 저쩌고 어쩌고 저쩌고' }
-  ];
+  const [review, setReview] = useState([]);
+  const navigate = useNavigate();
+  useEffect(() => {
+    const fetchNoticeData = async () => {
+      try {
+          const response = await fetch('http://13.209.145.28:8080/api/v1/reviews');
+          const data = await response.json();
+
+          const updatedReview = data.data.map(item => {
+          const createdAtDate = new Date(item.createdAt);
+          const formattedDate = `${createdAtDate.getFullYear()}-${(createdAtDate.getMonth() + 1)
+            .toString()
+            .padStart(2, '0')}-${createdAtDate.getDate().toString().padStart(2, '0')}`;
+        
+          return {
+            id: item.id,
+            title: item.title,
+            author: item.author,
+            body : item.body,
+            time: formattedDate,
+           };
+        });
+
+        setReview(updatedReview);
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    };
+    fetchNoticeData();
+  }, []); // 빈 배열을 넣어 한 번만 실행되도록 설정
+
+  const handleRecord = () => {
+    navigate("/reviews/write");
+  }
 
   return (
     <>
@@ -23,7 +51,7 @@ const Review = () => {
       <InterviewH3>실제 교제 회원 인터뷰 4</InterviewH3>
       <ReviewWrapper>
         <ReviewBoard info={review}/>
-        <ButtonLink to ="/reviews/write">후기 작성하기</ButtonLink>
+        <ButtonLink type='button' onClick={handleRecord}>후기 작성하기 </ButtonLink>
       </ReviewWrapper>
       <FooterContainer>
         <Footer/>
@@ -60,7 +88,7 @@ const InterviewH3 = styled.h3`
   font-size: 1.1vw;
 `;
 
-const ButtonLink = styled(Link)`
+const ButtonLink = styled.button`
   width: 15vw;
   height: 3vw;
   background: #8be3ff;
@@ -94,3 +122,30 @@ const FooterContainer = styled.div`
     top: 25vw;
   }
 `;
+
+
+// const Review = () => {
+//   const review = [
+//     { id: 1, title: '제목 1', author: '작성자 1', time: '2024-01-18', view: 8, body: '어쩌고 저쩌고 어쩌고 저쩌고'},
+//     { id: 2, title: '제목 2', author: '작성자 2', time: '2024-01-18', view: 8, body: '어쩌고 저쩌고 어쩌고 저쩌고' },
+//     { id: 3, title: '제목 3', author: '작성자 3', time: '2024-01-18', view: 8, body: '어쩌고 저쩌고 어쩌고 저쩌고' },
+//     { id: 4, title: '제목 4', author: '작성자 4', time: '2024-01-18', view: 8, body: '어쩌고 저쩌고 어쩌고 저쩌고' }
+//   ];
+
+//   return (
+//     <>
+//       <Title title = "솔직후기"/>
+//       <TitleHR/>
+//       <InterviewH3>실제 교제 회원 인터뷰 4</InterviewH3>
+//       <ReviewWrapper>
+//         <ReviewBoard info={review}/>
+//         <ButtonLink to ="/reviews/write">후기 작성하기</ButtonLink>
+//       </ReviewWrapper>
+//       <FooterContainer>
+//         <Footer/>
+//       </FooterContainer>
+//     </>
+//   );
+// };
+
+// export default Review;
