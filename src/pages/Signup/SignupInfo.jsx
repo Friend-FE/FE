@@ -7,6 +7,7 @@ import CircleCheckbox from '../../components/CircleCheckbox/CircleCheckbox';
 import LimitInputForm from '../../components/LimitInputForm/LimitInputForm';
 import styled from 'styled-components';
 import ProfileBasic from "../../images/ProfileBasic.png"
+import Footer from '../../components/footer';
 
 const SignupInfo = () => {
     //로그인 정보 관리
@@ -32,6 +33,7 @@ const SignupInfo = () => {
         //취소 시 이전 페이지로
         navigate(-1);
     }
+    
     const handleSubmitButton = async () => {
         try {
           const response = await fetch('http://13.209.145.28:8080/api/v1/users', {
@@ -152,7 +154,9 @@ const SignupInfo = () => {
                     <CancelButton onClick={handleCancleButton}>취소</CancelButton>
                     <SubmitButton  onClick={handleSubmitButton}>회원가입 완료하기</SubmitButton>
                 </ButtonContainer>
-                
+                <FooterDiv>
+                  <Footer/>
+                </FooterDiv>
             </AppContainer>
         </>
     )
@@ -181,6 +185,7 @@ const LogoContainer = styled.div`
 const ProfileImage = styled.img`
   width: 16.7vw;
   height: 16.7vw;
+  cursor: pointer;
 `;
 
 //수평선 스타일
@@ -250,5 +255,15 @@ const SubmitButton = styled.button`
   &:disabled {
     background-color: #B9EEFF;
     cursor: not-allowed;
+  }
+`;
+
+const FooterDiv = styled.div`
+  position: relative;
+  top: 14vw;
+  width: 100%;  
+
+  @media (max-width: 768px) {
+    top: 30vw;
   }
 `;

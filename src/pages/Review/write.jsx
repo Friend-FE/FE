@@ -1,6 +1,5 @@
 // 솔직후기 - 글 작성하기
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Title from '../../components/title';
 import styled from 'styled-components';

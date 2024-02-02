@@ -83,7 +83,9 @@ const NoticeDetail = () => {
       <TitleHR/>
       <NoticeBoard info={[notice]} />
       <NoticeBox>
-        {notice.body}
+        <NoticeText>
+            {notice.body}
+        </NoticeText> 
       </NoticeBox>
     </NoticeWrapper>
     <ButtonWrapper>      
@@ -124,6 +126,10 @@ const NoticeBox = styled.div`
   padding: 20px;
   text-align: center;
   margin-top: 3vw;
+`;
+
+const NoticeText = styled.div`
+  white-space: pre-line; /* 줄바꿈 허용 */
 `;
 
 const ButtonWrapper = styled.div`
