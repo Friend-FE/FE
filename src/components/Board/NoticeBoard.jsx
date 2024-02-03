@@ -12,11 +12,20 @@ const NoticeBoard = ({ info }) => {
     navigate(`/notice/${item.id}`, { state: { item } });
   };
 
+  // 날짜 형식 변환 함수
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+    return `${year}.${month}.${day}`;
+  };
+
   return (
     <BoardWrapper>
       <HR />
       <HeaderRow as="div">
-        <Title>제목</Title>
+        <Title>게시물 제목</Title>
         <Author>작성자</Author>
         <Time>작성 시간</Time>
       </HeaderRow>
@@ -26,7 +35,7 @@ const NoticeBoard = ({ info }) => {
           <Row onClick={() => handleRowClick(item)}>
             <Title>{item.title}</Title>
             <Author>{item.author}</Author>
-            <Time>{item.time}</Time>
+            <Time>{formatDate(item.time)}</Time>
           </Row>
           {index !== infoLength - 1 ? <ThinHR /> : <HR />}
         </div>
