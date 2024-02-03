@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import * as MAHD from './MatchingAHDetail';
+// import * as MAHD from './MatchingAHDetail';
 import Title from '../../components/title';
 import styled from 'styled-components';
 import Footer from '../../components/footer';
@@ -14,14 +14,6 @@ export default function ReportReceiptHistory() {
 
   const [history, setHistory] = useState([]);
   const navigate = useNavigate();
-
-  // const report = [
-  //   { id: 1, title: '제목 1', author: '작성자 1', time: '2024-01-18' },
-  //   { id: 2, title: '제목 2', author: '작성자 2', time: '2024-01-18' },
-  //   { id: 3, title: '제목 3', author: '작성자 3', time: '2024-01-18' },
-  //   { id: 4, title: '제목 4', author: '작성자 4', time: '2024-01-18' }
-  // ];
-
 
   const fetchData = async () => {
     try {
@@ -44,7 +36,7 @@ export default function ReportReceiptHistory() {
       <Title title = "관리자 페이지"/>
       <TitleHR/>
       <ReviewWrapper>
-        <MAHD.HeadTitleH3>신고 접수 내역 모아보기</MAHD.HeadTitleH3>
+        <HeadTitleH3>신고 접수 내역 모아보기</HeadTitleH3>
         <ContentDiv>
           <ManagerReportBoard info={history} />
         </ContentDiv>
@@ -65,6 +57,21 @@ const ReviewWrapper = styled.div`
   justify-content: center;
   align-items: center;
 `
+
+export const HeadTitleH3 = styled.h3`
+    color: #23CAFF;
+    font-size: 3vw;
+    font-weight: 900;
+
+    position: relative;
+    top: -1vw;
+    margin: -0.6vw;
+
+    @media (max-width: 768px) {
+    top: 5vw;
+  }
+`;
+
 const TitleHR = styled.hr`
   margin-top: 5vw;
   width: 80vw;
@@ -72,21 +79,25 @@ const TitleHR = styled.hr`
 
   @media (max-width: 768px) {
     position: relative;
-    top: 10vw;
+    top: 5vw;
   }
 `;
 
 const ContentDiv = styled.div`
   position: relative;
   top: 3vw;
+
+  @media (max-width: 768px) {
+    top: 1vw;
+  }
 `;
 
 const FooterContainer = styled.div`
     position: relative;
-    bottom: -2vw;
+    bottom: -5vw;
     width: 100%;
 
     @media (max-width: 768px) {
-    top: 25vw;
+    top: 10vw;
   }
 `;

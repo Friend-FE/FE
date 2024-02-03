@@ -18,6 +18,9 @@ const JudgePage = () => {
   );
 };
 
+export default JudgePage;
+
+
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -35,4 +38,3 @@ const FooterContainer = styled.div`
   bottom: 10vh;
   width: 100%;
 `;
-export default JudgePage;

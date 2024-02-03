@@ -5,7 +5,7 @@ import NoticeBoard from '../../components/Board/NoticeBoard';
 import React, { useState, useEffect } from 'react';
 import Title from '../../components/title';
 import styled from 'styled-components';
-import Footer from '../../components/footer';
+import Footer from '../../components/footer/index';
 
 const NoticeDetail = () => {
   const { id } = useParams();
@@ -78,19 +78,24 @@ const NoticeDetail = () => {
 
   return (
     <>
-    <NoticeWrapper>
-      <Title title = "공지사항 자세히 보기"/>
-      <TitleHR/>
-      <NoticeBoard info={[notice]} />
-      <NoticeBox>
-        {notice.body}
-      </NoticeBox>
-    </NoticeWrapper>
-    <ButtonWrapper>      
-          <CancelButton type="button" onClick={handleDelete}>삭제하기</CancelButton>
-          <SubmitButton type="button" onClick={handleModify}>수정하기</SubmitButton>
-        </ButtonWrapper>
-    <Footer/>
+      <NoticeWrapper>
+        <Title title = "공지사항"/>
+        <TitleHR/>
+        <HeadTitleH3>공지사항 자세히 보기</HeadTitleH3>
+        <Div>
+          <NoticeBoard info={[notice]} />
+        </Div>
+        <NoticeBox>
+          {notice.body}
+        </NoticeBox>
+      </NoticeWrapper>
+      <ButtonWrapper>      
+        <CancelButton type="button" onClick={handleDelete}>삭제하기</CancelButton>
+        <SubmitButton type="button" onClick={handleModify}>수정하기</SubmitButton>
+      </ButtonWrapper>
+      <FooterContainer>
+        <Footer/>
+      </FooterContainer>
     </>
   );
 };
@@ -103,13 +108,44 @@ const NoticeWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  /* height: 100vh; */
+
+  @media (max-width: 768px) {
+    top: -2vw;
+  }
 `;
 
 const TitleHR = styled.hr`
   margin-top: 10vh;
   width: 80vw;
   margin-bottom: 10vh;
+  @media (max-width: 768px) {
+    position: relative;
+    top: -2vw;
+  }
+`;
+
+export const HeadTitleH3 = styled.h3`
+  color: #23CAFF;
+  font-size: 3vw;
+  font-weight: 900;
+
+  position: relative;
+  top: -1vw;
+  margin: -0.6vw 0 0.6vw 0;
+  @media (max-width: 768px) {
+  position: relative;
+  top: -10vw;
+  }
+`;
+
+const Div = styled.div`
+  position: relative;
+  /* height: 100vh; */
+
+  @media (max-width: 768px) {
+    top: -18vw;
+  }
 `;
 
 const NoticeBox = styled.div`
@@ -117,13 +153,21 @@ const NoticeBox = styled.div`
   justify-content: center;
   align-items: center;
   width: 80vw;
-  height: 40vh;
-  border-radius: 30px;
-  border: 1.5px solid #2ECAFD;
+  /* height: 40vh; */
+  border-radius: 2.08vw;
+  border: 0.10vw solid #2ECAFD;
   background: #FFF;
-  padding: 20px;
+  padding: 1.38vw;
   text-align: center;
+
+  font-size: 1vw;
+
   margin-top: 3vw;
+
+  @media (max-width: 768px) {
+    position: relative;
+    top: -8vw;
+  }
 `;
 
 const ButtonWrapper = styled.div`
@@ -132,7 +176,10 @@ const ButtonWrapper = styled.div`
   margin-top: 3vw;
 
   @media (max-width: 768px) {
-    margin-top: 1vw;
+    position: relative;
+
+    margin-top: 0vw;
+    /* top: 10vw; */
   }
 `;
 
@@ -144,10 +191,10 @@ const CancelButton = styled.button`
   color: #000;
   text-align: center;
   font-size: 1vw;
-  font-weight: 700;
+  font-weight: bold;
   margin-right: 1vw;
   cursor: pointer;
-  box-shadow: -2px 8px 6.1px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: -0.13vw 0.55vw 0.41vw 0 rgba(0, 0, 0, 0.25);
 `;
 
 const SubmitButton = styled.button`
@@ -158,8 +205,17 @@ const SubmitButton = styled.button`
   color: #fff;
   text-align: center;
   font-size: 1vw;
-  font-weight: 700;
+  font-weight: bold;
   margin-left: 1vw;
   cursor: pointer;
-  box-shadow: -2px 8px 6.1px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: -0.13vw 0.55vw 0.41vw 0 rgba(0, 0, 0, 0.25);
+`;
+
+const FooterContainer = styled.div`
+  position: relative;
+  width: 100%;
+
+  @media (max-width: 768px) {
+    bottom: -10vw;
+  }
 `;

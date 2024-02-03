@@ -322,4 +322,3 @@ const ModalText = styled.p`
   margin-bottom: 10px;
   user-select: none;
 `;
-

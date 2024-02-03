@@ -40,7 +40,7 @@ const Notice = () => {
 
 
   const handleRecord = () => {
-    navigate("/ManagerPage/WritingNotices");
+    navigate("/ManagerPage/Notices/WritingNotices");
   }
 
   return (
@@ -49,7 +49,7 @@ const Notice = () => {
       <TitleHR/>
       <ReviewWrapper>
         <Board info={notice} />
-        <RecordButton type='button' onClick={handleRecord}> 작성하기 </RecordButton>
+        <RecordButton type='button' onClick={handleRecord}>작성하기</RecordButton>
       </ReviewWrapper>
       <FooterContainer>
         <Footer/>
@@ -89,16 +89,23 @@ const RecordButton = styled.button`
   color: #fff;
   text-align: center;
   font-size: 1vw;
-  font-weight: 700;
-  box-shadow: -2px 8px 6.1px 0px rgba(0, 0, 0, 0.25);
+  font-weight: bold;
+
+  margin-top: 2vw;
+  box-shadow: -0.13vw 0.55vw 0.41vw 0 rgba(0, 0, 0, 0.25);
+
+  @media (max-width: 768px) {
+    position: relative;
+    top: 15vw;
+  }
 `;
 
 const FooterContainer = styled.div`
-    position: relative;
-    bottom: -2vw;
-    width: 100%;
+  position: relative;
+  bottom: -2vw;
+  width: 100%;
 
-    @media (max-width: 768px) {
-    top: 25vw;
+  @media (max-width: 768px) {
+    top: 26vw;
   }
 `;

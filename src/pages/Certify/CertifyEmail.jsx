@@ -177,4 +177,3 @@ const FooterDiv = styled.div`
     top: 22vw;
   }
 `;
-

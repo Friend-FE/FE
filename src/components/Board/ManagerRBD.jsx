@@ -14,13 +14,32 @@ const ManagerRBD = ({ info }) => {
     navigate(`/ManagerPage/ReportReceiptHistory/${item.id}`, { state: { item, index } });
   };
 
+  // 신고자 이름 두 번째 글자부터를 가려서 보여주는 함수
+  // 현재 임의로 badMemberId(int형)을 써서 적용이 안 되는 것 같음.
+  const formatBadMember = (BadMember) => {
+    if (BadMember.length > 1) {
+      return BadMember[0] + '**';
+    } else {
+      return BadMember;
+    }
+  };
+
+  // 작성자 이름 두 번째 글자부터를 가려서 보여주는 함수
+  const formatAuthor = (author) => {
+    if (author.length > 1) {
+      return author[0] + '**';
+    } else {
+      return author;
+    }
+  };
+
   // Date 깔끔하게 보이도록 하는 함수
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     const year = date.getFullYear();
     const month = (date.getMonth() + 1).toString().padStart(2, '0');
     const day = date.getDate().toString().padStart(2, '0');
-    return `${year}-${month}-${day}`;
+    return `${year}.${month}.${day}`;
   };
 
   return (
@@ -35,8 +54,9 @@ const ManagerRBD = ({ info }) => {
       {info && info.map((item, index) => (
         <div key={item.id}>
           <Row onClick={() => handleRowClick(item, index)}>
-            <Title>{item.badMemberId}</Title>
-            <Author>{item.author}</Author>
+            {/* 임의로 item.badMemberId를 넣음. BE 쪽에서 */}
+            <Title>{formatBadMember(item.badMemberNickname)}</Title>
+            <Author>{formatAuthor(item.author)}</Author>
             <Time>{formatDate(item.updatedAt)}</Time>
           </Row>
           {index !== infoLength - 1 ? <ThinHR /> : <HR />}
@@ -46,7 +66,7 @@ const ManagerRBD = ({ info }) => {
   );
 };
   
-  export default ManagerRBD;
+export default ManagerRBD;
 
   
 const Row = styled.div`

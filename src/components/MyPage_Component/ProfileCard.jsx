@@ -80,7 +80,6 @@ export const SectionDiv = styled.div`
   box-shadow: 0.6vw 1vw 0.3vw rgba(0, 0, 0, 0.2);
 
   margin: 0 2vw;
-
 `;
 
 
@@ -98,19 +97,19 @@ export const ProfileBasicImg = styled.img`
 `;
 
 export const InfoP = styled.p`
-  font-size: 2.1vw;
+  font-size: 1.8vw;
   margin: 4vw 7.2vw;
   text-align: left;
 `;
 
 export const SelfIntroductionTitleP = styled.p`
-  font-size: 2.1vw;
+  font-size: 1.8vw;
 
   margin: 6.5vw 0 0 0;
 `;
 
 export const SelfIntroductionDiv = styled.div`
-  background-color: white;
+  /* background-color: white; */
 
   padding: 1.3vw 4.5vw;
   margin: 2.6vw;
@@ -123,10 +122,10 @@ export const SelfIntroductionP = styled.p`
 
 export const FooterContainer = styled.div`
   position: relative;
-  bottom: -18vw;
+  bottom: -15vw;
   width: 100%;
 
   @media (max-width: 768px) {
-    top: -12vw;
+    top: 5vw;
   }
 `;
