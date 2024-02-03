@@ -12,6 +12,15 @@ const Board = ({ info }) => {
     navigate(`/reviews/${item.id}`, { state: { item } });
   };
 
+  // 날짜 형식 변환 함수
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+    return `${year}.${month}.${day}`;
+  };
+
   return (
     <BoardWrapper>
       <HR />
@@ -24,14 +33,14 @@ const Board = ({ info }) => {
       <ThinHR />
       {info && info.map((item, index) => (
         <div key={item.id}>
-          <Row onClick={() => handleRowClick(item)}>
-            <Title>{item.title}</Title>
-            <Author>{item.author}</Author>
-            <Time>{item.time}</Time>
-            <ViewCount>{item.view}</ViewCount>
-          </Row>
-          {index !== infoLength - 1 ? <ThinHR /> : <HR />}
-        </div>
+        <Row onClick={() => handleRowClick(item)}>
+          <Title>{item.title}</Title>
+          <Author>{item.author.replace(/.(?<=.{3})/g, '*')}</Author>
+          <Time>{formatDate(item.time)}</Time>
+          <ViewCount>{item.view}</ViewCount>
+        </Row>
+        {index !== infoLength - 1 ? <ThinHR /> : <HR />}
+      </div>
       ))}
     </BoardWrapper>
   );
