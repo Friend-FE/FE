@@ -6,6 +6,9 @@ body {
     sans-serif,'SUIT Variable';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  -ms-overflow-style: none;
+  overflow-x:hidden;
+  
 }
 
 code {
@@ -14,4 +17,9 @@ code {
 }
 *{
   font-family: SUIT Variable;
+  margin:0;
+  padding: 0;
+}
+::-webkit-scrollbar {
+  display: none;
 }

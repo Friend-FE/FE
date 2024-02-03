@@ -28,8 +28,7 @@ function Header() {
     </Wrapper>  
     <HeaderContainer>
       <Link to="/">
-        <img
-          style={{ width: "111px" }}
+        <StyledImg
           src={logo}
           alt="로고"
         />
@@ -57,7 +56,7 @@ function Header() {
 }
 
 const HeaderContainer = styled.div`
-  margin: 0;
+  margin: 0px;
   padding: 0px;
   
   display: flex;
@@ -65,23 +64,31 @@ const HeaderContainer = styled.div`
   height: 75px;
   background-color: #fff;
   justify-content : space-around;
-  gap : 46vw;
+  gap : 40vw;
   align-items : center;
-  img {
-    
-    left: 100px;
-  }
 
   @media screen and (max-width: 1070px) {
     font-size : 1.5vw;
-    gap : 5px;
+    gap : 3vw;
+  }
+  @media screen and (max-width: 600px) {
+    font-size : 10vw;
+    gap : 15vw;
+    justify-content : center;
   }
 
 `;
-
+const StyledImg = styled.img`
+  left: 100px;
+  width:111px;
+  @media screen and (max-width: 450px) {
+    width:70px;
+  }
+`
 const LinkContainer = styled.div`
   display: flex;
-  gap:53px;
+  gap:5vw;
+  
   
   a {
     text-decoration-line: none;
@@ -90,6 +97,10 @@ const LinkContainer = styled.div`
   }
   .active {
     color: #23CAFF;
+  }
+  @media screen and (max-width: 600px) {
+    font-size : 2.2vw;
+    gap : 1vw;
   }
 `  
 const Wrapper = styled.div`
@@ -108,6 +119,10 @@ const Wrapper = styled.div`
   div{
     display : flex;
     gap : 66px;
+    @media screen and (max-width: 500px) {
+      font-size : 3vw;
+      gap : 2vw;
+    }
   }
   a{
     text-decoration-line: none;
@@ -117,6 +132,10 @@ const Wrapper = styled.div`
   @media screen and (max-width: 1070px) {
     font-size : 1.5vw;
     gap : 1vw;
+  }
+  @media screen and (max-width: 500px) {
+    font-size : 3vw;
+    gap : 0.3vw;
   }
 `;
 const Container = styled.div`
