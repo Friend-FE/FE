@@ -48,7 +48,7 @@ const Review = () => {
     <>
       <Title title = "솔직후기"/>
       <TitleHR/>
-      <InterviewH3>실제 교제 회원 인터뷰 4</InterviewH3>
+      <InterviewH3>실제 교제 회원 인터뷰 {review.length}</InterviewH3>
       <ReviewWrapper>
         <ReviewBoard info={review}/>
         <ButtonLink type='button' onClick={handleRecord}>후기 작성하기 </ButtonLink>
@@ -70,7 +70,13 @@ const ReviewWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  
+  @media (max-width: 768px) {
+    position: relative;
+    top: 3vw;
+  }
 `
+
 const TitleHR = styled.hr`
   margin-top: 5vw;
   width: 80vw;
@@ -78,7 +84,7 @@ const TitleHR = styled.hr`
 
   @media (max-width: 768px) {
     position: relative;
-    top: 10vw;
+    top: 8vw;
   }
 `;
 
@@ -92,7 +98,7 @@ const ButtonLink = styled.button`
   width: 15vw;
   height: 3vw;
   background: #8be3ff;
-  box-shadow: -2px 8px 6.1px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: -0.13vw 0.55vw 0.41vw 0 rgba(0, 0, 0, 0.25);
   border: none;
   color: #fff;
   text-align: center;
@@ -109,7 +115,7 @@ const ButtonLink = styled.button`
 
   @media (max-width: 768px) {
     position: relative;
-    top: 10vw;
+    top: 13vw;
   }
 `;
 
@@ -119,6 +125,6 @@ const FooterContainer = styled.div`
     width: 100%;
 
     @media (max-width: 768px) {
-    top: 25vw;
+    top: 22vw;
   }
 `;

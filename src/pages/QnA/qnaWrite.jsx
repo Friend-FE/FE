@@ -15,6 +15,8 @@ export default function QuestionWrite() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    alert('제출되었습니다.');
+    navigate(-1); 
   };
 
   const handleCancel = () => {
@@ -32,6 +34,13 @@ export default function QuestionWrite() {
         <ContentInPut>
           <TextArea type="text" placeholder='글을 입력해주세요.' value={content} onChange={e => setContent(e.target.value)} />
         </ContentInPut>
+        <DetailDiv>
+          <FormCheckbox type="checkbox"/>
+          <SecretLabel>비밀글로 작성</SecretLabel>
+          <Label>비밀번호</Label>
+          <Input/>
+          <CompleteBtn>완료</CompleteBtn>
+        </DetailDiv>
         <ButtonWrapper>      
           <CancelButton type="button" onClick={handleCancel}>취소</CancelButton>
           <SubmitButton type="submit">완료</SubmitButton>
@@ -46,15 +55,19 @@ export default function QuestionWrite() {
 };
 
 const TitleHR = styled.hr`
-  margin-top: 10vh;
+  margin-top: 8vw;
   border: 0;
-  border-top: 1px solid #B8B8B8;
+  border-top: 0.06vw solid #B8B8B8;
   width: 80vw; 
+
+  @media (max-width: 768px) {
+    margin-top: 10vw;
+  }
 `;
 
 const TextInput = styled.input`
   width: 60vw;
-  height: 7vh;
+  height: 3.5vw;
   /* flex-shrink: 0; */
   font-weight: bold;
   font-size: 1.1vw;
@@ -64,27 +77,28 @@ const TextInput = styled.input`
 
   @media (max-width: 768px) {
     width: 60vw;
-    height: 2vh;
+    height: 2vw;
   }
 `;
 
 const TextArea = styled.textarea`
   width: 60vw;
-  height: 50vh;
-  /* flex-shrink: 0; */
+  height: 30vw;
   font-weight: bold;
   font-size: 1.1vw;
   resize: none;
   padding-left: 1vw;
   padding-top: 0.5vw;
-
   border: 0.05vw solid #888;
+
+  /* white-space 속성 추가 */
+  white-space: normal;
 
   @media (max-width: 768px) {
     position: relative;
     top: -6vw;
     width: 60vw;
-    height: 10vh;
+    height: 30vw;
   }
 `;
 
@@ -93,21 +107,105 @@ const TextBox = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 2vw 0 0 0;
+  margin: 5vw 0 0 0;
 `;
 
 const TitleInPut = styled.div`
-  margin-top: 5vh;
+  margin-top: 4vw;
   font-size: 1vw;
   font-weight: 400;
-  
+
+  @media (max-width: 768px) {
+    position: relative;
+    top: -1vw;
+  }
 `;
 
 const ContentInPut = styled.div`
-  margin-top: 5vh;
+  margin-top: 1vw;
   font-size: 1vw;
   font-weight: 400;
+
+  @media (max-width: 768px) {
+    position: relative;
+    top: 6vw;
+  }
 `;
+
+const CompleteBtn = styled.button`
+  width: 3vw;
+  height: 1.4vw;
+
+  background: #8be3ff;
+  border: none;
+  color: #fff;
+  text-align: center;
+  box-shadow: -0.13vw 0.55vw 0.41vw 0 rgba(0, 0, 0, 0.25);
+
+  font-size: 0.8vw;
+
+  cursor: pointer;
+
+  @media (max-width: 768px) {
+    width: 3.8vw;
+    height: 1vw;
+  }
+`;
+
+/////////////
+
+const DetailDiv = styled.div`
+  position: relative;
+  top: 1vw;
+
+  @media (max-width: 768px) {
+    top: 1vw;
+  }
+`;
+
+export const FormCheckbox = styled.input`
+  width: 1vw;
+  height: 1vw;
+  margin: 0  0.5vw 0 0;
+
+  position: relative;
+  top: 0.3vw;
+
+  appearance: none;
+  border: 0.13vw solid black;
+  background-color: transparent;
+  outline: none;
+  cursor: pointer;
+  border-radius: 0.13vw;
+
+  &:checked::before {
+    content: '\u2713';
+    position: absolute;
+    left: -0.05vw;
+    top: -0.23vw;
+    font-size: 1vw;
+    font-weight: bold;
+  }
+`;
+
+export const SecretLabel = styled.label`
+  font-size: 1vw;
+  margin-right: 10vw;
+`;
+
+export const Label = styled.label`
+  font-size: 1vw;
+`;
+
+export const Input = styled.input`
+  margin: 0 1vw 0 1vw;
+
+  width: 15vw;
+  height: 1vw;
+  font-size: 1vw;
+`;
+
+/////////////
 
 const ButtonWrapper = styled.div`
   display: flex;
@@ -115,7 +213,8 @@ const ButtonWrapper = styled.div`
   margin-top: 3vw;
 
   @media (max-width: 768px) {
-    margin-top: 1vw;
+    position: relative;
+    top: 3vw;
   }
 `;
 
@@ -129,7 +228,9 @@ const CancelButton = styled.button`
   font-size: 1vw;
   font-weight: 700;
   margin-right: 1vw;
-  box-shadow: -2px 8px 6.1px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: -0.13vw 0.55vw 0.41vw 0 rgba(0, 0, 0, 0.25);
+
+  cursor: pointer;
 `;
 
 const SubmitButton = styled.button`
@@ -142,15 +243,15 @@ const SubmitButton = styled.button`
   font-size: 1vw;
   font-weight: 700;
   margin-left: 1vw;
-  box-shadow: -2px 8px 6.1px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: -0.13vw 0.55vw 0.41vw 0 rgba(0, 0, 0, 0.25);
+  cursor: pointer;
 `;
 
 const FooterContainer = styled.div`
-    position: relative;
-    bottom: -5vw;
-    width: 100%;
+  position: relative;
+  width: 100%;
 
-    @media (max-width: 768px) {
-        bottom: -10vw;
-    }
+  @media (max-width: 768px) {
+    top: 5vw;
+  }
 `;

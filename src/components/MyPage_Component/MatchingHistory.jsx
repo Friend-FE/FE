@@ -47,10 +47,10 @@ const MatchingHistoryP = styled.p`
 
 const FooterContainer = styled.div`
   position: relative;
-  bottom: -100px;
+  bottom: -20px;
   width: 100%;
 
   @media (max-width: 768px) {
-    top: 10vw;
+    top: 7vw;
   }
 `;

@@ -44,6 +44,10 @@ const TitleHR = styled.hr`
   margin-bottom: 5vw;
 
   @media (max-width: 768px) {
+
+    margin-top: 3vw;
+    margin-bottom: 6vw;
+
     position: relative;
     top: 10vw;
   }
@@ -55,6 +59,6 @@ const FooterContainer = styled.div`
     width: 100%;
 
     @media (max-width: 768px) {
-    top: 25vw;
+    top: 27vw;
   }
 `;

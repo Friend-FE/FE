@@ -30,6 +30,8 @@ import MatchingAHDetail from './components/ManagerPage_Component/MatchingAHDetai
 
 import MatchingCompletionHistory from './components/ManagerPage_Component/MatchingCompletionHistory';
 import ViewMembershipList from './components/ManagerPage_Component/ViewMembershipList';
+import ApplicationForMembership from './pages/ApplicationForMembership/ApplicationForMembership';
+import ApplicationForMembershipDetail from './pages/ApplicationForMembership/ApplicationForMembershipDetail'
 
 import Login from './pages/Login/Login';
 import FindID from './pages/FindAccount/FindID';
@@ -93,16 +95,21 @@ const App = ()=>{
 					관리자 페이지 - Q&A 모아보기 - 자세히 보기
 					Q&A 답변하기
 
+					공지사항 (일단 연결 끊음.)
 					공지사항 쓰러가기
 
 					신고 접수 내역
 					신고 접수 내역 자세히
 
 					매칭 신청 내역
-					매칭 신청 내역 확인하기 2
+					매칭 신청 내역 보기 2
 
 					매칭 완료 내역
+
 					회원 목록 보기
+
+					회원 가입 신청 내역 보기
+					회원 가입 신청 내용 자세히 보기
 				*/}
 				<Route path="/ManagerPage" element={<ManagerPage/>}/>
 
@@ -110,16 +117,20 @@ const App = ()=>{
 				<Route path="/QnA/:id" element={<QnADetail/>} />
 				<Route path="/ManagerPage/QnA/QnAResponse" element={<QnAResponse/>}/>
 
-				<Route path="/ManagerPage/WritingNotices" element={<WritingNotices/>}/>
+				<Route path="/ManagerPage/Notices/WritingNotices" element={<WritingNotices/>}/>
 				
 				<Route path="/ManagerPage/ReportReceiptHistory" element={<ReportReceiptHistory/>}/>
 				<Route path="/ManagerPage/ReportReceiptHistory/:id" element={<ReportReceiptHistoryDetail/>}/>
 				
 				<Route path="/ManagerPage/MatchingApplicationHistory" element={<MatchingApplicationHistory/>}/>
-				<Route path="/ManagerPage/MatchingApplicationHistory/MatchingAHDetail" element={<MatchingAHDetail/>}/>
+				<Route path="/ManagerPage/MatchingApplicationHistory/:id" element={<MatchingAHDetail/>}/>
 				
 				<Route path="/ManagerPage/MatchingCompletionHistory" element={<MatchingCompletionHistory/>}/>
+
 				<Route path="/ManagerPage/ViewMembershipList" element={<ViewMembershipList/>}/>				
+				
+				<Route path="/ManagerPage/ApplicationForMembership" element={<ApplicationForMembership/>}/>				
+				<Route path="/ManagerPage/ApplicationForMembership/:id" element={<ApplicationForMembershipDetail/>}/>				
 
 				{/* 로그인
 					아이디 찾기
@@ -170,6 +181,7 @@ const App = ()=>{
 				<Route path="/QnA/write" element={<QuestionWrite/>} />
 
 				<Route path="/Apply" element={<Apply/>}/>
+				
 			</Routes>
 	  </div>
 	);

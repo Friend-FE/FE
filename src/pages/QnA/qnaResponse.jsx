@@ -16,6 +16,8 @@ export default function QnAResponse() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    alert('제출되었습니다.');
+    navigate(-1); 
   };
 
   const handleCancel = () => {
@@ -27,7 +29,7 @@ export default function QnAResponse() {
       <Title title = "관리자 페이지"/>
       <TitleHR />
       <TextBox>
-        <MAHD.HeadTitleH3>답변하기</MAHD.HeadTitleH3>
+        <HeadTitleH3>답변하기</HeadTitleH3>
         <form onSubmit={handleSubmit}>
         <TitleInPut>
           <TextInput type="text" placeholder='제목을 입력해주세요.' value={title} onChange={e => setTitle(e.target.value)} />
@@ -41,21 +43,41 @@ export default function QnAResponse() {
         </ButtonWrapper>
         </form>   
       </TextBox>
-      <Footer/>
+      <FooterContainer>
+        <Footer/>
+      </FooterContainer>
     </>
   )
 }
 
 const TitleHR = styled.hr`
-  margin-top: 10vh;
+  margin-top: 8vw;
   border: 0;
-  border-top: 1px solid #B8B8B8;
+  border-top: 0.06vw solid #B8B8B8;
   width: 80vw; 
+
+  @media (max-width: 768px) {
+    margin-top: 10vw;
+  }
+`;
+
+export const HeadTitleH3 = styled.h3`
+  color: #23CAFF;
+  font-size: 2.5vw;
+  font-weight: 900;
+
+  position: relative;
+  top: -1vw;
+  margin: -0.6vw 0 0.6vw 0;
+  @media (max-width: 768px) {
+    position: relative;
+    top: -1vw;
+  }
 `;
 
 const TextInput = styled.input`
   width: 60vw;
-  height: 7vh;
+  height: 3.5vw;
   /* flex-shrink: 0; */
   font-weight: bold;
   font-size: 1.1vw;
@@ -65,27 +87,28 @@ const TextInput = styled.input`
 
   @media (max-width: 768px) {
     width: 60vw;
-    height: 2vh;
+    height: 2vw;
   }
 `;
 
 const TextArea = styled.textarea`
   width: 60vw;
-  height: 50vh;
-  /* flex-shrink: 0; */
+  height: 30vw;
   font-weight: bold;
   font-size: 1.1vw;
   resize: none;
   padding-left: 1vw;
   padding-top: 0.5vw;
-
   border: 0.05vw solid #888;
+
+  /* white-space 속성 추가 */
+  white-space: normal;
 
   @media (max-width: 768px) {
     position: relative;
     top: -6vw;
     width: 60vw;
-    height: 10vh;
+    height: 30vw;
   }
 `;
 
@@ -98,16 +121,25 @@ const TextBox = styled.div`
 `;
 
 const TitleInPut = styled.div`
-  margin-top: 5vh;
+  margin-top: 4vw;
   font-size: 1vw;
   font-weight: 400;
-  
+
+  @media (max-width: 768px) {
+    position: relative;
+    top: -1vw;
+  }
 `;
 
 const ContentInPut = styled.div`
-  margin-top: 5vh;
+  margin-top: 1vw;
   font-size: 1vw;
   font-weight: 400;
+
+  @media (max-width: 768px) {
+    position: relative;
+    top: 6vw;
+  }
 `;
 
 const ButtonWrapper = styled.div`
@@ -116,7 +148,8 @@ const ButtonWrapper = styled.div`
   margin-top: 3vw;
 
   @media (max-width: 768px) {
-    margin-top: 1vw;
+    position: relative;
+    top: 3vw;
   }
 `;
 
@@ -130,7 +163,8 @@ const CancelButton = styled.button`
   font-size: 1vw;
   font-weight: 700;
   margin-right: 1vw;
-  box-shadow: -2px 8px 6.1px 0px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  box-shadow: -0.13vw 0.55vw 0.41vw 0 rgba(0, 0, 0, 0.25);
 `;
 
 const SubmitButton = styled.button`
@@ -143,5 +177,15 @@ const SubmitButton = styled.button`
   font-size: 1vw;
   font-weight: 700;
   margin-left: 1vw;
-  box-shadow: -2px 8px 6.1px 0px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  box-shadow: -0.13vw 0.55vw 0.41vw 0 rgba(0, 0, 0, 0.25);
+`;
+
+const FooterContainer = styled.div`
+  position: relative;
+  width: 100%;
+
+  @media (max-width: 768px) {
+    top: 5vw;
+  }
 `;
