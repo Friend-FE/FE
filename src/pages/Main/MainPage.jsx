@@ -10,19 +10,40 @@ import Main3 from "../../images/main_3.png";
 import Main4 from "../../images/main_4.png";
 import Main5 from "../../images/main_5.png";
 import Main6 from "../../images/main_6.png";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const MainPage = () => {
+  const [isLogined,setIsLogined] = useState(true); //로그인 여부
+  const [isActive,setIsActive] = useState(false); // 승인 완료된 회원인지?
+  const navigate = useNavigate();
+  const handleStartBtn = ()=>{
+    if(!isLogined)
+    {
+      navigate("/login");
+    }
+    else if(!isActive){
+      navigate("/JudgePage");
+    }
+    else{
+      navigate("/Apply");
+    }
+
+  }
   return (
-    <div>
+    <AppContainer>
       <Img src={mainBg} alt="메인화면bg"></Img>
       <Wrapper>
         <h3>당신의 ‘FRIEND’를 만나보세요!</h3>
         <p>지인 매칭 100% 방지와 개인정보 노출 부담없는 교내 매칭 서비스</p>
-        <button>Friend 시작하기</button>
+        <button onClick={handleStartBtn}>Friend 시작하기</button>
       </Wrapper>
 
       <Box>
-        <h5>지인 매칭 100% 방지와 개인정보 노출 부담없는 교내 매칭 서비스</h5>
+        <TextBox>
+          <h5>지인 매칭 100% 방지와 개인정보 노출 부담없는</h5>
+          <h5> 교내 매칭 서비스</h5>
+        </TextBox>
         <TextBox>
           <p className="blue">FRIEND</p>
           <p>란?</p>
@@ -83,19 +104,31 @@ const MainPage = () => {
       <FooterContainer>
         <Footer/>
       </FooterContainer>
-    </div>
+    </AppContainer>
   );
 };
+
+const AppContainer = styled.div`
+box-sizing: border-box;
+//overflow-y:hidden;
+`
 const Img = styled.img`
   width: 100vw;
 `;
 const Wrapper = styled.div`
   position: absolute;
-  top: 40vh;
+  top: 30vw;
   display: flex;
   width: 100vw;
   flex-direction: column;
   align-items: center;
+  @media screen and (max-width: 400px) {
+    top: 45vw;
+
+  }
+
+
+
   h3 {
     color: #fff;
     font-family: SUIT;
@@ -107,6 +140,10 @@ const Wrapper = styled.div`
     @media screen and (max-width: 800px) {
       font-size: 28px;
     }
+    @media screen and (max-width: 400px) {
+      font-size : 5vw;
+
+    }
   }
   p {
     color: #fff;
@@ -116,8 +153,10 @@ const Wrapper = styled.div`
     font-weight: 800;
     line-height: normal;
     @media screen and (max-width: 800px) {
-      font-size: 18px;
+      margin-top: 10px;
+      font-size : 4vw;
       width: 65vw;
+      margin-rigth : 10px;
     }
   }
   button {
@@ -136,14 +175,16 @@ const Wrapper = styled.div`
     font-weight: 700;
     @media screen and (max-width: 1010px) {
       top: 5vw;
+      width: 20vw;
+    }
+    @media screen and (max-width: 450px) {
+      width: 40vw;
     }
   }
-  @media screen and (max-width: 1020px) {
-    top: 25vw;
-  }
+
 `;
 const TextBox = styled.div`
-  max-width: 1300px;
+  max-width: 90vw;
   display: flex;
   .blue {
     color: #30cdff;
@@ -151,9 +192,10 @@ const TextBox = styled.div`
   section {
     display: flex;
   }
+
   @media screen and (max-width: 900px) {
     justify-content: flex-start;
-    width: 90vw;
+    width: 100vw;
   }
   &.style {
     @media screen and (max-width: 980px) {
@@ -193,6 +235,10 @@ const Box = styled.div`
       margin: 0;
       font-size: 2.7vw;
     }
+    @media screen and (max-width: 450px) {
+      margin: 0;
+      font-size: 4vw;
+    }
   }
 
   h1 {
@@ -202,7 +248,7 @@ const Box = styled.div`
 `;
 const FlexBox = styled.div`
   position: relative;
-  max-width: 1300px;
+  max-width: 80vw;
   top: 22vh;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -212,7 +258,7 @@ const FlexBox = styled.div`
   left: 8vw;
   @media screen and (max-width: 700px) {
     grid-template-columns: repeat(2, 1fr);
-    left: 1vw;
+    left: 5vw;
     gap: 1vw;
   }
 `;

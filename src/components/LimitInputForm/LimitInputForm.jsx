@@ -32,6 +32,10 @@ const Textarea = styled.textarea`
   padding: 8px;
   margin-bottom: 10px;
   resize: none;
+  @media screen and (max-width: 970px) {
+    height:20px;
+    font-size:0.7rem;
+  }
 `;
 
 const Counter = styled.div`

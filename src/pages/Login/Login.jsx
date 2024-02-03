@@ -87,7 +87,7 @@ const Login = () => {
             </LoginForm>
             <ButtonContainer>
                 <SignUpButton onClick={handleSignupClick}>회원가입</SignUpButton>
-                <ForgotButton onClick={handleFindIDClick}>이메일 찾기</ForgotButton>
+                <ForgotButton onClick={handleFindIDClick}>아이디 찾기</ForgotButton>
                 <ForgotButton onClick={handleFindPasswordClick}>비밀번호 찾기</ForgotButton>
             </ButtonContainer>
         </AppContainer>

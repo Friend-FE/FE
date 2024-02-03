@@ -170,6 +170,10 @@ const NoticeBox = styled.div`
   }
 `;
 
+const NoticeText = styled.div`
+  white-space: pre-line; /* 줄바꿈 허용 */
+`;
+
 const ButtonWrapper = styled.div`
   display: flex;
   justify-content: center;

@@ -62,7 +62,11 @@ const Wrapper = styled.div`
   gap: 239px;
   img {
     width: 111px;
-    height: 39px;
+    height: 39px;  
+    @media screen and (max-width: 500px) {
+      width: 70px;
+      //height: 39px;  
+    }
   }
   div {
     width: 65%;
@@ -80,6 +84,10 @@ const Wrapper = styled.div`
   @media screen and (max-width: 1070px) {
     font-size : 1.5vw;
     gap : 110px;
+  }
+  @media screen and (max-width: 500px) {
+    font-size : 1.5em;
+    gap : 30px;
   }
 `;
 
@@ -99,6 +107,11 @@ const Top = styled.div`
   @media screen and (max-width: 1070px) {
     font-size : 1.5vw;
     gap : 13px;
+  }
+  @media screen and (max-width: 500px) {
+    font-size : 2vw;
+    gap : 5px;
+    justify-content: space-around;
   }
 `;
 export default Footer;

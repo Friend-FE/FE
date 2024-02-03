@@ -128,30 +128,3 @@ const FooterContainer = styled.div`
     top: 22vw;
   }
 `;
-
-
-// const Review = () => {
-//   const review = [
-//     { id: 1, title: '제목 1', author: '작성자 1', time: '2024-01-18', view: 8, body: '어쩌고 저쩌고 어쩌고 저쩌고'},
-//     { id: 2, title: '제목 2', author: '작성자 2', time: '2024-01-18', view: 8, body: '어쩌고 저쩌고 어쩌고 저쩌고' },
-//     { id: 3, title: '제목 3', author: '작성자 3', time: '2024-01-18', view: 8, body: '어쩌고 저쩌고 어쩌고 저쩌고' },
-//     { id: 4, title: '제목 4', author: '작성자 4', time: '2024-01-18', view: 8, body: '어쩌고 저쩌고 어쩌고 저쩌고' }
-//   ];
-
-//   return (
-//     <>
-//       <Title title = "솔직후기"/>
-//       <TitleHR/>
-//       <InterviewH3>실제 교제 회원 인터뷰 4</InterviewH3>
-//       <ReviewWrapper>
-//         <ReviewBoard info={review}/>
-//         <ButtonLink to ="/reviews/write">후기 작성하기</ButtonLink>
-//       </ReviewWrapper>
-//       <FooterContainer>
-//         <Footer/>
-//       </FooterContainer>
-//     </>
-//   );
-// };
-
-// export default Review;

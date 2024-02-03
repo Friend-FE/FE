@@ -37,6 +37,9 @@ const StyledCheckbox = styled.input`
   border-radius: 50%;
   outline: none;
   position: relative;
+  @media screen and (max-width: 970px) {
+    font-size:1rem;
+  }
   
   &:checked {
     &::before {

@@ -1,6 +1,6 @@
+import React, { useState,useEffect } from 'react';
 // 공지사항 쓰러가기
 
-import React, { useState,useEffect } from 'react';
 import Title from '../title/index';
 import styled from 'styled-components';
 import { useNavigate, useLocation } from 'react-router-dom';

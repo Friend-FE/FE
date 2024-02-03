@@ -158,7 +158,6 @@ const ButtonWrapper = styled.div`
     /* top: 10vw; */
   }
 `;
-
 const SubmitButton = styled.button`
   width: 13vw;
   height: 2.5vw;

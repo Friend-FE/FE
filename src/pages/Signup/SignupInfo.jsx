@@ -1,174 +1,309 @@
-// 회원가입 - 3
 
-import React, { useState } from 'react';
-import {useNavigate} from 'react-router-dom';
-import Title from '../../components/title';
-import CircleCheckbox from '../../components/CircleCheckbox/CircleCheckbox';
-import LimitInputForm from '../../components/LimitInputForm/LimitInputForm';
-import styled from 'styled-components';
-import ProfileBasic from "../../images/ProfileBasic.png"
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Title from "../../components/title";
+import CircleCheckbox from "../../components/CircleCheckbox/CircleCheckbox";
+import styled from "styled-components";
+import ProfileImage from "./ProfileImage";
+import Footer from "../../components/footer";
+import axios from "axios";
+import LimitInputForm from "../../components/LimitInputForm/LimitInputForm";
+
 
 const SignupInfo = () => {
-    //로그인 정보 관리
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [passwordCheck, setPasswordCheck] = useState('');
+  //로그인 정보 관리
+  const navigate = useNavigate();
+  const [passwordCheck, setPasswordCheck] = useState("");
+  const [wrongPW, setWrongPW] = useState(false);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [values, setValues] = useState({
+    email: "",
+    password: "",
+    role: 0,
+    nickname: "",
+    phone: "",
+    birthday: "",
+    gender: 0,
+    height: 0,
+    region: "",
+    department: "",
+    distance: 0,
+    smoking: 0,
+    drinking: 0,
+    introduction: "",
+    preference: "",
+    nonRegion: "",
+    nondepartment: "",
+    nonstudentid: "",
+    nonage: "",
+  });
 
-    const navigate = useNavigate();
+  const handleFileChange = (file) => {
+    setSelectedFile(file);
+  };
 
-    const handleEmailChange = (event) => {
-        setEmail(event.target.value);
-    };
-    
-    const handlePasswordChange = (event) => {
-        setPassword(event.target.value);
-    };
+  const checkWrongPW = (e) => {
+    setPasswordCheck(e.target.value);
+    if (values.password !== passwordCheck) {
+      setWrongPW(false);
+    } else setWrongPW(true);
+  };
 
-    const handlePasswordCheckChange = (event) => {
-        setPasswordCheck(event.target.value);
-    };
-      
-    const handleCancleButton = (event) => {
-        //취소 시 이전 페이지로
-        navigate(-1);
+  const handleChange = (e) => {
+    setValues((prevValues) => ({
+      ...prevValues,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("실행");
+    alert(JSON.stringify(values, null, 2));
+  };
+
+  const handleCancleButton = (event) => {
+    //취소 시 이전 페이지로
+    navigate(-1);
+  };
+
+  const handleSubmitButton = (event) => {
+    //console.log(values);
+    //가입완료, 정보들 서버로 전송하는 api 필요
+
+    event.preventDefault();
+    if (selectedFile) {
+      //selectedFile
+      const formData = new FormData();
+      formData.append("image", selectedFile);
+
+      const json = JSON.stringify(values);
+
+      const blob = new Blob([json], { type: "application/json" });
+      formData.append("request", blob);
+
+      axios
+        .post(`http://13.209.145.28:8080/api/v1/users`, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then(function (response) {
+          // 성공적으로 응답 받았을 때의 처리
+          navigate("/JudgePage");
+        })
+        .catch(function (error) {
+          // 오류 발생 시의 처리
+          console.error("오류 발생:", error);
+        });
     }
-    const handleSubmitButton = async () => {
-        try {
-          const response = await fetch('http://13.209.145.28:8080/api/v1/users', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              email,
-              password
-            }),
-          });
-      
-          if (response.ok) {
-            const data = await response.json();
-            console.log('회원가입 성공:', data);
-            navigate('/');
-          } else {
-            console.error('회원가입 실패:', response.status);
-          }
-        } catch (error) {
-          console.error('회원가입 오류:', error);
-        }
-      };
+  };
 
-    return (
-        <>
-            <Title title = "회원가입"/>
-            <Separator />
+  return (
+    <>
+      <Title title="회원가입" />
+      <Separator />
 
-            <AppContainer>
-                <InfoMessage>먼저 프로필 사진을 등록해주세요 </InfoMessage>
-                <LogoContainer>
-                    <ProfileImage src={ProfileBasic} alt="profile_image" />
-                </LogoContainer>
+      <AppContainer>
+        <InfoMessage>먼저 프로필 사진을 등록해주세요 &nbsp; <p>*</p> </InfoMessage>
+        <LogoContainer>
+          <ProfileImage
+            onFileChange={handleFileChange}
+            selectedFile={selectedFile}
+          />
+        </LogoContainer>
 
-                <InfoMessage>아이디와 비밀번호를 입력해주세요</InfoMessage>
-                <LoginForm>
-                    <Input type="text" value={email} onChange={handleEmailChange} placeholder="이메일"/>
-                    <Input type="password" value={password} onChange={handlePasswordChange} placeholder="패스워드" />
-                    <Input type="password" value={passwordCheck} onChange={handlePasswordCheckChange} placeholder="패스워드 확인" />
-                </LoginForm>
+        <InfoMessage>아이디와 비밀번호를 입력해주세요&nbsp;<p>*</p></InfoMessage>
+        <LoginForm onSubmit={handleSubmit}>
+          <Input
+            type="text"
+            name="email"
+            value={values.email}
+            onChange={handleChange}
+            placeholder="이메일"
+          />
+          <Input
+            type="password"
+            name="password"
+            value={values.password}
+            onChange={handleChange}
+            placeholder="패스워드"
+            autoComplete="new-password"
+          />
+          <Input
+            type="password"
+            name="pwck"
+            value={values.passwordCheck}
+            onBlur={checkWrongPW}
+            placeholder="패스워드 확인"
+            autoComplete="new-password"
+          />
+          {wrongPW ? <p>비밀번호가 틀립니다.</p> : ""}
+          <InfoMessage>기본 정보를 작성해주세요.&nbsp;<p>*</p></InfoMessage>
+          <InfoName>닉네임</InfoName>
+          <Input
+            type="text"
+            name="nickname"
+            value={values.nickname}
+            onChange={handleChange}
+            placeholder="닉네임을 입력해주세요."
+          />
 
-                <InfoMessage>기본 정보를 작성해주세요.</InfoMessage>
-                <InfoName>닉네임</InfoName>
-                <LoginForm>
-                    <Input type="text" placeholder="닉네임을 입력해주세요."/>
-                </LoginForm>
- 
-                <InfoName>연락처</InfoName>
-                <LoginForm>
-                    <Input type="tel"  placeholder="***-****-****"/>
-                </LoginForm>
+          <InfoName>연락처</InfoName>
+          <Input
+            type="tel"
+            name="phone"
+            value={values.phone}
+            onChange={handleChange}
+            placeholder="***-****-****"
+          />
 
-                <InfoName>생년월일</InfoName>
-                <LoginForm>
-                    <Input type="date"  placeholder="****/**/**"/>
-                </LoginForm>
+          <InfoName>생년월일</InfoName>
+          <Input
+            type="date"
+            name="birthday"
+            value={values.birthday}
+            onChange={handleChange}
+          />
 
-                <InfoName>성별</InfoName>
-                <CircleCheckbox options={['여성', '남성']} />
+          <InfoName>성별</InfoName>
+          <CircleCheckbox
+            options={["여성", "남성"]}
+            name="gender"
+            value={values.gender}
+            onChange={handleChange}
+          />
 
-                <InfoName>키</InfoName>
-                <LoginForm>
-                    <Input type="number"  placeholder="***cm"/>
-                </LoginForm>
+          <InfoName>키</InfoName>
+          <Input
+            type="number"
+            name="height"
+            value={values.height}
+            onChange={handleChange}
+            placeholder="***cm"
+          />
 
-                <InfoName>지역</InfoName>
-                <LoginForm>
-                    <Input type="text"  placeholder="대략적인 **구까지만 써주세요."/>
-                </LoginForm>
+          <InfoName>지역</InfoName>
+          <Input
+            type="text"
+            name="region"
+            value={values.region}
+            onChange={handleChange}
+            placeholder="대략적인 **구까지만 써주세요."
+          />
 
-                <InfoName>장거리 가능 유무</InfoName>
-                <CircleCheckbox options={['가능', '불가능']} />
+          <InfoName>장거리 가능 유무</InfoName>
+          <CircleCheckbox
+            options={["가능", "불가능"]}
+            name="distance"
+            value={values.distance}
+            onChange={handleChange}
+          />
 
-                <InfoName>흡연 여부</InfoName>
-                <CircleCheckbox options={['흡연', '비흡연']} />
+          <InfoName>흡연 여부</InfoName>
+          <CircleCheckbox
+            options={["흡연", "비흡연"]}
+            name="smoking"
+            value={values.smoking}
+            onChange={handleChange}
+          />
 
-                <InfoName>음주 여부</InfoName>
-                <CircleCheckbox options={['음주', '비음주']} />
-                    
-                <InfoName>내가 속한 단과대는?</InfoName>
-                <LoginForm>
-                    <Input type="text" />
-                </LoginForm>
+          <InfoName>음주 여부</InfoName>
+          <CircleCheckbox
+            options={["음주", "비음주"]}
+            name="drinking"
+            value={values.drinking}
+            onChange={handleChange}
+          />
 
-                <InfoName>자기소개를 입력해주세요.</InfoName>
-                <LoginForm>
-                    <LimitInputForm/>
-                </LoginForm>
+          <InfoName>내가 속한 단과대는?</InfoName>
+          <Input
+            type="text"
+            name="department"
+            value={values.department}
+            onChange={handleChange}
+          />
 
-                <InfoName>나의 이상형에 대해서 알려주세요!</InfoName>
-                <LoginForm>
-                    <LimitInputForm/>
-                </LoginForm>
+          <InfoName>자기소개를 입력해주세요.</InfoName>
+          <LimitInputForm
+            name="introduction"
+            value={values.introduction}
+            onChange={handleChange}
+          />
+          <InfoName>나의 이상형에 대해서 알려주세요!</InfoName>
+          <LimitInputForm
+            name="preference"
+            value={values.preference}
+            onChange={handleChange}
+          />
+          <InfoName>
+            매칭되고 싶지 않은 학과를 적어주세요! 없으면 없음이라고 적어주세요.
+          </InfoName>
+          <Input
+            type="text"
+            name="nondepartment"
+            value={values.nondepartment}
+            onChange={handleChange}
+          />
 
-                <InfoName>매칭되고 싶지 않은 학과를 적어주세요! 없으면 없음이라고 적어주세요.</InfoName>
-                <LoginForm>
-                    <Input type="text" />
-                </LoginForm>
+          <InfoName>
+            매칭되고 싶지 않은 학번를 적어주세요! (예, 20학번) 없으면 없음이라고
+            적어주세요.
+          </InfoName>
+          <Input
+            type="text"
+            name="nonstudentid"
+            value={values.nonstudentid}
+            onChange={handleChange}
+          />
 
-                <InfoName>매칭되고 싶지 않은 학번를 적어주세요! (예, 20학번) 없으면 없음이라고 적어주세요.</InfoName>
-                <LoginForm>
-                    <Input type="text" />
-                </LoginForm>
+          <InfoName>
+            매칭되고 싶지 않은 나이를 적어주세요! (예, 2005년생보다 어린 나이)
+            없으면 없음이라고 적어주세요.
+          </InfoName>
+          <Input
+            type="text"
+            name="nonage"
+            value={values.nonage}
+            onChange={handleChange}
+          />
 
-                <InfoName>매칭되고 싶지 않은 나이를 적어주세요! (예, 2005년생보다 어린 나이) 없으면 없음이라고 적어주세요.</InfoName>
-                <LoginForm>
-                    <Input type="text" />
-                </LoginForm>
+          <InfoName>
+            매칭되고 싶지 않은 지역 조건을 적어주세요! (예, 부산 외에 지역만
+            매칭 원함) 없으면 없음이라고 적어주세요.
+          </InfoName>
+          <Input
+            type="text"
+            name="nonRegion"
+            value={values.nonRegion}
+            onChange={handleChange}
+          />
+          <ButtonContainer>
+            <CancelButton onClick={handleCancleButton}>취소</CancelButton>
+            <SubmitButton type="submit" onClick={handleSubmitButton}>
+              회원가입 완료하기
+            </SubmitButton>
+          </ButtonContainer>
+        </LoginForm>
+      </AppContainer>
+      <FooterContainer>
+        <Footer />
+      </FooterContainer>
+    </>
+  );
+};
 
-                <InfoName>매칭되고 싶지 않은 지역 조건을 적어주세요! (예, 부산 외에 지역만 매칭 원함) 없으면 없음이라고 적어주세요.</InfoName>
-                <LoginForm>
-                    <Input type="text" />
-                </LoginForm>
-                
-                <ButtonContainer>
-                    <CancelButton onClick={handleCancleButton}>취소</CancelButton>
-                    <SubmitButton  onClick={handleSubmitButton}>회원가입 완료하기</SubmitButton>
-                </ButtonContainer>
-                
-            </AppContainer>
-        </>
-    )
-}
 
 export default SignupInfo;
 
-
 // 전체를 담고 있는 컨테이너
 const AppContainer = styled.div`
-    justify-content: center;
-    width: 40%; /* 원하는 크기로 조정 (가로의 반 정도로 설정) */
-    @media (max-width: 768px) {
-      width: 80%;
-    }
-    margin: 0 auto; /* 수평 가운데 정렬을 위해 margin을 auto로 설정 */
+  justify-content: center;
+  width: 40%; /* 원하는 크기로 조정 (가로의 반 정도로 설정) */
+  margin: 0 auto; /* 수평 가운데 정렬을 위해 margin을 auto로 설정 */
+  @media screen and (max-width: 710px) {
+    width: 65vw;
+  }
 `;
 
 //ProfileBasic 로고 표시를 위한 스타일
@@ -177,78 +312,109 @@ const LogoContainer = styled.div`
   justify-content: center; /* 가로축에서 가운데 정렬 */
 `;
 
-//ProfileBasic 이미지 삽입
-const ProfileImage = styled.img`
-  width: 16.7vw;
-  height: 16.7vw;
-`;
-
 //수평선 스타일
 const Separator = styled.div`
   height: 1px;
+  // width: 60vw;
   background-color: Gray;
-  margin : 15vw 10vw 5vw 10vw;
+  margin: 100px;
+  @media screen and (max-width: 500px) {
+    margin : 65px 15px 45px 15px;
+  }
 `;
-
 
 //어떤 정보를 입력해야하는지, 알려주는 텍스트
 const InfoMessage = styled.div`
-    text-align: center;
-    margin-top : 8vw;
-    margin-bottom : 2vw;
-    font-size: 2vw; 
-    width: 100%; /* 텍스트가 max-width를 넘어가더라도 크기를 조절할 수 있도록 */
+  margin-bottom: 20px;
+  align-items:flex-end ;
+  justify-content: center;
+  font-size: 25px;
+  width: 100%; /* 텍스트가 max-width를 넘어가더라도 크기를 조절할 수 있도록 */
+  display:flex;
+  p{
+    color: #23CAFF;
+    margin-bottom: 12px;
+  }
+  @media screen and (max-width: 970px) {
+    // width: 65vw;
+    font-size:1rem;
+  }
 `;
 
-// 이메일과 패스워드 등을 입력할 칸들
+// 이메일과 패스워드를 입력할 칸들
 const LoginForm = styled.form`
   display: flex;
   flex-direction: column;
-  margin-top: 1vw;
+  margin-top: 20px;
 `;
 
 const Input = styled.input`
-  height: 2vw;
-  padding: 0.8rem;
-  margin-bottom: 1vw;
+  height: 30px;
+  padding: 8px;
+  margin-bottom: 20px;
+  @media screen and (max-width: 700px) {
+    height: 15px;
+    font-size:0.7rem;
+  }
 `;
 
 // 칸 마다 입력해야하는 정보 알려주는 작은 텍스트
 const InfoName = styled.div`
-    font-size: 1.5vw;
+  font-size: 15px;
 `;
 
-
-//취소, 이어서 가입 버튼 
+//취소, 이어서 가입 버튼
 const ButtonContainer = styled.div`
   display: flex;
-  justify-content: space-between; /* 버튼을 좌우로 나눕니다. */
+  justify-content: center;
+  gap : 20px;
 `;
 
 const CancelButton = styled.button`
-    background-color: #FFF;
-    font-size : 1.5vw;
-    color: black;
-    border: none;
-    padding: 1vw;
-    cursor: pointer;
-    border-radius: 10px;
-    box-shadow: -0.6vw 0.5vw 0.3vw rgba(0, 0, 0, 0.2);
+  font-weight : 700;
+  border: none;
+  cursor: pointer;
+  width: 177px;
+  height : 40px;
+  border :none;
+  box-shadow: -2px 8px 6.1px 0px rgba(0, 0, 0, 0.25);
+  color: #000;
+  background-color: #ffffff;
+  @media screen and (max-width: 400px) {
+    font-size : 0.7em;
+    width: 35vw;
+    height : 20px;
+    
+  }
 `;
 
 const SubmitButton = styled.button`
-  background-color: #23CAFF;
-  font-size : 1.5vw;
-  color: white;
   border: none;
-  padding: 1vw;
   cursor: pointer;
-  border-radius: 5px;
-  box-shadow: -0.6vw 0.5vw 0.3vw rgba(0, 0, 0, 0.2);
+  font-weight : 700;
+  width: 177px;
+  height : 40px;
+  border :none;
+  box-shadow: -2px 8px 6.1px 0px rgba(0, 0, 0, 0.25);
+  color : #ffffff;
+  background-color:#8BE3FF;
+  text-align:center;
 
-  /* isFormValid가 false일 때 버튼 비활성화 스타일 추가 */
+  @media screen and (max-width: 400px) {
+    font-size : 0.7em;
+    width: 35vw;
+    height : 20px;
+  }
+
+  /* isFormValid가 언제 false로 설정할지 필요 */
   &:disabled {
-    background-color: #B9EEFF;
+    background-color: #b9eeff;
     cursor: not-allowed;
   }
 `;
+const FooterContainer = styled.div`
+  position: relative;
+  top: 10vh;
+  width: 100%;
+`;
+
