@@ -105,7 +105,7 @@ const SignupInfo = () => {
       <Separator />
 
       <AppContainer>
-        <InfoMessage>먼저 프로필 사진을 등록해주세요 </InfoMessage>
+        <InfoMessage>먼저 프로필 사진을 등록해주세요 &nbsp; <p>*</p> </InfoMessage>
         <LogoContainer>
           <ProfileImage
             onFileChange={handleFileChange}
@@ -113,7 +113,7 @@ const SignupInfo = () => {
           />
         </LogoContainer>
 
-        <InfoMessage>아이디와 비밀번호를 입력해주세요</InfoMessage>
+        <InfoMessage>아이디와 비밀번호를 입력해주세요&nbsp;<p>*</p></InfoMessage>
         <LoginForm onSubmit={handleSubmit}>
           <Input
             type="text"
@@ -139,7 +139,7 @@ const SignupInfo = () => {
             autoComplete="new-password"
           />
           {wrongPW ? <p>비밀번호가 틀립니다.</p> : ""}
-          <InfoMessage>기본 정보를 작성해주세요.</InfoMessage>
+          <InfoMessage>기본 정보를 작성해주세요.&nbsp;<p>*</p></InfoMessage>
           <InfoName>닉네임</InfoName>
           <Input
             type="text"
@@ -281,7 +281,7 @@ const SignupInfo = () => {
           <ButtonContainer>
             <CancelButton onClick={handleCancleButton}>취소</CancelButton>
             <SubmitButton type="submit" onClick={handleSubmitButton}>
-              이어서 가입하기
+              회원가입 완료하기
             </SubmitButton>
           </ButtonContainer>
         </LoginForm>
@@ -301,6 +301,9 @@ const AppContainer = styled.div`
   justify-content: center;
   width: 40%; /* 원하는 크기로 조정 (가로의 반 정도로 설정) */
   margin: 0 auto; /* 수평 가운데 정렬을 위해 margin을 auto로 설정 */
+  @media screen and (max-width: 710px) {
+    width: 65vw;
+  }
 `;
 
 //ProfileBasic 로고 표시를 위한 스타일
@@ -312,17 +315,30 @@ const LogoContainer = styled.div`
 //수평선 스타일
 const Separator = styled.div`
   height: 1px;
+  // width: 60vw;
   background-color: Gray;
   margin: 100px;
+  @media screen and (max-width: 500px) {
+    margin : 65px 15px 45px 15px;
+  }
 `;
 
 //어떤 정보를 입력해야하는지, 알려주는 텍스트
 const InfoMessage = styled.div`
-  text-align: center;
-  margin-top: 100px;
   margin-bottom: 20px;
+  align-items:flex-end ;
+  justify-content: center;
   font-size: 25px;
   width: 100%; /* 텍스트가 max-width를 넘어가더라도 크기를 조절할 수 있도록 */
+  display:flex;
+  p{
+    color: #23CAFF;
+    margin-bottom: 12px;
+  }
+  @media screen and (max-width: 970px) {
+    // width: 65vw;
+    font-size:1rem;
+  }
 `;
 
 // 이메일과 패스워드를 입력할 칸들
@@ -336,6 +352,10 @@ const Input = styled.input`
   height: 30px;
   padding: 8px;
   margin-bottom: 20px;
+  @media screen and (max-width: 700px) {
+    height: 15px;
+    font-size:0.7rem;
+  }
 `;
 
 // 칸 마다 입력해야하는 정보 알려주는 작은 텍스트
@@ -346,23 +366,45 @@ const InfoName = styled.div`
 //취소, 이어서 가입 버튼
 const ButtonContainer = styled.div`
   display: flex;
-  justify-content: space-between; /* 버튼을 좌우로 나눕니다. */
+  justify-content: center;
+  gap : 20px;
 `;
 
 const CancelButton = styled.button`
-  background-color: white;
-  color: black;
+  font-weight : 700;
   border: none;
   cursor: pointer;
+  width: 177px;
+  height : 40px;
+  border :none;
+  box-shadow: -2px 8px 6.1px 0px rgba(0, 0, 0, 0.25);
+  color: #000;
+  background-color: #ffffff;
+  @media screen and (max-width: 400px) {
+    font-size : 0.7em;
+    width: 35vw;
+    height : 20px;
+    
+  }
 `;
 
 const SubmitButton = styled.button`
-  background-color: #23caff;
-  color: white;
   border: none;
-  padding: 10px;
   cursor: pointer;
-  border-radius: 5px;
+  font-weight : 700;
+  width: 177px;
+  height : 40px;
+  border :none;
+  box-shadow: -2px 8px 6.1px 0px rgba(0, 0, 0, 0.25);
+  color : #ffffff;
+  background-color:#8BE3FF;
+  text-align:center;
+
+  @media screen and (max-width: 400px) {
+    font-size : 0.7em;
+    width: 35vw;
+    height : 20px;
+  }
 
   /* isFormValid가 언제 false로 설정할지 필요 */
   &:disabled {

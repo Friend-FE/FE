@@ -41,19 +41,32 @@ const Label = styled.label`
     position: relative;
     padding: 10px;
     cursor: pointer;
-    width: 10vw; /* 이미지 크기 조절 */
-    height:10vw;
+    width: 13vw;
+    height:13vw;
+    
+    @media screen and (max-width: 500px) {
+        width: 25vw;
+        height : 25vw;
+      }
 `;
 
 const Image = styled.img`
-    width: 10vw; /* 이미지 크기 조절 */
-    height:10vw;
+    width: 13vw; /* 이미지 크기 조절 */
+    height:13vw;
+    @media screen and (max-width: 500px) {
+        width: 25vw;
+        height : 25vw;
+      }
 `;
 
 const DefaultImage = styled.img`
-    width: 10vw; /* 이미지 크기 조절 */
-    height:10vw;
+width: 13vw;
+height:13vw;
     margin-right: 5px; /* 이미지와 텍스트 간격 조절 */
+    @media screen and (max-width: 500px) {
+        width: 25vw;
+        height : 25vw;
+      }
 `;
 
 const StyledInput = styled.input`
