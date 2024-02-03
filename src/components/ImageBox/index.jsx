@@ -20,8 +20,8 @@ const Box = styled.div`
   width: 22vw;
   max-width: 265px;
   height: 22vh;
+  border:0.5px solid black ;
   border-radius: 30px;
-  background: #fae1e4;
   flex-shrink: 0.5;
   display: flex;
   justify-content: center;
@@ -30,33 +30,34 @@ const Box = styled.div`
     width: 80%;
     height: 80%;
   }
+
   p {
     position: relative;
     top: 50px;
     font-size :1.5vw;
     @media screen and (max-width: 700px) {
-      font-size :2.5vw;
+      font-size :1vw;
     }
   }
   @media screen and (max-width: 700px) {
     width: 40vw;
-    height: 80%;
+    height: 35vw;
   }
 `;
 const StyledP = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-size: 20px;
   font-style: normal;
   font-weight: 800;
 
   h5{
     line-height: 0%;
-    margin :3px;
-    font-size :1.4vw;
+    margin-top :10px;
+    font-size :1.2vw;
     @media screen and (max-width: 700px) {
       font-size :2.7vw;
+      margin: 20px;
     }
   }
 `;
