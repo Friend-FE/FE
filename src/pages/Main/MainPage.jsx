@@ -11,11 +11,23 @@ import Main4 from "../../images/main_4.png";
 import Main5 from "../../images/main_5.png";
 import Main6 from "../../images/main_6.png";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const MainPage = () => {
+  const [isLogined,setIsLogined] = useState(true); //로그인 여부
+  const [isActive,setIsActive] = useState(false); // 승인 완료된 회원인지?
   const navigate = useNavigate();
   const handleStartBtn = ()=>{
-    navigate("/login")
+    if(!isLogined)
+    {
+      navigate("/login");
+    }
+    else if(!isActive){
+      navigate("/JudgePage");
+    }
+    else{
+      navigate("/Apply");
+    }
 
   }
   return (
