@@ -1,54 +1,12 @@
-// 관리자 페이지 - Q&A 모아보기 - 자세히 보기
+// 사용자 페이지 - Q&A 모아보기 - 자세히 보기
 
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
-
-import ManagerQnABoard from '../../components/Board/ManagerQnABoard';
+import QnABoardComponent from '../../components/Board/QnABoard';
 import Title from '../../components/title/index';
 import styled from 'styled-components';
-import * as MAHD from '../../components/ManagerPage_Component/MatchingAHDetail'
 import Footer from '../../components/footer';
-
-const QnADetail = () => {
-    const { id } = useParams();
-    const { state } = useLocation();
-    const navigate = useNavigate();
-  
-    const review = state?.item;
-  
-    if (!review) {
-      navigate('/not-found');
-      return null;
-    }
-
-    const onAnswering = () => {
-      navigate('/ManagerPage/QnA/QnAResponse');
-    };
-  
-    return (
-      <>
-      <ReviewWrapper>
-        <Title title = "관리자 페이지"/>
-        <TitleHR/>
-        <HeadTitleH3>Q&A 자세히 보기</HeadTitleH3>
-        <Div>
-          <ManagerQnABoard info={[review]} />
-        </Div>
-        <ReviewBox>
-          {review.body}
-        </ReviewBox>
-        <ButtonWrapper>
-          <RecordButton type='button' onClick={onAnswering}>답변하기</RecordButton>
-        </ButtonWrapper>
-      </ReviewWrapper>  
-      <FooterContainer>
-        <Footer/>
-      </FooterContainer>
-    </>
-    );
-  };
-  
-  export default QnADetail;
+import axios from 'axios';
 
 const ReviewWrapper = styled.div`
   position: relative;
@@ -56,101 +14,155 @@ const ReviewWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* height: 100vh; */
-
-  @media (max-width: 768px) {
-    top: -2vw;
-  }
+  height: 100vh;
 `;
 
 const TitleHR = styled.hr`
   margin-top: 10vh;
   width: 80vw;
   margin-bottom: 10vh;
-  @media (max-width: 768px) {
-    position: relative;
-    top: -2vw;
-  }
 `;
 
-export const HeadTitleH3 = styled.h3`
-  color: #23CAFF;
-  font-size: 3vw;
-  font-weight: 900;
+// const HR = styled.hr`
+//   height: 2px;
+//   background: #000;
+//   margin-top: 10px;
+//   margin-bottom: 10px;
+// `;
 
-  position: relative;
-  top: -1vw;
-  margin: -0.6vw 0 0.6vw 0;
-  @media (max-width: 768px) {
-  position: relative;
-  top: -10vw;
-  }
-`;
-
-const Div = styled.div`
-  position: relative;
-  /* height: 100vh; */
-
-  @media (max-width: 768px) {
-    top: -18vw;
-  }
-`;
-
-const ReviewBox = styled.pre`
+const ReviewBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   width: 80vw;
-  /* height: 40vh; */
-  border-radius: 2.08vw;
-  border: 0.10vw solid #2ECAFD;
+  height: 40vh;
+  border-radius: 30px;
+  border: 1.5px solid #2ECAFD;
   background: #FFF;
-  padding: 1.38vw;
+  padding: 20px;
   text-align: center;
-
-  font-size: 1vw;
-
+  
   margin-top: 3vw;
-
-  @media (max-width: 768px) {
-    position: relative;
-    top: -8vw;
-  }
 `;
 
-const ButtonWrapper = styled.div`
+const ResponseBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80vw;
+  height: 40vh;
+  border-radius: 30px;
+  border: 1.5px solid #2ECAFD;
+  background: #FFF;
+  padding: 20px;
+  text-align: center;
+  
+  margin-top: 3vw;
+`;
+
+const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 3vw;
-
-  @media (max-width: 768px) {
-    position: relative;
-
-    margin-top: 0vw;
-    /* top: 10vw; */
-  }
 `;
 
-const RecordButton = styled.button`
+const ModifyButton = styled.button`
   width: 13vw;
-  height: 3vw;
+  height: 2.5vw;
+  background: #fff;
+  border: none;
+  color: #000;
+  text-align: center;
+  font-size: 1vw;
+  font-weight: 700;
+  margin-right: 1vw;
+  cursor: pointer;
+  box-shadow: -2px 8px 6.1px 0px rgba(0, 0, 0, 0.25);
+`;
+
+const DeleteButton = styled.button`
+  width: 13vw;
+  height: 2.5vw;
   background: #8be3ff;
   border: none;
   color: #fff;
-  /* text-align: center; */
+  text-align: center;
   font-size: 1vw;
-  font-weight: bold;
-
-  /* margin-top: 2vw; */
-  box-shadow: -0.13vw 0.55vw 0.41vw 0 rgba(0, 0, 0, 0.25);
-
+  font-weight: 700;
+  margin-left: 1vw;
+  cursor: pointer;
+  box-shadow: -2px 8px 6.1px 0px rgba(0, 0, 0, 0.25);
 `;
 
-export const FooterContainer = styled.div`
-  position: relative;
-  width: 100%;
 
-  @media (max-width: 768px) {
-    bottom: -10vw;
-  }
-`;
+const QnADetail = () => {
+  const { id } = useParams();
+  const { state } = useLocation();
+  const navigate = useNavigate();
+  const [qnaData, setQnaData] = useState(state?.item);
+  
+
+  useEffect(() => {
+    const fetchQnADetail = async () => {
+      try {
+        const apiUrl = `http://13.209.145.28:8080/api/v1/qa/${id}`;
+        const response = await axios.get(apiUrl);
+
+        if (response.data.code === 200 && response.data.message === 'SUCCESS') {
+          setQnaData(response.data.data); // API에서 받아온 상세 QnA 데이터를 상태에 저장
+          console.log('상세 QnA 조회 성공',response);
+        } else {
+          console.error('상세 QnA 조회 실패:', response.data.message);
+          // 실패 시에 대한 처리
+        }
+      } catch (error) {
+        console.error('상세 QnA 조회 중 오류 발생:', error);
+        // 에러 처리
+      }
+    };
+
+    fetchQnADetail();
+  }, [id]);
+
+  const handleModify = () => {
+    navigate(`/QnA/write`, { state: { postId: id } });
+  };
+
+  const handleDelete = async () => {
+    try {
+      const userConfirmed = window.confirm('정말 삭제하시겠습니까?');
+      if (userConfirmed) {
+        const apiUrl = `http://13.209.145.28:8080/api/v1/qa/${id}`;
+        await axios.delete(apiUrl);
+        console.log(`${id} 번 리뷰 삭제 완료`);
+        navigate(-1);
+      } else {
+      }
+    } catch (error) {
+      console.error('리뷰 삭제 실패', error);
+    }
+  };
+
+  return (
+    <>
+      <ReviewWrapper>
+        <Title title="QnA 자세히보기" />
+        <TitleHR />
+        <QnABoardComponent info={qnaData ? [qnaData] : []} />
+        <ReviewBox>
+        {qnaData?.body}
+        </ReviewBox>
+        <ResponseBox>
+    
+        </ResponseBox>
+        <ButtonContainer>
+          <ModifyButton onClick={handleModify}>수정</ModifyButton>
+          <DeleteButton onClick={handleDelete}>삭제</DeleteButton>
+        </ButtonContainer>
+      </ReviewWrapper>
+      <Footer />
+    </>
+  );
+};
+
+export default QnADetail;
