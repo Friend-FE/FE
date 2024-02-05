@@ -1,43 +1,18 @@
-// Q&A 모아보기 (관리자 페이지 거임!!)
+// Q&A 모아보기 (관리자 페이지)
 
-import ManagerQnABoard from '../../components/Board/ManagerQnABoard';
-import React from 'react';
-import Title from '../../components/title';
+import React, { useState, useEffect } from 'react';
+import ManagerQnABoard from '../Board/ManagerQnABoard';
+import Title from '../title';
 import styled from 'styled-components';
-import Footer from '../../components/footer';
-
-export default function QnA() {
-
-  const question = [
-    { id: 1, title: '제목 1', author: '작성자 1', time: '2024-01-18' },
-    { id: 2, title: '제목 2', author: '작성자 2', time: '2024-01-18' },
-    { id: 3, title: '제목 3', author: '작성자 3', time: '2024-01-18' },
-    { id: 4, title: '제목 4', author: '작성자 4', time: '2024-01-18' }
-  ];
-
-  return (
-    <>
-    <Title title = "관리자 페이지"/>
-    <TitleHR/>
-    <ReviewWrapper>
-      <ManagerQnABoard info={question} />
-    </ReviewWrapper>
-    <FooterContainer>
-      <Footer/>
-    </FooterContainer>
-    </>
-  )
-}
+import Footer from '../footer';
 
 const ReviewWrapper = styled.div`
-  /* position: relative; */
-  /* height: 10vw; */
-
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`
+`;
+
 const TitleHR = styled.hr`
   margin-top: 5vw;
   width: 80vw;
@@ -55,11 +30,59 @@ const TitleHR = styled.hr`
 `;
 
 const FooterContainer = styled.div`
-    position: relative;
-    bottom: -2vw;
-    width: 100%;
+  position: relative;
+  bottom: -2vw;
+  width: 100%;
 
-    @media (max-width: 768px) {
-    top: 27vw;
+  @media (max-width: 768px) {
+    top: 25vw;
   }
 `;
+
+const QnA = () => {
+  const [userQuestions, setUserQuestions] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const fetchUserQuestions = async () => {
+    try {
+      const response = await fetch('http://13.209.145.28:8080/api/v1/qas', {
+        headers: {
+          'Accept': 'application/json',
+        },
+      });
+      const data = await response.json();
+      
+      setUserQuestions(data.data);
+      console.log('모든 QnA 조회 완료:', data.data);
+    } catch (error) {
+      setError(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchUserQuestions();
+  }, []);
+
+  if (loading) {
+    return <div>Loading QnA data...</div>;
+  }
+
+  return (
+    <>
+      <Title title="관리자 페이지" />
+      <TitleHR />
+      <ReviewWrapper>
+        <ManagerQnABoard info={userQuestions} />
+    
+      </ReviewWrapper>
+      <FooterContainer>
+        <Footer />
+      </FooterContainer>
+    </>
+  );
+};
+
+export default QnA;
