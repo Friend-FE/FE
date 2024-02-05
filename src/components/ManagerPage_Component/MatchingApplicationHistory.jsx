@@ -153,6 +153,8 @@ export const NameH5 = styled.h5`
   font-size: 2vw;
   font-weight: bold;
 
+  margin: 3vw 0 3vw 0;
+
   /* @media screen and (max-width: 1070px) {
     font-size: 4vw;
   } */

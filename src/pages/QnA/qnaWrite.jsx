@@ -59,6 +59,8 @@ const TitleHR = styled.hr`
   border: 0;
   border-top: 0.06vw solid #B8B8B8;
   width: 80vw; 
+  margin-left: 10vw;
+
 
   @media (max-width: 768px) {
     margin-top: 10vw;
@@ -111,7 +113,7 @@ const TextBox = styled.div`
 `;
 
 const TitleInPut = styled.div`
-  margin-top: 4vw;
+  /* margin-top: 2vw; */
   font-size: 1vw;
   font-weight: 400;
 
@@ -252,6 +254,6 @@ const FooterContainer = styled.div`
   width: 100%;
 
   @media (max-width: 768px) {
-    top: 5vw;
+    top: 10vw;
   }
 `;

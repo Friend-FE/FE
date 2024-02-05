@@ -50,6 +50,7 @@ const TitleHR = styled.hr`
   margin-top: 5vw;
   width: 80vw;
   margin-bottom: 5vw;
+  margin-left: 10vw;
 
   @media (max-width: 768px) {
     position: relative;

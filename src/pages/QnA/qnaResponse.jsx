@@ -52,6 +52,7 @@ export default function QnAResponse() {
 
 const TitleHR = styled.hr`
   margin-top: 8vw;
+  margin-left: 10vw;
   border: 0;
   border-top: 0.06vw solid #B8B8B8;
   width: 80vw; 

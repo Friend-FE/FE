@@ -46,8 +46,8 @@ const Notice = () => {
   return (
     <>
       <Title title = "공지사항"/>
-      <TitleHR/>
       <ReviewWrapper>
+        <TitleHR/>
         <Board info={notice} />
         <RecordButton type='button' onClick={handleRecord}>작성하기</RecordButton>
       </ReviewWrapper>
