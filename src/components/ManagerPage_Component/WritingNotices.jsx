@@ -134,9 +134,10 @@ export default function WritingNotices() {
 
 const TitleHR = styled.hr`
   margin-top: 8vw;
+  margin-left: 10vw;
   border: 0;
   border-top: 0.06vw solid #B8B8B8;
-  width: 80vw; 
+  width: 80vw;
 
   @media (max-width: 768px) {
     margin-top: 10vw;
@@ -255,6 +256,6 @@ const FooterContainer = styled.div`
   width: 100%;
 
   @media (max-width: 768px) {
-    top: 5vw;
+    top: 8vw;
   }
 `;

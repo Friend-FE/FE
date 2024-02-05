@@ -106,8 +106,9 @@ const ReviewWrite = () => {
   return (
     <>
       <Title title = "후기 작성하기"/>
-      <TitleHR />
       <TextBox>
+        
+      <TitleHR />
         <form onSubmit={handleSubmit}>
         <TitleInPut>
           <TextInput type="text" placeholder='제목을 입력해주세요.' value={title} onChange={e => setTitle(e.target.value)} />

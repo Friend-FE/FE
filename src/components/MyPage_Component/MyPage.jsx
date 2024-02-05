@@ -34,8 +34,10 @@ export default function MyPage() {
 export const TotalHr = styled.hr`
   position: relative;
   top: 10vw;
+  margin-left: 10vw;
 
-  width : 90%;
+
+  width : 80%;
 
   color: #B8B8B8;
 `;
@@ -46,7 +48,7 @@ export const TotalDiv = styled.div`
   align-items: center;
 
   position: relative;
-  top: 15vw;
+  top: 13vw;
 `;
 
 export const ProfileBasicImg = styled.img`
@@ -57,11 +59,16 @@ export const ProfileBasicImg = styled.img`
 export const TitleH3 = styled.h3`
   font-size: 2vw;
   font-weight: 500;
+
+  margin-top: 2vw;
 `;
 
 export const MoveToDiv = styled.div`
   width: 41vw;
   height: 48vw;
+
+  position: relative;
+  top: 2vw;
 
   background-color: #DAF6FF;
   border-radius: 1.3vw;

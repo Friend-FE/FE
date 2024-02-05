@@ -34,8 +34,8 @@ export default function ReportReceiptHistory() {
   return (
     <>
       <Title title = "관리자 페이지"/>
-      <TitleHR/>
       <ReviewWrapper>
+        <TitleHR/>
         <HeadTitleH3>신고 접수 내역 모아보기</HeadTitleH3>
         <ContentDiv>
           <ManagerReportBoard info={history} />

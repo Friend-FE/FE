@@ -16,7 +16,8 @@ export default function MemberPersonBlock({ info, gender, year, month, day }) {
   const navigate = useNavigate();
 
   const handlePersonDivClick = (item) => {
-    navigate(`/ManagerPage/MatchingApplicationHistory/${item.id}`, { state: { item } });
+    // 새로운 페이지로 연결해야 함.
+    // navigate(`/ManagerPage/MatchingApplicationHistory/${item.id}`, { state: { item } });
   };
 
   const formatDate = (dateString) => {
