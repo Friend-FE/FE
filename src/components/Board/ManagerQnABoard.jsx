@@ -1,4 +1,4 @@
-// Q&A 모아보기 (관리자 페이지 거임!!)에 쓰이는 Board입니다.
+// Q&A 모아보기 (관리자 페이지)에 쓰이는 Board입니다.
 
 import React from 'react';
 import styled from 'styled-components';

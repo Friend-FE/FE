@@ -16,9 +16,9 @@ import Report from './pages/Report/report';
 
 import ManagerPage from './components/ManagerPage_Component/ManagerPage';
 
-import QnA from './components/ManagerPage_Component/QnA';
-import QnADetail from './pages/QnA/qnaDetail'
-import QnAResponse from './pages/QnA/qnaResponse'
+import QnAResponse from './components/ManagerPage_Component/qnaResponse';
+import ManagerQnA from './components/ManagerPage_Component/QnA';
+import ManagerQnADetail from './components/ManagerPage_Component/qnaDetail';
 
 import WritingNotices from './components/ManagerPage_Component/WritingNotices';
 
@@ -54,7 +54,8 @@ import Notice from './pages/Notice/notice';
 import NoticeDetail from './pages/Notice/NoticeDetail';
 
 import Question from './pages/QnA/qna';
-import QuestionWrite from './pages/QnA/qnaWrite'
+import QnADetail from './pages/QnA/qnaDetail';
+import QuestionWrite from './pages/QnA/qnaWrite';
 
 import Apply from './pages/MatchApply/Apply';
 
@@ -113,9 +114,9 @@ const App = ()=>{
 				*/}
 				<Route path="/ManagerPage" element={<ManagerPage/>}/>
 
-				<Route path="/ManagerPage/QnA" element={<QnA/>}/>
-				<Route path="/QnA/:id" element={<QnADetail/>} />
-				<Route path="/ManagerPage/QnA/QnAResponse" element={<QnAResponse/>}/>
+				<Route path="/ManagerPage/QnA" element={<ManagerQnA/>}/>
+				<Route path="/ManagerPage/QnA/:id" element={<ManagerQnADetail/>}/>
+				<Route path="/ManagerPage/QnA/QnAResponse/:id" element={<QnAResponse/>}/>
 
 				<Route path="/ManagerPage/Notices/WritingNotices" element={<WritingNotices/>}/>
 				
@@ -166,6 +167,7 @@ const App = ()=>{
 					공지사항 - 자세히
 
 					Q&A (이용자가 헤더에서 접근하는 경우!!)
+					Q&A - 자세히 (이용자가 접근하는 경우)
 					Q&A - 글 작성 (이용자가 질문 남기는 경우)
 
 					매칭신청 - 매칭신청 완료 팝업
@@ -178,6 +180,7 @@ const App = ()=>{
 				<Route path="/notice/:id" element={<NoticeDetail/>} />
 
 				<Route path="/QnA" element={<Question/>} />
+				<Route path="/QnA/:id" element={<QnADetail/>} />
 				<Route path="/QnA/write" element={<QuestionWrite/>} />
 
 				<Route path="/Apply" element={<Apply/>}/>
