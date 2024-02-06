@@ -9,7 +9,7 @@ const QnABoard = ({ info }) => {
   const navigate = useNavigate();
 
   const handleRowClick = (item) => {
-    navigate(`/QnA/${item.id}`, { state: { item } });
+    navigate(`/ManagerPage/QnA/${item.id}`, { state: { item } });
   };
 
   return (
