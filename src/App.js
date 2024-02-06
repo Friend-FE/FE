@@ -154,8 +154,8 @@ const App = ()=>{
 				<Route path="/CertifyEmail" element={<CertifyEmail/>}/> 
 				<Route path="/CertifyEnd" element={<CertifyEnd/>}/> 
 
-				<Route path="/SignupTerms" element={<SignupTerms/>}/> 
-				<Route path="/SignupInfo" element={<SignupInfo/>}/> 
+				<Route path="/SignupTerms" element={<SignupTerms/>}/>
+				<Route path="/SignupInfo" element={<SignupInfo/>}/>
 
 				<Route path="/JudgePage" element={<JudgePage/>}/> 
 
@@ -166,7 +166,7 @@ const App = ()=>{
 					공지사항
 					공지사항 - 자세히
 
-					Q&A (이용자가 헤더에서 접근하는 경우!!)
+					Q&A (이용자가 헤더에서 접근하는 경우)
 					Q&A - 자세히 (이용자가 접근하는 경우)
 					Q&A - 글 작성 (이용자가 질문 남기는 경우)
 

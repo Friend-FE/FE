@@ -7,6 +7,7 @@ import Title from '../../components/title/index';
 import styled from 'styled-components';
 import Footer from '../../components/footer';
 import axios from 'axios';
+// import { FooterContainer } from '../ApplicationForMembership/ApplicationForMembershipDetail';
 
 const ReviewWrapper = styled.div`
   position: relative;
@@ -14,13 +15,23 @@ const ReviewWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  /* height: 100vh; */
 `;
 
 const TitleHR = styled.hr`
-  margin-top: 10vh;
+  margin-top: 5vw;
   width: 80vw;
-  margin-bottom: 10vh;
+  margin-bottom: 5vw;
+
+  @media (max-width: 768px) {
+    position: relative;
+    top: 5vw;
+  }
+`;
+
+const DIV = styled.div`
+  position: relative;
+  top: -2vw;
 `;
 
 // const HR = styled.hr`
@@ -35,14 +46,20 @@ const ReviewBox = styled.div`
   justify-content: center;
   align-items: center;
   width: 80vw;
-  height: 40vh;
-  border-radius: 30px;
-  border: 1.5px solid #2ECAFD;
+  border-radius: 2.08vw;
+  border: 0.10vw solid #2ECAFD;
   background: #FFF;
-  padding: 20px;
+  padding: 1.38vw;
   text-align: center;
+
+  font-size: 1vw;
   
   margin-top: 3vw;
+
+  @media (max-width: 768px) {
+    position: relative;
+    top: 5vw;
+  }
 `;
 
 const ResponseBox = styled.div`
@@ -50,11 +67,11 @@ const ResponseBox = styled.div`
   justify-content: center;
   align-items: center;
   width: 80vw;
-  height: 40vh;
-  border-radius: 30px;
-  border: 1.5px solid #2ECAFD;
+  /* height: 40vh; */
+  border-radius: 2.08vw;
+  border: 0.10vw solid #2ECAFD;
   background: #FFF;
-  padding: 20px;
+  padding: 1.38vw;
   text-align: center;
   
   margin-top: 3vw;
@@ -64,6 +81,11 @@ const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 3vw;
+
+  @media (max-width: 768px) {
+    position: relative;
+    top: 10vw;
+  }
 `;
 
 const ModifyButton = styled.button`
@@ -74,10 +96,10 @@ const ModifyButton = styled.button`
   color: #000;
   text-align: center;
   font-size: 1vw;
-  font-weight: 700;
+  font-weight: bold;
   margin-right: 1vw;
   cursor: pointer;
-  box-shadow: -2px 8px 6.1px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: -0.13vw 0.55vw 0.41vw 0 rgba(0, 0, 0, 0.25);
 `;
 
 const DeleteButton = styled.button`
@@ -91,7 +113,16 @@ const DeleteButton = styled.button`
   font-weight: 700;
   margin-left: 1vw;
   cursor: pointer;
-  box-shadow: -2px 8px 6.1px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: -0.13vw 0.55vw 0.41vw 0 rgba(0, 0, 0, 0.25);
+`;
+
+const FooterContainer = styled.div`
+  position: relative;
+  top: 5vw;
+
+  @media (max-width: 768px) {
+    top: 34vw;
+  }
 `;
 
 
@@ -148,7 +179,9 @@ const QnADetail = () => {
       <ReviewWrapper>
         <Title title="QnA 자세히보기" />
         <TitleHR />
-        <QnABoardComponent info={qnaData ? [qnaData] : []} />
+        <DIV>
+          <QnABoardComponent info={qnaData ? [qnaData] : []} />
+        </DIV>
         <ReviewBox>
         {qnaData?.body}
         </ReviewBox>
@@ -157,7 +190,9 @@ const QnADetail = () => {
           <DeleteButton onClick={handleDelete}>삭제</DeleteButton>
         </ButtonContainer>
       </ReviewWrapper>
-      <Footer />
+      <FooterContainer>
+        <Footer />
+      </FooterContainer>
     </>
   );
 };

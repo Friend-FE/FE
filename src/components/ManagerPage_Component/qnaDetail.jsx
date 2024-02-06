@@ -14,13 +14,33 @@ const ReviewWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  /* height: 100vh; */
 `;
 
 const TitleHR = styled.hr`
-  margin-top: 10vh;
+  margin-top: 5vw;
   width: 80vw;
-  margin-bottom: 10vh;
+  margin-bottom: 5vw;
+
+  @media (max-width: 768px) {
+    position: relative;
+    top: 5vw;
+  }
+`;
+
+export const HeadTitleH3 = styled.h3`
+    color: #23CAFF;
+    font-size: 3vw;
+    font-weight: 900;
+
+    position: relative;
+    top: -1vw;
+    margin: -0.6vw;
+
+    @media (max-width: 768px) {
+    position: relative;
+    top: 5vw;
+  }
 `;
 
 // const HR = styled.hr`
@@ -30,20 +50,26 @@ const TitleHR = styled.hr`
 //   margin-bottom: 10px;
 // `;
 
+
 const ReviewBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   width: 80vw;
-  height: 80vh;
-  border-radius: 30px;
-  border: 1.5px solid #2ECAFD;
+  border-radius: 2.08vw;
+  border: 0.10vw solid #2ECAFD;
   background: #FFF;
-  padding: 20px;
+  padding: 1.38vw;
   text-align: center;
+
+  font-size: 1vw;
   
   margin-top: 3vw;
-  
+
+  @media (max-width: 768px) {
+    position: relative;
+    top: 10vw;
+  }
 `;
 
 const ResponseBox = styled.div`
@@ -51,41 +77,54 @@ const ResponseBox = styled.div`
   justify-content: center;
   align-items: center;
   width: 80vw;
-  height: 40vh;
-  border-radius: 30px;
-  border: 1.5px solid #2ECAFD;
+  /* height: 40vh; */
+  border-radius: 2.08vw;
+  border: 0.10vw solid #2ECAFD;
   background: #FFF;
-  padding: 20px;
+  padding: 1.38vw;
   text-align: center;
   
   margin-top: 3vw;
+
+  @media (max-width: 768px) {
+    position: relative;
+    top: 10vw;
+  }
 `;
 
 const AnswerButton = styled(Link)`
-width: 10vw;
-height: 8vw;
-background: #8be3ff;
-box-shadow: -2px 8px 6.1px 0px rgba(0, 0, 0, 0.25);
-border: none;
-color: #fff;
-text-align: center;
-font-size: 1vw;
-font-weight: bold;
-text-decoration: none;
+  width: 10vw;
+  height: 3vw;
+  background: #8be3ff;
+  box-shadow: -0.13vw 0.55vw 0.41vw 0 rgba(0, 0, 0, 0.25);
+  border: none;
+  color: #fff;
+  text-align: center;
+  font-size: 1vw;
+  font-weight: bold;
+  text-decoration: none;
 
-display: flex;
-align-items: center;
-justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-margin-top: 2vw;
-margin-left: 65vw;
+  margin-top: 2vw;
+  margin-left: 65vw;
 
-@media (max-width: 768px) {
-  position: relative;
-  top: 10vw;
-}
+  @media (max-width: 768px) {
+    position: relative;
+    top: 10vw;
+  }
 `;
 
+const FooterContainer = styled.div`
+  position: relative;
+  top: 5vw;
+
+  @media (max-width: 768px) {
+    top: 32vw;
+  }
+`;
 
 const QnADetail = () => {
   const { id } = useParams(); // id 변수를 qaId로 변경
@@ -131,11 +170,10 @@ const QnADetail = () => {
       <ReviewWrapper>
         <Title title = "관리자 페이지"/>
         <TitleHR/>
-        <MAHD.HeadTitleH3>Q&A 자세히 보기</MAHD.HeadTitleH3>
+        <HeadTitleH3>Q&A 자세히 보기</HeadTitleH3>
         <Board info={[review]} />
         <ReviewBox>
           {review.body}
-
         </ReviewBox>
         <ResponseBox>
         {review.answer && (
@@ -144,10 +182,11 @@ const QnADetail = () => {
           </>
           )}
         </ResponseBox>
-      
         <AnswerButton to={`/ManagerPage/QnA/QnAResponse/${review.id}`} state={{ review }}>답변하기</AnswerButton>
       </ReviewWrapper>  
-      <Footer/>
+      <FooterContainer>
+        <Footer />
+      </FooterContainer>
     </>
     );
   };
