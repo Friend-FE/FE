@@ -20,6 +20,8 @@ import QnAResponse from './components/ManagerPage_Component/qnaResponse';
 import ManagerQnA from './components/ManagerPage_Component/QnA';
 import ManagerQnADetail from './components/ManagerPage_Component/qnaDetail';
 
+import ManagerNotice from './components/ManagerPage_Component/ManagerNotice';
+import ManagerNoticeDetail from './pages/Notice/ManagerNoticeDetail';
 import WritingNotices from './components/ManagerPage_Component/WritingNotices';
 
 import ReportReceiptHistory from './components/ManagerPage_Component/ReportReceiptHistory';
@@ -117,8 +119,10 @@ const App = ()=>{
 				<Route path="/ManagerPage/QnA" element={<ManagerQnA/>}/>
 				<Route path="/ManagerPage/QnA/:id" element={<ManagerQnADetail/>}/>
 				<Route path="/ManagerPage/QnA/QnAResponse/:id" element={<QnAResponse/>}/>
-
-				<Route path="/ManagerPage/Notices/WritingNotices" element={<WritingNotices/>}/>
+				
+				<Route path="/ManagerPage/Notices" element={<ManagerNotice/>}/>
+				<Route path="/ManagerPage/Notice/:id" element={<ManagerNoticeDetail/>}/>
+				<Route path="/ManagerPage/WritingNotices" element={<WritingNotices/>}/>
 				
 				<Route path="/ManagerPage/ReportReceiptHistory" element={<ReportReceiptHistory/>}/>
 				<Route path="/ManagerPage/ReportReceiptHistory/:id" element={<ReportReceiptHistoryDetail/>}/>
