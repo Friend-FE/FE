@@ -174,16 +174,16 @@ const QnABoard = ({ info }) => {
       createdAtDate.setHours(createdAtDate.getHours() + 9);
       
       const formattedDate = createdAtDate.toLocaleString('ko-KR', options);
-        return (
-          <div key={item.id}>
-            <Row onClick={() => handleRowClick(item)}>
-              <Title>{item.title}</Title>
-              <Author>{item.author}</Author>
-              <Time>{formattedDate}</Time>
-            </Row>
-            {index !== infoLength - 1 ? <ThinHR /> : <HR />}
-          </div>
-        );
+      return (
+        <div key={item.id}>
+          <Row onClick={() => handleRowClick(item)}>
+            <Title>{item.title}</Title>
+            <Author>{item.author}</Author>
+            <Time>{formattedDate}</Time>
+          </Row>
+          {index !== infoLength - 1 ? <ThinHR /> : <HR />}
+        </div>
+      );
       })}
       {//  {showPasswordPrompt && (
         // <PasswordPrompt

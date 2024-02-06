@@ -11,7 +11,7 @@ const ManagerRBD = ({ info }) => {
   const handleRowClick = (item, index) => {
     console.log(item);
     console.log(index);
-    navigate(`/ManagerPage/ReportReceiptHistory/${item.id}`, { state: { item, index } });
+    // navigate(`/ManagerPage/ReportReceiptHistory/${item.id}`, { state: { item, index } });
   };
 
   // 신고자 이름 두 번째 글자부터를 가려서 보여주는 함수
