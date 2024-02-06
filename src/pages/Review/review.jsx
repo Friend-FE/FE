@@ -11,6 +11,7 @@ import Footer from '../../components/footer';
 const Review = () => {
   const [review, setReview] = useState([]);
   const navigate = useNavigate();
+
   useEffect(() => {
     const fetchNoticeData = async () => {
       try {
@@ -29,9 +30,10 @@ const Review = () => {
             author: item.author,
             body : item.body,
             time: formattedDate,
+            views : item.views
            };
         });
-
+        console.log(updatedReview);
         setReview(updatedReview);
       } catch (error) {
         console.error('Error:', error);

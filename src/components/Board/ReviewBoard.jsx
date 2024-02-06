@@ -2,14 +2,26 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,useLocation } from 'react-router-dom';
 
-const Board = ({ info }) => {
+const ReviewBoard = ({ info }) => {
   const infoLength = info.length;
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleRowClick = (item) => {
-    navigate(`/reviews/${item.id}`, { state: { item } });
+    if (location.pathname === '/reviews') {
+      navigate(`/reviews/${item.id}`, { state: { item } });
+      console.log('실행');
+    }
+  };
+
+  const formatAuthor = (author) => {
+    if (author.length > 1) {
+      return author[0] + '**';
+    } else {
+      return author;
+    }
   };
 
   // 날짜 형식 변환 함수
@@ -35,9 +47,9 @@ const Board = ({ info }) => {
         <div key={item.id}>
         <Row onClick={() => handleRowClick(item)}>
           <Title>{item.title}</Title>
-          <Author>{item.author.replace(/.(?<=.{3})/g, '*')}</Author>
+          <Author>{formatAuthor(item.author)}</Author>
           <Time>{formatDate(item.time)}</Time>
-          <ViewCount>{item.view}</ViewCount>
+          <ViewCount>{item.views}</ViewCount>
         </Row>
         {index !== infoLength - 1 ? <ThinHR /> : <HR />}
       </div>
@@ -46,7 +58,7 @@ const Board = ({ info }) => {
   );
 };
 
-export default Board;
+export default ReviewBoard;
 
 const Row = styled.div`
   display: flex;
