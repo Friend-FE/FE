@@ -1,13 +1,15 @@
 // 공지사항
 
 import React, { useEffect, useState } from 'react';
-import Board from '../../components/Board/NoticeBoard';
+import {useNavigate} from 'react-router-dom';
+import ManagerBoard from '../Board/ManagerNoticeBoard';
 import Title from '../../components/title';
 import styled from 'styled-components';
 import Footer from '../../components/footer';
 
 const Notice = () => {
   const [notice, setNotice] = useState([]);
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchNoticeData = async () => {
       try {
@@ -36,12 +38,19 @@ const Notice = () => {
     fetchNoticeData();
   }, []); // 빈 배열을 넣어 한 번만 실행되도록 설정
 
+
+  const handleRecord = () => {
+    navigate("/ManagerPage/WritingNotices");
+  }
+
   return (
     <>
-      <Title title = "공지사항"/>
+      <Title title = "관리자 페이지"/>
       <ReviewWrapper>
         <TitleHR/>
-        <Board info={notice} />
+        <NoticeTitle>공지사항</NoticeTitle>
+        <ManagerBoard info={notice} />
+        <RecordButton type='button' onClick={handleRecord}>작성하기</RecordButton>
       </ReviewWrapper>
       <FooterContainer>
         <Footer/>
@@ -73,6 +82,39 @@ const TitleHR = styled.hr`
   }
 `;
 
+const NoticeTitle = styled.h3`
+    color : #23CAFF;
+    font-size: 40px;
+    font-weight: 900;
+    margin :0;
+    margin-top :2vh;
+    @media screen and (max-width: 1165px) {
+        font-size : 2.5vw;
+        gap : 5px;
+        margin-top :1.3vh;
+      }
+}
+`;
+
+const RecordButton = styled.button`
+  width: 13vw;
+  height: 2.5vw;
+  background: #8be3ff;
+  border: none;
+  color: #fff;
+  text-align: center;
+  font-size: 1vw;
+  font-weight: bold;
+
+  margin-top: 2vw;
+  box-shadow: -0.13vw 0.55vw 0.41vw 0 rgba(0, 0, 0, 0.25);
+
+  @media (max-width: 768px) {
+    position: relative;
+    top: 15vw;
+  }
+`;
+
 const FooterContainer = styled.div`
   position: relative;
   bottom: -2vw;
@@ -82,3 +124,4 @@ const FooterContainer = styled.div`
     top: 26vw;
   }
 `;
+

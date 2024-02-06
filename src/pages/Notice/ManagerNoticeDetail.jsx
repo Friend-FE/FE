@@ -42,8 +42,38 @@ const NoticeDetail = () => {
 
 
 
-  const handleBackBtn = () => {
-      navigate("/notice");
+  const handleDelete = async () => {
+    try {
+      const response = await fetch(`http://13.209.145.28:8080/api/v1/post/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          //body 필요 ?
+        }),
+      });
+  
+      if (response.ok) {
+        console.log('삭제 성공');
+        navigate(-1);
+      } else {
+        console.error('삭제 실패');
+      }
+    } catch (error) {
+      console.error('삭제 중 오류:', error);
+    }
+  };
+
+
+
+  const handleModify = () => {
+      const data = {
+        id : id,
+        title : notice.title,
+        body : notice.body
+      };
+      navigate("/ManagerPage/WritingNotices" , {state : {data}} );
   };
 
   return (
@@ -60,7 +90,8 @@ const NoticeDetail = () => {
         </NoticeBox>
       </NoticeWrapper>
       <ButtonWrapper>      
-        <BackButton type="button" onClick={handleBackBtn}>목록으로 돌아가기</BackButton> 
+        <CancelButton type="button" onClick={handleDelete}>삭제하기</CancelButton>
+        <SubmitButton type="button" onClick={handleModify}>수정하기</SubmitButton>
       </ButtonWrapper>
       <FooterContainer>
         <Footer/>
@@ -139,6 +170,10 @@ const NoticeBox = styled.div`
   }
 `;
 
+const NoticeText = styled.div`
+  white-space: pre-line; /* 줄바꿈 허용 */
+`;
+
 const ButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -152,7 +187,21 @@ const ButtonWrapper = styled.div`
   }
 `;
 
-const BackButton = styled.button`
+const CancelButton = styled.button`
+  width: 13vw;
+  height: 2.5vw;
+  background: #fff;
+  border: none;
+  color: #000;
+  text-align: center;
+  font-size: 1vw;
+  font-weight: bold;
+  margin-right: 1vw;
+  cursor: pointer;
+  box-shadow: -0.13vw 0.55vw 0.41vw 0 rgba(0, 0, 0, 0.25);
+`;
+
+const SubmitButton = styled.button`
   width: 13vw;
   height: 2.5vw;
   background: #8be3ff;
