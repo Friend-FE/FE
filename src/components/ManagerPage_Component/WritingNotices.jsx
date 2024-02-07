@@ -58,7 +58,7 @@ export default function WritingNotices() {
 
               if (response.ok) {
                 console.log('API 호출 성공');
-                navigate('/notice');
+                navigate('/ManagerPage/Notices');
               } else {
                 // API 호출이 실패한 경우에 대한 처리
                 console.error('API 호출 실패');
@@ -90,7 +90,7 @@ export default function WritingNotices() {
         
             if (response.ok) {
               console.log('수정 성공');
-              navigate('/notice');
+              navigate('/ManagerPage/Notices');
             } else {
               console.error('수정 실패');
             }
