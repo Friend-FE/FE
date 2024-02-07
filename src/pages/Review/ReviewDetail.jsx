@@ -12,8 +12,31 @@ const ReviewDetail = () => {
   const { state } = useLocation();
   const navigate = useNavigate();
   const [review, setReview] = useState(state?.item);  
-  //지금은 이미 revire 에 body가 있지만, api 호출로 body 를 받아오도록 설계 해야함 
+  
+  useEffect(() => {
+    const fetchNoticeDetail = async () => {
+      try {
+        const response = await fetch(`http://13.209.145.28:8080/api/v1/review/{id}?id=${id}`);
+        if (response.ok) {
+          const data = await response.json();
+          setReview((preReview) => ({ ...preReview, body: data.data.body }));
+        } else {
+          console.error('API 호출 실패');
+        }
+      } catch (error) {
+        console.error('API 호출 중 오류:', error);
+      }
+    };
+    // id가 존재할 때 호출
+    if (id) { 
+      fetchNoticeDetail();
+    }
+  }, [id]);
 
+  if (!review) {
+    navigate('/not-found');
+    return null;
+  }
 
   const handleDelete = async () => {
     try {
@@ -66,7 +89,7 @@ const ReviewDetail = () => {
       </ReviewWrapper>
         {/* 나중에 피그마로 수정해야할 부분  */}
       <ButtonWrapper>
-        <SubmitButton type="button" onClick={onClickBtn}>목록으로 돌아가기</SubmitButton>
+        <BackButton type="button" onClick={onClickBtn}>목록으로 돌아가기</BackButton>
       </ButtonWrapper>
       <FooterContainer>
         <Footer/>
@@ -158,7 +181,7 @@ const ButtonWrapper = styled.div`
     /* top: 10vw; */
   }
 `;
-const SubmitButton = styled.button`
+const BackButton = styled.button`
   width: 13vw;
   height: 2.5vw;
   background: #8be3ff;
