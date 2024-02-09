@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import Title from '../../components/title';
 import styled from 'styled-components';
 import { useLocation, useNavigate } from 'react-router-dom';
-import * as MAHD from '../../components/ManagerPage_Component/MatchingAHDetail'
+import * as MAHD from '../../components/ManagerPage_Component/MatchingAHDetailWoman'
 import Footer from '../../components/footer';
 import axios from 'axios';
 
@@ -25,9 +25,9 @@ const Report = () => {
     // 서버에 post 할 data
     const title = name;
     const body = content;
-    const author = '조하림';
-    const badMemberId = state?.id; // 추후에 연결 예정
-    const badMemberNickname = state?.Nickname; // 추후에 연결 예정
+    const author = '조하림'; // 추후에 수정
+    const badMemberId = state?.id;
+    const badMemberNickname = state?.opponentNickname;
 
     // post try
     try {

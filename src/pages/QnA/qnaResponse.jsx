@@ -6,7 +6,7 @@ import Title from '../../components/title/index';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../../components/footer';
-import * as MAHD from '../../components/ManagerPage_Component/MatchingAHDetail'
+import * as MAHD from '../../components/ManagerPage_Component/MatchingAHDetailWoman'
 
 export default function QnAResponse() {
 

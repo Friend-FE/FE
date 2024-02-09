@@ -5,7 +5,7 @@ import styled from 'styled-components'
 // import { useNavigate } from 'react-router-dom';
 
 // import * as MAH from '../ManagerPage_Component/MatchingApplicationHistory'
-import * as M from '../ManagerPage_Component/MatchingApplicationHistory';
+import * as M from '../ManagerPage_Component/MatchingApplicationHistoryWoman';
 
 export default function CoupleBlock({ info, year, month, day }) {
 

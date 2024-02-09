@@ -1,18 +1,19 @@
-// 관리자 페이지 - 회원 가입 신청 내역 보기
+// 매칭 신청 내역 - 남자
 
 import React, { useState, useEffect } from 'react'
+import styled from 'styled-components'
 
-import Footer from '../../components/footer/index'
-import Title from '../../components/title/index'
+import Footer from '../footer/index'
+import Title from '../title/index'
 
-import * as T from '../../components/MyPage_Component/MyPage'
-import * as MAHD from '../../components/ManagerPage_Component/MatchingAHDetailWoman'
-import * as MAH from '../../components/ManagerPage_Component/MatchingApplicationHistoryWoman'
- 
-import JoinPersonBlock from '../../components/PersonBlock/JoinPersonBlock'
+import * as T from '../MyPage_Component/MyPage'
+import * as MAHD from './MatchingAHDetailWoman'
 
+import * as MAHW from './MatchingApplicationHistoryWoman'
 
-export default function ApplicationForMembership() {
+import MatchingPersonBlock from '../PersonBlock/MatchingPersonBlock'
+
+export default function MatchingApplicationHistoryMan() {
 
   // 성별 버튼
   const [isWomanSelected, setWomanSelected] = useState(false);
@@ -20,7 +21,6 @@ export default function ApplicationForMembership() {
 
   // 컴포넌트가 마운트되었을 때
   // useEffect(() => {
-    
   // }, []);
 
   const onClickWoman = () => {
@@ -55,16 +55,18 @@ export default function ApplicationForMembership() {
       <Title title="관리자 페이지"/>
       <T.TotalHr></T.TotalHr>
       <T.TotalDiv>
-        <MAHD.HeadTitleH3>회원 가입 신청 내역 모아보기</MAHD.HeadTitleH3>
-        <MAH.FlexDiv>
-          <MAH.GenderBtn onClick={onClickWoman} isSelected={isWomanSelected}>여성</MAH.GenderBtn>
-          <MAH.GenderBtn onClick={onClickMan} isSelected={isManSelected}>남성</MAH.GenderBtn>
-        </MAH.FlexDiv>
-        <MAH.PeopleDiv>
-          <JoinPersonBlock info={person} gender={isWomanSelected ? 'f' : isManSelected ? 'm' : 'all' } />
-        </MAH.PeopleDiv>
-          <Footer/>
+        <MAHD.HeadTitleH3>매칭 신청 내역 모아보기</MAHD.HeadTitleH3>
+        <MAHW.FlexDiv>
+          <MAHW.GenderBtn>여성</MAHW.GenderBtn>
+          <MAHW.SelectGenderBtn>남성</MAHW.SelectGenderBtn>
+        </MAHW.FlexDiv>
+        <MAHW.PeopleDiv>
+            <MatchingPersonBlock info={person} gender={'m'} />
+        </MAHW.PeopleDiv>
       </T.TotalDiv>
+      <MAHW.FooterContainer>
+        <Footer></Footer>
+      </MAHW.FooterContainer>
     </>
   )
 }

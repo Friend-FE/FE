@@ -4,7 +4,7 @@ import React, { useState,useEffect } from 'react';
 import Title from '../title/index';
 import styled from 'styled-components';
 import { useNavigate, useLocation } from 'react-router-dom';
-import * as MAHD from '../ManagerPage_Component/MatchingAHDetail'
+import * as MAHD from '../ManagerPage_Component/MatchingAHDetailWoman'
 import Footer from '../footer/index';
 
 

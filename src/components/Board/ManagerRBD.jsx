@@ -5,8 +5,8 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
 const ManagerRBD = ({ info }) => {
-  const infoLength = info.length;
-  const navigate = useNavigate();
+  // const infoLength = info?.length;
+  // const navigate = useNavigate();
 
   const handleRowClick = (item, index) => {
     console.log(item);
@@ -17,7 +17,7 @@ const ManagerRBD = ({ info }) => {
   // 신고자 이름 두 번째 글자부터를 가려서 보여주는 함수
   // 현재 임의로 badMemberId(int형)을 써서 적용이 안 되는 것 같음.
   const formatBadMember = (BadMember) => {
-    if (BadMember.length > 1) {
+    if (BadMember !== null && BadMember.length > 1) {
       return BadMember[0] + '**';
     } else {
       return BadMember;
@@ -50,7 +50,7 @@ const ManagerRBD = ({ info }) => {
         <Author>작성자</Author>
         <Time>작성 시간</Time>
       </HeaderRow>
-      <ThinHR />
+      <HR/>
       {info && info.map((item, index) => (
         <div key={item.id}>
           <Row onClick={() => handleRowClick(item, index)}>
@@ -59,7 +59,7 @@ const ManagerRBD = ({ info }) => {
             <Author>{formatAuthor(item.author)}</Author>
             <Time>{formatDate(item.updatedAt)}</Time>
           </Row>
-          {index !== infoLength - 1 ? <ThinHR /> : <HR />}
+          <ThinHR/>
         </div>
       ))}
     </BoardWrapper>
@@ -75,7 +75,7 @@ justify-content: space-around;
 padding: 1vw;
 text-decoration: none;
 color: inherit;
-cursor: pointer;
+/* cursor: pointer; */
 
 font-size: 1vw;
 `;

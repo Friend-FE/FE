@@ -2,7 +2,7 @@
 // 해당 유저에게 지금까지 매칭된 유저 중에서만 볼 수 있음
 
 import React, { useState, useEffect, useInsertionEffect } from 'react'
-// import axios from 'axios';
+import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
 
 import * as T from './MyPage'
@@ -12,111 +12,12 @@ import Footer from '../footer/index'
 import Title from '../title/index'
 // import Report from '../../pages/Report/report';
 
-/* 서버 연동 시 코드. 일단은 주석 처리 */
-// export default function NonMannerUsers() {
-//     const navigate = useNavigate();
-
-//     // 서버에서 받아온 유저 목록을 저장할 state
-//     const [userList, setUserList] = useState([]);
-
-//     // 선택된 유저 목록을 저장할 state
-//     const [selectedUsers, setSelectedUsers] = useState([]);
-
-//     const getUserList = async() => {
-//         try{
-//             // 서버에서 유저 목록 가져오기
-//             const response = await axios.get(/* get 서버 주소 */);
-//             setUserList(response.data);
-//         } catch(error){
-//             console.error('유저 목록을 불러오는 중 오류 발생:', error);
-//         }
-//     };
-
-//     // component가 처음 마운트될 때 유저 목록을 가져옴
-//     useEffect(
-//         () => {
-//             getUserList();
-//         }
-//         , []);
-
-//     // 신고 버튼을 누를 시
-//     const submitForm = async() => {
-//         try {
-//             // 서버로 선택된 유저 정보 전송
-//             const response = await axios.post(/* post 서버 주소 , */ {selectedUsers});
-//             if (response.state === 200){
-//                 alert('신고가 접수되었습니다.');
-//                 navigate(-1);
-//             } else {
-//                 alert('신고 제출 중 오류가 발생했습니다.');
-//             }
-//         } catch (error) {
-//             console.error('신고 제출 중 오류 발생:', error);
-//         }
-//     }
-
-//     // 취소 버튼을 누를 시
-//     const cancel = () => {
-//         navigate(-1);
-//     };
-
-//     // 체크박스 변경 시 selectedUsers 리스트 변경
-//     const handleCheckboxChange = (userId) => {
-//         setSelectedUsers((prevSelectedUsers) => {
-//             if (prevSelectedUsers.includes(userId)){
-//                 // 기존의 selectedUsers 배열이 해당 아이디를 가지고 있다면
-//                 // == 이미 체크박스 취소 상태를 의미
-//                 return prevSelectedUsers.filter((id) => id !== userId);
-//                 // 해당 아이디를 제외한 배열을 새로 return
-//             } else {
-//                 // 기존의 selectedUsers 배열이 해당 아이디를 가지고 있지 않다면
-//                 // == 이미 체크박스 선택 상태를 의미
-//                 return [...prevSelectedUsers, userId];
-//                 // 해당 아이디를 포함한 배열을 새로 return
-//             }
-//         });
-//     };
-    
-
-//     return (
-//         <>
-//             <Header/>
-//             <Title title="신고할 유저 선택"/>
-//             <T.TotalHr></T.TotalHr>
-//             <T.TotalDiv>
-//                     <form /* action="제출할 서버 경로" method="post"*/>
-//                         <ul>
-//                             {userList.map((user) => (
-//                                 <li key={user.id}>
-//                                     <label htmlFor={`user${user.id}`}>{`유저 ${user.id} 정보`}</label>
-//                                     <input
-//                                     type="checkbox"
-//                                     id={`user${user.id}`}
-//                                     onChange={/*() => */handleCheckboxChange(user.id)}
-//                                     checked={selectedUsers.includes(user.id)}
-//                                     />
-//                                 </li>
-//                             ))}
-//                         </ul>
-//                         <div>
-//                         <button type="button" onClick={cancel}>
-//                         취소
-//                         </button>
-//                         <button type="button" onClick={submitForm}>
-//                         선택
-//                         </button>
-//                         </div>
-//                     </form>        
-//             </T.TotalDiv>
-//         </>
-//     )
-// }
-
 // 하드 코딩으로 형태만 잡음
 export default function NonMannerUsers() {
 
     const navigate = useNavigate();
 
+    const [person, setPerson] = useState([]);
     const [selectedUserInfo, setSelectedUserInfo] = useState('');
 
     const cancel = () => {
@@ -127,8 +28,8 @@ export default function NonMannerUsers() {
     const submitForm = () => {
         // 선택된 유저 정보가 있을 경우에만 이동
         if (selectedUserInfo) {
-            const { id, Nickname } = selectedUserInfo;
-            navigate(`/MyPage/NonMannerUsers/Report`, { state: { id, Nickname } });
+            const { id, opponentNickname } = selectedUserInfo;
+            navigate(`/MyPage/NonMannerUsers/Report`, { state: { id, opponentNickname } });
         } else {
             alert('유저를 선택해주세요.'); // 선택된 유저가 없을 경우 알림
         }
@@ -147,20 +48,23 @@ export default function NonMannerUsers() {
         return `${year}.${month}.${day}`;
     };
 
-    const person = [
-        { id: 1,  Birth: '00년생', Nickname: '김여자', Uvie: '어쩌고 대학',MatchingDate: '2024-01-30T18:14:14.721908' },
-        { id: 2,  Birth: '00년생', Nickname: '김여자', Uvie: '어쩌고 대학', MatchingDate: '2024-01-30T18:14:14.721908' },
-        { id: 3,  Birth: '00년생', Nickname: '김여자', Uvie: '어쩌고 대학', MatchingDate: '2024-01-30T18:14:14.721908' },
-        { id: 4,  Birth: '00년생', Nickname: '김여자', Uvie: '어쩌고 대학', MatchingDate: '2024-01-30T18:14:14.721908' },
-        { id: 5,  Birth: '00년생', Nickname: '김여자', Uvie: '어쩌고 대학', MatchingDate: '2024-01-30T18:14:14.721908' },
-        { id: 6,  Birth: '00년생', Nickname: '김여자', Uvie: '어쩌고 대학', MatchingDate: '2024-01-30T18:14:14.721908' },
-        { id: 7,  Birth: '00년생', Nickname: '김남자', Uvie: '어쩌고 대학', MatchingDate: '2024-01-30T18:14:14.721908' },
-        { id: 8,  Birth: '00년생', Nickname: '김남자', Uvie: '어쩌고 대학', MatchingDate: '2024-01-30T18:14:14.721908' },
-        { id: 9,  Birth: '00년생', Nickname: '김남자', Uvie: '어쩌고 대학', MatchingDate: '2024-01-30T18:14:14.721908' },
-        { id: 10,  Birth: '00년생', Nickname: '김남자', Uvie: '어쩌고 대학', MatchingDate: '2024-01-30T18:14:14.721908' },
-        { id: 11,  Birth: '00년생', Nickname: '김남자', Uvie: '어쩌고 대학', MatchingDate: '2024-01-30T18:14:14.721908' },
-        { id: 12,  Birth: '00년생', Nickname: '김남자', Uvie: '어쩌고 대학', MatchingDate: '2024-01-30T18:14:14.721908' },
-    ];
+    const fetchData = async () => {
+        const id = 21; // 임의로 값 부여
+        try {
+          const response = await axios.get('http://13.209.145.28:8080/api/v1/report/reportList/21', {id});
+          setPerson(response.data.data);
+        } catch (error) {
+          console.error('오류 발생:', error);
+          alert('오류가 발생했습니다. 다시 시도해주세요.');
+          navigate(-1); 
+        }
+    }
+
+    useEffect(() => {
+        fetchData();
+    }, []);
+
+    // console.log(person);
 
     return (
         <>
@@ -172,7 +76,7 @@ export default function NonMannerUsers() {
                     {person && [...person].reverse().map((item, index) => (
                         <FormLi key={item.id}>
                             <Label htmlFor={item.id}>
-                                {item.Birth} / {item.Nickname} / {item.Uvie} / {formatDate(item.MatchingDate)}
+                                {item.opponentBirthday} / {item.opponentNickname} / {item.opponentDepartment} / {item.date}
                             </Label>
                             <FormCheckbox
                                 type="checkbox"

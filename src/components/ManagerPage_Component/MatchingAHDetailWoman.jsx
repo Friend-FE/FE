@@ -1,4 +1,4 @@
-// 관리자 페이지 - 매칭 신청 내역 보기 2
+// 관리자 페이지 - 매칭 신청 내역 보기 - 여자
 
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
@@ -13,15 +13,15 @@ import Title from '../title/index'
 import * as AFMD from '../../pages/ApplicationForMembership/ApplicationForMembershipDetail'
 import CheckImageBlue from '../../images/CheckImageBlue.png'
 
-export default function MatchingAHDetail() {
+export default function MatchingAHDetailWoman() {
 
     const navigate = useNavigate();
 
     const [showModal, setShowModal] = useState(false);
 
     const onClickAccept = () => {
-        setShowModal(true);
-        // navigate(-1);
+        // setShowModal(true);
+        navigate('/ManagerPage/MatchingApplicationHistoryMan');
     };
 
     const onClickRealAccept = () => {
@@ -82,7 +82,7 @@ export default function MatchingAHDetail() {
                 <ModalText>'제니 님'과 '으이 님'을 매칭하겠습니까?</ModalText>
                 <ModalBtnDiv>
                     <AFMD.OtherBtn onClick={onClickRealAccept}>매칭하기</AFMD.OtherBtn>
-                    <AFMD.AcceptBtn onClick={onClickRefuse}>수락하기</AFMD.AcceptBtn>
+                    <AFMD.AcceptBtn onClick={onClickRefuse}>취소하기</AFMD.AcceptBtn>
                 </ModalBtnDiv>
             </ModalContainer>
         </>
@@ -160,7 +160,7 @@ export const FooterContainer = styled.div`
     }
 `;
 
-const ModalContainer = styled.div`
+export const ModalContainer = styled.div`
   display: ${props => (props.showModal ? 'flex' : 'none')};
   position: absolute;
   flex-direction: column;
@@ -184,13 +184,13 @@ const ModalContainer = styled.div`
     }
 `;
 
-const CheckImage = styled.img`
+export const CheckImage = styled.img`
   width: 8.33vw;
   height: 6.9vw;
   margin-bottom: 0vw;
 `;
 
-const ModalText = styled.p`
+export const ModalText = styled.p`
   font-size: 1.5vw;
   font-weight: bold;
   white-space: nowrap;
@@ -198,7 +198,7 @@ const ModalText = styled.p`
   user-select: none;
 `;
 
-const ModalBtnDiv = styled.div`
+export const ModalBtnDiv = styled.div`
     position: relative;
     top: 3vw;
 `;

@@ -3,14 +3,19 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 
-import * as MAH from '../ManagerPage_Component/MatchingApplicationHistory'
+import * as MAH from '../ManagerPage_Component/MatchingApplicationHistoryWoman'
 
 export default function MatchingPersonBlock({ info, gender }) {
     
     const navigate = useNavigate();
   
     const handlePersonDivClick = (item) => {
-      navigate(`/ManagerPage/MatchingApplicationHistory/${item.id}`, { state: { item } });
+      if(item.gender === 'f'){
+        navigate(`/ManagerPage/MatchingAHDetailWoman/${item.id}`, { state: { item } });
+      }
+      if(item.gender === 'm'){
+        navigate(`/ManagerPage/MatchingAHDetailMan/${item.id}`, { state: { item } });
+      }
     };
   
     const formatDate = (dateString) => {
@@ -27,7 +32,7 @@ export default function MatchingPersonBlock({ info, gender }) {
       <>
         {info &&
           info.map((item) => {
-            if (gender === 'all' || gender === item.gender) {
+            if (gender === item.gender) {
               return (
                 <MAH.PersonDiv key={item.id} onClick={() => handlePersonDivClick(item)}>
                   <MAH.NameH5>{item.name} 님</MAH.NameH5>

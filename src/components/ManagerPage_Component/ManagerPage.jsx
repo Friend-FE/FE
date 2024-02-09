@@ -18,7 +18,7 @@ export default function ManagerPage() {
           <T.MoveToPageLink to="/ManagerPage/QnA">Q&A 모아보기</T.MoveToPageLink>
           <T.MoveToPageLink to="/ManagerPage/Notices">공지사항</T.MoveToPageLink>
           <T.MoveToPageLink to="/ManagerPage/ReportReceiptHistory">신고 접수 내역</T.MoveToPageLink>
-          <T.MoveToPageLink to="/ManagerPage/MatchingApplicationHistory">매칭 신청 내역</T.MoveToPageLink>
+          <T.MoveToPageLink to="/ManagerPage/MatchingApplicationHistoryWoman">매칭 신청 내역</T.MoveToPageLink>
           <T.MoveToPageLink to="/ManagerPage/MatchingCompletionHistory">매칭 완료 내역</T.MoveToPageLink>
           <T.MoveToPageLink to="/ManagerPage/ViewMembershipList">회원 목록 보기</T.MoveToPageLink>
           <T.MoveToPageLink to="/ManagerPage/ApplicationForMembership">회원 가입 신청 내역</T.MoveToPageLink>

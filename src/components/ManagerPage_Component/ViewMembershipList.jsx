@@ -7,8 +7,8 @@ import styled from "styled-components";
 import Footer from '../footer/index'
 import Title from '../title/index'
 import * as T from '../MyPage_Component/MyPage'
-import * as M from './MatchingApplicationHistory'
-import * as MAHD from './MatchingAHDetail'
+import * as M from './MatchingApplicationHistoryWoman'
+import * as MAHD from './MatchingAHDetailWoman'
 import MemberPersonBlock from '../../components/PersonBlock/MemberPersonBlock'
 
 
