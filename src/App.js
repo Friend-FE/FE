@@ -27,8 +27,10 @@ import WritingNotices from './components/ManagerPage_Component/WritingNotices';
 import ReportReceiptHistory from './components/ManagerPage_Component/ReportReceiptHistory';
 import ReportReceiptHistoryDetail from './components/ManagerPage_Component/ReportReceiptHistoryDetail'
 
-import MatchingApplicationHistory from './components/ManagerPage_Component/MatchingApplicationHistory';
-import MatchingAHDetail from './components/ManagerPage_Component/MatchingAHDetail';
+import MatchingApplicationHistoryWoman from './components/ManagerPage_Component/MatchingApplicationHistoryWoman';
+import MatchingAHDetailWoman from './components/ManagerPage_Component/MatchingAHDetailWoman';
+import MatchingApplicationHistoryMan from './components/ManagerPage_Component/MatchingApplicationHistoryMan';
+import MatchingAHDetailMan from './components/ManagerPage_Component/MatchingAHDetailMan';
 
 import MatchingCompletionHistory from './components/ManagerPage_Component/MatchingCompletionHistory';
 import ViewMembershipList from './components/ManagerPage_Component/ViewMembershipList';
@@ -98,14 +100,17 @@ const App = ()=>{
 					관리자 페이지 - Q&A 모아보기 - 자세히 보기
 					Q&A 답변하기
 
-					공지사항 (일단 연결 끊음.)
+					공지사항
+					공지사항 자세히
 					공지사항 쓰러가기
 
 					신고 접수 내역
 					신고 접수 내역 자세히
 
-					매칭 신청 내역
+					매칭 신청 내역 - 여자
 					매칭 신청 내역 보기 2
+					매칭 신청 내역 - 남자
+					매칭 신청 내역 보기 4
 
 					매칭 완료 내역
 
@@ -127,8 +132,10 @@ const App = ()=>{
 				<Route path="/ManagerPage/ReportReceiptHistory" element={<ReportReceiptHistory/>}/>
 				<Route path="/ManagerPage/ReportReceiptHistory/:id" element={<ReportReceiptHistoryDetail/>}/>
 				
-				<Route path="/ManagerPage/MatchingApplicationHistory" element={<MatchingApplicationHistory/>}/>
-				<Route path="/ManagerPage/MatchingApplicationHistory/:id" element={<MatchingAHDetail/>}/>
+				<Route path="/ManagerPage/MatchingApplicationHistoryWoman" element={<MatchingApplicationHistoryWoman/>}/>
+				<Route path="/ManagerPage/MatchingAHDetailWoman/:id" element={<MatchingAHDetailWoman/>}/>
+				<Route path="/ManagerPage/MatchingApplicationHistoryMan" element={<MatchingApplicationHistoryMan/>}/>
+				<Route path="/ManagerPage/MatchingAHDetailMan/:id" element={<MatchingAHDetailMan/>}/>
 				
 				<Route path="/ManagerPage/MatchingCompletionHistory" element={<MatchingCompletionHistory/>}/>
 

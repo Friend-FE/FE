@@ -1,4 +1,4 @@
-// 매칭 신청 내역
+// 매칭 신청 내역 - 여자
 
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
@@ -7,31 +7,15 @@ import Footer from '../footer/index'
 import Title from '../title/index'
 
 import * as T from '../MyPage_Component/MyPage'
-import * as MAHD from './MatchingAHDetail'
+import * as MAHD from './MatchingAHDetailWoman'
 
 import MatchingPersonBlock from '../PersonBlock/MatchingPersonBlock'
 
 export default function MatchingApplicationHistory() {
 
-  // 성별 버튼
-  const [isWomanSelected, setWomanSelected] = useState(false);
-  const [isManSelected, setManSelected] = useState(false); 
-
   // 컴포넌트가 마운트되었을 때
   // useEffect(() => {
   // }, []);
-
-  const onClickWoman = () => {
-    setWomanSelected((prev) => !prev);
-
-    setManSelected(false);
-  };
-
-  const onClickMan = () => {
-    setManSelected((prev) => !prev);
-
-    setWomanSelected(false);
-  };
 
   const person = [
     { id: 1, name: '김여자', gender: 'f', date: '2024-01-30T18:14:14.721908' },
@@ -51,15 +35,15 @@ export default function MatchingApplicationHistory() {
   return (
     <>
       <Title title="관리자 페이지"/>
-      <T.TotalHr></T.TotalHr>
+      <TotalHr></TotalHr>
       <T.TotalDiv>
         <MAHD.HeadTitleH3>매칭 신청 내역 모아보기</MAHD.HeadTitleH3>
         <FlexDiv>
-          <GenderBtn onClick={onClickWoman} isSelected={isWomanSelected}>여성</GenderBtn>
-          <GenderBtn onClick={onClickMan} isSelected={isManSelected}>남성</GenderBtn>
+          <SelectGenderBtn>여성</SelectGenderBtn>
+          <GenderBtn>남성</GenderBtn>
         </FlexDiv>
         <PeopleDiv>
-            <MatchingPersonBlock info={person} gender={isWomanSelected ? 'f' : isManSelected ? 'm' : 'all' } />
+            <MatchingPersonBlock info={person} gender={'f'} />
           </PeopleDiv>
       </T.TotalDiv>
       <FooterContainer>
@@ -68,6 +52,13 @@ export default function MatchingApplicationHistory() {
     </>
   )
 }
+
+export const TotalHr = styled.hr`
+  position: relative;
+  top: 8vw;
+  width : 80%;
+  margin-left: 10vw;
+`;
 
 export const FlexDiv = styled.div`
   display: flex;
@@ -160,34 +151,40 @@ export const NameH5 = styled.h5`
   } */
 `;
 
+export const SelectGenderBtn = styled.button`
+  width: 12vw; 
+  height: 4vw;
+  margin: 2vw 2vw 0 2vw;
+  
+  font-size: 1vw;
+  color: white;
+  background-color: #23CAFF;
+  
+  border: none;
+  border-radius: 2vw;
+  box-shadow: 1vw 0.7vw 0.5vw rgba(0, 0, 0, 0.2);
+`;
+
 export const GenderBtn = styled.button`
   width: 12vw; 
   height: 4vw;
   margin: 2vw 2vw 0 2vw;
   
   font-size: 1vw;
-  /* @media screen and (max-width: 1070px) {
-    font-size : 2vw;
-  } */
   color: black;
   background-color: white;
-
-  color: ${(props) => (props.isSelected ? 'white' : 'black')};
-  background-color: ${(props) => (props.isSelected ? '#23CAFF' : 'white')};
   
   border: none;
   border-radius: 2vw;
   box-shadow: 1vw 0.7vw 0.5vw rgba(0, 0, 0, 0.2);
-  
-  cursor: pointer;
 `;
 
-const FooterContainer = styled.div`
-  position: absolute;
-  top: 88vw;
+export const FooterContainer = styled.div`
+  position: relative;
+  top: 10vw;
   width: 100%;
 
   @media (max-width: 768px) {
-  top: 96vw;
+    top: 38vw;
   }
 `;

@@ -5,8 +5,9 @@ import { useLocation, useNavigate/*, useParams*/ } from 'react-router-dom';
 import ManagerRBD from '../../components/Board/ManagerRBD';
 import Title from '../../components/title';
 import styled from 'styled-components';
-import * as MAHD from '../ManagerPage_Component/MatchingAHDetail';
+import * as MAHD from '../ManagerPage_Component/MatchingAHDetailWoman';
 import Footer from '../footer';
+import axios from 'axios';
 
 const ReportReceiptHistoryDetail = () => {
   // const { id } = useParams();
@@ -14,8 +15,8 @@ const ReportReceiptHistoryDetail = () => {
   const navigate = useNavigate();
 
   const content = state?.item;
-  console.log(state);
-  const index = state?.index;
+  console.log(content);
+  // const index = state?.index;
 
 
   if (!content) {
@@ -23,17 +24,63 @@ const ReportReceiptHistoryDetail = () => {
     return null;
   }
 
-  const onTreat = () => {
-    alert('처리되었습니다.');
-    // 처리 기능
+  const Processing = async () => {
+
+    const id = content.id;
+
+    console.log('id 잘 넘어왔는지 test', id);
+
+    try {
+    const response = await axios.post(`http://13.209.145.28:8080/api/v1/report/complete?id=${id}`);
+      if (response.status === 200) {
+        console.log('처리하기 정상');
+      } else {
+        console.error('오류');
+      }
+    }
+    catch (error) {
+      console.error('처리하기 중 오류 발생:', error);
+      alert('처리하기 오류가 발생했습니다. 다시 시도해주세요.');
+    };
+  }
+
+  const onTreat = async () => {
+    Processing();
+    alert('정상 처리 되었습니다.');
     navigate(-1);
   };
 
-  const onWarning = () => {
-    alert('경고 접수되었습니다.');
-    // 경고 기능
+  const onWarning = async () => {
+
+    const badMemberId = content.badMemberId;
+
+    console.log('경고 주려는 대상 id 잘 넘어왔는지 test', badMemberId);
+
+    try {
+      const response = await axios.post( `http://13.209.145.28:8080/api/v1/report/addReportCount/${badMemberId}` , {
+        badMemberId
+       });
+
+        if (response.status === 200) {
+          console.log('경고주기 정상');
+          Processing();
+          alert('경고 처리 되었습니다.');
+          navigate(-1);
+        } else {
+          console.error('오류');
+        }
+      }
+      catch (error) {
+        console.error('경고주기 중 오류 발생:', error);
+        alert('경고 오류가 발생했습니다. 다시 시도해주세요.');
+      };
+  };
+
+  const onBack = () => {
     navigate(-1);
   };
+
+  console.log(content.status);
 
   return (
     <>
@@ -46,9 +93,16 @@ const ReportReceiptHistoryDetail = () => {
         {content.body}
       </ReviewBox>
     </ReviewWrapper>
-    <ButtonWrapper>      
-      <Button type="button" onClick={onTreat}>처리하기</Button>
-      <Button type="button" onClick={onWarning}>경고주기</Button>
+    <ButtonWrapper>
+    {content.status === 'INCOMPLETE' ? (
+        <>
+          <Button type="button" onClick={onTreat}>처리하기</Button>
+          <Button type="button" onClick={onWarning}>경고주기</Button>
+        </>
+      ) : (
+        <Button type="button" onClick={onBack}>뒤로 가기</Button>
+      )
+    }
     </ButtonWrapper>
     <FooterContainer>
       <Footer/>

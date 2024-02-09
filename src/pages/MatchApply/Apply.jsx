@@ -6,6 +6,7 @@ import {useNavigate} from 'react-router-dom';
 import checkImage from "../../images/checkImage.png";
 import Title from '../../components/title';
 import Footer from '../../components/footer';
+import axios from 'axios';
 
 const Apply = () => {
 
@@ -85,16 +86,65 @@ const Apply = () => {
   
   const [warningMessage, setWarningMessage] = useState('');
  
-  const handleApplyClick = () => {
+  // const fetchData = async () => {
+  //   try {
+  //     const response = await axios.get('http://13.209.145.28:8080/api/v1/reports');
+  //     // console.log(response.data.data);
+  //     setHistory(response.data.data);
+  //   } catch (error) {
+  //     console.error('오류 발생:', error);
+  //     alert('오류가 발생했습니다. 다시 시도해주세요.');
+  //     navigate(-1); 
+  //   }
+  // }
+
+ // 매칭 신청
+  const MatchingApplication = async () => {
+
+    const userId = 20; // id 임의로 지정
+
+    console.log('test', userId);
+
+    try {
+      const response = await axios.post(`http://13.209.145.28:8080/api/v1/match/20`);
+        if (response.status === 200) {
+          console.log('매칭 신청 정상');
+        } else {
+          console.error('오류');
+        }
+      }
+      catch (error) {
+        console.error('매칭 신청 중 오류 발생:', error);
+        alert('매칭 신청 오류가 발생했습니다. 다시 시도해주세요.');
+      };
+  }
+
+  const handleApplyClick = async () => {
     if (!isChecked1 || !isChecked2 || !isChecked3) {
       setWarningMessage('주의사항에 체크해주세요!');
     }else if (showModal) {
       alert('이미 매칭 신청이 완료되었습니다.');
     }else {
-      setShowModal(true);
+      const userId = 20; // id 임의로 지정
+
+      console.log('test', userId);
+      
+      try {
+        const response = await axios.post(`http://13.209.145.28:8080/api/v1/match/${userId}`, {id : `${userId}`});
+          if (response.status === 200) {
+            console.log('매칭 신청 정상');
+            setShowModal(true);
+          } else {
+            console.error('오류');
+          }
+        }
+        catch (error) {
+          console.error('매칭 신청 중 오류 발생:', error);
+          alert('매칭 신청 오류가 발생했습니다. 다시 시도해주세요.');
+        };
     }
   };
-  
+
   useEffect(() => {
     const special = () => {
       if (isChecked1 && isChecked2 && isChecked3) {
@@ -115,6 +165,7 @@ const Apply = () => {
       if (window.confirm("이미 매칭 신청이 완료되었습니다.\n메인 페이지로 이동하시겠습니까?")) {
          navigate('/');
       } else {
+        MatchingApplication();
       }
     }
     else{
@@ -186,22 +237,22 @@ const Container = styled.div`
   justify-content: center;
   width: 40%; 
   margin: 0 auto; 
-  padding-bottom: 200px;
+  padding-bottom: 13.8vw;
 `;
 
 const Hr = styled.div`
-  height: 1px;
+  height: 0.06vw;
   background-color: gray;
   width: 90%;
-  margin: 100px auto; 
+  margin: 6.94vw auto; 
 `;
 
 const Notice = styled.p`
-  font-size: 18px;
+  font-size: 1.25vw;
   font-weight: 900;
-  margin-bottom: 10px;
-  margin-top: 20px;
-  user-select: none;/* 드래그 방지 */
+  margin-bottom: 0.69vw;
+  margin-top: 1.38vw;
+  user-select: none; /* 드래그 방지 */
 `;
 
 const Canvas = styled.canvas`
@@ -211,7 +262,7 @@ const Consent = styled.div`
   display: flex;
   align-items: center; 
   margin-top: 60px;
-  margin-right: 20px;
+  margin-right: 1.38vw;
   gap: 10px;
 `;
 
@@ -225,9 +276,9 @@ const Text = styled.p`
 
 const ProfileCheckButton = styled.button`
   background-color: white;
-  padding: 20px;
+  padding: 1.38vw;
   width: 200px;
-  margin-left: 20px;
+  margin-left: 1.38vw;
   cursor: pointer;
   font-weight: 900;
   border: none;
@@ -242,7 +293,7 @@ const Consent3 = styled.div`
   display: flex;
   align-items: center; 
   margin-top: 60px;
-  margin-right: 20px;
+  margin-right: 1.38vw;
   gap: 10px;
   padding-bottom: 100px; // 문구고정을 위한 요소
   position: relative;  // 문구고정을 위한 요소
@@ -264,10 +315,10 @@ const ButtonsContainer = styled.div`
 
 const CancelButton = styled.button`
   background-color: white;
-  padding: 20px;
+  padding: 1.38vw;
   width: 200px;
   margin-left: 19%;
-  margin-right: 20px;
+  margin-right: 1.38vw;
   cursor: pointer;
   font-weight: 900;
   border: none;
@@ -281,9 +332,9 @@ const CancelButton = styled.button`
 const ApplyButton = styled.button`
   background-color: rgb(139, 227, 255);
   color: white;
-  padding: 20px;
+  padding: 1.38vw;
   width: 200px;
-  margin-left: 20px;
+  margin-left: 1.38vw;
   cursor: pointer;
   font-weight: 900;
   border: none;
@@ -299,7 +350,7 @@ const ModalContainer = styled.div`
   position: absolute;
   flex-direction: column; /* 문구 줄바꿈 */
   align-items: center; 
-  top: 94%;
+  top: 90%;
   left: 50%;
   transform: translate(-46%, -50%);
   background-color: rgb(218, 246, 255);
