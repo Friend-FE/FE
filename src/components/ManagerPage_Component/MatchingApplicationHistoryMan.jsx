@@ -1,7 +1,8 @@
 // 매칭 신청 내역 - 남자
 
 import React, { useState, useEffect } from 'react'
-import styled from 'styled-components'
+// import styled from 'styled-components'
+import axios from 'axios';
 
 import Footer from '../footer/index'
 import Title from '../title/index'
@@ -15,40 +16,22 @@ import MatchingPersonBlock from '../PersonBlock/MatchingPersonBlock'
 
 export default function MatchingApplicationHistoryMan() {
 
-  // 성별 버튼
-  const [isWomanSelected, setWomanSelected] = useState(false);
-  const [isManSelected, setManSelected] = useState(false); 
+  const [person, setPerson] = useState([]);
 
-  // 컴포넌트가 마운트되었을 때
-  // useEffect(() => {
-  // }, []);
+  const fetchData = async () => {
+    try {
+      const response = await axios.get('http://13.209.145.28:8080/api/v1/match/list');
+      console.log(response.data.data);
+      setPerson(response.data.data);
+    } catch (error) {
+      console.error('오류 발생:', error);
+      alert('오류가 발생했습니다. 다시 시도해주세요.');
+    }
+  }
 
-  const onClickWoman = () => {
-    setWomanSelected((prev) => !prev);
-
-    setManSelected(false);
-  };
-
-  const onClickMan = () => {
-    setManSelected((prev) => !prev);
-
-    setWomanSelected(false);
-  };
-
-  const person = [
-    { id: 1, name: '김여자', gender: 'f', date: '2024-01-30T18:14:14.721908' },
-    { id: 2, name: '김여자', gender: 'f', date: '2024-01-30T18:14:14.721908' },
-    { id: 3, name: '김여자', gender: 'f', date: '2024-01-30T18:14:14.721908' },
-    { id: 4, name: '김여자', gender: 'f', date: '2024-01-30T18:14:14.721908' },
-    { id: 5, name: '김여자', gender: 'f', date: '2024-01-30T18:14:14.721908' },
-    { id: 6, name: '김여자', gender: 'f', date: '2024-01-30T18:14:14.721908' },
-    { id: 7, name: '김남자', gender: 'm', date: '2024-01-30T18:14:14.721908' },
-    { id: 8, name: '김남자', gender: 'm', date: '2024-01-30T18:14:14.721908' },
-    { id: 9, name: '김남자', gender: 'm', date: '2024-01-30T18:14:14.721908' },
-    { id: 10, name: '김남자', gender: 'm', date: '2024-01-30T18:14:14.721908' },
-    { id: 11, name: '김남자', gender: 'm', date: '2024-01-30T18:14:14.721908' },
-    { id: 12, name: '김남자', gender: 'm', date: '2024-01-30T18:14:14.721908' },
-  ];
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <>
@@ -61,7 +44,7 @@ export default function MatchingApplicationHistoryMan() {
           <MAHW.SelectGenderBtn>남성</MAHW.SelectGenderBtn>
         </MAHW.FlexDiv>
         <MAHW.PeopleDiv>
-            <MatchingPersonBlock info={person} gender={'m'} />
+            <MatchingPersonBlock info={person} gender={'MALE'} />
         </MAHW.PeopleDiv>
       </T.TotalDiv>
       <MAHW.FooterContainer>

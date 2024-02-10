@@ -1,7 +1,12 @@
 // 관리자 페이지 - 매칭 신청 내역 보기 - 여자
 
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react'
+import axios from 'axios';
+import { useNavigate, useParams, useLocation } from 'react-router-dom';
+
+// redux
+import { connect } from "react-redux";
+import { addId } from '../../REDUX/matchingCheck';
 
 import ProfileBasic from '../../images/ProfileBasic.png'
 import * as T from '../MyPage_Component/MyPage'
@@ -11,26 +16,71 @@ import Footer from '../footer/index'
 import Title from '../title/index'
 
 import * as AFMD from '../../pages/ApplicationForMembership/ApplicationForMembershipDetail'
-import CheckImageBlue from '../../images/CheckImageBlue.png'
+// import CheckImageBlue from '../../images/CheckImageBlue.png'
 
-export default function MatchingAHDetailWoman() {
+function MatchingAHDetailWoman({onAddRedux}) {
+
+    const { id } = useParams();
+    const [userId, setUserId] = useState(id);
+    // console.log(userId);
+
+    const [person, setPerson] = useState(id);
+
+    const { state } = useLocation();
+    const useLocationContent = state?.item;
+    // console.log(useLocationContent);
+
+    const fetchData = async () => {
+        const id = userId;
+        // console.log(id);
+        try {
+            const response = await axios.get(`http://13.209.145.28:8080/api/v1/manager/profileDetail/${id}`, {id});
+            // console.log(response.data.data);
+            setPerson(response.data.data);
+        } catch (error) {
+          console.error('오류 발생:', error);
+          alert('오류가 발생했습니다. 다시 시도해주세요.');
+          navigate(-1); 
+        }
+    }
+
+    useEffect(() => {
+        fetchData();
+    }, []);
+
 
     const navigate = useNavigate();
 
-    const [showModal, setShowModal] = useState(false);
-
     const onClickAccept = () => {
         // setShowModal(true);
+        onAddRedux(userId);
         navigate('/ManagerPage/MatchingApplicationHistoryMan');
     };
 
-    const onClickRealAccept = () => {
-        navigate(-1);
-    };
+    const editBirthYear = (props) => {
+        const year = props.slice(0, 4);
+        const yearDigits = year.slice(2);
 
-      const onClickRefuse = () => {
-        navigate(-1);
-    };
+        return yearDigits;
+    }
+
+    // const editPhoneNumber = (props) => {
+    //     const first = props.slice(0, 3);
+    //     console.log(first);
+    //     const second = props.slice(3, 7);
+    //     console.log(second);
+    //     const third = props.slice(7, 11);
+
+    //     return (first + `-` + second + `-` + third);
+    // }
+
+    const editApplicationDate = (props) => {
+        const year = props.slice(0, 4);
+        const month = props.slice(5, 7);
+        const day = props.slice(8, 10);
+
+        return (year + '/' + month + '/' + day);
+    }
 
     return (
         <>
@@ -38,24 +88,24 @@ export default function MatchingAHDetailWoman() {
             <T.TotalHr></T.TotalHr>
             <T.TotalDiv>
                 <HeadTitleH3>매칭 신청 내역 모아보기</HeadTitleH3>
-                <T.TitleH3>제니 님의 프로필 카드</T.TitleH3>
+                <T.TitleH3>{person.profile? person.profile.nickname : '로딩 중...'} 님의 프로필 카드</T.TitleH3>
                 <P.SectionContainer>
                     <P.SectionDiv>
-                        <P.ProfileBasicImg src={ProfileBasic} alt ="ProfileBasic"/>
-                        <P.NameH4>제니</P.NameH4>
-                        <InfoP>년생 : 00년생</InfoP>
-                        <InfoP>키 : 163cm</InfoP>
-                        <InfoP>지역 : 부산광역시 남구</InfoP>
-                        <InfoP>연락처 : 010-1234-5678</InfoP>
+                        <P.ProfileBasicImg src={person.profile ? person.profile.imgUrl : ProfileBasic } alt ="ProfileBasic"/>
+                        <P.NameH4>{person.profile? person.profile.nickname : '로딩 중...'}</P.NameH4>
+                        <InfoP>년생 : {person.profile? editBirthYear(person.profile.birthday) + '년생' : '로딩 중...'}</InfoP>
+                        <InfoP>키 : {person.profile? person.profile.height + 'cm' : '로딩 중...'}</InfoP>
+                        <InfoP>지역 : {person.profile? person.profile.region : '로딩 중...'}</InfoP>
+                        <InfoP>연락처 : {person.profile? person.profile.phone : '로딩 중...'}</InfoP>
                     </P.SectionDiv>
                     <P.SectionDiv>
-                        <P.InfoP>장거리 가능 여부 : 불가능</P.InfoP>
-                        <P.InfoP>흡연 여부 : 비흡연</P.InfoP>
-                        <P.InfoP>음주 여부 : 음주</P.InfoP>
-                        <P.InfoP>단과대 : 경영대학</P.InfoP>
+                        <P.InfoP>장거리 가능 여부 : {person.profile ? (person.profile.distance === "SHORT" ? "불가능" : "가능") : '로딩 중...'}</P.InfoP>
+                        <P.InfoP>흡연 여부 : {person.profile ? (person.profile.smoking === "NONSMOKER" ? "비흡연" : "흡연") : '로딩 중...'}</P.InfoP>
+                        <P.InfoP>음주 여부 : {person.profile ? (person.profile.drinking === "NONDRINKER" ? "불가능" : "가능") : '로딩 중...'}</P.InfoP>
+                        <P.InfoP>단과대 : {person.profile? person.profile.department : '로딩 중...'}</P.InfoP>
                         <SelfIntroductionTitleP>자기 소개</SelfIntroductionTitleP>
                         <SelfIntroductionDiv>
-                            <SelfIntroductionP> 처음에는 많이 뚝딱거릴 수도 있지만 친해지면 엄청 애교도 많고 활발해요! 좋은 인연 만들어 가고 싶어요! </SelfIntroductionP>       
+                            <SelfIntroductionP>{person.profile ? person.profile.introduction : '로딩 중...'}</SelfIntroductionP>       
                         </SelfIntroductionDiv>
                         <SelfIntroductionTitleP>내 이상형</SelfIntroductionTitleP>
                         <SelfIntroductionDiv>
@@ -64,10 +114,10 @@ export default function MatchingAHDetailWoman() {
                     </P.SectionDiv>
                 </P.SectionContainer>
                 <SectionDiv>
-                    <InfoP>매칭 신청 날짜 : 2024/01/05 08:00</InfoP>
-                    <InfoP>비매너 경고 회수 : 0회</InfoP>
-                    <InfoP>매칭 신청 회수 : 3회</InfoP>
-                    <InfoP>매칭 완료 회수 : 1회</InfoP>
+                    <InfoP>매칭 신청 날짜 : {editApplicationDate(useLocationContent.date)}</InfoP>
+                    <InfoP>비매너 경고 회수 : {person.warningCount !== null ? person.warningCount + '회' : '로딩 중...'}</InfoP>
+                    <InfoP>매칭 신청 회수 : {person.matchCount !== null ? person.matchCount + '회' : '로딩 중...'}</InfoP>
+                    <InfoP>매칭 완료 회수 : {person.matchCompleteCount !== null ? person.matchCompleteCount + '회' : '로딩 중...'}</InfoP>
                 </SectionDiv>
                 <BtnDiv>
                     <AFMD.AcceptBtn onClick={onClickAccept}>매칭하기</AFMD.AcceptBtn>
@@ -76,18 +126,21 @@ export default function MatchingAHDetailWoman() {
             <FooterContainer>
                 <Footer/>
             </FooterContainer>
-
-            <ModalContainer showModal={showModal}>
-                <CheckImage src={CheckImageBlue} alt="Check Image" />
-                <ModalText>'제니 님'과 '으이 님'을 매칭하겠습니까?</ModalText>
-                <ModalBtnDiv>
-                    <AFMD.OtherBtn onClick={onClickRealAccept}>매칭하기</AFMD.OtherBtn>
-                    <AFMD.AcceptBtn onClick={onClickRefuse}>취소하기</AFMD.AcceptBtn>
-                </ModalBtnDiv>
-            </ModalContainer>
         </>
     )
 }
+
+// redux
+function mapDispatchToProps(dispatch) {
+    return {
+        onAddRedux: (userId) => {
+            dispatch(addId(userId));
+            // console.log('redux 성공..?', userId);
+        }
+    };
+}
+
+export default connect(null, mapDispatchToProps)(MatchingAHDetailWoman);
 
 export const HeadTitleH3 = styled.h3`
     color: #23CAFF;

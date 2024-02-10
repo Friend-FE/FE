@@ -10,10 +10,10 @@ export default function MatchingPersonBlock({ info, gender }) {
     const navigate = useNavigate();
   
     const handlePersonDivClick = (item) => {
-      if(item.gender === 'f'){
+      if(item.gender === 'FEMALE'){
         navigate(`/ManagerPage/MatchingAHDetailWoman/${item.id}`, { state: { item } });
       }
-      if(item.gender === 'm'){
+      if(item.gender === 'MALE'){
         navigate(`/ManagerPage/MatchingAHDetailMan/${item.id}`, { state: { item } });
       }
     };
@@ -35,8 +35,10 @@ export default function MatchingPersonBlock({ info, gender }) {
             if (gender === item.gender) {
               return (
                 <MAH.PersonDiv key={item.id} onClick={() => handlePersonDivClick(item)}>
-                  <MAH.NameH5>{item.name} 님</MAH.NameH5>
-                  <MAH.P>{formatDate(item.date)}</MAH.P>
+                  <MAH.NameH5>{item.nickname} 님</MAH.NameH5>
+                  <MAH.P>{item.date}</MAH.P>
+                  {/* 테스트용 */}
+                  {/* <MAH.P>{item.id}</MAH.P> */}
                 </MAH.PersonDiv>
               );
             }
