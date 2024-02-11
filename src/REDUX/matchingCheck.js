@@ -5,12 +5,11 @@ export const matchingSlice = createSlice({
     initialState: [],
     reducers: {
         addId: (state, action) => {
-            const addStateArray = [...state, { id: action.payload }];
-            console.log(addStateArray);
-            return addStateArray;
+            const { userId, userNickname } = action.payload;
+            state.push({ id: userId, name: userNickname });
         },
-        removeId: () => {
-            return [];
+        removeId: (state) => {
+            state.splice(0, state.length);
         }
     },
 });

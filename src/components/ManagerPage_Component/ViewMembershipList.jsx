@@ -98,18 +98,18 @@ export default function ViewMembershipList() {
   };
 
   const person = [
-    { id: 1, name: '김여자', gender: 'f', date: '2024-01-30T18:14:14.721908' },
-    { id: 2, name: '김여자', gender: 'f', date: '2024-01-30T18:14:14.721908' },
-    { id: 3, name: '김여자', gender: 'f', date: '2024-01-30T18:14:14.721908' },
-    { id: 4, name: '김여자', gender: 'f', date: '2024-01-30T18:14:14.721908' },
-    { id: 5, name: '김여자', gender: 'f', date: '2024-01-30T18:14:14.721908' },
-    { id: 6, name: '김여자', gender: 'f', date: '2024-01-30T18:14:14.721908' },
-    { id: 7, name: '김남자', gender: 'm', date: '2024-01-30T18:14:14.721908' },
-    { id: 8, name: '김남자', gender: 'm', date: '2024-01-30T18:14:14.721908' },
-    { id: 9, name: '김남자', gender: 'm', date: '2024-01-30T18:14:14.721908' },
-    { id: 10, name: '김남자', gender: 'm', date: '2024-01-30T18:14:14.721908' },
-    { id: 11, name: '김남자', gender: 'm', date: '2024-01-30T18:14:14.721908' },
-    { id: 12, name: '김남자', gender: 'm', date: '2024-01-30T18:14:14.721908' },
+    { id: 1, name: '김여자', gender: 'f', date: '2024-02-11T18:14:14.721908' },
+    { id: 2, name: '김여자', gender: 'f', date: '2024-02-11T18:14:14.721908' },
+    { id: 3, name: '김여자', gender: 'f', date: '2024-02-11T18:14:14.721908' },
+    { id: 4, name: '김여자', gender: 'f', date: '2024-02-11T18:14:14.721908' },
+    { id: 5, name: '김여자', gender: 'f', date: '2024-02-11T18:14:14.721908' },
+    { id: 6, name: '김여자', gender: 'f', date: '2024-02-11T18:14:14.721908' },
+    { id: 7, name: '김남자', gender: 'm', date: '2024-02-11T18:14:14.721908' },
+    { id: 8, name: '김남자', gender: 'm', date: '2024-02-11T18:14:14.721908' },
+    { id: 9, name: '김남자', gender: 'm', date: '2024-02-11T18:14:14.721908' },
+    { id: 10, name: '김남자', gender: 'm', date: '2024-02-11T18:14:14.721908' },
+    { id: 11, name: '김남자', gender: 'm', date: '2024-02-11T18:14:14.721908' },
+    { id: 12, name: '김남자', gender: 'm', date: '2024-02-11T18:14:14.721908' },
   ];
 
   console.log('페이지에서 검사 :', sendYear, sendMonth, sendDay);
