@@ -53,7 +53,8 @@ function MatchingAHDetailWoman({onAddRedux}) {
 
     const onClickAccept = () => {
         // setShowModal(true);
-        onAddRedux(userId);
+        const userNickname = person.profile.nickname;
+        onAddRedux(userId, userNickname);
         navigate('/ManagerPage/MatchingApplicationHistoryMan');
     };
 
@@ -133,9 +134,9 @@ function MatchingAHDetailWoman({onAddRedux}) {
 // redux
 function mapDispatchToProps(dispatch) {
     return {
-        onAddRedux: (userId) => {
-            dispatch(addId(userId));
-            // console.log('redux 성공..?', userId);
+        onAddRedux: (userId, userNickname) => {
+            dispatch(addId({userId, userNickname}));
+            // console.log('onAddRedux 함수 props 검사', userId, userNickname);
         }
     };
 }
@@ -222,7 +223,7 @@ export const ModalContainer = styled.div`
   width: 43.75vw;
   height: 31.66vw;
 
-  top: 250%;
+  top: 160%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: white;

@@ -20,13 +20,14 @@ import * as AFMD from '../../pages/ApplicationForMembership/ApplicationForMember
 import CheckImageBlue from '../../images/CheckImageBlue.png'
 import * as MAHD from './MatchingAHDetailWoman'
 
-function MatchingAHDetailMan({Ids, onAddRedux}) {
+function MatchingAHDetailMan({personData, onRemoveRedux}) {
+
+    const navigate = useNavigate();
 
     const { id } = useParams();
     const [userId, setUserId] = useState(id);
     // console.log(userId);
-    const [sendIds, setSendIds] = useState('');
-
+    
     const [person, setPerson] = useState(id);
 
     const { state } = useLocation();
@@ -49,13 +50,9 @@ function MatchingAHDetailMan({Ids, onAddRedux}) {
 
     useEffect(() => {
         fetchData();
-        setSendIds(Ids);
-    }, [Ids]);
-
+    }, []);
     
     // console.log('setSendData test', sendIds);
-
-    const navigate = useNavigate();
 
     const [showModal, setShowModal] = useState(false);
 
@@ -63,13 +60,39 @@ function MatchingAHDetailMan({Ids, onAddRedux}) {
         setShowModal(true);
     };
 
-    const onClickRealAccept = () => {
-        onAddRedux(userId);
-        // navigate('/ManagerPage/MatchingApplicationHistoryWoman');
+    const onClickRealAccept = async () => {
+        const manId = userId;
+        const womanId = personData.matching[0].id;
+
+        console.log(manId);
+        console.log(womanId);
+
+        try {
+            const response = await axios.get( `http://13.209.145.28:8080/api/v1/match/make/${manId}/${womanId}` , {
+                manId,
+                womanId
+            });
+
+            if (response.status === 200) {
+                console.log('정상');
+                alert('매칭 되었습니다.');
+                navigate('/ManagerPage/MatchingApplicationHistoryWoman'); 
+            } else {
+                console.error('오류');
+            }
+        } catch (error) {
+            console.error('매칭 중 오류 발생:', error);
+            alert('오류가 발생했습니다. 다시 시도해주세요.');
+            setShowModal(false);
+        }
     };
 
+    // const test = () => {
+    // }
+
+
     const onClickRefuse = () => {
-        navigate(-1);
+        setShowModal(false);
     };
 
     const editBirthYear = (props) => {
@@ -145,7 +168,7 @@ function MatchingAHDetailMan({Ids, onAddRedux}) {
 
             <MAHD.ModalContainer showModal={showModal}>
                 <MAHD.CheckImage src={CheckImageBlue} alt="Check Image" />
-                <MAHD.ModalText>'제니 님'과 '으이 님'을 매칭하겠습니까?</MAHD.ModalText>
+                <MAHD.ModalText>'{personData.matching[0].name} 님'과 '{person.profile? person.profile.nickname : '현재 프로필'}' 님 을 매칭하겠습니까?</MAHD.ModalText>
                 <MAHD.ModalBtnDiv>
                     <AFMD.OtherBtn onClick={onClickRealAccept}>매칭하기</AFMD.OtherBtn>
                     <AFMD.AcceptBtn onClick={onClickRefuse}>취소하기</AFMD.AcceptBtn>
@@ -159,15 +182,11 @@ function MatchingAHDetailMan({Ids, onAddRedux}) {
 
 // redux
 function mapStateToProps(state) {
-    return { Ids: state };
+    return { personData: state };
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        onAddRedux: (userId) => {
-            dispatch(addId(userId));
-            // console.log('redux 성공..?', userId);
-        },
         onRemoveRedux: () => {
             dispatch(removeId());
         }
