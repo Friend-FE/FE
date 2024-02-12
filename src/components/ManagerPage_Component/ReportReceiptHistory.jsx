@@ -3,12 +3,12 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-// import * as MAHD from './MatchingAHDetail';
 import Title from '../../components/title';
 import styled from 'styled-components';
 import Footer from '../../components/footer';
 import ManagerReportBoard from '../../components/Board/ManagerReportBoard'
 import axios from 'axios';
+import img from '../../images/Judge.png'
 
 export default function ReportReceiptHistory() {
 
@@ -30,6 +30,8 @@ export default function ReportReceiptHistory() {
   useEffect(() => {
     fetchData();
   }, []);
+
+  console.log(history);
 
   return (
     <>

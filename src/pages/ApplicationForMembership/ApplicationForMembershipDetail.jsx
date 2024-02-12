@@ -11,7 +11,7 @@ import styled from 'styled-components'
 import Footer from '../../components/footer/index'
 import Title from '../../components/title/index'
 
-import * as MAHD from '../../components/ManagerPage_Component/MatchingAHDetail'
+import * as MAHD from '../../components/ManagerPage_Component/MatchingAHDetailWoman'
 
 export default function ApplicationForMembershipDetail() {
 

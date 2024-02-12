@@ -3,7 +3,7 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import Board from '../Board/ManagerQnABoard';
 import Title from '../title/index';
 import styled from 'styled-components';
-import * as MAHD from './MatchingAHDetail'
+import * as MAHD from './MatchingAHDetailWoman'
 import Footer from '../footer';
 import { Link } from 'react-router-dom';
 import axios from 'axios';

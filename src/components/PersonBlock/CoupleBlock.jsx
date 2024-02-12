@@ -1,3 +1,4 @@
+// 안 씀. 추후 삭제 예정
 // 매칭 완료 내역에 필요한 회원 블록
 
 import React, { useState } from 'react'
@@ -5,7 +6,7 @@ import styled from 'styled-components'
 // import { useNavigate } from 'react-router-dom';
 
 // import * as MAH from '../ManagerPage_Component/MatchingApplicationHistory'
-import * as M from '../ManagerPage_Component/MatchingApplicationHistory';
+import * as M from '../ManagerPage_Component/MatchingApplicationHistoryWoman';
 
 export default function CoupleBlock({ info, year, month, day }) {
 
@@ -27,7 +28,7 @@ export default function CoupleBlock({ info, year, month, day }) {
         const month = (date.getMonth() + 1).toString().padStart(2, '0');
         const day = date.getDate().toString().padStart(2, '0');
         return [year, month, day];
-    }    
+    };
     
     return (
         <>
@@ -50,10 +51,10 @@ export default function CoupleBlock({ info, year, month, day }) {
                     );
                 }
                 return null;
-                })}
+            })}
         </>
     )
-}
+};
 
 const CoupleDiv = styled.div`
   display: flex;

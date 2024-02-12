@@ -6,15 +6,19 @@ import App from './App';
 import { Provider } from 'react-redux';
 import store from './REDUX/store'
 
+import { Provider } from "react-redux";
+import store from './REDUX/store';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <Provider store={store}>
-    <React.StrictMode>
-      <BrowserRouter>
+  <React.StrictMode>
+    <BrowserRouter>
+      <Provider store={store}>
         <App />
-      </BrowserRouter>
-    </React.StrictMode>
-  </Provider>
+      </Provider>
+    </BrowserRouter>
+  </React.StrictMode>
+
 );
 

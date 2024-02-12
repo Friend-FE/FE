@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
-import * as MAH from '../ManagerPage_Component/MatchingApplicationHistory'
+import * as MAH from '../ManagerPage_Component/MatchingApplicationHistoryWoman'
 
 export default function MemberPersonBlock({ info, gender, year, month, day }) {
 

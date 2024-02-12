@@ -9,8 +9,8 @@ const ManagerReportBoard = ({ info }) => {
   const navigate = useNavigate();
 
   const handleRowClick = (item, index) => {
-    console.log(item);
-    console.log(index);
+    // console.log(item);
+    // console.log(index);
     navigate(`/ManagerPage/ReportReceiptHistory/${item.id}`, { state: { item, index } });
   };
 
@@ -46,7 +46,11 @@ const ManagerReportBoard = ({ info }) => {
           <Row onClick={() => handleRowClick(item, index)}>
             <Div>
               <TitleContent>{item.title}</TitleContent>
+              {item.status === 'INCOMPLETE' ? (
               <StateBtn>처리하기</StateBtn>
+            ) : (
+              <StateBtn>처리완료</StateBtn>
+            )}
             </Div>
             <AuthorContent>{formatAuthor(item.author)}</AuthorContent>
             <TimeContent>{formatDate(item.updatedAt)}</TimeContent>

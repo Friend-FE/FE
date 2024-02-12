@@ -89,11 +89,10 @@ const NoticeTitle = styled.h3`
     margin :0;
     margin-top :2vh;
     @media screen and (max-width: 1165px) {
-        font-size : 2.5vw;
-        gap : 5px;
-        margin-top :1.3vh;
-      }
-}
+      font-size : 2.5vw;
+      gap : 5px;
+      margin-top :1.3vh;
+    }
 `;
 
 const RecordButton = styled.button`

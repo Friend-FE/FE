@@ -107,7 +107,6 @@ const ReviewWrite = () => {
     <>
       <Title title = "후기 작성하기"/>
       <TextBox>
-        
       <TitleHR />
         <form onSubmit={handleSubmit}>
         <TitleInPut>
@@ -132,13 +131,13 @@ const ReviewWrite = () => {
 export default ReviewWrite;
 
 const TitleHR = styled.hr`
-  margin-top: 8vw;
+  margin-top: 1vw;
   border: 0;
   border-top: 0.06vw solid #B8B8B8;
   width: 80vw; 
 
   @media (max-width: 768px) {
-    margin-top: 10vw;
+    margin-top: 5vw;
   }
 `;
 
@@ -185,6 +184,11 @@ const TextBox = styled.div`
   justify-content: center;
   align-items: center;
   margin: 5vw 0 0 0;
+
+  @media (max-width: 768px) {
+    position: relative;
+    top: 1vw;
+  }
 `;
 
 const TitleInPut = styled.div`
@@ -253,6 +257,6 @@ const FooterContainer = styled.div`
   width: 100%;
 
   @media (max-width: 768px) {
-    top: 5vw;
+    top: 16vw;
   }
 `;

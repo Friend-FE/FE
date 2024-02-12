@@ -5,7 +5,7 @@ import Title from '../title/index';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../footer';
-import * as MAHD from './MatchingAHDetail';
+import * as MAHD from './MatchingAHDetailWoman';
 import { useLocation } from 'react-router-dom';
 
 const TitleHR = styled.hr`

@@ -6,8 +6,8 @@ import Footer from '../../components/footer/index'
 import Title from '../../components/title/index'
 
 import * as T from '../../components/MyPage_Component/MyPage'
-import * as MAHD from '../../components/ManagerPage_Component/MatchingAHDetail'
-import * as MAH from '../../components/ManagerPage_Component/MatchingApplicationHistory'
+import * as MAHD from '../../components/ManagerPage_Component/MatchingAHDetailWoman'
+import * as MAH from '../../components/ManagerPage_Component/MatchingApplicationHistoryWoman'
  
 import JoinPersonBlock from '../../components/PersonBlock/JoinPersonBlock'
 
