@@ -2,13 +2,14 @@
 
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
+import axios from 'axios';
 
 import Footer from '../footer/index'
 import Title from '../title/index'
 import * as T from '../MyPage_Component/MyPage'
 import * as M from './MatchingApplicationHistoryWoman'
 import * as MAHD from './MatchingAHDetailWoman'
-import CoupleBlock from '../PersonBlock/CoupleBlock'
+// import CoupleBlock from '../PersonBlock/CoupleBlock'
 
 import left from '../../images/Vector10.png'
 import right from '../../images/Vector9.png'
@@ -22,6 +23,9 @@ export default function ViewMembershipList() {
     day: 'numeric',
   };
 
+  // API 연결
+  const [apiData, setApiData] = useState('');
+
   // 현재 날짜와 전송용
   const [currentDate, setCurrentDate] = useState(new Date());
   const [sendYear, setSendYear] = useState('');
@@ -33,6 +37,7 @@ export default function ViewMembershipList() {
     // 현재 날짜
     // setCurrentDate(new Date());
     updateDateInfo(currentDate);
+    APIupdateDateInfo(currentDate);
   }, [currentDate]);
 
   // 대한민국 시간으로
@@ -76,22 +81,26 @@ export default function ViewMembershipList() {
     setCurrentDate(newCurrentDate);
   };
 
-  const Couple = [
-    { id: 1, ManName: '김ㅇㅇ', ManApplicationDate: '2024-01-30T18:14:14.721908', WomanName: '박ㅇㅇ', WomanApplicationDate: '2024-01-30T18:14:14.721908'},
-    { id: 2, ManName: '김ㅇㅇ', ManApplicationDate: '2024-01-30T18:14:14.721908', WomanName: '박ㅇㅇ', WomanApplicationDate: '2024-01-30T18:14:14.721908'},
-    { id: 3, ManName: '김ㅇㅇ', ManApplicationDate: '2024-01-30T18:14:14.721908', WomanName: '박ㅇㅇ', WomanApplicationDate: '2024-01-30T18:14:14.721908'},
-    { id: 4, ManName: '김ㅇㅇ', ManApplicationDate: '2024-01-30T18:14:14.721908', WomanName: '박ㅇㅇ', WomanApplicationDate: '2024-01-30T18:14:14.721908'},
-    { id: 5, ManName: '김ㅇㅇ', ManApplicationDate: '2024-01-30T18:14:14.721908', WomanName: '박ㅇㅇ', WomanApplicationDate: '2024-01-30T18:14:14.721908'},
-    { id: 6, ManName: '김ㅇㅇ', ManApplicationDate: '2024-01-30T18:14:14.721908', WomanName: '박ㅇㅇ', WomanApplicationDate: '2024-01-30T18:14:14.721908'},
-    { id: 7, ManName: '김ㅇㅇ', ManApplicationDate: '2024-01-30T18:14:14.721908', WomanName: '박ㅇㅇ', WomanApplicationDate: '2024-01-30T18:14:14.721908'},
-    { id: 8, ManName: '김ㅇㅇ', ManApplicationDate: '2024-01-30T18:14:14.721908', WomanName: '박ㅇㅇ', WomanApplicationDate: '2024-01-30T18:14:14.721908'},
-    { id: 9, ManName: '김ㅇㅇ', ManApplicationDate: '2024-01-30T18:14:14.721908', WomanName: '박ㅇㅇ', WomanApplicationDate: '2024-01-30T18:14:14.721908'},
-    { id: 10, ManName: '김ㅇㅇ', ManApplicationDate: '2024-01-30T18:14:14.721908', WomanName: '박ㅇㅇ', WomanApplicationDate: '2024-01-30T18:14:14.721908'},
-    { id: 11, ManName: '김ㅇㅇ', ManApplicationDate: '2024-01-30T18:14:14.721908', WomanName: '박ㅇㅇ', WomanApplicationDate: '2024-01-30T18:14:14.721908'},
-    { id: 12, ManName: '김ㅇㅇ', ManApplicationDate: '2024-01-30T18:14:14.721908', WomanName: '박ㅇㅇ', WomanApplicationDate: '2024-01-30T18:14:14.721908'},
-  ];
+  // API 전송용 현재 날짜
+  const APIupdateDateInfo = async (date) => {
+    const formattedDate = formatDate(date, koreaTimeOptions);
+    
+    const [year, MonthAndDay] = formattedDate.split('년');
+    const [month, Day] = MonthAndDay.split('월').map(part => part.trim());
+    const [day] = Day.split('일').map(part => part.trim());
 
-  // console.log('페이지에서 검사 :', sendYear, sendMonth, sendDay);
+    const sendData = year + month + day;
+    console.log('api 전송용', sendData);
+
+    try {
+      const response = await axios.get(`http://13.209.145.28:8080/api/v1/manager/matchList/{date}?date=${sendData}`);
+      console.log(response.data.data);
+      setApiData(response.data.data);
+    } catch (error) {
+      console.error('오류 발생:', error);
+      alert('오류가 발생했습니다. 다시 시도해주세요.');
+    }
+  };
 
   return (
     <>
@@ -105,13 +114,24 @@ export default function ViewMembershipList() {
             <M.P>{formatDate(currentDate, koreaTimeOptions)}</M.P>
             <M.DirectionImg onClick={onClickRight} src={right} alt ="right"/>
           </DateDiv>
-        <M.PeopleDiv>
-          <CoupleBlock
-            info={Couple}
-            year={sendYear}
-            month={sendMonth}
-            day={sendDay}/>
-        </M.PeopleDiv>
+          {apiData.length !== 0 ? (
+            <CoupleList>
+              {apiData.map((item) => (
+                <CoupleDiv key={item.id}>
+                  <M.PersonDiv>
+                    <NameH5>{item.manNickname} 님</NameH5>
+                    <P>{item.manPhone}</P>
+                    <M.P>{item.matchDate}</M.P>
+                  </M.PersonDiv>
+                  <M.PersonDiv>
+                    <NameH5>{item.womanNickname} 님</NameH5>
+                    <P>{item.womanPhone}</P>
+                    <M.P>{item.matchDate}</M.P>
+                  </M.PersonDiv>
+                </CoupleDiv>
+              ))}
+            </CoupleList>
+          ) : null}
       </T.TotalDiv>
       <FooterContainer>
         <Footer/>
@@ -144,4 +164,34 @@ const FooterContainer = styled.div`
   @media (max-width: 768px) {
     top: 5vw;
   }
+`;
+
+const CoupleList = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+`;
+
+const CoupleDiv = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  margin: 0vw 5vw;
+`;
+
+const NameH5 = styled.h5`
+  font-size: 2vw;
+  font-weight: bold;
+
+  margin: 2.5vw 0 1vw 0;
+`;
+
+const P = styled.p`
+  font-size: 1vw;
+  white-space: pre-wrap;
+
+  margin: 1vw 0 3vw 0;
 `;
