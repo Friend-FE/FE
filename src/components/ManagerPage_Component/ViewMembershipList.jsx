@@ -112,8 +112,6 @@ export default function ViewMembershipList() {
     { id: 12, name: '김남자', gender: 'm', date: '2024-02-11T18:14:14.721908' },
   ];
 
-  console.log('페이지에서 검사 :', sendYear, sendMonth, sendDay);
-
   return (
     <>
       <Title title="관리자 페이지"/>

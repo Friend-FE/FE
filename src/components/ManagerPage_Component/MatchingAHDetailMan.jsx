@@ -39,7 +39,7 @@ function MatchingAHDetailMan({personData, onRemoveRedux}) {
         // console.log(id);
         try {
             const response = await axios.get(`http://13.209.145.28:8080/api/v1/manager/profileDetail/${id}`, {id});
-            // console.log(response.data.data);
+            console.log(response.data.data);
             setPerson(response.data.data);
         } catch (error) {
           console.error('오류 발생:', error);
@@ -148,7 +148,7 @@ function MatchingAHDetailMan({personData, onRemoveRedux}) {
                         </MAHD.SelfIntroductionDiv>
                         <MAHD.SelfIntroductionTitleP>내 이상형</MAHD.SelfIntroductionTitleP>
                         <MAHD.SelfIntroductionDiv>
-                            <MAHD.SelfIntroductionP> 키 170cm 이상의 마르지 않은 사람을 원해요. 곧 저처럼 졸업하는 사람이었으면 좋겠어요. 배울 점이 많은 사람이면 좋겠어요. 흡연자, 장거리가 아니었으면 좋겠어요.</MAHD.SelfIntroductionP>       
+                            <MAHD.SelfIntroductionP>{person.profile ? person.profile.preference : '로딩 중...'}</MAHD.SelfIntroductionP>       
                         </MAHD.SelfIntroductionDiv>
                     </P.SectionDiv>
                 </P.SectionContainer>
@@ -168,7 +168,7 @@ function MatchingAHDetailMan({personData, onRemoveRedux}) {
 
             <MAHD.ModalContainer showModal={showModal}>
                 <MAHD.CheckImage src={CheckImageBlue} alt="Check Image" />
-                <MAHD.ModalText>'{personData.matching[0].name} 님'과 '{person.profile? person.profile.nickname : '현재 프로필'}' 님 을 매칭하겠습니까?</MAHD.ModalText>
+                <MAHD.ModalText>'{personData.matching[0]? personData.matching[0].name : '여성 신청자'} 님'과 '{person.profile? person.profile.nickname : '현재 신청자'}' 님 을 매칭하겠습니까?</MAHD.ModalText>
                 <MAHD.ModalBtnDiv>
                     <AFMD.OtherBtn onClick={onClickRealAccept}>매칭하기</AFMD.OtherBtn>
                     <AFMD.AcceptBtn onClick={onClickRefuse}>취소하기</AFMD.AcceptBtn>

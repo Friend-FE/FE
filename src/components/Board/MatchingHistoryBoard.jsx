@@ -47,9 +47,9 @@ export default function MatchingHistoryBoard() {
             {matchingData && matchingData.map((item, index) => (
                 <MatchingHistoryP>{item.bithday? editBirthYear(item.bithday) + '년생' : 'None data'}
                 {' / '}
-                 {item.opponent? item.opponent : 'None data'}
-                 {' / '}
-                단과대
+                {item.opponent? item.opponent : 'None data'}
+                {' / '}
+                {item.department? item.department : 'None data'}
                 {' / '}
                 {item.date? editApplicationDate(item.date) : 'None data'}
                 </MatchingHistoryP>
