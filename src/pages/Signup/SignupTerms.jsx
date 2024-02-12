@@ -104,8 +104,10 @@ const AppContainer = styled.div`
 //수평선 스타일
 const Separator = styled.div`
   height: 1px;
+  // width: 60vw;
   background-color: Gray;
-  margin : 15vw 10vw 5vw 10vw;
+  margin: 10vw;
+
 `;
 
 const Checkbox = styled.input`

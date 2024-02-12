@@ -146,7 +146,7 @@ const Checkbox = styled.input.attrs({ type: 'checkbox' })`
 
 const CheckText = styled.div`
     font-size: 0.8vw;
-    margin-right: 10px;
+    margin-right: 1vw;
 `
 
 //로그인 버튼

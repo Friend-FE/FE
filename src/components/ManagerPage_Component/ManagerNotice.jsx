@@ -84,14 +84,12 @@ const TitleHR = styled.hr`
 
 const NoticeTitle = styled.h3`
     color : #23CAFF;
-    font-size: 40px;
+    font-size: 2.5vw;
     font-weight: 900;
     margin :0;
-    margin-top :2vh;
+    margin-top :2vw;
     @media screen and (max-width: 1165px) {
-      font-size : 2.5vw;
       gap : 5px;
-      margin-top :1.3vh;
     }
 `;
 
