@@ -1,5 +1,4 @@
 // 공지사항
-
 import React, { useEffect, useState } from 'react';
 import {useNavigate} from 'react-router-dom';
 import ManagerBoard from '../Board/ManagerNoticeBoard';
@@ -49,7 +48,7 @@ const Notice = () => {
       <ReviewWrapper>
         <TitleHR/>
         <NoticeTitle>공지사항</NoticeTitle>
-        <ManagerBoard info={notice} />
+        <ManagerBoard info={notice}/>
         <RecordButton type='button' onClick={handleRecord}>작성하기</RecordButton>
       </ReviewWrapper>
       <FooterContainer>

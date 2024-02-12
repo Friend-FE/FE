@@ -83,7 +83,7 @@ const NoticeDetail = () => {
         <TitleHR/>
         <HeadTitleH3>공지사항 자세히 보기</HeadTitleH3>
         <Div>
-          <NoticeBoard info={[notice]} />
+          <NoticeBoard info={[notice]} clickable={false} />
         </Div>
         <NoticeBox>
           {notice.body}
