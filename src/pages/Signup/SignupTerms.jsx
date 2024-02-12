@@ -43,10 +43,10 @@ const SignupTerms = () => {
 
     const navigate = useNavigate();
     const handleClick = (event) => {
-        event.preventDefault();
-        if(agreeTerms && ageCheck){
-            navigate('/SignupInfo');
-        } 
+      event.preventDefault();
+      if(agreeTerms && ageCheck){
+        navigate('/SignupInfo', { state: { agreePrivacy: agreePrivacy } });
+      } 
     }; 
 
     return (

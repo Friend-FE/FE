@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useLocation } from "react-router-dom";
 import Title from "../../components/title";
 import CircleCheckbox from "../../components/CircleCheckbox/CircleCheckbox";
 import styled from "styled-components";
@@ -10,9 +10,11 @@ import axios from "axios";
 import LimitInputForm from "../../components/LimitInputForm/LimitInputForm";
 
 
-const SignupInfo = () => {
+const SignupInfo = (props) => {
   //로그인 정보 관리
   const navigate = useNavigate();
+  const location = useLocation();
+  const { agreePrivacy } = location.state;
   const [passwordCheck, setPasswordCheck] = useState("");
   const [wrongPW, setWrongPW] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
@@ -58,6 +60,7 @@ const SignupInfo = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log('agreePrivacy:', agreePrivacy);
     console.log("실행");
     alert(JSON.stringify(values, null, 2));
   };
