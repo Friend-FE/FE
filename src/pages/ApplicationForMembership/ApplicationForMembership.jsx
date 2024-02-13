@@ -5,6 +5,7 @@ import axios from 'axios';
 
 import Footer from '../../components/footer/index'
 import Title from '../../components/title/index'
+import styled from 'styled-components';
 
 import * as T from '../../components/MyPage_Component/MyPage'
 import * as MAHD from '../../components/ManagerPage_Component/MatchingAHDetailWoman'
@@ -18,6 +19,7 @@ export default function ApplicationForMembership() {
   // 성별 버튼
   const [isWomanSelected, setWomanSelected] = useState(false);
   const [isManSelected, setManSelected] = useState(false); 
+  const [userList, setUserList] = useState();
 
   // 컴포넌트가 마운트되었을 때
   useEffect(() => {
@@ -26,13 +28,14 @@ export default function ApplicationForMembership() {
       .then(function (response) {
         // 요청이 성공했을 때의 처리
         console.log("응답 데이터:", response.data);
+        setUserList(response.data);
       })
       .catch(function (error) {
         // 요청이 실패했을 때의 처리
         console.error("오류 발생:", error);
       });
   }, []);
-
+  console.log('유저:',userList);
   const onClickWoman = () => {
     setWomanSelected((prev) => !prev);
 
@@ -45,21 +48,6 @@ export default function ApplicationForMembership() {
     setWomanSelected(false);
   };
 
-  const person = [
-    { id: 1, name: '김여자', gender: 'f', date: '2024-01-30T18:14:14.721908' },
-    { id: 2, name: '김여자', gender: 'f', date: '2024-01-30T18:14:14.721908' },
-    { id: 3, name: '김여자', gender: 'f', date: '2024-01-30T18:14:14.721908' },
-    { id: 4, name: '김여자', gender: 'f', date: '2024-01-30T18:14:14.721908' },
-    { id: 5, name: '김여자', gender: 'f', date: '2024-01-30T18:14:14.721908' },
-    { id: 6, name: '김여자', gender: 'f', date: '2024-01-30T18:14:14.721908' },
-    { id: 7, name: '김남자', gender: 'm', date: '2024-01-30T18:14:14.721908' },
-    { id: 8, name: '김남자', gender: 'm', date: '2024-01-30T18:14:14.721908' },
-    { id: 9, name: '김남자', gender: 'm', date: '2024-01-30T18:14:14.721908' },
-    { id: 10, name: '김남자', gender: 'm', date: '2024-01-30T18:14:14.721908' },
-    { id: 11, name: '김남자', gender: 'm', date: '2024-01-30T18:14:14.721908' },
-    { id: 12, name: '김남자', gender: 'm', date: '2024-01-30T18:14:14.721908' },
-  ];
-
   return (
     <>
       <Title title="관리자 페이지"/>
@@ -67,14 +55,31 @@ export default function ApplicationForMembership() {
       <T.TotalDiv>
         <MAHD.HeadTitleH3>회원 가입 신청 내역 모아보기</MAHD.HeadTitleH3>
         <MAH.FlexDiv>
-          <MAH.GenderBtn onClick={onClickWoman} isSelected={isWomanSelected}>여성</MAH.GenderBtn>
-          <MAH.GenderBtn onClick={onClickMan} isSelected={isManSelected}>남성</MAH.GenderBtn>
+          <GenderBtn onClick={onClickWoman} isSelected={isWomanSelected}>여성</GenderBtn>
+          <GenderBtn onClick={onClickMan} isSelected={isManSelected}>남성</GenderBtn>
         </MAH.FlexDiv>
         <MAH.PeopleDiv>
-          <JoinPersonBlock info={person} gender={isWomanSelected ? 'f' : isManSelected ? 'm' : 'all' } />
+          {userList ? <JoinPersonBlock info={userList.data} gender={isWomanSelected ? 'FEMALE' : isManSelected ? 'MALE' : 'all' } /> : <></>}
         </MAH.PeopleDiv>
           <Footer/>
       </T.TotalDiv>
     </>
   )
 }
+
+const GenderBtn = styled.button`
+  width: 12vw; 
+  height: 4vw;
+  margin: 2vw 2vw 0 2vw;
+  
+  font-size: 1vw;
+  color: black;
+  background-color: white;
+  
+  border: none;
+  border-radius: 2vw;
+  box-shadow: 1vw 0.8vw 0.5vw rgba(0, 0, 0, 0.2);
+
+  background-color: ${(props) => props.isSelected? '#23CAFF':"white"};
+  color: ${(props) => props.isSelected? 'white':"black"};
+`;

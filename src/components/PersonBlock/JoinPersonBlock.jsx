@@ -10,7 +10,7 @@ export default function PersonBlock({ info, gender }) {
     const navigate = useNavigate();
   
     const handlePersonDivClick = (item) => {
-      navigate(`/ManagerPage/ApplicationForMembership/${item.id}`, { state: { item } });
+      navigate(`/ManagerPage/ApplicationForMembership/${item.email}`, { state: { item } });
     };
   
     const formatDate = (dateString) => {
@@ -29,9 +29,9 @@ export default function PersonBlock({ info, gender }) {
           info.map((item) => {
             if (gender === 'all' || gender === item.gender) {
               return (
-                <MAH.PersonDiv key={item.id} onClick={() => handlePersonDivClick(item)}>
-                  <MAH.NameH5>{item.name} 님</MAH.NameH5>
-                  <MAH.P>{formatDate(item.date)}</MAH.P>
+                <MAH.PersonDiv key={item.email} onClick={() => handlePersonDivClick(item)}>
+                  <MAH.NameH5>{item.nickname} 님</MAH.NameH5>
+                  <MAH.P>{formatDate(item.time)}</MAH.P>
                 </MAH.PersonDiv>
               );
             }

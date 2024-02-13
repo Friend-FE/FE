@@ -1,10 +1,10 @@
 // 관리자 페이지 - 회원 가입 신청 내용 자세히 보기
 // router 등록 아직.
 
-import React from 'react'
-import { useNavigate } from 'react-router-dom';
+import React, { useState,useEffect } from 'react'
+import { useNavigate, useParams } from 'react-router-dom';
+import axios from 'axios';
 
-import ProfileBasic from '../../images/ProfileBasic.png'
 import * as T from '../../components/MyPage_Component/MyPage'
 import * as P from '../../components/MyPage_Component/ProfileCard'
 import styled from 'styled-components'
@@ -31,43 +31,60 @@ export default function ApplicationForMembershipDetail() {
     navigate(-1);
   };
 
+  const [profile, setProfile] = useState();
+  const {email} = useParams();
+  console.log(email);
+
+  useEffect(() => {
+    axios
+      .get(`http://13.209.145.28:8080/api/v1/myPage/getProfile/${email}`)
+      .then(function (response) {
+        // 요청이 성공했을 때의 처리
+        console.log("응답 데이터:", response.data);
+        setProfile(response.data);
+      })
+      .catch(function (error) {
+        // 요청이 실패했을 때의 처리
+        console.error("오류 발생:", error);
+      });
+  }, [email]);
+  console.log(profile.data.imgUrl);
   return (
     <>
-        <Title title="마이페이지"/>
+        <Title title="관리자페이지"/>
         <T.TotalHr></T.TotalHr>
-        <T.TotalDiv>
-            <T.TitleH3>가나 님 회원 가입 신청 내용</T.TitleH3>
+        {profile? <T.TotalDiv>
+            <T.TitleH3>{profile.data.nickname} 님 회원 가입 신청 내용</T.TitleH3>
             <P.SectionContainer>
                 <P.SectionDiv>
-                    <P.ProfileBasicImg src={ProfileBasic} alt ="ProfileBasic"/>
-                    <P.NameH4>가나</P.NameH4>
-                    <P.InfoP>생년월일 : 1998년생 2월 3일</P.InfoP>
-                    <P.InfoP>키 : 168cm</P.InfoP>
-                    <P.InfoP>지역 : 부산광역시 남구</P.InfoP>
+                    <P.ProfileBasicImg src={profile.data.imgUrl} alt ="ProfileBasic"/>
+                    <P.NameH4>{profile.data.nickname}</P.NameH4>
+                    <P.InfoP>생년월일 :{profile.data.birthday}</P.InfoP>
+                    <P.InfoP>키 : {profile.data.height}cm</P.InfoP>
+                    <P.InfoP>지역 : {profile.data.region}</P.InfoP>
                 </P.SectionDiv>
                 <P.SectionDiv>
-                    <P.InfoP>장거리 가능 여부 : 가능</P.InfoP>
-                    <P.InfoP>흡연 여부 : 비흡연</P.InfoP>
-                    <P.InfoP>음주 여부 : 음주</P.InfoP>
-                    <P.InfoP>단과대 : 경영대학</P.InfoP>
+                    <P.InfoP>장거리 가능 여부 : {profile.data.distance === "SHORT" ? "불가능" : "가능"}</P.InfoP>
+                    <P.InfoP>흡연 여부 : {profile.data.smoking === "SMOKER" ? "흡연" : "비흡연"}</P.InfoP>
+                    <P.InfoP>음주 여부 : {profile.data.drinking === "DRINKER" ? "음주" : "비음주"}</P.InfoP>
+                    <P.InfoP>단과대 :{profile.data.department}</P.InfoP>
                     <SelfIntroductionTitleP>자기 소개</SelfIntroductionTitleP>
                     <SelfIntroductionDiv>
-                        <MAHD.SelfIntroductionP> 처음에는 많이 뚝딱거릴 수도 있지만 친해지면 엄청 애교도 많고 활발해요! 좋은 인연 만들어 가고 싶어요! </MAHD.SelfIntroductionP>       
+                        <MAHD.SelfIntroductionP>{profile.data.introduction} </MAHD.SelfIntroductionP>       
                     </SelfIntroductionDiv>
                 </P.SectionDiv>
             </P.SectionContainer>
             <SectionDiv>
-                <MAHD.InfoP>연락처 : 010-2949-8484</MAHD.InfoP>
-                <MAHD.InfoP>키 : 168cm</MAHD.InfoP>
-                <MAHD.InfoP>지역 : 부산광역시 남구</MAHD.InfoP>
-                <MAHD.InfoP>매칭 받고 싶지 않은 조건 따로 없음</MAHD.InfoP>
+                <MAHD.InfoP>연락처 :{profile.data.phone}</MAHD.InfoP>
+                <MAHD.InfoP>매칭되고 싶지 않은지역 : {profile.data.nonRegion}</MAHD.InfoP>
+                <MAHD.InfoP>매칭 받고 싶지 않은 조건 : {profile.data.preference}</MAHD.InfoP>
             </SectionDiv>
             <BtnDiv>
               <AcceptBtn onClick={onClickAccept}>회원가입 수락</AcceptBtn>
               <OtherBtn onClick={onClickRefuse}>회원가입 거절</OtherBtn>
               <OtherBtn onClick={onClickBack}>뒤로가기</OtherBtn>
             </BtnDiv>
-        </T.TotalDiv>
+        </T.TotalDiv> : <p>로딩중..</p>}
         <FooterContainer>
             <Footer/>
         </FooterContainer>
