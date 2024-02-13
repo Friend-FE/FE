@@ -23,6 +23,7 @@ import ManagerQnADetail from './components/ManagerPage_Component/qnaDetail';
 import ManagerNotice from './components/ManagerPage_Component/ManagerNotice';
 import ManagerNoticeDetail from './pages/Notice/ManagerNoticeDetail';
 import WritingNotices from './components/ManagerPage_Component/WritingNotices';
+import ModifyNotice from './pages/Notice/ModifyNotice';
 
 import ReportReceiptHistory from './components/ManagerPage_Component/ReportReceiptHistory';
 import ReportReceiptHistoryDetail from './components/ManagerPage_Component/ReportReceiptHistoryDetail'
@@ -128,6 +129,7 @@ const App = ()=>{
 				<Route path="/ManagerPage/Notices" element={<ManagerNotice/>}/>
 				<Route path="/ManagerPage/Notice/:id" element={<ManagerNoticeDetail/>}/>
 				<Route path="/ManagerPage/WritingNotices" element={<WritingNotices/>}/>
+				<Route path="/ManagerPage/ModifyNotice" element={<ModifyNotice/>}/>
 				
 				<Route path="/ManagerPage/ReportReceiptHistory" element={<ReportReceiptHistory/>}/>
 				<Route path="/ManagerPage/ReportReceiptHistory/:id" element={<ReportReceiptHistoryDetail/>}/>

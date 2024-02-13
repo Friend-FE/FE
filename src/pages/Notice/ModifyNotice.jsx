@@ -1,11 +1,12 @@
-import React, { useState,useEffect } from 'react';
-// 공지사항 쓰러가기
+// 공지사항 수정하기
 
-import Title from '../title/index';
+import React, { useState,useEffect } from 'react';
+import Title from '../../components/title/index';
 import styled from 'styled-components';
 import { useNavigate, useLocation } from 'react-router-dom';
-import * as MAHD from '../ManagerPage_Component/MatchingAHDetailWoman'
-import Footer from '../footer/index';
+import * as MAHD from '../../components/ManagerPage_Component/MatchingAHDetailWoman'
+import Footer from '../../components/footer/index';
+import ModifyModal from './ModifyModal';
 
 
 export default function WritingNotices() {
@@ -15,93 +16,54 @@ export default function WritingNotices() {
     const [id, setId] = useState('');
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
-    const [isEditing, setIsEditing] = useState(false);
+    const [showModal, setShowModal] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
-      // state에 데이터가 있으면 수정 모드로 간주
-      if (state && state.data) {
         const { id , title, body } = state.data;
         setId(id || '');
         setTitle(title || '');
         setContent(body || '');
-        setIsEditing(true);
-      }
     }, [state]);
 
-   
-    const handleSubmit = async (event) => {
-      event.preventDefault();
+    const handleModify = () => {
+        setShowModal(true);
+    }
+      
+    const confirmDelete = async () => {
+    // API 엔드포인트와 기타 세부 정보 설정
+        const apiUrl = `http://13.209.145.28:8080/api/v1/post/${id}`; // 실제 엔드포인트로 변경해야 합니다.
 
-      //게시글 작성
-      if(!isEditing)
-      {
-            // API 엔드포인트와 기타 세부 정보 설정
-            const apiUrl = 'http://13.209.145.28:8080/api/v1/post'; // 실제 엔드포인트로 변경해야 합니다.
-
-            // Request body 구성
-            const requestBody = {
-              title: title,
-              body: content,
-              author: 'author',
-              password: 'password', 
-            };
-
-            try {
-              // API 호출
-              const response = await fetch(apiUrl, {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(requestBody),
-              });
-
-              if (response.ok) {
-                console.log('API 호출 성공');
-                navigate('/ManagerPage/Notices');
-              } else {
-                // API 호출이 실패한 경우에 대한 처리
-                console.error('API 호출 실패');
-              }
-            } catch (error) {
-              // 네트워크 오류 등의 예외 처리
-              console.error('API 호출 중 오류:', error);
-            };
-      }
-
-      //게시글 수정
-      else
-      {
-          // API 엔드포인트와 기타 세부 정보 설정
-          const apiUrl = `http://13.209.145.28:8080/api/v1/post/${id}`; // 실제 엔드포인트로 변경해야 합니다.
-
-          const requestBody = {
+        const requestBody = {
             title: title,
             body: content,
-          };
-          try {
+        };
+        try {
             const response = await fetch(apiUrl, {
-              method: 'PUT',
-              headers: {
+            method: 'PUT',
+            headers: {
                 'Content-Type': 'application/json',
-              },
-              body: JSON.stringify(requestBody),
+            },
+            body: JSON.stringify(requestBody),
             });
         
             if (response.ok) {
-              console.log('수정 성공');
-              navigate('/ManagerPage/Notices');
+            console.log('수정 성공');
+            navigate('/ManagerPage/Notices');
             } else {
-              console.error('수정 실패');
+            console.error('수정 실패');
             }
-          } catch (error) {
+        } catch (error) {
             console.error('수정 중 오류:', error);
-          }
-      }
-    }
+        }
+        setShowModal(false); 
+    };
     
+    const cancelDelete = () => {
+        setShowModal(false);
+    };
 
+   
     const handleCancel = () => {
       navigate(-1); 
     };
@@ -111,8 +73,7 @@ export default function WritingNotices() {
         <Title title = "관리자 페이지"/>
         <TitleHR />
         <TextBox>
-          <MAHD.HeadTitleH3>공지사항 작성하기</MAHD.HeadTitleH3>
-          <form onSubmit={handleSubmit}>
+          <MAHD.HeadTitleH3>공지사항 수정하기</MAHD.HeadTitleH3>
           <TitleInPut>
             <TextInput type="text" placeholder='제목을 입력해주세요.' value={title} onChange={e => setTitle(e.target.value)} />
           </TitleInPut>
@@ -121,9 +82,14 @@ export default function WritingNotices() {
           </ContentInPut>
           <ButtonWrapper>      
             <CancelButton type="button" onClick={handleCancel}>취소</CancelButton>
-            <SubmitButton type="submit" onClick={handleSubmit}>완료</SubmitButton>
+            <SubmitButton type="submit" onClick={handleModify}>완료</SubmitButton>
+            {showModal && (
+            <ModifyModal
+                confirmDelete={confirmDelete}
+                cancelDelete={cancelDelete}
+            />
+            )}
           </ButtonWrapper>
-          </form>   
         </TextBox>
         <FooterContainer>
           <Footer/>
