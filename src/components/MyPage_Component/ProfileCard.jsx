@@ -11,7 +11,7 @@ export default function Profile_card() {
 
 
   useEffect(()=>{
-    const email = "1234@gmail.com";
+    const email = ""; //리덕스에 저장된 이메일 필요
     axios.get(`http://13.209.145.28:8080/api/v1/myPage/getProfile/${email}`)
     .then(function (response) {
       // 성공적으로 응답 받았을 때의 처리
