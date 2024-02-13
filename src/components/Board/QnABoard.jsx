@@ -62,95 +62,113 @@ const HeaderRow = styled.div`
   color: inherit;
 `;
 
-//const Overlay = styled.div`
-//  position: fixed;
-//  top: 0;
-//  left: 0;
-//  width: 100%;
-//  height: 100%;
-//  background: rgba(0, 0, 0, 0.2);
-//  display: flex;
-//  justify-content: center;
-//  align-items: center;
-//`;
+const ModalWrapper = styled.div`
+  background: white;
+  padding: 1vw;
+  border-radius: 1vw;
+  width: 17vw;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 1vw 1.5vw rgba(0, 0, 0, 0.1);
+`;
 
-//const ModalWrapper = styled.div`
-//  background: white;
-//  padding: 20px;
-//  border-radius: 8px;
-//  width: 300px;
-//  position: relative;
-//  z-index: 1;
-//`;
+const CloseButton = styled.button`
+  position: absolute;
+  top: 1vw;
+  right: 1vw;
+  background: none;
+  border: none;
+  font-size: 1vw;
+  cursor: pointer;
+  color: #666;
+`;
 
-//const PasswordForm = styled.form`
-//  flex;
-//  flex-direction: column;
-//  max-width: 300px;
-//  0 auto;
-//`;
+const PasswordForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 17vw;
+  margin: 0 auto;
+`;
 
-//const InputLabel = styled.label`
-//  margin-bottom: 8px;
-//  font-size: 16px;
-//`;
+const InputLabel = styled.label`
+  margin-bottom: 0.5vw;
+  font-size: 1vw;
+  color: #333;
+`;
 
-//const PasswordInput = styled.input`
-//  8px;
-//  margin-bottom: 16px;
-//  font-size: 14px;
-//`;
+const PasswordInput = styled.input`
+  padding: 0.3vw;
+  font-size: 1vw;
+  margin-bottom: 0.5vw;
+  border: 0.2vw solid #ccc;
+  border-radius: 0.2vw;
+  width: 17vw;
+  box-sizing: border-box;
+`;
 
-//const SubmitButton = styled.button`
-//  background-color: rgb(139, 227, 255);
-//  white;
-//  10px;
-//  none;
-//  border-radius: 4px;
-//  pointer;
-//  font-size: 16px;
-//`;
+const SubmitButton = styled.button`
+  padding: 0.5vw 1vw;
+  background: #8be3ff;
+  border: none;
+  color: #fff;
+  text-align: center;
+  font-size: 1vw;
+  font-weight: 700;
+  margin-left: 1vw;
+  cursor: pointer;
+  box-shadow: -0.13vw 0.55vw 0.41vw 0 rgba(0, 0, 0, 0.25);
+`;
 
-//const CloseButton = styled.button`
-//  absolute;
-//  10px;
-//  10px;
-//  none;
-//  none;
-//  font-size: 14px;
-//  pointer;
-//`;
+const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 const QnABoard = ({ info }) => {
   
   const infoLength = info.length;
   const navigate = useNavigate();
   const [selectedItem, setSelectedItem] = useState(null);
-  // const [showPasswordPrompt, setShowPasswordPrompt] = useState(false);
+  const isCollectPage = window.location.pathname === "/QnA";
+  const [showPasswordPrompt, setShowPasswordPrompt] = useState(false);
 
   const handleRowClick = (item) => {
     setSelectedItem(item);
-  
-  // //선택한 항목이 비밀글인지 확인,api설정필요
-  //  if (item.isPrivate) {
-  //  setShowPasswordPrompt(true);
-  //  } else {
-  //  //비밀번호가 설정되어 있지 않다면, 직접 해당 게시물로 이동
-      navigate(`/QnA/${item.id}`, { state: { item: selectedItem } });
-  //  }
+   //선택한 항목이 비밀글인지 확인, status오류라서 안됨, item.status === 'INCOMPLETE'는 됨
+    if (item.status === 'COMPLETE') {
+    setShowPasswordPrompt(true);
+    } 
+    else {
+    //비밀번호가 설정되어 있지 않다면, 직접 해당 게시물로 이동
+        if(isCollectPage){
+          //상세 페이지의 보드 클릭 시 네비게이트가 되는 문제를 해결
+          navigate(`/QnA/${item.id}`, { state: { item: selectedItem } });
+        }
+        else{
+          //클릭무시 
+        }
+    }
   };
 
-  //  const handlePasswordSubmit = (isPasswordCorrect) => {
-  //  //handleSubmit 버튼과 동시에 동작 검증이 끝남과 동시에 모달꺼짐
-  //  setShowPasswordPrompt(false);
+    const handlePasswordSubmit = (isPasswordCorrect) => {
+    //handleSubmit 버튼과 동시에 동작 검증이 끝남과 동시에 모달꺼짐
+    setShowPasswordPrompt(false);
 
-  // if (isPasswordCorrect) {
-  //  //비밀번호가 맞다면 해당 게시글로 이동
-  //  navigate(`/QnA/${selectedItem.id}`, { state: { item: selectedItem } });
-  //  } else {
-  //  alert('비밀번호가 일치하지 않습니다.');
-  //  }
-  //  };
+    if(isPasswordCorrect) {
+    //비밀번호가 맞다면 해당 게시글로 이동
+    navigate(`/QnA/${selectedItem.id}`, { state: { item: selectedItem } });
+    } else {
+    alert('비밀번호가 일치하지 않습니다.');
+    }
+    };
 
   return (
     <BoardWrapper>
@@ -161,75 +179,87 @@ const QnABoard = ({ info }) => {
         <Time>작성 시간</Time>
       </HeaderRow>
       <ThinHR />
-      {info && info.map((item, index) => {
-      const createdAtDate = new Date(item.createdAt);
-      const options = {
-        timeZone: 'Asia/Seoul',
-        hour12: true,
-        month: '2-digit',
-        day: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit',
-      };
-      createdAtDate.setHours(createdAtDate.getHours() + 9);
-      
-      const formattedDate = createdAtDate.toLocaleString('ko-KR', options);
+      {info && [...info].reverse().map((item, index) => {
+     const createdAtDate = new Date(item.updatedAt);
+     createdAtDate.setHours(createdAtDate.getHours() + 9);
+     
+     const year = createdAtDate.getFullYear();
+     const month = String(createdAtDate.getMonth() + 1).padStart(2, '0');
+     const day = String(createdAtDate.getDate()).padStart(2, '0');
+     
+     const formattedDate = `${year}.${month}.${day}`;
+
+     const maskedAuthor = item.author.charAt(0) + '**';
       return (
         <div key={item.id}>
           <Row onClick={() => handleRowClick(item)}>
             <Title>{item.title}</Title>
-            <Author>{item.author}</Author>
+            <Author>{maskedAuthor}</Author>
             <Time>{formattedDate}</Time>
           </Row>
           {index !== infoLength - 1 ? <ThinHR /> : <HR />}
         </div>
       );
       })}
-      {//  {showPasswordPrompt && (
-        // <PasswordPrompt
-        // onPasswordSubmit={handlePasswordSubmit}
-        // setShowPasswordPrompt={setShowPasswordPrompt}
-      //   />
-      //)} 
-      }
+        {showPasswordPrompt && (
+         <PasswordPrompt
+         onPasswordSubmit={handlePasswordSubmit}
+         setShowPasswordPrompt={setShowPasswordPrompt}
+         />
+      )} 
     </BoardWrapper>
   );
 };
 
-// PasswordPrompt 컴포넌트
-// const PasswordPrompt = ({ onPasswordSubmit, setShowPasswordPrompt }) => {
-//  const [password, setPassword] = useState('');
+ const PasswordPrompt = ({ onPasswordSubmit, setShowPasswordPrompt }) => {
+  const [password, setPassword] = useState('');
 
-//  const handleSubmit = (e) => {
-//    e.preventDefault();
-//    const isPasswordCorrect = true; // 여기를 실제 비밀번호 검증으로 변경
-//    // 여기에서 서버에 비밀번호를 전송하여 검증하는 로직을 추가해야 합니다.
-//    // 비밀번호가 맞다면 onPasswordSubmit(true) 호출, 아니면 false
+  const handleSubmit = (e) => {
+    e.preventDefault();
+     // 비밀번호가 맞다면 onPasswordSubmit(true) 호출, 아니면 false
+    //try {
+    //  const response = await fetch(`http://13.209.145.28:8080/api/v1/qa/${id}`, {
+    //    method: 'POST',
+    //    headers: {
+    //      'Content-Type': 'application/json',
+    //    },
+    //    body: JSON.stringify({ password }), // password에는 사용자가 입력한 비밀번호가 들어갑니다.
+    //  });
+  
+    //  if (response.ok) {
+    //    const { isPasswordCorrect } = await response.json();
+    //    onPasswordSubmit(isPasswordCorrect);
+    //  } else {
+    //    console.error('비밀번호 검증에 실패했습니다.');
+    //    onPasswordSubmit(false);
+    //  }
+    //} catch (error) {
+    //  console.error('비밀번호 검증 중 오류 발생:', error);
+    //  onPasswordSubmit(false);
+    //}
+  };
 
-//    onPasswordSubmit(isPasswordCorrect);
-//  };
+  const handleClose = () => {
+    setShowPasswordPrompt(false);
+  };
 
-//  const handleClose = () => {
-//    setShowPasswordPrompt(false);
-//  };
-
-//  return (
-//    <Overlay>
-//      <ModalWrapper>
-//        <CloseButton onClick={handleClose}>X</CloseButton>
-//        <PasswordForm onSubmit={handleSubmit}>
-//          <InputLabel>비밀번호를 입력하세요:</InputLabel>
-//          <PasswordInput
-//            type="password"
-//            value={password}
-//            onChange={(e) => setPassword(e.target.value)}
-//            required
-//          />
-//          <SubmitButton type="submit">확인</SubmitButton>
-//        </PasswordForm>
-//      </ModalWrapper>
-//    </Overlay>
-//  );
-//};
+  return (
+    <Overlay>
+      <ModalWrapper>
+        <CloseButton onClick={handleClose}>X</CloseButton>
+        <PasswordForm onSubmit={handleSubmit}>
+          <InputLabel>비밀번호를 입력하세요.</InputLabel>
+          <PasswordInput
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <SubmitButton type="submit">확인</SubmitButton>
+        </PasswordForm>
+      </ModalWrapper>
+    </Overlay>
+  );
+};
 
 export default QnABoard;
