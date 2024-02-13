@@ -6,11 +6,13 @@ import React, { useState, useEffect } from 'react';
 import Title from '../../components/title';
 import styled from 'styled-components';
 import Footer from '../../components/footer/index';
+import DeleteModal from './DeleteModal';
 
 const NoticeDetail = () => {
   const { id } = useParams();
   const { state } = useLocation();
   const navigate = useNavigate();
+  const [showModal, setShowModal] = useState(false);
 
   const [notice, setNotice] = useState(state?.item);
 
@@ -40,9 +42,15 @@ const NoticeDetail = () => {
     return null;
   }
 
+  const handleBack = () => {
+    navigate('/ManagerPage/Notices');
+  }
 
-
-  const handleDelete = async () => {
+  const handleDelete = () => {
+    setShowModal(true);
+  }
+  
+  const confirmDelete = async () => {
     try {
       const response = await fetch(`http://13.209.145.28:8080/api/v1/post/${id}`, {
         method: 'DELETE',
@@ -50,7 +58,7 @@ const NoticeDetail = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          //body 필요 ?
+          
         }),
       });
   
@@ -63,7 +71,14 @@ const NoticeDetail = () => {
     } catch (error) {
       console.error('삭제 중 오류:', error);
     }
+    setShowModal(false); 
   };
+    
+  const cancelDelete = () => {
+    setShowModal(false);
+  };
+  
+
 
 
 
@@ -73,7 +88,7 @@ const NoticeDetail = () => {
         title : notice.title,
         body : notice.body
       };
-      navigate("/ManagerPage/WritingNotices" , {state : {data}} );
+      navigate("/ManagerPage/ModifyNotice" , {state : {data}} );
   };
 
   return (
@@ -83,15 +98,22 @@ const NoticeDetail = () => {
         <TitleHR/>
         <HeadTitleH3>공지사항 자세히 보기</HeadTitleH3>
         <Div>
-          <NoticeBoard info={[notice]} />
+          <NoticeBoard info={[notice]} clickable={false} />
         </Div>
         <NoticeBox>
           {notice.body}
         </NoticeBox>
       </NoticeWrapper>
       <ButtonWrapper>      
-        <CancelButton type="button" onClick={handleDelete}>삭제하기</CancelButton>
-        <SubmitButton type="button" onClick={handleModify}>수정하기</SubmitButton>
+        <CommandButton type="button" onClick={handleBack}>목록으로 돌아가기</CommandButton>
+        <CommandButton type="button" onClick={handleDelete}>글 삭제하기</CommandButton>
+        {showModal && (
+          <DeleteModal
+            confirmDelete={confirmDelete}
+            cancelDelete={cancelDelete}
+          />
+        )}
+        <CommandButton type="button" onClick={handleModify}>글 수정하기</CommandButton>
       </ButtonWrapper>
       <FooterContainer>
         <Footer/>
@@ -187,21 +209,7 @@ const ButtonWrapper = styled.div`
   }
 `;
 
-const CancelButton = styled.button`
-  width: 13vw;
-  height: 2.5vw;
-  background: #fff;
-  border: none;
-  color: #000;
-  text-align: center;
-  font-size: 1vw;
-  font-weight: bold;
-  margin-right: 1vw;
-  cursor: pointer;
-  box-shadow: -0.13vw 0.55vw 0.41vw 0 rgba(0, 0, 0, 0.25);
-`;
-
-const SubmitButton = styled.button`
+const CommandButton = styled.button`
   width: 13vw;
   height: 2.5vw;
   background: #8be3ff;

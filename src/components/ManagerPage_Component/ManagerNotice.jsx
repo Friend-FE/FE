@@ -1,5 +1,4 @@
 // 공지사항
-
 import React, { useEffect, useState } from 'react';
 import {useNavigate} from 'react-router-dom';
 import ManagerBoard from '../Board/ManagerNoticeBoard';
@@ -49,7 +48,7 @@ const Notice = () => {
       <ReviewWrapper>
         <TitleHR/>
         <NoticeTitle>공지사항</NoticeTitle>
-        <ManagerBoard info={notice} />
+        <ManagerBoard info={notice}/>
         <RecordButton type='button' onClick={handleRecord}>작성하기</RecordButton>
       </ReviewWrapper>
       <FooterContainer>
@@ -84,14 +83,12 @@ const TitleHR = styled.hr`
 
 const NoticeTitle = styled.h3`
     color : #23CAFF;
-    font-size: 40px;
+    font-size: 2.5vw;
     font-weight: 900;
     margin :0;
-    margin-top :2vh;
+    margin-top :2vw;
     @media screen and (max-width: 1165px) {
-      font-size : 2.5vw;
       gap : 5px;
-      margin-top :1.3vh;
     }
 `;
 

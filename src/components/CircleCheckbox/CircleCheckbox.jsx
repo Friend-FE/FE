@@ -31,20 +31,22 @@ export default CircleCheckbox;
 
 const StyledCheckbox = styled.input`
   appearance: none;
-  width: 20px;
-  height: 20px;
+  width: 2vw;
+  height: 2vw;
   border: 2px solid #3498db;
   border-radius: 50%;
   outline: none;
   position: relative;
-  @media screen and (max-width: 970px) {
-    font-size:1rem;
+  @media screen and (max-width: 768px) {
+    font-size:1vw;
+    width: 3vw;
+    height: 3vw;
   }
   
   &:checked {
     &::before {
       content: "\\2713"; /* Unicode for checkmark (V) */
-      font-size: 16px;
+      font-size: 1vw;
       color: #3498db;
       position: absolute;
       top: 50%;
@@ -56,11 +58,11 @@ const StyledCheckbox = styled.input`
 
 const CheckboxContainer = styled.div`
   display: flex;
-  margin-top: 10px;
-  margin-bottom : 20px;
+  margin-top: 1vw;
+  margin-bottom : 2vw;
   align-items: center;
 `;
 
 const CheckboxLabel = styled.label`
-  margin-left: 8px;
+  margin-left: 1vw;
 `;

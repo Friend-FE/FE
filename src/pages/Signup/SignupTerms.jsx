@@ -43,10 +43,10 @@ const SignupTerms = () => {
 
     const navigate = useNavigate();
     const handleClick = (event) => {
-        event.preventDefault();
-        if(agreeTerms && ageCheck){
-            navigate('/SignupInfo');
-        } 
+      event.preventDefault();
+      if(agreeTerms && ageCheck){
+        navigate('/SignupInfo', { state: { agreePrivacy: agreePrivacy } });
+      } 
     }; 
 
     return (
@@ -104,8 +104,10 @@ const AppContainer = styled.div`
 //수평선 스타일
 const Separator = styled.div`
   height: 1px;
+  // width: 60vw;
   background-color: Gray;
-  margin : 15vw 10vw 5vw 10vw;
+  margin: 10vw;
+
 `;
 
 const Checkbox = styled.input`
