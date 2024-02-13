@@ -21,7 +21,7 @@ const TitleHR = styled.hr`
   width: 80vw;
   margin-bottom: 5vw;
 
-  @media (max-width: 53.3333vw) {
+  @media (max-width: 768px) {
     position: relative;
     top: 10vw;
   }
@@ -89,6 +89,9 @@ const Qna = () => {
     fetchQnaData();
   }, []);
 
+  const onUpdateQnaData = (newData) => {
+    setQnaData((prevData) => [newData, ...prevData]);
+  };
   
   if (loading) {
     return <div>Loading QnA data...</div>;

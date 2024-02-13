@@ -5,7 +5,7 @@ import Title from '../title/index';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../footer';
-import * as MAHD from './MatchingAHDetail';
+import * as MAHD from './MatchingAHDetailWoman';
 import { useLocation } from 'react-router-dom';
 
 const TitleHR = styled.hr`
@@ -22,7 +22,7 @@ const TextInput = styled.input`
   font-size: 1.1vw;
   padding-left: 1vw;
   border: 0.05vw solid #888;
-  pointer-events: none; // 입력 방지
+
   @media (max-width: 768px) {
     width: 60vw;
     height: 2vh;
@@ -105,18 +105,16 @@ const SubmitButton = styled.button`
 
 const QnAResponse = () => {
   const [id, setId] = useState(null);
-  const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const navigate = useNavigate();
   const location = useLocation();
 
-
-  useState(() => {
-    if (location.state && location.state.item && location.state.item.title) {
-      const originalTitle = location.state.item.title;
-      setTitle(`RE: ${originalTitle}`);
+  useEffect(() => {
+    const postIdToEdit = location.state?.postId;
+    if (postIdToEdit) {
+      setId(postIdToEdit);
     }
-  }, []);
+  }, [location]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -160,9 +158,6 @@ const QnAResponse = () => {
       <TextBox>
         <MAHD.HeadTitleH3>답변하기</MAHD.HeadTitleH3>
         <form onSubmit={handleSubmit}>
-           <TitleInPut>
-          <TextInput type="text" value={title} onChange={e => setTitle(e.target.value)} />
-        </TitleInPut>
           <ContentInPut>
             <TextArea type="text" placeholder='답변을 입력해주세요.' value={content} onChange={e => setContent(e.target.value)} />
           </ContentInPut>
