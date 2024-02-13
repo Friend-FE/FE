@@ -35,7 +35,6 @@ export default function ApplicationForMembership() {
         console.error("오류 발생:", error);
       });
   }, []);
-  console.log('유저:',userList);
   const onClickWoman = () => {
     setWomanSelected((prev) => !prev);
 
