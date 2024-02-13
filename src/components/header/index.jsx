@@ -4,18 +4,26 @@ import React, { useState } from "react";
 import { Link,NavLink } from "react-router-dom";
 import styled from "styled-components";
 import logo from "../../images/logo.png"
+import { useSelector,useDispatch } from "react-redux";
+import { logout } from "../../REDUX/loginCheck";
 
 function Header() {
-  const [isLogined,setLogin]=useState(true);
+  const dispatch = useDispatch();
 
+  const isLoggedIn = useSelector(state => state.login.isLoggedIn); // Redux Store에서 로그인 상태 가져오기
+
+  const handleLogout = () => {
+    // 로그아웃 액션 디스패치
+    dispatch(logout());
+  };
   return (
     <Container>
     <Wrapper>
       <div>사람이 해주는 진심어린 매칭, Friend!</div>
       <div>
-      {isLogined ? (
+      {isLoggedIn ? (
             <>
-              <NavLink to="/logout">LOGOUT</NavLink>
+              <NavLink to="/" onClick={handleLogout}>LOGOUT</NavLink>
               <NavLink to="/Mypage">마이페이지</NavLink>
             </>
           ) : (
@@ -40,7 +48,7 @@ function Header() {
           <NavLink to="/reviews" activeclassname="active">
             솔직후기
           </NavLink>
-          <NavLink to="/apply" activeclassname="active">
+          <NavLink to={isLoggedIn? "/Apply" : "login"} activeclassname="active">
             매칭신청
           </NavLink>
           <NavLink to="/QnA" activeclassname="active">

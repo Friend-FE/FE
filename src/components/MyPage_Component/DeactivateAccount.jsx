@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export default function Deactivate_account() {
+  const email = 'tttt@gmail.com';
    const navigate = useNavigate();
 
    const handleCancleButton = () => {
@@ -16,11 +17,11 @@ export default function Deactivate_account() {
   };
   const handleCheckButton = () => {
     axios
-    .post(`http://13.209.145.28:8080/api/v1/경로수정`, {
-    })
+    .patch(`http://13.209.145.28:8080/api/v1/member/status/${email}`)
     .then(function (response) {
-      // 성공적으로 응답 받았을 때의 처리
-      //navigate("/");
+      //성공적으로 응답 받았을 때의 처리
+      console.log('성공');
+      navigate("/");
     })
     .catch(function (error) {
       // 오류 발생 시의 처리

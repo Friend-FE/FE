@@ -1,6 +1,7 @@
 // 관리자 페이지 - 회원 가입 신청 내역 보기
 
 import React, { useState, useEffect } from 'react'
+import axios from 'axios';
 
 import Footer from '../../components/footer/index'
 import Title from '../../components/title/index'
@@ -19,9 +20,18 @@ export default function ApplicationForMembership() {
   const [isManSelected, setManSelected] = useState(false); 
 
   // 컴포넌트가 마운트되었을 때
-  // useEffect(() => {
-    
-  // }, []);
+  useEffect(() => {
+    axios
+      .get("http://13.209.145.28:8080/api/v1/activateList")
+      .then(function (response) {
+        // 요청이 성공했을 때의 처리
+        console.log("응답 데이터:", response.data);
+      })
+      .catch(function (error) {
+        // 요청이 실패했을 때의 처리
+        console.error("오류 발생:", error);
+      });
+  }, []);
 
   const onClickWoman = () => {
     setWomanSelected((prev) => !prev);
