@@ -9,18 +9,18 @@ import axios from "axios";
 
 export default function Membership_withdrawal() {
   const navigate = useNavigate();
-  const email = 'tttt@gmail.com';
+  const email = ''; //리덕스로 저장한 이메일 사용
   const handleCancleButton = () => {
    //취소 시 이전 페이지로
    navigate(-1);
  };
   const handleCheckButton = () => {
     axios
-    .delete(`http://13.209.145.28:8080/api/v1/member/${email}`, {
-    })
+    .delete(`http://13.209.145.28:8080/api/v1/member/${email}`)
     .then(function (response) {
       // 성공적으로 응답 받았을 때의 처리
       navigate("/");
+      console.log('성공');
     })
     .catch(function (error) {
       // 오류 발생 시의 처리
