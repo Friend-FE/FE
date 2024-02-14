@@ -11,12 +11,13 @@ export default function Profile_card() {
 
 
   useEffect(()=>{
-    const email = ""; //리덕스에 저장된 이메일 필요
+    const email = "match1@gmail.com"; //리덕스에 저장된 이메일 필요
     axios.get(`http://13.209.145.28:8080/api/v1/myPage/getProfile/${email}`)
     .then(function (response) {
       // 성공적으로 응답 받았을 때의 처리
-      console.log("프로필 데이터:", response.data);
       setProfileData(response.data);
+      console.log(profileData.data.imgUrl);
+
     })
     .catch(function (error) {
       // 오류 발생 시의 처리
@@ -34,14 +35,14 @@ export default function Profile_card() {
         <T.TitleH3>{profileData.data ? `${profileData.data.nickname} 님의 프로필 카드` : '로딩 중...'}</T.TitleH3>
         <SectionContainer>
           <SectionDiv>
-            <ProfileBasicImg src={profileData.data ? profileData.data.imgUrl : ''} alt="ProfileBasic" />
+            <ProfileBasicImg src={profileData.data ? profileData.data.imgUrl : ProfileBasic} alt="ProfileBasic" />
             <NameH4>{profileData.data ? profileData.data.nickname : '로딩 중...'}</NameH4>
             <InfoP>년생: {profileData.data ? profileData.data.birthday : '로딩 중...'}</InfoP>
             <InfoP>키: {profileData.data ? profileData.data.height : '로딩 중...'}</InfoP>
             <InfoP>지역: {profileData.data ? profileData.data.region : '로딩 중...'}</InfoP>
-          </SectionDiv>
+          </SectionDiv> 
           <SectionDiv>
-            <InfoP>장거리 가능 여부: {profileData.data ? profileData.data.region : '로딩 중...'}</InfoP>
+            <InfoP>장거리 가능 여부: {profileData.data ? (profileData.data.distance === "SHORT"? "불가능" :"가능"):'로딩 중...'}</InfoP>
             <InfoP>흡연 여부: {profileData.data ? (profileData.data.smoking === "SMOKER" ? "흡연" : "비흡연") : '로딩 중...'}</InfoP>
             <InfoP>음주 여부: {profileData.data ? (profileData.data.drinking === "DRINKER" ? "음주" : "비음주") : '로딩 중...'}</InfoP>
             <InfoP>단과대: {profileData.data ? profileData.data.department : '로딩 중...'}</InfoP>

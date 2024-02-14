@@ -48,7 +48,7 @@ export default function ApplicationForMembershipDetail() {
         console.error("오류 발생:", error);
       });
   }, [email]);
-  console.log(profile.data.imgUrl);
+  
   return (
     <>
         <Title title="관리자페이지"/>
@@ -76,8 +76,9 @@ export default function ApplicationForMembershipDetail() {
             </P.SectionContainer>
             <SectionDiv>
                 <MAHD.InfoP>연락처 :{profile.data.phone}</MAHD.InfoP>
-                <MAHD.InfoP>매칭되고 싶지 않은지역 : {profile.data.nonRegion}</MAHD.InfoP>
-                <MAHD.InfoP>매칭 받고 싶지 않은 조건 : {profile.data.preference}</MAHD.InfoP>
+                <MAHD.InfoP>매칭되고 싶지 않은 조건 </MAHD.InfoP>
+                <MAHD.InfoP>&emsp;지역:{profile.data.nonRegion},&nbsp;학과:{profile.data.nonDepartment},&nbsp;나이:{profile.data.nonAge},&nbsp;학번:{profile.data.nonStudentId}</MAHD.InfoP>
+                <MAHD.InfoP>이상형 : {profile.data.preference}</MAHD.InfoP>
             </SectionDiv>
             <BtnDiv>
               <AcceptBtn onClick={onClickAccept}>회원가입 수락</AcceptBtn>
