@@ -154,9 +154,9 @@ function MatchingAHDetailMan({personData, onRemoveRedux}) {
                 </P.SectionContainer>
                 <MAHD.SectionDiv>
                     <MAHD.InfoP>매칭 신청 날짜 : {editApplicationDate(useLocationContent.date)}</MAHD.InfoP>
-                    <MAHD.InfoP>비매너 경고 회수 : {person.warningCount !== null ? person.warningCount + '회' : '로딩 중...'}</MAHD.InfoP>
-                    <MAHD.InfoP>매칭 신청 회수 : {person.matchCount !== null ? person.matchCount + '회' : '로딩 중...'}</MAHD.InfoP>
-                    <MAHD.InfoP>매칭 완료 회수 : {person.matchCompleteCount !== null ? person.matchCompleteCount + '회' : '로딩 중...'}</MAHD.InfoP>
+                    <MAHD.InfoP>비매너 경고 회수 : {person.warningCount ? person.warningCount + '회' : 0 + '회' }</MAHD.InfoP>
+                    <MAHD.InfoP>매칭 신청 회수 : {person.matchCount ? person.matchCount + '회' : 0 + '회' }</MAHD.InfoP>
+                    <MAHD.InfoP>매칭 완료 회수 : {person.matchCompleteCount ? person.matchCompleteCount + '회' : 0 + '회' }</MAHD.InfoP>
                 </MAHD.SectionDiv>
                 <MAHD.BtnDiv>
                     <AFMD.AcceptBtn onClick={onClickAccept}>매칭하기</AFMD.AcceptBtn>
@@ -168,7 +168,7 @@ function MatchingAHDetailMan({personData, onRemoveRedux}) {
 
             <MAHD.ModalContainer showModal={showModal}>
                 <MAHD.CheckImage src={CheckImageBlue} alt="Check Image" />
-                <MAHD.ModalText>'{personData.matching[0]? personData.matching[0].name : '여성 신청자'} 님'과 '{person.profile? person.profile.nickname : '현재 신청자'}' 님 을 매칭하겠습니까?</MAHD.ModalText>
+                <MAHD.ModalText>'{personData.matching[0]? personData.matching[0].name : '여성 신청자'}' 님과 '{person.profile? person.profile.nickname : '현재 신청자'}' 님 을 매칭하겠습니까?</MAHD.ModalText>
                 <MAHD.ModalBtnDiv>
                     <AFMD.OtherBtn onClick={onClickRealAccept}>매칭하기</AFMD.OtherBtn>
                     <AFMD.AcceptBtn onClick={onClickRefuse}>취소하기</AFMD.AcceptBtn>

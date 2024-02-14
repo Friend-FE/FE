@@ -1,25 +1,21 @@
-// 솔직후기 자세히 보기에 쓰이는 Board입니다.
+// 관리자 페이지 - 솔직후기에 쓰이는 Board입니다.
+// 안 씀. 추후 삭제 예정
 
 import React from 'react';
 import styled from 'styled-components';
 import { useNavigate,useLocation } from 'react-router-dom';
 
-export default function ReviewDetailBoard({ info, selectView }) {
-
-    // redux로 id를 가져오기
-    const userId = 343;
-
-    const infoLength = info.length;
+export default function ManagerReviewBoard({ info }) {
+    // const infoLength = info.length;
     const navigate = useNavigate();
     const location = useLocation();
 
     const handleRowClick = (item) => {
         if (location.pathname === '/reviews') {
         navigate(`/reviews/${item.id}`, { state: { item } });
+        console.log('실행');
         }
-        else if (location.pathname === '/ManagerPage/Review'){
-        navigate(`/ManagerPage/Review/reviews/${item.id}`, { state: { item } });
-        }
+        console.log('실행');
     };
 
     const formatAuthor = (author) => {
@@ -49,35 +45,17 @@ export default function ReviewDetailBoard({ info, selectView }) {
                 <View>조회수</View>
             </HeaderRow>
             <ThinHR />
-            {info &&
-                info.map((item, index) => {
-                if(selectView === 'me' && userId === item.id){
-                    return(
-                    <div key={item.id}>
-                        <Row onClick={() => handleRowClick(item)}>
-                        <Title>{item.title}</Title>
-                        <Author>{formatAuthor(item.author)}</Author>
-                        <Time>{formatDate(item.time)}</Time>
-                        <ViewCount>{item.views}</ViewCount>
-                        </Row>
-                        {index !== infoLength - 1 ? <ThinHR /> : <HR />}
-                    </div>
-                    );
-                }
-                else if(selectView === 'all'){
-                    return(
-                    <div key={item.id}>
-                        <Row onClick={() => handleRowClick(item)}>
-                        <Title>{item.title}</Title>
-                        <Author>{formatAuthor(item.author)}</Author>
-                        <Time>{formatDate(item.time)}</Time>
-                        <ViewCount>{item.views}</ViewCount>
-                        </Row>
-                        {index !== infoLength - 1 ? <ThinHR /> : <HR />}
-                    </div>
-                    );
-                }
-        })}
+            {info && info.map((item, index) => (
+                <div key={item.id}>
+                    <Row onClick={() => handleRowClick(item)}>
+                    <Title>{item.title}</Title>
+                    <Author>{formatAuthor(item.author)}</Author>
+                    <Time>{formatDate(item.time)}</Time>
+                    <ViewCount>{item.views}</ViewCount>
+                    </Row>
+                    <ThinHR />
+                </div>
+            ))}
         </BoardWrapper>
     )
 }

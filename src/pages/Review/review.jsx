@@ -2,7 +2,7 @@
 
 import ReviewBoard from '../../components/Board/ReviewBoard';
 import {useNavigate} from 'react-router-dom';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import Title from '../../components/title';
 import styled from 'styled-components';
@@ -10,6 +10,8 @@ import Footer from '../../components/footer';
 
 const Review = () => {
   const [review, setReview] = useState([]);
+  const [onlyMe, setOnlyMe] = useState(false);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -46,15 +48,24 @@ const Review = () => {
     navigate("/reviews/write");
   }
 
+  const handleOnlyMe = () => {
+    setOnlyMe((prev) => !prev);
+  }
+
   return (
     <>
       <Title title = "솔직후기"/>
       <TitleHR/>
-      <InterviewH3>실제 교제 회원 인터뷰 {review.length}</InterviewH3>
-      <ReviewWrapper>
-        <ReviewBoard info={review}/>
-        <ButtonLink type='button' onClick={handleRecord}>후기 작성하기 </ButtonLink>
-      </ReviewWrapper>
+      <ContentDiv>
+        <InterviewH3>실제 교제 회원 인터뷰 {review.length}</InterviewH3>
+        <ReviewWrapper>
+          <ReviewBoard info={review} selectView={onlyMe ? 'me' : 'all' }/>
+          <BtnDiv>
+            <ButtonLink type='button' onClick={handleRecord}>후기 작성하기</ButtonLink>
+            <ButtonLink type='button' onClick={handleOnlyMe}>{onlyMe ? '전체 후기글 보기' : '내 후기글 보기'}</ButtonLink>
+          </BtnDiv>
+        </ReviewWrapper>
+      </ContentDiv>
       <FooterContainer>
         <Footer/>
       </FooterContainer>
@@ -91,10 +102,30 @@ const TitleHR = styled.hr`
   }
 `;
 
+const ContentDiv = styled.div`
+  position: relative;
+  top: 2vw;
+`;
+
+const BtnDiv = styled.div`
+  display: flex;
+  flex-direction: center;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
+  top: 2vw;
+  left: 24vw;
+`;
+
 const InterviewH3 = styled.h3`
   margin-left: 10vw;
-
   font-size: 1.1vw;
+
+  @media (max-width: 768px) {
+    position: relative;
+    top: 12vw;
+  }
 `;
 
 const ButtonLink = styled.button`
@@ -113,8 +144,10 @@ const ButtonLink = styled.button`
   align-items: center;
   justify-content: center;
 
-  margin-top: 2vw;
-  margin-left: 65vw;
+  /* margin-top: 3vw; */
+  margin: 0vw 1vw 0vw 1vw;
+
+  cursor: pointer;
 
   @media (max-width: 768px) {
     position: relative;
@@ -124,10 +157,10 @@ const ButtonLink = styled.button`
 
 const FooterContainer = styled.div`
     position: relative;
-    bottom: -2vw;
+    bottom: -10vw;
     width: 100%;
 
     @media (max-width: 768px) {
-    top: 22vw;
+    top: 46vw;
   }
 `;

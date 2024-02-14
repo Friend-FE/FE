@@ -24,6 +24,9 @@ import ManagerNotice from './components/ManagerPage_Component/ManagerNotice';
 import ManagerNoticeDetail from './pages/Notice/ManagerNoticeDetail';
 import WritingNotices from './components/ManagerPage_Component/WritingNotices';
 
+import ManagerReview from './components/ManagerPage_Component/ManagerReview';
+import ManagerReviewDetail from './components/ManagerPage_Component/ManagerReviewDetail';
+
 import ReportReceiptHistory from './components/ManagerPage_Component/ReportReceiptHistory';
 import ReportReceiptHistoryDetail from './components/ManagerPage_Component/ReportReceiptHistoryDetail'
 
@@ -33,7 +36,10 @@ import MatchingApplicationHistoryMan from './components/ManagerPage_Component/Ma
 import MatchingAHDetailMan from './components/ManagerPage_Component/MatchingAHDetailMan';
 
 import MatchingCompletionHistory from './components/ManagerPage_Component/MatchingCompletionHistory';
+
 import ViewMembershipList from './components/ManagerPage_Component/ViewMembershipList';
+import ViewMembershipDetail from './components/ManagerPage_Component/ViewMembershipDetail';
+
 import ApplicationForMembership from './pages/ApplicationForMembership/ApplicationForMembership';
 import ApplicationForMembershipDetail from './pages/ApplicationForMembership/ApplicationForMembershipDetail'
 
@@ -104,6 +110,9 @@ const App = ()=>{
 					공지사항 자세히
 					공지사항 쓰러가기
 
+					솔직후기
+					솔직후기 자세히
+
 					신고 접수 내역
 					신고 접수 내역 자세히
 
@@ -115,6 +124,7 @@ const App = ()=>{
 					매칭 완료 내역
 
 					회원 목록 보기
+					회원 목록 보기 자세히
 
 					회원 가입 신청 내역 보기
 					회원 가입 신청 내용 자세히 보기
@@ -129,6 +139,9 @@ const App = ()=>{
 				<Route path="/ManagerPage/Notice/:id" element={<ManagerNoticeDetail/>}/>
 				<Route path="/ManagerPage/WritingNotices" element={<WritingNotices/>}/>
 				
+				<Route path="/ManagerPage/Review" element={<ManagerReview/>}/>
+				<Route path="/ManagerPage/Review/reviews/:id" element={<ManagerReviewDetail/>}/>
+
 				<Route path="/ManagerPage/ReportReceiptHistory" element={<ReportReceiptHistory/>}/>
 				<Route path="/ManagerPage/ReportReceiptHistory/:id" element={<ReportReceiptHistoryDetail/>}/>
 				
@@ -140,6 +153,7 @@ const App = ()=>{
 				<Route path="/ManagerPage/MatchingCompletionHistory" element={<MatchingCompletionHistory/>}/>
 
 				<Route path="/ManagerPage/ViewMembershipList" element={<ViewMembershipList/>}/>				
+				<Route path="/ManagerPage/ViewMembershipList/ViewMembershipDetail/:id" element={<ViewMembershipDetail/>}/>				
 				
 				<Route path="/ManagerPage/ApplicationForMembership" element={<ApplicationForMembership/>}/>				
 				<Route path="/ManagerPage/ApplicationForMembership/:id" element={<ApplicationForMembershipDetail/>}/>				

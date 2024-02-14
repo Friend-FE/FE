@@ -89,7 +89,7 @@ function MatchingAHDetailWoman({onAddRedux}) {
             <T.TotalHr></T.TotalHr>
             <T.TotalDiv>
                 <HeadTitleH3>매칭 신청 내역 모아보기</HeadTitleH3>
-                <T.TitleH3>{person.profile? person.profile.nickname : '로딩 중...'} 님의 프로필 카드</T.TitleH3>
+                <T.TitleH3>{person.profile? person.profile.nickname +  '님의 프로필 카드' : '로딩 중...'}</T.TitleH3>
                 <P.SectionContainer>
                     <P.SectionDiv>
                         <P.ProfileBasicImg src={person.profile ? person.profile.imgUrl : ProfileBasic } alt ="ProfileBasic"/>
@@ -110,15 +110,15 @@ function MatchingAHDetailWoman({onAddRedux}) {
                         </SelfIntroductionDiv>
                         <SelfIntroductionTitleP>내 이상형</SelfIntroductionTitleP>
                         <SelfIntroductionDiv>
-                            <SelfIntroductionP> 키 170cm 이상의 마르지 않은 사람을 원해요. 곧 저처럼 졸업하는 사람이었으면 좋겠어요. 배울 점이 많은 사람이면 좋겠어요. 흡연자, 장거리가 아니었으면 좋겠어요.</SelfIntroductionP>       
+                            <SelfIntroductionP>{person.profile ? person.profile.preference : '로딩 중...'}</SelfIntroductionP>       
                         </SelfIntroductionDiv>
                     </P.SectionDiv>
                 </P.SectionContainer>
                 <SectionDiv>
                     <InfoP>매칭 신청 날짜 : {editApplicationDate(useLocationContent.date)}</InfoP>
-                    <InfoP>비매너 경고 회수 : {person.warningCount !== null ? person.warningCount + '회' : '로딩 중...'}</InfoP>
-                    <InfoP>매칭 신청 회수 : {person.matchCount !== null ? person.matchCount + '회' : '로딩 중...'}</InfoP>
-                    <InfoP>매칭 완료 회수 : {person.matchCompleteCount !== null ? person.matchCompleteCount + '회' : '로딩 중...'}</InfoP>
+                    <InfoP>비매너 경고 회수 : {person.warningCount ? person.warningCount + '회' : 0 + '회' }</InfoP>
+                    <InfoP>매칭 신청 회수 : {person.matchCount ? person.matchCount + '회' : 0 + '회' }</InfoP>
+                    <InfoP>매칭 완료 회수 : {person.matchCompleteCount ? person.matchCompleteCount + '회' : 0 + '회' }</InfoP>
                 </SectionDiv>
                 <BtnDiv>
                     <AFMD.AcceptBtn onClick={onClickAccept}>매칭하기</AFMD.AcceptBtn>
@@ -223,7 +223,7 @@ export const ModalContainer = styled.div`
   width: 43.75vw;
   height: 31.66vw;
 
-  top: 160%;
+  top: 215%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: white;

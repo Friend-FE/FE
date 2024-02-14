@@ -1,17 +1,25 @@
 // 솔직후기 - 자세히
 
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import ReviewBoard from '../../components/Board/ReviewBoard';
+// import ReviewBoard from '../../components/Board/ReviewBoard';
 import React, { useState, useEffect } from 'react';
 import Title from '../../components/title';
 import styled from 'styled-components';
 import Footer from '../../components/footer';
+import ReviewDetailBoard from '../../components/Board/ReviewDetailBoard';
 
 const ReviewDetail = () => {
+
   const { id } = useParams();
   const { state } = useLocation();
   const navigate = useNavigate();
-  const [review, setReview] = useState(state?.item);  
+  const [review, setReview] = useState(state?.item); 
+  
+  // redux로 id를 가져오기
+  const userId = 343;
+
+
+  console.log(review.id);
   
   useEffect(() => {
     const fetchNoticeDetail = async () => {
@@ -81,7 +89,7 @@ const ReviewDetail = () => {
       <TitleHR/>
       <HeadTitleH3>솔직후기 자세히 보기</HeadTitleH3>
       <Div>
-        <ReviewBoard info={[review]} />
+        <ReviewDetailBoard info={[review]} />
       </Div>
       <ReviewBox>
         {review.body}
@@ -90,6 +98,12 @@ const ReviewDetail = () => {
         {/* 나중에 피그마로 수정해야할 부분  */}
       <ButtonWrapper>
         <BackButton type="button" onClick={onClickBtn}>목록으로 돌아가기</BackButton>
+        {userId === review.id && (
+          <>
+            <BackButton type="button" onClick={handleModify}>수정하기</BackButton>
+            <BackButton type="button" onClick={handleDelete}>삭제하기</BackButton>
+          </>
+        )}
       </ButtonWrapper>
       <FooterContainer>
         <Footer/>
