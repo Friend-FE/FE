@@ -31,7 +31,7 @@ export default function ReportReceiptHistory() {
     fetchData();
   }, []);
 
-  console.log(history);
+  // console.log(history);
 
   return (
     <>

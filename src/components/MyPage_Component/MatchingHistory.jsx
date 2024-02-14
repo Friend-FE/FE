@@ -1,6 +1,8 @@
 // 매칭 내역
 
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { useNavigate, useParams, useLocation } from 'react-router-dom';
+import axios from 'axios';
 
 import * as T from './MyPage'
 import styled from 'styled-components'
@@ -12,6 +14,27 @@ import MatchingHistoryBoard from '../Board/MatchingHistoryBoard'
 export default function Matching_history() {
 
   // redux 사용해서 user 이름 가지고 와야 함.
+  // 리덕스로 아이디 들고 와야 함
+  const navigate = useNavigate();
+  const [userData, setUserData] = useState('');
+
+  const fetchData = async () => {
+    const userId = 20; // 현재 user Id 임의로 설정
+    // console.log(id);
+    try {
+        const response = await axios.get(`http://13.209.145.28:8080/api/v1/myPage/getImgName/${userId}`, {userId});
+        // console.log('성공', response.data.data);
+        setUserData(response.data.data);
+    } catch (error) {
+      console.error('오류 발생:', error);
+      alert('오류가 발생했습니다. 다시 시도해주세요.');
+      navigate(-1);
+    }
+  }
+
+  useEffect(() => {
+      fetchData();
+  }, []);
 
   return (
     <>
@@ -19,7 +42,7 @@ export default function Matching_history() {
       <Title title="마이페이지"/>
       <T.TotalHr></T.TotalHr>
       <T.TotalDiv>
-        <T.TitleH3>제니 님의 매칭 내역</T.TitleH3>
+        <T.TitleH3>{userData? userData.nickname +  ' 님의 매칭 내역' : ''}</T.TitleH3>
         <ContainerDiv>
           <MatchingHistoryBoard/>
         </ContainerDiv>

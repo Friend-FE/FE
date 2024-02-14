@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import styled from "styled-components";
+import axios from 'axios';
 
 // import Header from '../header/index'
 import Footer from '../footer/index'
@@ -24,6 +25,9 @@ export default function ViewMembershipList() {
     day: 'numeric',
   };
 
+  // API 연결
+  const [apiData, setApiData] = useState('');
+
   // 현재 날짜와 전송용
   const [currentDate, setCurrentDate] = useState(new Date());
   const [sendYear, setSendYear] = useState('');
@@ -31,7 +35,7 @@ export default function ViewMembershipList() {
   const [sendDay, setSendDay] = useState('');
 
   // 성별 버튼
-  const [isWomanSelected, setWomanSelected] = useState(false);
+  const [isWomanSelected, setWomanSelected] = useState(true);
   const [isManSelected, setManSelected] = useState(false); 
 
   // 컴포넌트가 마운트되었을 때와 날짜가 변경될 때마다 실행
@@ -39,7 +43,8 @@ export default function ViewMembershipList() {
     // 현재 날짜
     // setCurrentDate(new Date());
     updateDateInfo(currentDate);
-  }, [currentDate]);
+    APIupdateDateInfo(currentDate);
+  }, [currentDate, isWomanSelected]);
 
   // 대한민국 시간으로
   const formatDate = (date, options) => {
@@ -86,31 +91,46 @@ export default function ViewMembershipList() {
   };
 
   const onClickWoman = () => {
-    setWomanSelected((prev) => !prev);
+    setWomanSelected(true);
 
     setManSelected(false);
   };
 
   const onClickMan = () => {
-    setManSelected((prev) => !prev);
+    setManSelected(true);
 
     setWomanSelected(false);
   };
 
-  const person = [
-    { id: 1, name: '김여자', gender: 'f', date: '2024-02-11T18:14:14.721908' },
-    { id: 2, name: '김여자', gender: 'f', date: '2024-02-11T18:14:14.721908' },
-    { id: 3, name: '김여자', gender: 'f', date: '2024-02-11T18:14:14.721908' },
-    { id: 4, name: '김여자', gender: 'f', date: '2024-02-11T18:14:14.721908' },
-    { id: 5, name: '김여자', gender: 'f', date: '2024-02-11T18:14:14.721908' },
-    { id: 6, name: '김여자', gender: 'f', date: '2024-02-11T18:14:14.721908' },
-    { id: 7, name: '김남자', gender: 'm', date: '2024-02-11T18:14:14.721908' },
-    { id: 8, name: '김남자', gender: 'm', date: '2024-02-11T18:14:14.721908' },
-    { id: 9, name: '김남자', gender: 'm', date: '2024-02-11T18:14:14.721908' },
-    { id: 10, name: '김남자', gender: 'm', date: '2024-02-11T18:14:14.721908' },
-    { id: 11, name: '김남자', gender: 'm', date: '2024-02-11T18:14:14.721908' },
-    { id: 12, name: '김남자', gender: 'm', date: '2024-02-11T18:14:14.721908' },
-  ];
+  // API 전송용 현재 날짜
+  const APIupdateDateInfo = async (date) => {
+    const formattedDate = formatDate(date, koreaTimeOptions);
+    
+    const [year, MonthAndDay] = formattedDate.split('년');
+    const [month, Day] = MonthAndDay.split('월').map(part => part.trim());
+    const [day] = Day.split('일').map(part => part.trim());
+
+    const sendData = year + month + day;
+    console.log('api 전송용', sendData);
+
+    let gender = 0;
+    if(isWomanSelected === true){
+      gender = 0;
+    } else if(isManSelected === true){
+      gender = 1;
+    }
+
+    console.log(gender);
+
+    try {
+      const response = await axios.get(`http://13.209.145.28:8080/api/v1/memberList?gender=${gender}&date=${sendData}`);
+      console.log(response.data.data);
+      setApiData(response.data.data);
+    } catch (error) {
+      console.error('오류 발생:', error);
+      alert('오류가 발생했습니다. 다시 시도해주세요.');
+    }
+  };
 
   return (
     <>
@@ -124,16 +144,12 @@ export default function ViewMembershipList() {
             <M.P>{formatDate(currentDate, koreaTimeOptions)}</M.P>
             <M.DirectionImg onClick={onClickRight} src={right} alt ="right"/>
           </M.DateDiv>
-          <M.GenderBtn onClick={onClickWoman} isSelected={isWomanSelected}>여성</M.GenderBtn>
-          <M.GenderBtn onClick={onClickMan} isSelected={isManSelected}>남성</M.GenderBtn>
+          <GenderBtn onClick={onClickWoman} isSelected={isWomanSelected}>여성</GenderBtn>
+          <GenderBtn onClick={onClickMan} isSelected={isManSelected}>남성</GenderBtn>
         </M.FlexDiv>
         <M.PeopleDiv>
           <MemberPersonBlock
-            info={person}
-            gender={isWomanSelected ? 'f' : isManSelected ? 'm' : 'all' }
-            year={sendYear}
-            month={sendMonth}
-            day={sendDay}/>
+            info={apiData}/>
         </M.PeopleDiv>
       </T.TotalDiv>
       <FooterContainer>
@@ -151,4 +167,27 @@ const FooterContainer = styled.div`
   @media (max-width: 768px) {
   top: 8vw;
   }
+`;
+
+
+export const GenderBtn = styled.button`
+  width: 12vw; 
+  height: 4vw;
+  margin: 2vw 2vw 0 2vw;
+  
+  font-size: 1vw;
+  /* @media screen and (max-width: 1070px) {
+    font-size : 2vw;
+  } */
+  color: black;
+  background-color: white;
+
+  color: ${(props) => (props.isSelected ? 'white' : 'black')};
+  background-color: ${(props) => (props.isSelected ? '#23CAFF' : 'white')};
+  
+  border: none;
+  border-radius: 2vw;
+  box-shadow: 1vw 0.7vw 0.5vw rgba(0, 0, 0, 0.2);
+  
+  cursor: pointer;
 `;

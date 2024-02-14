@@ -19,7 +19,7 @@ export default function MatchingHistoryBoard() {
         } catch (error) {
           console.error('오류 발생:', error);
           alert('오류가 발생했습니다. 다시 시도해주세요.');
-          navigate(-1); 
+          navigate(-1);
         }
     }
     
