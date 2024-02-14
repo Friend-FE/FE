@@ -5,7 +5,7 @@ import Title from '../title/index';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../footer';
-import * as MAHD from './MatchingAHDetailWoman';
+import * as MAHD from '../ManagerPage_Component/MatchingAHDetailWoman'
 import { useLocation } from 'react-router-dom';
 
 const TitleHR = styled.hr`
@@ -22,7 +22,7 @@ const TextInput = styled.input`
   font-size: 1.1vw;
   padding-left: 1vw;
   border: 0.05vw solid #888;
-
+  pointer-events: none; // 입력 방지
   @media (max-width: 768px) {
     width: 60vw;
     height: 2vh;
@@ -110,12 +110,13 @@ const QnAResponse = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  useEffect(() => {
-    const postIdToEdit = location.state?.postId;
-    if (postIdToEdit) {
-      setId(postIdToEdit);
+
+  useState(() => {
+    if (location.state && location.state.item && location.state.item.title) {
+      const originalTitle = location.state.item.title;
+      setTitle(`RE: ${originalTitle}`);
     }
-  }, [location]);
+  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
