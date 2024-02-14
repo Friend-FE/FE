@@ -144,7 +144,7 @@ const App = ()=>{
 				<Route path="/ManagerPage/ViewMembershipList" element={<ViewMembershipList/>}/>				
 				
 				<Route path="/ManagerPage/ApplicationForMembership" element={<ApplicationForMembership/>}/>				
-				<Route path="/ManagerPage/ApplicationForMembership/:id" element={<ApplicationForMembershipDetail/>}/>				
+				<Route path="/ManagerPage/ApplicationForMembership/:email" element={<ApplicationForMembershipDetail/>}/>				
 
 				{/* 로그인
 					아이디 찾기

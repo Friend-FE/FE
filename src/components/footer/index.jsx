@@ -27,7 +27,7 @@ const Footer = () => {
             솔직후기
           </NavLink>
 
-          <NavLink to={isLoggedIn? "/Apply" : "login"} active ClassName="active">
+          <NavLink to={isLoggedIn? "/Apply" : "login"} activeclassname="active">
             매칭신청
           </NavLink>
           <NavLink to="/QnA" activeclassname="active">
