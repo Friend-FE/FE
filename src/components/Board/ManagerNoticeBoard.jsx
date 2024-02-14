@@ -4,12 +4,14 @@ import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
-const NoticeBoard = ({ info }) => {
+const NoticeBoard = ({ info, clickable = true }) => {
   const infoLength = info.length;
   const navigate = useNavigate();
 
   const handleRowClick = (item) => {
-    navigate(`/ManagerPage/Notice/${item.id}`, { state: { item } });
+    if (clickable) {
+      navigate(`/ManagerPage/Notice/${item.id}`, { state: { item } });
+    }
   };
 
   // 날짜 형식 변환 함수

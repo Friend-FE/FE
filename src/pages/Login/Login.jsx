@@ -5,6 +5,8 @@ import {useNavigate} from 'react-router-dom';
 import styled from 'styled-components';
 import Title from '../../components/title/index';
 import Footer from '../../components/footer';
+import { useDispatch } from 'react-redux';
+import { login } from '../../REDUX/loginCheck';
 
 const Login = () => {
     //로그인 정보 관리
@@ -27,6 +29,8 @@ const Login = () => {
     const handleManagerLogin = (event) => {
         setManagerLogin(event.target.checked);
     };
+    const dispatch = useDispatch();
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         // API 호출
@@ -46,8 +50,9 @@ const Login = () => {
           console.log({email,password})
           const responseData  = await response.json();
           // 서버에서 받은 데이터 처리
-          console.log('Login successful:', responseData);
-          console.log('Login successful:', responseData.data.status);
+
+          dispatch(login()); //로그인 여부 리덕스에 저장
+
           if(responseData.data.status ==='ACTIVE'){
             navigate('/');
           }
@@ -146,7 +151,7 @@ const Checkbox = styled.input.attrs({ type: 'checkbox' })`
 
 const CheckText = styled.div`
     font-size: 0.8vw;
-    margin-right: 10px;
+    margin-right: 1vw;
 `
 
 //로그인 버튼

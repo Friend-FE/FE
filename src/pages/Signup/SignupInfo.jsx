@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useLocation } from "react-router-dom";
 import Title from "../../components/title";
 import CircleCheckbox from "../../components/CircleCheckbox/CircleCheckbox";
 import styled from "styled-components";
@@ -10,9 +10,11 @@ import axios from "axios";
 import LimitInputForm from "../../components/LimitInputForm/LimitInputForm";
 
 
-const SignupInfo = () => {
+const SignupInfo = (props) => {
   //로그인 정보 관리
   const navigate = useNavigate();
+  const location = useLocation();
+  const { agreePrivacy } = location.state;
   const [passwordCheck, setPasswordCheck] = useState("");
   const [wrongPW, setWrongPW] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
@@ -50,14 +52,29 @@ const SignupInfo = () => {
   };
 
   const handleChange = (e) => {
+    const { name, value } = e.target;
+    let formattedValue = value;
+  
+    // 전화번호 형식으로 변환 (010-0000-0000)
+    if (name === "phone" && value.length <= 11) {
+      formattedValue = value
+        .replace(/[^0-9]/g, "") // 숫자 이외의 문자 제거
+        .replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3"); // 전화번호 형식으로 변경
+    }
+    if (name === "phone"&&formattedValue.length > 13) {
+      formattedValue = formattedValue.slice(0, 13);
+    }
+
     setValues((prevValues) => ({
       ...prevValues,
-      [e.target.name]: e.target.value,
+      [name]: formattedValue,
     }));
   };
+  console.log(values.phone);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log('agreePrivacy:', agreePrivacy);
     console.log("실행");
     alert(JSON.stringify(values, null, 2));
   };
@@ -317,27 +334,24 @@ const Separator = styled.div`
   height: 1px;
   // width: 60vw;
   background-color: Gray;
-  margin: 100px;
-  @media screen and (max-width: 500px) {
-    margin : 65px 15px 45px 15px;
-  }
+  margin: 10vw;
+
 `;
 
 //어떤 정보를 입력해야하는지, 알려주는 텍스트
 const InfoMessage = styled.div`
-  margin-bottom: 20px;
+  margin-bottom: 2vw;
   align-items:flex-end ;
   justify-content: center;
-  font-size: 25px;
+  font-size: 2vw;
   width: 100%; /* 텍스트가 max-width를 넘어가더라도 크기를 조절할 수 있도록 */
   display:flex;
   p{
     color: #23CAFF;
-    margin-bottom: 12px;
+    margin-bottom: 1vw;
   }
   @media screen and (max-width: 970px) {
-    // width: 65vw;
-    font-size:1rem;
+    font-size:2.5vw;
   }
 `;
 
@@ -345,45 +359,45 @@ const InfoMessage = styled.div`
 const LoginForm = styled.form`
   display: flex;
   flex-direction: column;
-  margin-top: 20px;
+  margin-top: 2vw;
 `;
 
 const Input = styled.input`
-  height: 30px;
-  padding: 8px;
-  margin-bottom: 20px;
+  height: 3vw;
+  padding: 1vw;
+  margin-bottom: 3vw;
   @media screen and (max-width: 700px) {
-    height: 15px;
-    font-size:0.7rem;
+    height: 5vw;
+    font-size:3vw;
   }
 `;
 
 // 칸 마다 입력해야하는 정보 알려주는 작은 텍스트
 const InfoName = styled.div`
-  font-size: 15px;
+  font-size: 2vw;
 `;
 
 //취소, 이어서 가입 버튼
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
-  gap : 20px;
+  gap : 2vw;
 `;
 
 const CancelButton = styled.button`
-  font-weight : 700;
+  font-weight : 1vw;
   border: none;
   cursor: pointer;
-  width: 177px;
-  height : 40px;
+  width: 15vw;
+  height : 5vw;
   border :none;
   box-shadow: -2px 8px 6.1px 0px rgba(0, 0, 0, 0.25);
   color: #000;
   background-color: #ffffff;
   @media screen and (max-width: 400px) {
-    font-size : 0.7em;
+    font-size : 2vw;
     width: 35vw;
-    height : 20px;
+    height : 7vw;
     
   }
 `;
@@ -391,9 +405,9 @@ const CancelButton = styled.button`
 const SubmitButton = styled.button`
   border: none;
   cursor: pointer;
-  font-weight : 700;
-  width: 177px;
-  height : 40px;
+  font-weight : 1vw;
+  width: 15vw;
+  height : 5vw;
   border :none;
   box-shadow: -2px 8px 6.1px 0px rgba(0, 0, 0, 0.25);
   color : #ffffff;
@@ -401,9 +415,9 @@ const SubmitButton = styled.button`
   text-align:center;
 
   @media screen and (max-width: 400px) {
-    font-size : 0.7em;
+    font-size : 2vw;
     width: 35vw;
-    height : 20px;
+    height : 7vw;
   }
 
   /* isFormValid가 언제 false로 설정할지 필요 */
@@ -412,9 +426,9 @@ const SubmitButton = styled.button`
     cursor: not-allowed;
   }
 `;
+
 const FooterContainer = styled.div`
   position: relative;
   top: 10vh;
   width: 100%;
 `;
-

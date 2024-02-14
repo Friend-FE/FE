@@ -3,9 +3,18 @@ import styled from "styled-components";
 import logo from "../../images/logo.png";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
+import { useSelector,useDispatch } from "react-redux";
+import { logout } from "../../REDUX/loginCheck";
 
 const Footer = () => {
-  const [isLogined, setLogin] = useState(false);
+  const dispatch = useDispatch();
+
+  const isLoggedIn = useSelector(state => state.login.isLoggedIn); // Redux Store에서 로그인 상태 가져오기
+
+  const handleLogout = () => {
+    // 로그아웃 액션 디스패치
+    dispatch(logout());
+  };
   return (
     <Wrapper>
       <img src={logo} alt="로고"></img>
@@ -18,7 +27,7 @@ const Footer = () => {
             솔직후기
           </NavLink>
 
-          <NavLink to="/Apply" active ClassName="active">
+          <NavLink to={isLoggedIn? "/Apply" : "login"} activeclassname="active">
             매칭신청
           </NavLink>
           <NavLink to="/QnA" activeclassname="active">
@@ -30,9 +39,9 @@ const Footer = () => {
         </Top>
         <section>
           <Bottom>
-            {isLogined ? (
+            {isLoggedIn ? (
               <>
-                <NavLink to="/logout">LOGOUT</NavLink>
+                <NavLink to="/" onClick={handleLogout}>LOGOUT</NavLink>
                 <NavLink to="/mypage">마이페이지</NavLink>
               </>
             ) : (

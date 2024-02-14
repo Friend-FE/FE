@@ -23,6 +23,7 @@ import ManagerQnADetail from './components/ManagerPage_Component/qnaDetail';
 import ManagerNotice from './components/ManagerPage_Component/ManagerNotice';
 import ManagerNoticeDetail from './pages/Notice/ManagerNoticeDetail';
 import WritingNotices from './components/ManagerPage_Component/WritingNotices';
+import ModifyNotice from './pages/Notice/ModifyNotice';
 
 import ManagerReview from './components/ManagerPage_Component/ManagerReview';
 import ManagerReviewDetail from './components/ManagerPage_Component/ManagerReviewDetail';
@@ -138,6 +139,7 @@ const App = ()=>{
 				<Route path="/ManagerPage/Notices" element={<ManagerNotice/>}/>
 				<Route path="/ManagerPage/Notice/:id" element={<ManagerNoticeDetail/>}/>
 				<Route path="/ManagerPage/WritingNotices" element={<WritingNotices/>}/>
+				<Route path="/ManagerPage/ModifyNotice" element={<ModifyNotice/>}/>
 				
 				<Route path="/ManagerPage/Review" element={<ManagerReview/>}/>
 				<Route path="/ManagerPage/Review/reviews/:id" element={<ManagerReviewDetail/>}/>
@@ -156,7 +158,7 @@ const App = ()=>{
 				<Route path="/ManagerPage/ViewMembershipList/ViewMembershipDetail/:id" element={<ViewMembershipDetail/>}/>				
 				
 				<Route path="/ManagerPage/ApplicationForMembership" element={<ApplicationForMembership/>}/>				
-				<Route path="/ManagerPage/ApplicationForMembership/:id" element={<ApplicationForMembershipDetail/>}/>				
+				<Route path="/ManagerPage/ApplicationForMembership/:email" element={<ApplicationForMembershipDetail/>}/>				
 
 				{/* 로그인
 					아이디 찾기

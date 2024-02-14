@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import QnABoardComponent from '../../components/Board/QnABoard';
 import Title from '../../components/title/index';
+
 import styled from 'styled-components';
 import Footer from '../../components/footer';
 import axios from 'axios';
@@ -57,6 +58,21 @@ const ReviewBox = styled.div`
   margin-top: 3vw;
 
   @media (max-width: 768px) {
+    position: relative;
+    top: 5vw;
+  }
+`;
+
+export const HeadTitleH3 = styled.h3`
+    color: #23CAFF;
+    font-size: 3vw;
+    font-weight: 900;
+
+    position: relative;
+    top: -1vw;
+    margin: -0.6vw;
+
+    @media (max-width: 768px) {
     position: relative;
     top: 5vw;
   }
@@ -177,11 +193,10 @@ const QnADetail = () => {
   return (
     <>
       <ReviewWrapper>
-        <Title title="QnA 자세히보기" />
+        <Title title="Q&A" />
         <TitleHR />
-        <DIV>
+        <HeadTitleH3>Q&A 자세히 보기</HeadTitleH3>
           <QnABoardComponent info={qnaData ? [qnaData] : []} />
-        </DIV>
         <ReviewBox>
         {qnaData?.body}
         </ReviewBox>

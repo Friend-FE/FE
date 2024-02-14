@@ -9,7 +9,6 @@ import { useLocation } from 'react-router-dom';
 
 const TitleHR = styled.hr`
   margin-top: 10vh;
-  margin-left: 10vw;
   border: 0;
   border-top: 1px solid #B8B8B8;
   width: 80vw; 
@@ -80,11 +79,15 @@ const Origin = styled.div`
   align-items: center;
 `;
 
+const SecretCheckInput = styled.input`
+  width: 1vw;
+  height: 1vw;
+  cursor: pointer;
+`;
+
 const After = styled.div`
   display: flex;
   align-items: center;
-
-  margin-top: 1vw;
 `;
 
 const PasswordInfo = styled.div`
@@ -94,13 +97,15 @@ const PasswordInfo = styled.div`
   margin-left: 10vh;
 `;
 
-const CheckBoxLabel = styled.label`
+const CheckBoxText = styled.div`
   display: flex;
+  margin-left: 0.2vw;
+  cursor: default;
 `;
 
 const PasswordInput = styled.input`
   width: 15vw;
-  height: 1.5vw;
+  height: 4vh; //
   font-size: 1vw;
   margin-right: 1vw;
   padding-left: 1vw;
@@ -170,36 +175,51 @@ export default function QuestionWrite() {
   const [isEditing, setIsEditing] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  const [isPrivate, setIsPrivate] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
   const [password, setPassword] = useState('');
+  const [clicked, setClicked] = useState(false);
 
+  //수정을 하기 위해 이전페이지의 Id를 가져옴 Id가 있다면 수정
   useEffect(() => {
     const postIdToEdit = location.state?.postId;
     if (postIdToEdit) {
       setId(postIdToEdit);
       setIsEditing(true);
-  
-      // TODO: 해당 id에 해당하는 글의 정보를 가져와서 title, content에 설정
-      // fetch 또는 API 호출 등을 사용하여 서버에서 정보를 가져올 수 있음
     }
   }, [location]);
   
+  const handleComplete = () => {
+    if (isChecked && password === ""){
+      alert("비밀번호를 입력해주세요.");
+      setClicked(false); //클릭 무효
+      return; // 함수 종료
+    }
+  };
   
   const handleSubmit = async (event) => {
     event.preventDefault();
+  //입력확인을 누르고 비밀번호를 다시 지울 수 있으므로 {|| password === ""}
+    if (isChecked && (!clicked || password === "")) {
+      alert("비밀번호 입력 완료 버튼을 눌러주세요.");
+      return; // 함수 종료, 또는 아래부터 else로 감싸도 됨 
+    }
+   
     try {
       const apiUrl = isEditing
         ? `http://13.209.145.28:8080/api/v1/Qa/${id}`
         : 'http://13.209.145.28:8080/api/v1/qa';
   
+        
       const requestClass = {
         title: title,
         body: content, 
         author: 'author',
-        password: '???',
+        //status가 비밀글여부를 뜻하는건진 모르겠으나 비밀글이라 했을 땐 적용이 안됨
+        status: isChecked ? 'COMPLETE' : 'INCOMPLETE',
+        //privacy: password 오류발생, 애초에 보안상의 이유로 비밀번호는 서버에서 해싱해야 함
       };
       requestClass.time = new Date();
-
+  
   
       const response = await fetch(apiUrl, {
         method: isEditing ? 'PUT' : 'POST',
@@ -222,37 +242,7 @@ export default function QuestionWrite() {
       console.error('글 작성/수정 중 오류 발생:', error);
     }
   };
-
-  const handleComplete = () => {
-  // // 비밀번호 전송 api 필요, isPrivate: true or false, password: ???
-  //try {
-  //  const apiUrl = `http://13.209.145.28:8080/api/v1/???`;
-
-  //  const requestData = {
-  //    isPrivate: isPrivate,
-  //    // Add password to the request data if it is a private post
-  //    ...(isPrivate && { password: password }),
-  //  };
-
-  //  const response = await fetch(apiUrl, {
-  //    method: 'POST',
-  //    headers: {
-  //      'Content-Type': 'application/json',
-  //    },
-  //    body: JSON.stringify(requestData),
-  //  });
-
-  //  const responseJson = await response.json();
-
-  //  // Handle the response as needed
-  //  console.log(responseJson);
-  //} catch (error) {
-  //  // Handle errors
-  //  console.error('Error completing the form:', error);
-  //}
-  };
-
-
+  
   const handleCancel = () => {
     navigate(-1);
   };
@@ -272,15 +262,14 @@ export default function QuestionWrite() {
 
         <SecretContainer>
           <Origin>
-            <input
+          <SecretCheckInput
               type="checkbox"
-              id="privateCheck"
-              checked={isPrivate}
-              onChange={() => setIsPrivate(!isPrivate)}
+              checked={isChecked}
+              onChange={() => setIsChecked(!isChecked)}
             />
-            <CheckBoxLabel htmlFor="privateCheck">비밀글로 작성</CheckBoxLabel>
+            <CheckBoxText> 비밀글로 작성</CheckBoxText>
             </Origin>
-            {isPrivate && (
+            {isChecked && (
               <>
               <After>
                 <PasswordInfo>비밀번호 </PasswordInfo>
@@ -289,8 +278,9 @@ export default function QuestionWrite() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
-                <CompleteButton type="button" onClick={handleComplete}>
-              완료
+                {/* 조건문이 handleComplete()에 있으므로 setClicked(true)가 먼저 와야한다 */}
+                <CompleteButton type="button"  onClick={() => {setClicked(true); handleComplete(); }}> 
+               완료
             </CompleteButton>
             </After>
               </>
