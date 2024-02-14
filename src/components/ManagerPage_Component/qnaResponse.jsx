@@ -13,6 +13,9 @@ const TitleHR = styled.hr`
   border: 0;
   border-top: 1px solid #B8B8B8;
   width: 80vw; 
+
+  position: relative;
+  left: 10vw;
 `;
 
 const TextInput = styled.input`
@@ -160,14 +163,9 @@ const QnAResponse = () => {
       <TextBox>
         <MAHD.HeadTitleH3>답변하기</MAHD.HeadTitleH3>
         <form onSubmit={handleSubmit}>
-          <TitleInPut>
-          <TextInput
-            type="text"
-            placeholder='제목을 입력해주세요.'
-            value={title.startsWith('re: ') ? title : `re: ${title}`}
-            onChange={e => setTitle(e.target.value.replace(/^re: /, ''))}
-          />
-          </TitleInPut>
+           <TitleInPut>
+          <TextInput type="text" value={title} onChange={e => setTitle(e.target.value)} />
+        </TitleInPut>
           <ContentInPut>
             <TextArea type="text" placeholder='답변을 입력해주세요.' value={content} onChange={e => setContent(e.target.value)} />
           </ContentInPut>
