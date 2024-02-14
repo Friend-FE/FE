@@ -52,11 +52,25 @@ const SignupInfo = (props) => {
   };
 
   const handleChange = (e) => {
+    const { name, value } = e.target;
+    let formattedValue = value;
+  
+    // 전화번호 형식으로 변환 (010-0000-0000)
+    if (name === "phone" && value.length <= 11) {
+      formattedValue = value
+        .replace(/[^0-9]/g, "") // 숫자 이외의 문자 제거
+        .replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3"); // 전화번호 형식으로 변경
+    }
+    if (name === "phone"&&formattedValue.length > 13) {
+      formattedValue = formattedValue.slice(0, 13);
+    }
+
     setValues((prevValues) => ({
       ...prevValues,
-      [e.target.name]: e.target.value,
+      [name]: formattedValue,
     }));
   };
+  console.log(values.phone);
 
   const handleSubmit = (e) => {
     e.preventDefault();
