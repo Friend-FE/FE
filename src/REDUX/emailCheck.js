@@ -1,11 +1,22 @@
-// import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
-// export const emailSlice = createSlice({
-//     name: "email",
-//     initialState: ,
-//     reducers: {
-//     },
-// });
+export const emailSlice = createSlice({
+    name: "email",
+    initialState: {
+        isCertify: false,
+        email : null
+    },
+    reducers: {
+        certify:(state, action)  => {
+            state.isCertify = true;
+            state.email = action.payload;
+        },
+        notCertify: (state, action) => {
+            state.isCertify = false;
+            state.email = action.payload;
+        }
+    },
+});
 
-// export const {} = emailSlice.actions;
-// export default emailSlice.reducer;
+export const {certify , notCertify}  = emailSlice.actions;
+export default emailSlice.reducer;
