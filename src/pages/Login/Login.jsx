@@ -1,12 +1,13 @@
 // 로그인
 
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import {useNavigate} from 'react-router-dom';
 import styled from 'styled-components';
 import Title from '../../components/title/index';
 import Footer from '../../components/footer';
 import { useDispatch } from 'react-redux';
-import { login } from '../../REDUX/loginCheck';
+import { login,logout,autoLogin } from '../../REDUX/loginCheck';
+
 
 const Login = () => {
     //로그인 정보 관리
@@ -16,7 +17,7 @@ const Login = () => {
     const [managerLogin, setManagerLogin] = useState(false);
 
     const isFormValid = email !== '' && password !== '';
-
+    console.log(rememberMe);
     const handleEmailChange = (event) => {
         setEmail(event.target.value);
     };
@@ -24,12 +25,14 @@ const Login = () => {
         setPassword(event.target.value);
     };
     const handleRememberMeChange = (event) => {
-        setRememberMe(event.target.checked);
+        setRememberMe(prevRememberMe => !prevRememberMe);
+        console.log(rememberMe);
     };
     const handleManagerLogin = (event) => {
         setManagerLogin(event.target.checked);
     };
     const dispatch = useDispatch();
+
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -52,6 +55,12 @@ const Login = () => {
           // 서버에서 받은 데이터 처리
 
           dispatch(login()); //로그인 여부 리덕스에 저장
+
+          if(rememberMe){
+            console.log(rememberMe);
+            dispatch(autoLogin())
+          }
+          
 
           if(responseData.data.status ==='ACTIVE'){
             navigate('/');
