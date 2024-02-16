@@ -168,7 +168,7 @@ function MatchingAHDetailMan({personData, onRemoveRedux}) {
 
             <MAHD.ModalContainer showModal={showModal}>
                 <MAHD.CheckImage src={CheckImageBlue} alt="Check Image" />
-                <MAHD.ModalText>'{personData.matching[0]? personData.matching[0].name : '여성 신청자'}' 님과 '{person.profile? person.profile.nickname : '현재 신청자'}' 님 을 매칭하겠습니까?</MAHD.ModalText>
+                <MAHD.ModalText>{personData.matching[0] ? `${personData.matching[0].name} 님과 ${person.profile ? person.profile.nickname : '현재 신청자'} 님을 매칭하겠습니까?` : '여성 신청자를 다시 선택해 주세요.'}</MAHD.ModalText>
                 <MAHD.ModalBtnDiv>
                     <AFMD.OtherBtn onClick={onClickRealAccept}>매칭하기</AFMD.OtherBtn>
                     <AFMD.AcceptBtn onClick={onClickRefuse}>취소하기</AFMD.AcceptBtn>
