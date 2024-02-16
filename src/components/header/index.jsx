@@ -1,6 +1,6 @@
 // Header
 
-import React, { useState } from "react";
+import React from "react";
 import { Link,NavLink } from "react-router-dom";
 import styled from "styled-components";
 import logo from "../../images/logo.png"
@@ -11,7 +11,7 @@ function Header() {
   const dispatch = useDispatch();
 
   const isLoggedIn = useSelector(state => state.login.isLoggedIn); // Redux Store에서 로그인 상태 가져오기
-
+  const isCertify = useSelector(state => state.email.isCertify);
   const handleLogout = () => {
     // 로그아웃 액션 디스패치
     dispatch(logout());
@@ -48,7 +48,7 @@ function Header() {
           <NavLink to="/reviews" activeclassname="active">
             솔직후기
           </NavLink>
-          <NavLink to={isLoggedIn? "/Apply" : "login"} activeclassname="active">
+          <NavLink to={!isLoggedIn ? "/login" : !isCertify ? "/judgepage" : "/Apply"} activeclassname="active">
             매칭신청
           </NavLink>
           <NavLink to="/QnA" activeclassname="active">

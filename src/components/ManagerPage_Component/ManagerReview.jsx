@@ -1,8 +1,6 @@
 // 관리자 페이지 - 솔직후기
 
-import ReviewBoard from '../../components/Board/ReviewBoard';
 import {useNavigate} from 'react-router-dom';
-// import { Link } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import Title from '../../components/title';
 import styled from 'styled-components';
@@ -54,8 +52,7 @@ export default function ManagerReview() {
             <TitleHR/>
             <InterviewH3>실제 교제 회원 인터뷰 {review.length}</InterviewH3>
             <ReviewWrapper>
-                <ReviewBoard info={review}/>
-                {/* <ButtonLink type='button' onClick={handleRecord}>후기 작성하기 </ButtonLink> */}
+                <ManagerReviewBoard info={review}/>
             </ReviewWrapper>
             <FooterContainer>
                 <Footer/>

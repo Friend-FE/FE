@@ -2,14 +2,13 @@
 import styled from "styled-components";
 import logo from "../../images/logo.png";
 import { NavLink } from "react-router-dom";
-import { useState } from "react";
 import { useSelector,useDispatch } from "react-redux";
 import { logout } from "../../REDUX/loginCheck";
 
 const Footer = () => {
   const dispatch = useDispatch();
-
-  const isLoggedIn = useSelector(state => state.login.isLoggedIn); // Redux Store에서 로그인 상태 가져오기
+  const isCertify = useSelector(state => state.email.isCertify);
+  const isLoggedIn = useSelector(state => state.login.isLoggedIn);
 
   const handleLogout = () => {
     // 로그아웃 액션 디스패치
@@ -27,7 +26,7 @@ const Footer = () => {
             솔직후기
           </NavLink>
 
-          <NavLink to={isLoggedIn? "/Apply" : "login"} activeclassname="active">
+          <NavLink to={!isLoggedIn ? "/login" : !isCertify ? "/judgepage" : "/Apply"} activeclassname="active">
             매칭신청
           </NavLink>
           <NavLink to="/QnA" activeclassname="active">

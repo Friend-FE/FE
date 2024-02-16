@@ -6,18 +6,21 @@ import '../../styles/font.css'
 import Footer from '../../components/footer/index'
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useSelector } from 'react-redux'
 
 export default function Deactivate_account() {
-  const email = 'tttt@gmail.com';
-   const navigate = useNavigate();
+  const email = useSelector(state=>state.email.email);
+  const navigate = useNavigate();
 
    const handleCancleButton = () => {
     //취소 시 이전 페이지로
     navigate(-1);
   };
   const handleCheckButton = () => {
+    const userEmail = "match1@gmail.com"; //임시 이메일
+    const apiEmail = email? email : userEmail;
     axios
-    .patch(`http://13.209.145.28:8080/api/v1/member/status/${email}`)
+    .patch(`http://13.209.145.28:8080/api/v1/member/status/${apiEmail}`)
     .then(function (response) {
       //성공적으로 응답 받았을 때의 처리
       console.log('성공');
