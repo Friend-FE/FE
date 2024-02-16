@@ -165,7 +165,8 @@ const ReviewBox = styled.pre`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 80vw;
+  width :80vw;
+  white-space: pre-line;
   /* height: 40vh; */
   border-radius: 2.08vw;
   border: 0.10vw solid #2ECAFD;

@@ -12,20 +12,21 @@ import Main5 from "../../images/main_5.png";
 import Main6 from "../../images/main_6.png";
 import { useNavigate } from "react-router-dom";
 import { useState,useEffect } from "react";
-import { useDispatch  } from 'react-redux';
+import { useDispatch,useSelector  } from 'react-redux';
 import { login } from '../../REDUX/loginCheck';
 
 const MainPage = () => {
   const dispatch = useDispatch();
-  const [isLogined,setIsLogined] = useState(true); //로그인 여부
-  const [isActive,setIsActive] = useState(false); // 승인 완료된 회원인지?
+  const isLoggedIn = useSelector(state => state.login.isLoggedIn); // Redux Store에서 로그인 상태 가져오기
+  const isCertify = useSelector(state => state.email.isCertify);
+
   const navigate = useNavigate();
   const handleStartBtn = ()=>{
-    if(!isLogined)
+    if(!isLoggedIn)
     {
       navigate("/login");
     }
-    else if(!isActive){
+    else if(!isCertify){
       navigate("/JudgePage");
     }
     else{
