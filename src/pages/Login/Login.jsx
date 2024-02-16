@@ -5,8 +5,16 @@ import {useNavigate} from 'react-router-dom';
 import styled from 'styled-components';
 import Title from '../../components/title/index';
 import Footer from '../../components/footer';
-import { useDispatch } from 'react-redux';
+import { useDispatch} from 'react-redux';
 import { login } from '../../REDUX/loginCheck';
+import { certify, notCertify } from '../../REDUX/emailCheck';
+
+// 리덕스 불러오기
+// import { useSelector } from 'react-redux'; 
+// const isLoggedIn = useSelector(state => state.login.isLoggedIn);
+// const id = useSelector(state => state.login.id);
+// const isCertify = useSelector(state => state.email.isCertify);
+// const email = useSelector(state => state.email.email);
 
 const Login = () => {
     //로그인 정보 관리
@@ -42,21 +50,21 @@ const Login = () => {
               },
               body: JSON.stringify({ email, password }),
           });
-
+  
           if (!response.ok) {
               // 에러 처리
               throw new Error('Failed to log in');
           }
-          console.log({email,password})
-          const responseData  = await response.json();
-          // 서버에서 받은 데이터 처리
-
-          dispatch(login()); //로그인 여부 리덕스에 저장
+          
+          const responseData = await response.json();
+          dispatch(login(responseData.data.memberId));
 
           if(responseData.data.status ==='ACTIVE'){
+            dispatch(certify(email));
             navigate('/');
           }
           else{
+            dispatch(notCertify(email));
             navigate('/JudgePage');
           }
       } catch (error) {
