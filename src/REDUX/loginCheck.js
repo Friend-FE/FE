@@ -50,23 +50,26 @@ export const loadStateFromSessionStorage = () => {
 
 const initialState = loadStateFromSessionStorage() || {
   isLoggedIn: false,
+  id: null 
 };
 
 export const loginSlice = createSlice({
   name: 'login',
   initialState,
   reducers: {
-    login: (state) => {
+    login: (state,action) => {
       state.isLoggedIn = true;
+      state.id = action.payload;
       saveStateToSessionStorage(state);
     },
     logout: (state) => {
       state.isLoggedIn = false;
+      state.id = null; 
       saveStateToSessionStorage(state);
       saveStateToLocalStorage(state);
+
     },
     autoLogin: (state) => {
-      state.isLoggedIn = true;
       saveStateToLocalStorage(state);
     },
   },

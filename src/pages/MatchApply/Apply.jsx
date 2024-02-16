@@ -7,8 +7,12 @@ import checkImage from "../../images/checkImage.png";
 import Title from '../../components/title';
 import Footer from '../../components/footer';
 import axios from 'axios';
+import { useSelector } from 'react-redux'; 
 
 const Apply = () => {
+
+  const id = useSelector(state => state.login.id);
+
 
   const [isChecked1, setIsChecked1] = useState(false);
   const [isChecked2, setIsChecked2] = useState(false);
@@ -103,10 +107,12 @@ const Apply = () => {
 
     const userId = 20; // id 임의로 지정
 
+    const idOrUserId = id ? id : userId;
+
     console.log('test', userId);
 
     try {
-      const response = await axios.post(`http://13.209.145.28:8080/api/v1/match/20`);
+      const response = await axios.post(`http://13.209.145.28:8080/api/v1/match/${idOrUserId}`);
         if (response.status === 200) {
           console.log('매칭 신청 정상');
         } else {
@@ -125,7 +131,7 @@ const Apply = () => {
     }else if (showModal) {
       alert('이미 매칭 신청이 완료되었습니다.');
     }else {
-      const userId = 20; // id 임의로 지정
+      const userId = 22; // id 임의로 지정
 
       console.log('test', userId);
       
@@ -235,39 +241,47 @@ export default Apply;
 
 const Container = styled.div`
   justify-content: center;
-  width: 40%; 
+  width: 40%;
   margin: 0 auto; 
-  padding-bottom: 13.8vw;
+  //vw변환사이트 참고
+  padding-bottom: 13.8889vw; 
 `;
 
-const Hr = styled.div`
-  height: 0.06vw;
-  background-color: gray;
-  width: 90%;
-  margin: 6.94vw auto; 
+const Hr = styled.hr`
+margin-top: 5vw;
+width: 80vw;
+margin-bottom: 5vw;
+margin-left: 10vw;
+
+@media (max-width: 768px) {
+  position: relative;
+  top: 8vw;
+}
 `;
 
 const Notice = styled.p`
   font-size: 1.25vw;
   font-weight: 900;
-  margin-bottom: 0.69vw;
-  margin-top: 1.38vw;
-  user-select: none; /* 드래그 방지 */
+  margin-bottom: 0.6944vw;
+  margin-top: 1.3889vw;
+  user-select: none;/* 드래그 방지 */
 `;
 
 const Canvas = styled.canvas`
+width: 2.7778vw;
+height: 2.7778vw;
 `;
 
 const Consent = styled.div`
   display: flex;
   align-items: center; 
-  margin-top: 60px;
-  margin-right: 1.38vw;
-  gap: 10px;
+  margin-top: 4.1667vw;
+  margin-right: 1.3889vw;
+  gap: 0.6944vw;
 `;
 
 const Text = styled.p`
-  font-size: 18px;
+  font-size: 1.25vw;
   white-space: nowrap; /* 줄바꿈 하지 않음 */
   color: ${props => (props.isChecked ? 'rgba(120, 200, 120, 1)' : 'black')};
   transition: color 0.2s ease;
@@ -276,15 +290,16 @@ const Text = styled.p`
 
 const ProfileCheckButton = styled.button`
   background-color: white;
-  padding: 1.38vw;
-  width: 200px;
-  margin-left: 1.38vw;
+  padding: 1.3889vw;
+  width: 13.8889vw;
+  margin-left: 1.3889vw;
+  font-size: 0.9vw;
   cursor: pointer;
   font-weight: 900;
   border: none;
-  box-shadow: -2px 5px 5px 0px rgba(0, 0, 0, 0.5); 
+  box-shadow: -0.1389vw 0.3472vw 0.3472vw 0vw rgba(0, 0, 0, 0.5); 
   &:active {
-    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 0.2083vw 0.3472vw rgba(0, 0, 0, 0.2);
   }
   user-select: none;
 `;
@@ -292,20 +307,21 @@ const ProfileCheckButton = styled.button`
 const Consent3 = styled.div`
   display: flex;
   align-items: center; 
-  margin-top: 60px;
-  margin-right: 1.38vw;
-  gap: 10px;
-  padding-bottom: 100px; // 문구고정을 위한 요소
+  margin-top: 4.1667vw;
+  margin-right: 1.3889vw;
+  gap: 0.6944vw;
+  padding-bottom: 6.9444vw; // 문구고정을 위한 요소
   position: relative;  // 문구고정을 위한 요소
 `;
 
 const WarningMessage = styled.div`
   color: rgb(255, 123, 0);
   white-space: nowrap;
-  margin-right:200px;
+  margin-right: 13.8889vw;
+  font-size: 0.95vw;
   position: absolute; // 문구고정을 위한 요소
-  top: 90px;  // 문구고정을 위한 요소
-  left: 250px;  // 문구고정을 위한 요소
+  top: 6.25vw;  // 문구고정을 위한 요소
+  left: 17.3611vw;  // 문구고정을 위한 요소
   user-select: none;
 `;
 
@@ -315,34 +331,36 @@ const ButtonsContainer = styled.div`
 
 const CancelButton = styled.button`
   background-color: white;
-  padding: 1.38vw;
-  width: 200px;
+  padding: 1.3889vw;
+  width: 13.8889vw;
   margin-left: 19%;
-  margin-right: 1.38vw;
+  margin-right: 1.3889vw;
+  font-size: 0.9vw;
   cursor: pointer;
   font-weight: 900;
   border: none;
-  box-shadow: -2px 5px 5px 0px rgba(0, 0, 0, 0.5); 
+  box-shadow: -0.1389vw 0.3472vw 0.3472vw 0vw rgba(0, 0, 0, 0.5); 
   &:active {
-    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.2);
-  }
+    box-shadow: inset 0 0.2083vw 0.3472vw rgba(0, 0, 0, 0.2);
   user-select: none;
+  }
 `;
 
 const ApplyButton = styled.button`
   background-color: rgb(139, 227, 255);
   color: white;
-  padding: 1.38vw;
-  width: 200px;
-  margin-left: 1.38vw;
+  padding: 1.3889vw;
+  width: 13.8889vw;
+  margin-left: 1.3889vw;
+  font-size: 0.9vw;
   cursor: pointer;
   font-weight: 900;
   border: none;
-  box-shadow: -2px 5px 5px 0px rgba(0, 0, 0, 0.5); 
+  box-shadow: -0.1389vw 0.3472vw 0.3472vw 0vw rgba(0, 0, 0, 0.5); 
   &:active {
-    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.2);
-  }
+    box-shadow: inset 0 0.2083vw 0.3472vw rgba(0, 0, 0, 0.2);
   user-select: none;
+  }
 `;
 
 const ModalContainer = styled.div`
@@ -350,26 +368,25 @@ const ModalContainer = styled.div`
   position: absolute;
   flex-direction: column; /* 문구 줄바꿈 */
   align-items: center; 
-  top: 90%;
+  top: 84%;
   left: 50%;
   transform: translate(-46%, -50%);
   background-color: rgb(218, 246, 255);
-  padding: 100px 200px;
-  border-radius: 10px;
+  padding: 8.3333vw; /* 13.8889vw; */
+  border-radius: 0.6944vw;
   z-index: 1;
   user-select: none;
 `;
-
 const CheckImage = styled.img`
-  width: 120px;
-  height: 100px;
-  margin-bottom: 40px;
+  width: 8.3333vw;
+  height: 6.9444vw;
+  margin-bottom: 2.7778vw;
 `;
 
 const ModalText = styled.p`
-  font-size: 18px;
+  font-size: 1.2500vw;
   font-weight: bold;
   white-space: nowrap;
-  margin-bottom: 10px;
+  margin-bottom: 0.6944vw;
   user-select: none;
 `;

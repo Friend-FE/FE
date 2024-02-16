@@ -3,7 +3,6 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import Board from '../Board/ManagerQnABoard';
 import Title from '../title/index';
 import styled from 'styled-components';
-import * as MAHD from './MatchingAHDetailWoman'
 import Footer from '../footer';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -177,12 +176,12 @@ const QnADetail = () => {
         </ReviewBox>
         <ResponseBox>
         {review.answer && (
-          <>
-        {review.answer}
-          </>
-          )}
+  <ResponseBox>
+    {review.answer}
+  </ResponseBox>
+)}
         </ResponseBox>
-        <AnswerButton to={`/ManagerPage/QnA/QnAResponse/${review.id}`} state={{ review }}>답변하기</AnswerButton>
+       
       </ReviewWrapper>  
       <FooterContainer>
         <Footer />

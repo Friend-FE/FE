@@ -2,24 +2,28 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components'
+import { useSelector } from 'react-redux'; 
 
 export default function MatchingHistoryBoard() {
 
-    // redux 사용해서 user Id 가지고 와야 함.
+    const id = useSelector(state => state.login.id);
+
     const navigate = useNavigate();
     const [matchingData, setMatchingData] = useState('');
 
     const fetchData = async () => {
         const userId = 20; // 현재 user Id 임의로 설정
         // console.log(id);
+        const idOrUserId = id ? id : userId;
+
         try {
-            const response = await axios.get(`http://13.209.145.28:8080/api/v1/myPage/matchinglist/${userId}`, {userId});
+            const response = await axios.get(`http://13.209.145.28:8080/api/v1/myPage/matchinglist/${idOrUserId}`, {idOrUserId});
             console.log(response.data.data);
             setMatchingData(response.data.data);
         } catch (error) {
           console.error('오류 발생:', error);
           alert('오류가 발생했습니다. 다시 시도해주세요.');
-          navigate(-1); 
+          navigate(-1);
         }
     }
     

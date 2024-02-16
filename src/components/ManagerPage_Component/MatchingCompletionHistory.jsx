@@ -115,23 +115,25 @@ export default function ViewMembershipList() {
             <M.DirectionImg onClick={onClickRight} src={right} alt ="right"/>
           </DateDiv>
           {apiData.length !== 0 ? (
-            <CoupleList>
-              {apiData.map((item) => (
-                <CoupleDiv key={item.id}>
-                  <M.PersonDiv>
-                    <NameH5>{item.manNickname} 님</NameH5>
-                    <P>{item.manPhone}</P>
-                    <M.P>{item.matchDate}</M.P>
-                  </M.PersonDiv>
-                  <M.PersonDiv>
-                    <NameH5>{item.womanNickname} 님</NameH5>
-                    <P>{item.womanPhone}</P>
-                    <M.P>{item.matchDate}</M.P>
-                  </M.PersonDiv>
-                </CoupleDiv>
-              ))}
-            </CoupleList>
-          ) : null}
+              <CoupleList>
+                {apiData.map((item) => (
+                  item ? (
+                    <CoupleDiv key={item.id}>
+                      <M.PersonDiv>
+                        <NameH5>{item.manNickname} 님</NameH5>
+                        <P>{item.manPhone}</P>
+                        <M.P>{item.matchDate}</M.P>
+                      </M.PersonDiv>
+                      <M.PersonDiv>
+                        <NameH5>{item.womanNickname} 님</NameH5>
+                        <P>{item.womanPhone}</P>
+                        <M.P>{item.matchDate}</M.P>
+                      </M.PersonDiv>
+                    </CoupleDiv>
+                  ) : null
+                ))}
+              </CoupleList>
+            ) : null}
       </T.TotalDiv>
       <FooterContainer>
         <Footer/>

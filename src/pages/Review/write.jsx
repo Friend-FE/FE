@@ -87,7 +87,7 @@ const ReviewWrite = () => {
       
           if (response.ok) {
             console.log('수정 성공');
-            navigate('/notice');
+            navigate(-1);
           } else {
             console.error('수정 실패');
           }

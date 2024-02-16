@@ -12,7 +12,7 @@ import Main5 from "../../images/main_5.png";
 import Main6 from "../../images/main_6.png";
 import { useNavigate } from "react-router-dom";
 import { useState,useEffect } from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch  } from 'react-redux';
 import { login } from '../../REDUX/loginCheck';
 
 const MainPage = () => {
@@ -33,6 +33,7 @@ const MainPage = () => {
     }
 
   }
+
   useEffect(() => {
     // 페이지 로드 시에 로컬 스토리지에서 로그인 상태 확인하여 설정
     const serializedState = localStorage.getItem('loginState');
@@ -43,6 +44,7 @@ const MainPage = () => {
       }
     }
 }, [dispatch]);
+
 
   return (
     <AppContainer>
