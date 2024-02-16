@@ -5,19 +5,19 @@ import styled from 'styled-components'
 import Footer from '../footer/index'
 import Title from '../title/index'
 import axios from 'axios';
+import { useSelector } from 'react-redux'
 
 export default function Profile_card() {
   const [profileData, setProfileData] = useState({});
-
+  const email = useSelector(state=>state.email.email);
 
   useEffect(()=>{
-    const email = "match1@gmail.com"; //리덕스에 저장된 이메일 필요
-    axios.get(`http://13.209.145.28:8080/api/v1/myPage/getProfile/${email}`)
+    const userEmail = "match1@gmail.com"; //임시 이메일
+    const apiEmail = email? email : userEmail;
+    axios.get(`http://13.209.145.28:8080/api/v1/myPage/getProfile/${apiEmail}`)
     .then(function (response) {
       // 성공적으로 응답 받았을 때의 처리
       setProfileData(response.data);
-      console.log(profileData.data.imgUrl);
-
     })
     .catch(function (error) {
       // 오류 발생 시의 처리
