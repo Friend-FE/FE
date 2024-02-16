@@ -148,7 +148,7 @@ const ReviewBox = styled.pre`
   background: #FFF;
   padding: 1.38vw;
   text-align: center;
-
+  white-space: pre-line;
   font-size: 1vw;
 
   margin-top: 3vw;
