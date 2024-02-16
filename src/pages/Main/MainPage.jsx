@@ -30,6 +30,10 @@ const MainPage = () => {
     }
 
   }
+
+  // localStorage.setItem('nickname', '이매');
+
+
   return (
     <AppContainer>
       <Img src={mainBg} alt="메인화면bg"></Img>

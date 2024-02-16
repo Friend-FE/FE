@@ -7,8 +7,12 @@ import checkImage from "../../images/checkImage.png";
 import Title from '../../components/title';
 import Footer from '../../components/footer';
 import axios from 'axios';
+import { useSelector } from 'react-redux'; 
 
 const Apply = () => {
+
+  const id = useSelector(state => state.login.id);
+
 
   const [isChecked1, setIsChecked1] = useState(false);
   const [isChecked2, setIsChecked2] = useState(false);
@@ -103,10 +107,12 @@ const Apply = () => {
 
     const userId = 20; // id 임의로 지정
 
+    const idOrUserId = id ? id : userId;
+
     console.log('test', userId);
 
     try {
-      const response = await axios.post(`http://13.209.145.28:8080/api/v1/match/20`);
+      const response = await axios.post(`http://13.209.145.28:8080/api/v1/match/${idOrUserId}`);
         if (response.status === 200) {
           console.log('매칭 신청 정상');
         } else {
@@ -125,7 +131,7 @@ const Apply = () => {
     }else if (showModal) {
       alert('이미 매칭 신청이 완료되었습니다.');
     }else {
-      const userId = 20; // id 임의로 지정
+      const userId = 22; // id 임의로 지정
 
       console.log('test', userId);
       
@@ -337,6 +343,7 @@ const CancelButton = styled.button`
   &:active {
     box-shadow: inset 0 0.2083vw 0.3472vw rgba(0, 0, 0, 0.2);
   user-select: none;
+  }
 `;
 
 const ApplyButton = styled.button`
@@ -353,6 +360,7 @@ const ApplyButton = styled.button`
   &:active {
     box-shadow: inset 0 0.2083vw 0.3472vw rgba(0, 0, 0, 0.2);
   user-select: none;
+  }
 `;
 
 const ModalContainer = styled.div`
@@ -364,7 +372,7 @@ const ModalContainer = styled.div`
   left: 50%;
   transform: translate(-46%, -50%);
   background-color: rgb(218, 246, 255);
-  padding: 8.3333vw; 13.8889vw;
+  padding: 8.3333vw; /* 13.8889vw; */
   border-radius: 0.6944vw;
   z-index: 1;
   user-select: none;

@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import axios from 'axios';
+import { useSelector } from 'react-redux'; 
 
 import * as T from './MyPage'
 import styled from 'styled-components'
@@ -13,16 +14,17 @@ import MatchingHistoryBoard from '../Board/MatchingHistoryBoard'
 
 export default function Matching_history() {
 
-  // redux 사용해서 user 이름 가지고 와야 함.
-  // 리덕스로 아이디 들고 와야 함
+  const id = useSelector(state => state.login.id);
   const navigate = useNavigate();
   const [userData, setUserData] = useState('');
 
   const fetchData = async () => {
     const userId = 20; // 현재 user Id 임의로 설정
+    const idOrUserId = id ? id : userId;
+
     // console.log(id);
     try {
-        const response = await axios.get(`http://13.209.145.28:8080/api/v1/myPage/getImgName/${userId}`, {userId});
+        const response = await axios.get(`http://13.209.145.28:8080/api/v1/myPage/getImgName/${idOrUserId}`, {idOrUserId});
         // console.log('성공', response.data.data);
         setUserData(response.data.data);
     } catch (error) {
