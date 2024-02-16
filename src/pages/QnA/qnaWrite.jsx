@@ -99,7 +99,7 @@ const PasswordInfo = styled.div`
 
 const CheckBoxText = styled.div`
   display: flex;
-  margin-left: 0.2vw;
+  margin-left: 0.5vw;
   cursor: default;
 `;
 
@@ -176,8 +176,10 @@ export default function QuestionWrite() {
   const navigate = useNavigate();
   const location = useLocation();
   const [isChecked, setIsChecked] = useState(false);
-  const [password, setPassword] = useState('');
   const [clicked, setClicked] = useState(false);
+  const [password, setPassword] = useState('');
+  const [certainPassword, setCertainPassword] = useState('');
+ 
 
   //수정을 하기 위해 이전페이지의 Id를 가져옴 Id가 있다면 수정
   useEffect(() => {
@@ -187,23 +189,41 @@ export default function QuestionWrite() {
       setIsEditing(true);
     }
   }, [location]);
-  
+
   const handleComplete = () => {
     if (isChecked && password === ""){
       alert("비밀번호를 입력해주세요.");
       setClicked(false); //클릭 무효
       return; // 함수 종료
     }
+    //입력완료버튼을 누르고 난뒤의 비밀번호값
+    setCertainPassword(password);
   };
   
   const handleSubmit = async (event) => {
     event.preventDefault();
-  //입력확인을 누르고 비밀번호를 다시 지울 수 있으므로 {|| password === ""}
-    if (isChecked && (!clicked || password === "")) {
+    // clicked는 한번 이상 클릭했을 때 적용, setClicked는 클릭상태
+    if (isChecked && !clicked ) {
       alert("비밀번호 입력 완료 버튼을 눌러주세요.");
+      return;
+    }
+  // 입력확인을 누르고 비밀번호를 다시 지울 수 있으므로(수정은 submit버튼을 누를때 비밀번호값이기 때문에 비어있지 않기만 하면 된다) 위 조건문을 {!clicked || password === ""} 를 써도 되지만
+  // 수정했다는 사실을 알릴려면 아래와 같이 완료된 비밀번호로 조건문
+    else if(isChecked && clicked && (password=== "" || (certainPassword !== password && clicked)))
+    {
+      alert("비밀번호 수정 후 비밀번호 입력 완료 버튼을 눌러주세요.");
+      return;
+    }
+    else if(title === ""){
+      alert("제목을 입력해주세요.");
+      return;
+    }
+    else if(content === ""){
+      alert("내용을 입력해주세요.");
       return; // 함수 종료, 또는 아래부터 else로 감싸도 됨 
     }
-   
+  
+  
     try {
       const apiUrl = isEditing
         ? `http://13.209.145.28:8080/api/v1/Qa/${id}`
@@ -214,9 +234,14 @@ export default function QuestionWrite() {
         title: title,
         body: content, 
         author: 'author',
-        //status가 비밀글여부를 뜻하는건진 모르겠으나 비밀글이라 했을 땐 적용이 안됨
-        status: isChecked ? 'COMPLETE' : 'INCOMPLETE',
-        //privacy: password 오류발생, 애초에 보안상의 이유로 비밀번호는 서버에서 해싱해야 함
+        //status는 답변받는 페이지에서 답변이 있으면 나오게 함
+       
+        // privacy: isChecked ? 'PUBLIC' : 'PRIVACY' 으로 순서를 바꿨을 경우에는 체크되어있을땐 
+        // 글작성이 되고 체크를 안했을 때 오류가 난다
+        privacy: isChecked ? 'PRIVACY' : 'PUBLIC',
+
+        //password는 애초에 보안상의 이유로 비밀번호는 서버에서 해싱해야 함, 백엔드가 작업하여 콘솔에는 찍히지 않음
+        password: password,
       };
       requestClass.time = new Date();
   
@@ -240,6 +265,7 @@ export default function QuestionWrite() {
       }
     } catch (error) {
       console.error('글 작성/수정 중 오류 발생:', error);
+
     }
   };
   
@@ -276,7 +302,7 @@ export default function QuestionWrite() {
                 <PasswordInput
                   type="password"
                   value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={(e) => {setPassword(e.target.value);}}
                 />
                 {/* 조건문이 handleComplete()에 있으므로 setClicked(true)가 먼저 와야한다 */}
                 <CompleteButton type="button"  onClick={() => {setClicked(true); handleComplete(); }}> 
