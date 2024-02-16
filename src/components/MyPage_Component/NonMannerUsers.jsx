@@ -4,6 +4,7 @@
 import React, { useState, useEffect, useInsertionEffect } from 'react'
 import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
+import { useSelector } from 'react-redux'; 
 
 import * as T from './MyPage'
 import styled from 'styled-components'
@@ -16,6 +17,7 @@ import Title from '../title/index'
 export default function NonMannerUsers() {
 
     const navigate = useNavigate();
+    const id = useSelector(state => state.login.id);
 
     const [person, setPerson] = useState([]);
     const [selectedUserInfo, setSelectedUserInfo] = useState('');
@@ -49,9 +51,11 @@ export default function NonMannerUsers() {
     };
 
     const fetchData = async () => {
-        const id = 21; // 임의로 값 부여
+        const userId = 20; // 임의로 값 부여
+        const idOrUserId = id ? id : userId;
+
         try {
-          const response = await axios.get('http://13.209.145.28:8080/api/v1/report/reportList/21', {id});
+          const response = await axios.get(`http://13.209.145.28:8080/api/v1/report/reportList/${idOrUserId}`, {idOrUserId});
           setPerson(response.data.data);
           console.log('연결 성공');
 

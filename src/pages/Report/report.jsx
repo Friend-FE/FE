@@ -1,31 +1,61 @@
 // 비매너 유저 신고하기 - 더 자세한 신고 내용 입력
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react'
+import axios from 'axios';
+import { useSelector } from 'react-redux'; 
+
 
 import Title from '../../components/title';
 import styled from 'styled-components';
 import { useLocation, useNavigate } from 'react-router-dom';
 import * as MAHD from '../../components/ManagerPage_Component/MatchingAHDetailWoman'
 import Footer from '../../components/footer';
-import axios from 'axios';
 
 const Report = () => {
 
   const [name, setName] = useState('');
   const [content, setContent] = useState('');
+  const [userData, setUserData] = useState('');
+
 
   const { state } = useLocation();
   const navigate = useNavigate();
+
+  const id = useSelector(state => state.login.id);
+
+  const fetchData = async () => {
+    const userId = 20; // 현재 user Id 임의로 설정
+
+    const idOrUserId = id ? id : userId;
+
+    // console.log(id);
+    try {
+        const response = await axios.get(`http://13.209.145.28:8080/api/v1/myPage/getImgName/${idOrUserId}`, {idOrUserId});
+        // console.log('성공', response.data.data);
+        setUserData(response.data.data);
+    } catch (error) {
+      console.error('오류 발생:', error);
+      alert('오류가 발생했습니다. 다시 시도해주세요.');
+      navigate(-1);
+    }
+  }
+
+  useEffect(() => {
+      fetchData();
+  }, []);
+
 
   // 서버 통신 !!
   const handleSubmit = async (event) => {
     // 폼 제출 막음
     event.preventDefault();
 
+    const idOrUserNickname = userData.nickname ? userData.nickname : '김익명';
+
     // 서버에 post 할 data
     const title = name;
     const body = content;
-    const author = '조하림'; // 추후에 수정
+    const author = idOrUserNickname;
     const badMemberId = state?.id;
     const badMemberNickname = state?.opponentNickname;
 

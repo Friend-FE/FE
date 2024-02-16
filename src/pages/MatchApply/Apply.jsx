@@ -7,8 +7,12 @@ import checkImage from "../../images/checkImage.png";
 import Title from '../../components/title';
 import Footer from '../../components/footer';
 import axios from 'axios';
+import { useSelector } from 'react-redux'; 
 
 const Apply = () => {
+
+  const id = useSelector(state => state.login.id);
+
 
   const [isChecked1, setIsChecked1] = useState(false);
   const [isChecked2, setIsChecked2] = useState(false);
@@ -103,10 +107,12 @@ const Apply = () => {
 
     const userId = 20; // id 임의로 지정
 
+    const idOrUserId = id ? id : userId;
+
     console.log('test', userId);
 
     try {
-      const response = await axios.post(`http://13.209.145.28:8080/api/v1/match/20`);
+      const response = await axios.post(`http://13.209.145.28:8080/api/v1/match/${idOrUserId}`);
         if (response.status === 200) {
           console.log('매칭 신청 정상');
         } else {
