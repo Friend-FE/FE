@@ -11,9 +11,12 @@ import Main4 from "../../images/main_4.png";
 import Main5 from "../../images/main_5.png";
 import Main6 from "../../images/main_6.png";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState,useEffect } from "react";
+import { useDispatch  } from 'react-redux';
+import { login } from '../../REDUX/loginCheck';
 
 const MainPage = () => {
+  const dispatch = useDispatch();
   const [isLogined,setIsLogined] = useState(true); //로그인 여부
   const [isActive,setIsActive] = useState(false); // 승인 완료된 회원인지?
   const navigate = useNavigate();
@@ -31,7 +34,16 @@ const MainPage = () => {
 
   }
 
-  // localStorage.setItem('nickname', '이매');
+  useEffect(() => {
+    // 페이지 로드 시에 로컬 스토리지에서 로그인 상태 확인하여 설정
+    const serializedState = localStorage.getItem('loginState');
+    if (serializedState) {
+      const { isLoggedIn } = JSON.parse(serializedState);
+      if (isLoggedIn) {
+        dispatch(login());
+      }
+    }
+}, [dispatch]);
 
 
   return (
