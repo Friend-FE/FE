@@ -116,7 +116,27 @@ export default function Modifying_info() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(values),
+        body: JSON.stringify(
+          {
+          "role": 0,
+          "nickname": values.nickname,
+          "phone": values.phone,
+          "birthday": "string",
+          "gender": 0,
+          "height": values.height,
+          "region": values.region,
+          "department": values.department,
+          "distance": 0,
+          "smoking": 0,
+          "drinking": 0,
+          "introduction": values.introduction,
+          "preference": values.preference,
+          "nonRegion": values.nonRegion,
+          "nondepartment": values.nondepartment,
+          "nonstudentid": values.nonstudentid,
+          "nonage": values.nonage
+        }
+        ),
       });
       console.log(response);
       if (!response.ok) {
