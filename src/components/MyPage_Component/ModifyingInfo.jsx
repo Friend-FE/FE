@@ -1,6 +1,7 @@
 // 회원정보 수정
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from 'react-redux'; 
 import Title from "../../components/title";
 import CircleCheckbox from "../../components/CircleCheckbox/CircleCheckbox";
 import styled from "styled-components";
@@ -37,6 +38,46 @@ export default function Modifying_info() {
     nonstudentid: "",
     nonage: "",
   });
+  const id = useSelector(state => state.login.id);
+  const email = useSelector(state => state.email.email);
+
+  useEffect(() => {
+    const fetchNoticeDetail = async () => {
+      try {
+        const response = await fetch(`http://13.209.145.28:8080/api/v1/myPage/getProfile/${email}`);
+        if (response.ok) {
+          const data = await response.json();
+          const profileData = data.data;
+          setValues(prevValues => ({
+            ...prevValues,
+            nickname: profileData.nickname,
+            birthday: profileData.birthday,
+            height: profileData.height,
+            region: profileData.region,
+            phone: profileData.phone,
+            preference: profileData.preference,
+            distance: profileData.distance === "LONG" ? 0 : 1,
+            smoking: profileData.smoking === "SMOKER" ? 0 : 1,
+            drinking: profileData.drinking === "DRINKER" ? 0 : 1,
+            department: profileData.department,
+            introduction: profileData.introduction,
+            nonRegion: profileData.nonRegion,
+            nondepartment: profileData.nonDepartment,
+            nonstudentid: profileData.nonStudentId,
+            nonage: profileData.nonAge
+          }));
+        } else {
+          console.error('API 호출 실패');
+        }
+      } catch (error) {
+        console.error('API 호출 중 오류:', error);
+      }
+    };
+    // id가 존재할 때 호출
+    if (email) { 
+      fetchNoticeDetail();
+    }
+  }, [email]);
 
   const handleFileChange = (file) => {
     setSelectedFile(file);
@@ -56,10 +97,8 @@ export default function Modifying_info() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("실행");
-    alert(JSON.stringify(values, null, 2));
   };
 
   const handleCancleButton = (event) => {
@@ -67,35 +106,46 @@ export default function Modifying_info() {
     navigate(-1);
   };
 
-  const handleSubmitButton = (event) => {
-    //console.log(values);
-    //회원정보 수정하는 api 필요함 -> 현재는 가입 할 때의 api 이므로 수정이 필요함
+  const handleSubmitButton = async (event) => {
+    //회원정보 수정하는 api 
+    try {
+      const response = await fetch(`http://13.209.145.28:8080/api/v1/myPage/editProfile/${id}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(
+          {
+          "role": 0,
+          "nickname": values.nickname,
+          "phone": values.phone,
+          "birthday": "string",
+          "gender": 0,
+          "height": values.height,
+          "region": values.region,
+          "department": values.department,
+          "distance": values.distance,
+          "smoking": values.smoking,
+          "drinking": values.drinking,
+          "introduction": values.introduction,
+          "preference": values.preference,
+          "nonRegion": values.nonRegion,
+          "nondepartment": values.nondepartment,
+          "nonstudentid": values.nonstudentid,
+          "nonage": values.nonage
+        }
+        ),
+      });
 
-    event.preventDefault();
-    if (selectedFile) {
-      //selectedFile
-      const formData = new FormData();
-      formData.append("image", selectedFile);
+      navigate('/MyPage/ProfileCard');
 
-      const json = JSON.stringify(values);
-
-      const blob = new Blob([json], { type: "application/json" });
-      formData.append("request", blob);
-
-      axios
-        .post(`http://13.209.145.28:8080/api/v1/users`, formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        })
-        .then(function (response) {
-          // 성공적으로 응답 받았을 때의 처리
-          navigate("/JudgePage");
-        })
-        .catch(function (error) {
-          // 오류 발생 시의 처리
-          console.error("오류 발생:", error);
-        });
+      if (!response.ok) {
+        throw new Error('Failed to update profile');
+      }
+      const data = await response.json();
+      console.log('Profile updated successfully:', data); // 성공 메시지 출력
+    } catch (error) {
+      console.error('Error updating profile:', error);
     }
   };
 
@@ -118,8 +168,7 @@ export default function Modifying_info() {
           <Input
             type="text"
             name="email"
-            value={values.email}
-            onChange={handleChange}
+            value={email}
             placeholder="이메일"
           />
           <Input
