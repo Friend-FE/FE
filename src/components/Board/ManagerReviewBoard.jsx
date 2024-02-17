@@ -11,12 +11,13 @@ export default function ManagerReviewBoard({ info }) {
     const location = useLocation();
 
     const handleRowClick = (item) => {
-        if (location.pathname === '/reviews') {
-        navigate(`/reviews/${item.id}`, { state: { item } });
-        console.log('실행');
-        }
-        console.log('실행');
-    };
+      if (location.pathname === '/reviews') {
+      navigate(`/reviews/${item.id}`, { state: { item } });
+      }
+      else if (location.pathname === '/ManagerPage/Review'){
+      navigate(`/ManagerPage/Review/reviews/${item.id}`, { state: { item } });
+      }
+  };
 
     const formatAuthor = (author) => {
         if (author.length > 1) {

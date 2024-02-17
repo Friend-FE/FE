@@ -11,18 +11,22 @@ import Main4 from "../../images/main_4.png";
 import Main5 from "../../images/main_5.png";
 import Main6 from "../../images/main_6.png";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState,useEffect } from "react";
+import { useDispatch,useSelector  } from 'react-redux';
+import { login } from '../../REDUX/loginCheck';
 
 const MainPage = () => {
-  const [isLogined,setIsLogined] = useState(true); //로그인 여부
-  const [isActive,setIsActive] = useState(false); // 승인 완료된 회원인지?
+  const dispatch = useDispatch();
+  const isLoggedIn = useSelector(state => state.login.isLoggedIn); // Redux Store에서 로그인 상태 가져오기
+  const isCertify = useSelector(state => state.email.isCertify);
+
   const navigate = useNavigate();
   const handleStartBtn = ()=>{
-    if(!isLogined)
+    if(!isLoggedIn)
     {
       navigate("/login");
     }
-    else if(!isActive){
+    else if(!isCertify){
       navigate("/JudgePage");
     }
     else{
@@ -31,7 +35,16 @@ const MainPage = () => {
 
   }
 
-  // localStorage.setItem('nickname', '이매');
+  useEffect(() => {
+    // 페이지 로드 시에 로컬 스토리지에서 로그인 상태 확인하여 설정
+    const serializedState = localStorage.getItem('loginState');
+    if (serializedState) {
+      const { isLoggedIn } = JSON.parse(serializedState);
+      if (isLoggedIn) {
+        dispatch(login());
+      }
+    }
+}, [dispatch]);
 
 
   return (

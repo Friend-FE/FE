@@ -1,20 +1,15 @@
 // 로그인
 
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import {useNavigate} from 'react-router-dom';
 import styled from 'styled-components';
 import Title from '../../components/title/index';
 import Footer from '../../components/footer';
-import { useDispatch} from 'react-redux';
-import { login } from '../../REDUX/loginCheck';
+import { useDispatch } from 'react-redux';
+import { login,autoLogin } from '../../REDUX/loginCheck';
 import { certify, notCertify } from '../../REDUX/emailCheck';
 
-// 리덕스 불러오기
-// import { useSelector } from 'react-redux'; 
-// const isLoggedIn = useSelector(state => state.login.isLoggedIn);
-// const id = useSelector(state => state.login.id);
-// const isCertify = useSelector(state => state.email.isCertify);
-// const email = useSelector(state => state.email.email);
+
 
 const Login = () => {
     //로그인 정보 관리
@@ -24,7 +19,7 @@ const Login = () => {
     const [managerLogin, setManagerLogin] = useState(false);
 
     const isFormValid = email !== '' && password !== '';
-
+    console.log(rememberMe);
     const handleEmailChange = (event) => {
         setEmail(event.target.value);
     };
@@ -32,12 +27,14 @@ const Login = () => {
         setPassword(event.target.value);
     };
     const handleRememberMeChange = (event) => {
-        setRememberMe(event.target.checked);
+        setRememberMe(prevRememberMe => !prevRememberMe);
+        console.log(rememberMe);
     };
     const handleManagerLogin = (event) => {
         setManagerLogin(event.target.checked);
     };
     const dispatch = useDispatch();
+
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -57,8 +54,15 @@ const Login = () => {
               throw new Error('Failed to log in');
           }
           
+
           const responseData = await response.json();
           dispatch(login(responseData.data.memberId));
+
+          if(rememberMe){
+            console.log(rememberMe);
+            dispatch(autoLogin())
+          }
+          
 
           if(responseData.data.status ==='ACTIVE'){
             dispatch(certify(email));

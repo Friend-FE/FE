@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-
+import privacyImage from "../../images/Privacy.png";
 
 const Row = styled.div`
   display: flex;
@@ -12,8 +12,8 @@ const Row = styled.div`
   text-decoration: none;
   color: inherit;
   cursor: pointer;
-
   font-size: 1vw;
+  transform: translateY(-0.2vw); //추가
 `;
 
 const Title = styled.div`
@@ -60,6 +60,13 @@ const HeaderRow = styled.div`
   padding: 0.8vw;
   text-decoration: none;
   color: inherit;
+`;
+
+const PrivacyImage = styled.img`
+  width: 2vw;
+  height: 2vw;
+  margin-left: 0.5vw;
+  margin-bottom: -0.5vw;
 `;
 
 const ModalWrapper = styled.div`
@@ -136,25 +143,24 @@ const QnABoard = ({ info }) => {
   const infoLength = info.length;
   const navigate = useNavigate();
   const [selectedItem, setSelectedItem] = useState(null);
-  const isCollectPage = window.location.pathname === "/QnA";
+  const isCollectPage = window.location.pathname === "/QnA" || window.location.pathname === "/QnA/";
   const [showPasswordPrompt, setShowPasswordPrompt] = useState(false);
 
   const handleRowClick = (item) => {
     setSelectedItem(item);
-   //선택한 항목이 비밀글인지 확인, status오류라서 안됨, item.status === 'INCOMPLETE'는 됨
-    if (item.status === 'COMPLETE') {
-    setShowPasswordPrompt(true);
-    } 
-    else {
-    //비밀번호가 설정되어 있지 않다면, 직접 해당 게시물로 이동
-        if(isCollectPage){
+
+       if(isCollectPage){
+        //선택한 항목이 비밀글인지 확인, status오류라서 안됨, item.status === 'INCOMPLETE'는 됨
+          if (item.privacy === 'PUBLIC') {
+            setShowPasswordPrompt(true);
+            return; //함수 종료
+            } 
           //상세 페이지의 보드 클릭 시 네비게이트가 되는 문제를 해결
           navigate(`/QnA/${item.id}`, { state: { item: selectedItem } });
         }
         else{
           //클릭무시 
         }
-    }
   };
 
     const handlePasswordSubmit = (isPasswordCorrect) => {
@@ -164,6 +170,7 @@ const QnABoard = ({ info }) => {
     if(isPasswordCorrect) {
     //비밀번호가 맞다면 해당 게시글로 이동
     navigate(`/QnA/${selectedItem.id}`, { state: { item: selectedItem } });
+
     } else {
     alert('비밀번호가 일치하지 않습니다.');
     }
@@ -193,7 +200,9 @@ const QnABoard = ({ info }) => {
       return (
         <div key={item.id}>
           <Row onClick={() => handleRowClick(item)}>
-            <Title>{item.title}</Title>
+            <Title>{item.title}
+            {item.privacy === 'PUBLIC' && <PrivacyImage src={privacyImage} alt="privacy"/>}
+            </Title>
             <Author>{maskedAuthor}</Author>
             <Time>{formattedDate}</Time>
           </Row>

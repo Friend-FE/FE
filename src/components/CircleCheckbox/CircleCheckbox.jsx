@@ -1,10 +1,12 @@
-// 회원가입 - 3에 쓰이는 원형 체크박스
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 const CircleCheckbox = ({ options, name, value, onChange }) => {
-  const [selectedIndex, setSelectedIndex] = useState(null);
+  const [selectedIndex, setSelectedIndex] = useState(value);
+
+  useEffect(() => {
+    setSelectedIndex(value);
+  }, [value]);
 
   const handleCheckboxChange = (index) => {
     setSelectedIndex(index);
@@ -17,8 +19,8 @@ const CircleCheckbox = ({ options, name, value, onChange }) => {
         <CheckboxContainer key={index}>
           <StyledCheckbox
             type="checkbox"
-            checked={selectedIndex  === index}
-            onChange={() =>handleCheckboxChange(index)}
+            checked={selectedIndex === index}
+            onChange={() => handleCheckboxChange(index)}
           />
           <CheckboxLabel>{option}</CheckboxLabel>
         </CheckboxContainer>
@@ -38,7 +40,7 @@ const StyledCheckbox = styled.input`
   outline: none;
   position: relative;
   @media screen and (max-width: 768px) {
-    font-size:1vw;
+    font-size: 1vw;
     width: 3vw;
     height: 3vw;
   }
@@ -59,7 +61,7 @@ const StyledCheckbox = styled.input`
 const CheckboxContainer = styled.div`
   display: flex;
   margin-top: 1vw;
-  margin-bottom : 2vw;
+  margin-bottom: 2vw;
   align-items: center;
 `;
 

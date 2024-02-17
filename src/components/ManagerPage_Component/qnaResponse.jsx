@@ -26,6 +26,7 @@ const TextInput = styled.input`
   padding-left: 1vw;
   border: 0.05vw solid #888;
   pointer-events: none; // 입력 방지
+  
   @media (max-width: 768px) {
     width: 60vw;
     height: 2vh;
@@ -142,7 +143,7 @@ const QnAResponse = () => {
       console.log('Server Response Data:', responseJson);
 
       if (response.ok) {
-        console.log('답변 작성 완료!');
+        console.log('답변 작성 완료');
         navigate(-1, { state: { newAnswer: responseJson } });
       } else {
         console.error('답변 작성 실패:', response.status, response.statusText);
