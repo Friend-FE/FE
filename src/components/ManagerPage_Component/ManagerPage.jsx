@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'; 
 
 import ProfileBasic from '../../images/ProfileBasic.png'
 import * as T from '../MyPage_Component/MyPage'
@@ -12,16 +13,20 @@ import Title from '../title/index'
 
 export default function ManagerPage() {
 
-  // 리덕스로 아이디 들고 와야 함
+  const id = useSelector(state => state.login.id);
+
   const navigate = useNavigate();
   const [userData, setUserData] = useState('');
 
   const fetchData = async () => {
     const userId = 20; // 현재 user Id 임의로 설정
     // console.log(id);
+
+    const idOrUserId = id ? id : userId;
+
     try {
-        const response = await axios.get(`http://13.209.145.28:8080/api/v1/myPage/getImgName/${userId}`, {userId});
-        // console.log('성공', response.data.data);
+        const response = await axios.get(`http://13.209.145.28:8080/api/v1/myPage/getImgName/${idOrUserId}`, {idOrUserId});
+        console.log('성공', response.data.data);
         setUserData(response.data.data);
     } catch (error) {
       console.error('오류 발생:', error);

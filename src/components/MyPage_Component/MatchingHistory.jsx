@@ -19,7 +19,7 @@ export default function Matching_history() {
   const [userData, setUserData] = useState('');
 
   const fetchData = async () => {
-    const userId = 20; // 현재 user Id 임의로 설정
+    const userId = 41; // 현재 user Id 임의로 설정
     const idOrUserId = id ? id : userId;
 
     // console.log(id);

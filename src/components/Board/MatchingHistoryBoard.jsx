@@ -12,7 +12,7 @@ export default function MatchingHistoryBoard() {
     const [matchingData, setMatchingData] = useState('');
 
     const fetchData = async () => {
-        const userId = 20; // 현재 user Id 임의로 설정
+        const userId = 41; // 현재 user Id 임의로 설정
         // console.log(id);
         const idOrUserId = id ? id : userId;
 
@@ -22,7 +22,7 @@ export default function MatchingHistoryBoard() {
             setMatchingData(response.data.data);
         } catch (error) {
           console.error('오류 발생:', error);
-          alert('오류가 발생했습니다. 다시 시도해주세요.');
+          alert('오류가 발생했습니다. 다시 시도해주세요. 보드 문제.');
           navigate(-1);
         }
     }

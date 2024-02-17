@@ -77,7 +77,7 @@ export default function ApplicationForMembershipDetail() {
             <SectionDiv>
                 <MAHD.InfoP>연락처 :{profile.data.phone}</MAHD.InfoP>
                 <MAHD.InfoP>매칭되고 싶지 않은 조건 </MAHD.InfoP>
-                <MAHD.InfoP>&emsp;지역:{profile.data.nonRegion},&nbsp;학과:{profile.data.nonDepartment},&nbsp;나이:{profile.data.nonAge},&nbsp;학번:{profile.data.nonStudentId}</MAHD.InfoP>
+                <MAHD.InfoP>지역:{profile.data.nonRegion},&nbsp;학과:{profile.data.nonDepartment},&nbsp;나이:{profile.data.nonAge},&nbsp;학번:{profile.data.nonStudentId}</MAHD.InfoP>
                 <MAHD.InfoP>이상형 : {profile.data.preference}</MAHD.InfoP>
             </SectionDiv>
             <BtnDiv>

@@ -86,7 +86,7 @@ const NoticeTitle = styled.h3`
     font-size: 2.5vw;
     font-weight: 900;
     margin :0;
-    margin-top :2vw;
+    margin-bottom :2vw;
     @media screen and (max-width: 1165px) {
       gap : 5px;
     }

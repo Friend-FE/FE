@@ -10,6 +10,12 @@ import { logout } from "../../REDUX/loginCheck";
 function Header() {
   const dispatch = useDispatch();
 
+  const id = useSelector(state => state.login.id);
+  let isManager = false;
+  if(id === 47){
+    isManager = true;
+  }
+
   const isLoggedIn = useSelector(state => state.login.isLoggedIn); // Redux Store에서 로그인 상태 가져오기
   const isCertify = useSelector(state => state.email.isCertify);
   const handleLogout = () => {
@@ -21,17 +27,26 @@ function Header() {
     <Wrapper>
       <div>사람이 해주는 진심어린 매칭, Friend!</div>
       <div>
-      {isLoggedIn ? (
-            <>
-              <NavLink to="/" onClick={handleLogout}>LOGOUT</NavLink>
-              <NavLink to="/Mypage">마이페이지</NavLink>
-            </>
-          ) : (
-            <>
-              <NavLink to="/login">LOGIN</NavLink>
-              <NavLink to="/CertifyBeginning">회원가입</NavLink>
-            </>
-          )}
+        {isLoggedIn && isManager ? (
+          <>
+            <NavLink to="/" onClick={handleLogout}>LOGOUT</NavLink>
+            <NavLink to="/ManagerPage">관리자 페이지</NavLink>
+          </>
+        ) : (
+          <>
+            {isLoggedIn ? (
+              <>
+                <NavLink to="/" onClick={handleLogout}>LOGOUT</NavLink>
+                <NavLink to="/MyPage">마이페이지</NavLink>
+              </>
+            ) : (
+              <>
+                <NavLink to="/login">LOGIN</NavLink>
+                <NavLink to="/CertifyBeginning">회원가입</NavLink>
+              </>
+            )}
+          </>
+        )}
       </div>
     </Wrapper>  
     <HeaderContainer>
