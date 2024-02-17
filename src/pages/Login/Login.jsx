@@ -53,6 +53,7 @@ const Login = () => {
   
           if (!response.ok) {
               // 에러 처리
+              alert('존재하지 않는 계정입니다. 다시 시도해주세요.');
               throw new Error('Failed to log in');
           }
           
