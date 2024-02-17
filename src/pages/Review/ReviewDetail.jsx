@@ -7,6 +7,8 @@ import Title from '../../components/title';
 import styled from 'styled-components';
 import Footer from '../../components/footer';
 import ReviewDetailBoard from '../../components/Board/ReviewDetailBoard';
+import { useSelector } from 'react-redux';
+import axios from 'axios';
 
 const ReviewDetail = () => {
 
@@ -14,9 +16,27 @@ const ReviewDetail = () => {
   const { state } = useLocation();
   const navigate = useNavigate();
   const [review, setReview] = useState(state?.item); 
+  const [author, setAuthor] = useState(state?.item); 
   
   // redux로 id를 가져오기
-  const userId = 343;
+  const userId = useSelector(state=>state.login.id);
+  const [userData, setUserData] = useState('');
+
+  const fetchData = async () => {
+
+    try {
+        const response = await axios.get(`http://13.209.145.28:8080/api/v1/myPage/getImgName/${userId}`, {userId});
+        setUserData(response.data.data);
+    } catch (error) {
+      console.error('오류 발생:', error);
+      alert('오류가 발생했습니다. 다시 시도해주세요.');
+      navigate(-1);
+    }
+  }
+
+  useEffect(() => {
+      fetchData();
+  }, []);
 
 
   console.log(review.id);
@@ -28,6 +48,8 @@ const ReviewDetail = () => {
         if (response.ok) {
           const data = await response.json();
           setReview((preReview) => ({ ...preReview, body: data.data.body }));
+          setAuthor(data.data.author);
+          console.log('작성자',author);
         } else {
           console.error('API 호출 실패');
         }
@@ -98,7 +120,7 @@ const ReviewDetail = () => {
         {/* 나중에 피그마로 수정해야할 부분  */}
       <ButtonWrapper>
         <BackButton type="button" onClick={onClickBtn}>목록으로 돌아가기</BackButton>
-        {userId === review.id && (
+        {author === userData.nickname && (
           <>
             <BackButton type="button" onClick={handleModify}>수정하기</BackButton>
             <BackButton type="button" onClick={handleDelete}>삭제하기</BackButton>

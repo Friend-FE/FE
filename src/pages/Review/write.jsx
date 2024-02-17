@@ -1,9 +1,10 @@
 import React, { useState,useEffect } from 'react';
-
+import axios from 'axios';
 import Title from '../../components/title';
 import styled from 'styled-components';
 import { useNavigate, useLocation } from 'react-router-dom';
 import Footer from '../../components/footer';
+import { useSelector } from 'react-redux'; 
 
 const ReviewWrite = () => {
   //수정을 하는 경우 값 받아오기
@@ -12,7 +13,29 @@ const ReviewWrite = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [isEditing, setIsEditing] = useState(false);
+  const [userData, setUserData] = useState('');
   const navigate = useNavigate();
+  const userId = useSelector(state => state.login.id);
+
+  const fetchData = async () => {
+    const userId1 = 20; // 현재 user Id 임의로 설정
+
+    const idOrUserId = userId ? userId : userId1;
+
+    try {
+        const response = await axios.get(`http://13.209.145.28:8080/api/v1/myPage/getImgName/${idOrUserId}`, {idOrUserId});
+        // console.log('성공', response.data.data.nickname);
+        setUserData(response.data.data);
+    } catch (error) {
+      console.error('오류 발생:', error);
+      alert('오류가 발생했습니다. 다시 시도해주세요.');
+      navigate(-1);
+    }
+  }
+
+  useEffect(() => {
+      fetchData();
+  }, []);
 
   useEffect(() => {
     // state에 데이터가 있으면 수정 모드로 간주
@@ -38,7 +61,7 @@ const ReviewWrite = () => {
         const requestBody = {
           title: title,
           body: content,
-          author: 'author',
+          author:  userData.nickname ? userData.nickname : '김익명' ,
           password: 'password', 
         };
 
@@ -100,7 +123,7 @@ const ReviewWrite = () => {
   };
 
   const handleCancel = () => {
-    navigate(-1); 
+    navigate('/reviews'); 
   };
 
   return (
