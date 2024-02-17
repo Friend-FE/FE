@@ -62,7 +62,7 @@ function MatchingAHDetailMan({personData, onRemoveRedux}) {
 
     const onClickRealAccept = async () => {
         const manId = userId;
-        const womanId = personData.matching[0].id;
+        const womanId = parseInt(localStorage.getItem('userId'), 10);
 
         console.log(manId);
         console.log(womanId);
@@ -76,6 +76,10 @@ function MatchingAHDetailMan({personData, onRemoveRedux}) {
             if (response.status === 200) {
                 console.log('정상');
                 alert('매칭 되었습니다.');
+
+                localStorage.removeItem('userId');
+                localStorage.removeItem('userNickname');
+
                 navigate('/ManagerPage/MatchingApplicationHistoryWoman'); 
             } else {
                 console.error('오류');
@@ -168,7 +172,7 @@ function MatchingAHDetailMan({personData, onRemoveRedux}) {
 
             <MAHD.ModalContainer showModal={showModal}>
                 <MAHD.CheckImage src={CheckImageBlue} alt="Check Image" />
-                <MAHD.ModalText>{personData.matching[0] ? `${personData.matching[0].name} 님과 ${person.profile ? person.profile.nickname : '현재 신청자'} 님을 매칭하겠습니까?` : '여성 신청자를 다시 선택해 주세요.'}</MAHD.ModalText>
+                <MAHD.ModalText>{localStorage.getItem('userNickname') ? `${localStorage.getItem('userNickname')} 님과 ${person.profile ? person.profile.nickname : '현재 신청자'} 님을 매칭하겠습니까?` : '여성 신청자를 다시 선택해 주세요.'}</MAHD.ModalText>
                 <MAHD.ModalBtnDiv>
                     <AFMD.OtherBtn onClick={onClickRealAccept}>매칭하기</AFMD.OtherBtn>
                     <AFMD.AcceptBtn onClick={onClickRefuse}>취소하기</AFMD.AcceptBtn>

@@ -55,6 +55,8 @@ function MatchingAHDetailWoman({onAddRedux}) {
         // setShowModal(true);
         const userNickname = person.profile.nickname;
         onAddRedux(userId, userNickname);
+        localStorage.setItem('userId', userId);
+        localStorage.setItem('userNickname', userNickname);
         navigate('/ManagerPage/MatchingApplicationHistoryMan');
     };
 
