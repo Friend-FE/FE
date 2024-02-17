@@ -98,7 +98,7 @@ const TitleContent = styled.div`
   text-align: right;
 
   position: relative;
-  left: 20vw;
+  left: 16vw;
 `;
 
 const StateBtn = styled.div`
@@ -106,7 +106,7 @@ const StateBtn = styled.div`
   box-shadow: -0.2vw 0.3vw 0.6vw rgba(0, 0, 0, 0.25);
 
   position: relative;
-  left: 22vw;
+  left: 18vw;
   
   width: 3.6vw;
   height: 1.2vw;
