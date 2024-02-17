@@ -56,9 +56,9 @@ export default function Modifying_info() {
             region: profileData.region,
             phone: profileData.phone,
             preference: profileData.preference,
-            distance: profileData.distance,
-            smoking: profileData.smoking,
-            drinking: profileData.drinking,
+            distance: profileData.distance === "LONG" ? 0 : 1,
+            smoking: profileData.smoking === "SMOKER" ? 0 : 1,
+            drinking: profileData.drinking === "DRINKER" ? 0 : 1,
             department: profileData.department,
             introduction: profileData.introduction,
             nonRegion: profileData.nonRegion,
@@ -99,8 +99,6 @@ export default function Modifying_info() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("실행");
-    alert(JSON.stringify(values, null, 2));
   };
 
   const handleCancleButton = (event) => {
@@ -126,9 +124,9 @@ export default function Modifying_info() {
           "height": values.height,
           "region": values.region,
           "department": values.department,
-          "distance": 0,
-          "smoking": 0,
-          "drinking": 0,
+          "distance": values.distance,
+          "smoking": values.smoking,
+          "drinking": values.drinking,
           "introduction": values.introduction,
           "preference": values.preference,
           "nonRegion": values.nonRegion,
@@ -138,7 +136,9 @@ export default function Modifying_info() {
         }
         ),
       });
-      console.log(response);
+
+      navigate('/MyPage/ProfileCard');
+
       if (!response.ok) {
         throw new Error('Failed to update profile');
       }
