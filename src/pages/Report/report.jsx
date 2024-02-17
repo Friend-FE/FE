@@ -50,12 +50,10 @@ const Report = () => {
     // 폼 제출 막음
     event.preventDefault();
 
-    const idOrUserNickname = userData.nickname ? userData.nickname : '김익명';
-
     // 서버에 post 할 data
     const title = name;
     const body = content;
-    const author = idOrUserNickname;
+    const author = userData.nickname;
     const badMemberId = state?.id;
     const badMemberNickname = state?.opponentNickname;
 
@@ -82,7 +80,12 @@ const Report = () => {
     catch (error) {
       console.error('신고 제출 중 오류 발생:', error);
       alert('오류가 발생했습니다. 다시 시도해주세요.');
-      navigate(-1); 
+      console.log(title);
+      console.log(body);
+      console.log(author);
+      console.log(badMemberId);
+      console.log(badMemberNickname);
+      // navigate(-1); 
     };
 
   }
@@ -102,7 +105,7 @@ const Report = () => {
           <TextInput type="text" placeholder='제목을 입력해주세요.' value={name} onChange={e => setName(e.target.value)} />
         </TitleInPut>
         <ContentInPut>
-          <TextArea type="text" placeholder='글을 입력해주세요.' value={content} onChange={e => setContent(e.target.value)} />
+          <TextArea type="text" placeholder='글은 입력해주세요.' value={content} onChange={e => setContent(e.target.value)} />
         </ContentInPut>
         <ButtonWrapper>      
           <CancelButton type="button" onClick={handleCancel}>취소</CancelButton>

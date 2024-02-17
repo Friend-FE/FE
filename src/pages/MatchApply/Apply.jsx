@@ -89,41 +89,6 @@ const Apply = () => {
   };
   
   const [warningMessage, setWarningMessage] = useState('');
- 
-  // const fetchData = async () => {
-  //   try {
-  //     const response = await axios.get('http://13.209.145.28:8080/api/v1/reports');
-  //     // console.log(response.data.data);
-  //     setHistory(response.data.data);
-  //   } catch (error) {
-  //     console.error('오류 발생:', error);
-  //     alert('오류가 발생했습니다. 다시 시도해주세요.');
-  //     navigate(-1); 
-  //   }
-  // }
-
- // 매칭 신청
-  const MatchingApplication = async () => {
-
-    const userId = 20; // id 임의로 지정
-
-    const idOrUserId = id ? id : userId;
-
-    console.log('test', userId);
-
-    try {
-      const response = await axios.post(`http://13.209.145.28:8080/api/v1/match/${idOrUserId}`);
-        if (response.status === 200) {
-          console.log('매칭 신청 정상');
-        } else {
-          console.error('오류');
-        }
-      }
-      catch (error) {
-        console.error('매칭 신청 중 오류 발생:', error);
-        alert('매칭 신청 오류가 발생했습니다. 다시 시도해주세요.');
-      };
-  }
 
   const handleApplyClick = async () => {
     if (!isChecked1 || !isChecked2 || !isChecked3) {
@@ -131,12 +96,13 @@ const Apply = () => {
     }else if (showModal) {
       alert('이미 매칭 신청이 완료되었습니다.');
     }else {
-      const userId = 22; // id 임의로 지정
+      const userId = 41;
+      const idOrUserId = id ? id : userId;
 
       console.log('test', userId);
       
       try {
-        const response = await axios.post(`http://13.209.145.28:8080/api/v1/match/${userId}`, {id : `${userId}`});
+        const response = await axios.post(`http://13.209.145.28:8080/api/v1/match/${idOrUserId}`, {id: idOrUserId});
           if (response.status === 200) {
             console.log('매칭 신청 정상');
             setShowModal(true);
@@ -146,6 +112,7 @@ const Apply = () => {
         }
         catch (error) {
           console.error('매칭 신청 중 오류 발생:', error);
+          console.log(idOrUserId);
           alert('매칭 신청 오류가 발생했습니다. 다시 시도해주세요.');
         };
     }
@@ -171,7 +138,7 @@ const Apply = () => {
       if (window.confirm("이미 매칭 신청이 완료되었습니다.\n메인 페이지로 이동하시겠습니까?")) {
          navigate('/');
       } else {
-        MatchingApplication();
+        handleApplyClick();
       }
     }
     else{

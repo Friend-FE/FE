@@ -64,7 +64,7 @@ export default function ViewMembershipDetail() {
             <Title title="관리자 페이지"/>
             <T.TotalHr></T.TotalHr>
             <T.TotalDiv>
-                <MAHDW.HeadTitleH3>매칭 신청 내역 모아보기</MAHDW.HeadTitleH3>
+                <MAHDW.HeadTitleH3>회원 목록 보기</MAHDW.HeadTitleH3>
                 <T.TitleH3>{person.profile? person.profile.nickname : '로딩 중...'} 님의 프로필 카드</T.TitleH3>
                 <P.SectionContainer>
                     <P.SectionDiv>

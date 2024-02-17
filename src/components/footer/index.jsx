@@ -10,6 +10,12 @@ const Footer = () => {
   const isCertify = useSelector(state => state.email.isCertify);
   const isLoggedIn = useSelector(state => state.login.isLoggedIn);
 
+  const id = useSelector(state => state.login.id);
+  let isManager = false;
+  if(id === 47){
+    isManager = true;
+  }
+
   const handleLogout = () => {
     // 로그아웃 액션 디스패치
     dispatch(logout());
@@ -38,10 +44,17 @@ const Footer = () => {
         </Top>
         <section>
           <Bottom>
+            {isLoggedIn && isManager ? (
+          <>
+            <NavLink to="/" onClick={handleLogout}>LOGOUT</NavLink>
+            <NavLink to="/ManagerPage">관리자 페이지</NavLink>
+          </>
+        ) : (
+          <>
             {isLoggedIn ? (
               <>
                 <NavLink to="/" onClick={handleLogout}>LOGOUT</NavLink>
-                <NavLink to="/mypage">마이페이지</NavLink>
+                <NavLink to="/MyPage">마이페이지</NavLink>
               </>
             ) : (
               <>
@@ -49,6 +62,8 @@ const Footer = () => {
                 <NavLink to="/CertifyBeginning">회원가입</NavLink>
               </>
             )}
+          </>
+        )}
           </Bottom>
         </section>
       </div>
