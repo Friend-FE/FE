@@ -1,14 +1,32 @@
 // 솔직후기 자세히 보기에 쓰이는 Board입니다.
 
-import React from 'react';
+import React,{ useState,useEffect } from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 import { useNavigate,useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 export default function ReviewDetailBoard({ info, selectView }) {
 
     // redux로 id를 가져오기
-    const userId = 343;
+    const userId = useSelector(state=>state.login.id);
+    const [userData, setUserData] = useState('');
 
+    const fetchData = async () => {
+  
+      try {
+          const response = await axios.get(`http://13.209.145.28:8080/api/v1/myPage/getImgName/${userId}`, {userId});
+          setUserData(response.data.data);
+      } catch (error) {
+        console.error('오류 발생:', error);
+        alert('오류가 발생했습니다. 다시 시도해주세요.');
+        navigate(-1);
+      }
+    }
+  
+    useEffect(() => {
+        fetchData();
+    }, []);
     const infoLength = info.length;
     const navigate = useNavigate();
     const location = useLocation();
@@ -51,7 +69,7 @@ export default function ReviewDetailBoard({ info, selectView }) {
             <ThinHR />
             {info &&
                 info.map((item, index) => {
-                if(selectView === 'me' && userId === item.id){
+                if(selectView === 'me' && userData.nickname === item.author){
                     return(
                     <div key={item.id}>
                         <Row onClick={() => handleRowClick(item)}>

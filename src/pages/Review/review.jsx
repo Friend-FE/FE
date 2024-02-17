@@ -2,15 +2,16 @@
 
 import ReviewBoard from '../../components/Board/ReviewBoard';
 import {useNavigate} from 'react-router-dom';
-// import { Link } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import Title from '../../components/title';
 import styled from 'styled-components';
 import Footer from '../../components/footer';
+import { useSelector } from 'react-redux'; 
 
 const Review = () => {
   const [review, setReview] = useState([]);
   const [onlyMe, setOnlyMe] = useState(false);
+  const isLoggedIn = useSelector(state=> state.login.isLoggedIn)
 
   const navigate = useNavigate();
 
@@ -45,7 +46,11 @@ const Review = () => {
   }, []); // 빈 배열을 넣어 한 번만 실행되도록 설정
 
   const handleRecord = () => {
+    if(isLoggedIn){
+      navigate("/login");
+    }
     navigate("/reviews/write");
+    
   }
 
   const handleOnlyMe = () => {
