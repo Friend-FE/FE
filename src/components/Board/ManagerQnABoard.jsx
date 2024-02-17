@@ -4,11 +4,12 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link, useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
+import privacyImage from "../../images/Privacy.png";
 
 const QnABoard = ({ info }) => {
   const infoLength = info.length;
   const navigate = useNavigate();
-  // *끝에 /를 포함하는 주소도 고려
+  // 끝에 /를 포함하는 주소도 고려
   const isCollectPage = window.location.pathname === "/ManagerPage/QnA" || window.location.pathname === "/ManagerPage/QnA/";
   const location = useLocation();
   //실제주소
@@ -45,13 +46,16 @@ const QnABoard = ({ info }) => {
         const maskedAuthor = item.author.charAt(0) + '**';
         return (
           <div key={item.id}>
-           
-          <Row address="/ManagerPage/QnA" addressSub="/ManagerPage/QnA/" actualAddress={actualAddress}>
-              <Title onClick={() => handleRowClick(item)}>{item.title}</Title>
-              {/* /ManagerPage/QnA 페이지일 때만 버튼생성 */}
-              {isCollectPage && <AnswerButton to={`/ManagerPage/QnA/QnAResponse/${item.id}`} state={{ item }}>답변하기</AnswerButton>}
-              <Author onClick={() => handleRowClick(item)} style={{ transform: 'translateX(0.3vw)' }}>{maskedAuthor}</Author>
-              <Time onClick={() => handleRowClick(item)} style={{ transform: 'translateX(0.2vw)' }}>{formattedDate}</Time>
+          <Row onClick={() => handleRowClick(item)} address="/ManagerPage/QnA" addressSub="/ManagerPage/QnA/" actualAddress={actualAddress}>
+              <Title>{item.title} 
+              {item.privacy === 'PUBLIC' && <PrivacyImage src={privacyImage} alt="privacy"/>}
+              {/* isCollectPage &&를 사용하여/ManagerPage/QnA 페이지일 때만 버튼생성, event.stopPropagation()를 사용하여 이후에 handleRowClick을 무력화 */}
+              {isCollectPage && <AnswerButton to={`/ManagerPage/QnA/QnAResponse/${item.id}`} state={{ item }}   
+               onClick={(event) => {event.stopPropagation();}}>답변하기</AnswerButton>}
+              </Title>
+              
+              <Author style={{ transform: 'translateX(0.3vw)' }}>{maskedAuthor}</Author>
+              <Time style={{ transform: 'translateX(0.2vw)' }}>{formattedDate}</Time>
             </Row>
             {index !== infoLength - 1 ? <ThinHR /> : <HR />}
           </div>
@@ -82,39 +86,42 @@ const Row = styled.div`
   color: inherit;
   cursor: pointer;
   font-size: 1vw;
-
-  // 페이지의 실제 주소가 주어진 주소와 일치할 때 스타일 적용
-  ${props => props.actualAddress === props.address && 'margin-left: -3vw;'}
-  ${props => props.actualAddress === props.addressSub && 'margin-left: -3vw;'}
+  transform: translateY(-0.5vw); //추가
+  // 페이지의 실제 주소가 주어진 주소와 일치할 때 스타일 적용(전체조회페이지에 적용)
+  ${props => props.actualAddress === props.address && 'margin-left: -1vw;'}
+  ${props => props.actualAddress === props.addressSub && 'margin-left: -1vw;'}
 `;
 
 const Title = styled.div`
   flex: 4;
   text-align: center;
+`;
 
+const PrivacyImage = styled.img`
+  width: 2vw;
+  height: 2vw;
+  margin-left: 0.5vw;
+  margin-bottom: -0.5vw;
 `;
 
 const AnswerButton = styled(Link)`
-  flex: 0.3; //변경
-  width: 5vw; //변경
-  height: 1.5vw; //변경
-  transform: translateY(-0.5vw); //변경
-  margin-left: -17vw; //변경
-  margin-right: 15vw; //변경
+  flex: 0.3;
+  width: 5vw;
+  height: 1.5vw;
+  transform: translateY(-0.5vw);
+  margin-left: 1vw; 
+  margin-top: -2vw !important; 
+  padding: 0.6vw 1vw;
   background: #8be3ff;
   box-shadow: -0.13vw 0.55vw 0.41vw 0 rgba(0, 0, 0, 0.25);
   border: none;
   color: #fff;
-  text-align: center;
   font-size: 0.6vw;
   font-weight: bold;
   text-decoration: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 0.5vw;
+  //부모 요소에 막혀서 마진탑와 트렌지션,!important까지 다 안되므로
+  //Row에 transform: translateY(-0.5vw);추가
 `;
-
 
 const Author = styled.div`
   flex: 1;
@@ -145,3 +152,4 @@ const HeaderRow = styled.div`
   text-decoration: none;
   color: inherit;
 `;
+

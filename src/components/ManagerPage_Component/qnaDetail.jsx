@@ -172,14 +172,15 @@ const QnADetail = () => {
         <HeadTitleH3>Q&A 자세히 보기</HeadTitleH3>
         <Board info={[review]} />
         <ReviewBox>
+          {/* <Board info={[review]} /> 이걸 지워도  {review.body}이거는 존재함. body가 content인거같음 */}
           {review.body}
         </ReviewBox>
         <ResponseBox>
         {review.answer && (
-  <ResponseBox>
-    {review.answer}
-  </ResponseBox>
-)}
+      <ResponseBox>
+        {review.answer}
+      </ResponseBox>
+    )}
         </ResponseBox>
        
       </ReviewWrapper>  
