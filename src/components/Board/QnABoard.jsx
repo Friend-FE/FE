@@ -150,26 +150,27 @@ const QnABoard = ({ info }) => {
     setSelectedItem(item);
 
        if(isCollectPage){
-     
-          if (item.privacy === 'PUBLIC') {
+          if (item.privacy === 'PRIVATE') {
             setShowPasswordPrompt(true);
             return; 
+            }
+            else {
+             
+              
+               navigate(`/QnA/${item.id}`, { state: { item: selectedItem } });
+
             } 
-        
-          navigate(`/QnA/${item.id}`, { state: { item: selectedItem } });
-        }
+                  }
         else{
         
         }
   };
 
-    const handlePasswordSubmit = (isPasswordCorrect) => {
-  
-    setShowPasswordPrompt(false);
-
+    const handlePasswordSubmit = (isPasswordCorrect, pwd = false) => {
     if(isPasswordCorrect) {
    
-    navigate(`/QnA/${selectedItem.id}`, { state: { item: selectedItem } });
+    console.log(selectedItem);
+    navigate(`/QnA/${selectedItem.id}`, { state: { item: selectedItem, pwd  } }); 
 
     } else {
     alert('비밀번호가 일치하지 않습니다.');
@@ -201,7 +202,7 @@ const QnABoard = ({ info }) => {
         <div key={item.id}>
           <Row onClick={() => handleRowClick(item)}>
             <Title>{item.title}
-            {item.privacy === 'PUBLIC' && <PrivacyImage src={privacyImage} alt="privacy"/>}
+            {item.privacy === 'PRIVATE' && <PrivacyImage src={privacyImage} alt="privacy"/>}
             </Title>
             <Author>{maskedAuthor}</Author>
             <Time>{formattedDate}</Time>
@@ -212,6 +213,7 @@ const QnABoard = ({ info }) => {
       })}
         {showPasswordPrompt && (
          <PasswordPrompt
+         id={selectedItem.id}
          onPasswordSubmit={handlePasswordSubmit}
          setShowPasswordPrompt={setShowPasswordPrompt}
          />
@@ -220,32 +222,38 @@ const QnABoard = ({ info }) => {
   );
 };
 
- const PasswordPrompt = ({ onPasswordSubmit, setShowPasswordPrompt }) => {
+ const PasswordPrompt = ({id, onPasswordSubmit, setShowPasswordPrompt }) => {
   const [password, setPassword] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => { 
+    
     e.preventDefault();
-     // 비밀번호가 맞다면 onPasswordSubmit(true) 호출, 아니면 false
-    //try {
-    //  const response = await fetch(`https://umcfriend.kro.kr/api/v1/qa/${id}`, {
-    //    method: 'POST',
-    //    headers: {
-    //      'Content-Type': 'application/json',
-    //    },
-    //    body: JSON.stringify({ password }), // password에는 사용자가 입력한 비밀번호가 들어갑니다.
-    //  });
+   
+   
+    try {
+      const response = await fetch(`https://umcfriend.kro.kr/api/v1/qa/${id}?password=${password}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      
+      });
   
-    //  if (response.ok) {
-    //    const { isPasswordCorrect } = await response.json();
-    //    onPasswordSubmit(isPasswordCorrect);
-    //  } else {
-    //    console.error('비밀번호 검증에 실패했습니다.');
-    //    onPasswordSubmit(false);
-    //  }
-    //} catch (error) {
-    //  console.error('비밀번호 검증 중 오류 발생:', error);
-    //  onPasswordSubmit(false);
-    //}
+      if (response.ok) {
+      
+        const data = await response.json();
+        console.log("성공");
+        
+
+        onPasswordSubmit(data.data,password); 
+      } else {
+        console.error('비밀번호 검증에 실패했습니다.');
+        onPasswordSubmit(false);
+      }
+    } catch (error) {
+      console.error('비밀번호 검증 중 오류 발생:', error);
+      onPasswordSubmit(false);
+    }
   };
 
   const handleClose = () => {
@@ -270,5 +278,4 @@ const QnABoard = ({ info }) => {
     </Overlay>
   );
 };
-
 export default QnABoard;

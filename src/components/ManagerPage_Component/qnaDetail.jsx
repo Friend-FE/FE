@@ -42,6 +42,13 @@ export const HeadTitleH3 = styled.h3`
   }
 `;
 
+// const HR = styled.hr`
+//   height: 2px;
+//   background: #000;
+//   margin-top: 10px;
+//   margin-bottom: 10px;
+// `;
+
 
 const ReviewBox = styled.div`
   display: flex;
@@ -135,7 +142,7 @@ const QnADetail = () => {
         const response = await axios.get(apiUrl);
 
         if (response.data.code === 200 && response.data.message === 'SUCCESS') {
-          setReview(response.data.data); // API에서 받아온 상세 QnA 데이터를 상태에 저장
+          setReview(response.data.data); 
           console.log("@@",response.data.data);
         } else {
           console.error('상세 QnA 조회 실패:', response.data.message);
@@ -166,11 +173,11 @@ const QnADetail = () => {
         <HeadTitleH3>Q&A 자세히 보기</HeadTitleH3>
         <Board  info={review ? [review] : []} />
         <ReviewBox>
-      
+        
           {review.body}
         </ReviewBox>
         <ResponseBox>
-        {review.answer && review?.answer}
+        {review.answer && review.answer}
       </ResponseBox>
         <AnswerButton to={`/ManagerPage/QnA/QnAResponse/${review.id}`} state={{ item: review }}  
              >답변 수정</AnswerButton>

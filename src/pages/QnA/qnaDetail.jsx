@@ -158,13 +158,13 @@ const QnADetail = () => {
   useEffect(() => {
     const fetchQnADetail = async () => {
       try {
-        //비밀글상세조회에서 내용이 사라져있는 문제
+        
         const apiUrl = qnaData?.privacy === "PRIVATE" ? `https://umcfriend.kro.kr/api/v1/qa/${id}?password=${state?.pwd}` : `https://umcfriend.kro.kr/api/v1/qa/${id}`;
         
         const response = await axios.get(apiUrl);
 
         if (response.data.code === 200 && response.data.message === 'SUCCESS') {
-          setQnaData(response.data.data); // API에서 받아온 상세 QnA 데이터를 상태에 저장
+          setQnaData(response.data.data); 
           console.log('상세 QnA 조회 성공',response);
         } else {
           console.error('상세 QnA 조회 실패:', response.data.message);
