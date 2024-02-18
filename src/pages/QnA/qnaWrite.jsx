@@ -174,7 +174,7 @@ export default function QuestionWrite() {
   const [content, setContent] = useState('');
   const [isEditing, setIsEditing] = useState(false);
   const navigate = useNavigate();
-  const { state } = useLocation();
+  const location = useLocation();
   const [isChecked, setIsChecked] = useState(false);
   const [clicked, setClicked] = useState(false);
   const [password, setPassword] = useState('');
@@ -182,15 +182,12 @@ export default function QuestionWrite() {
  
 
   useEffect(() => {
-   
-    if (state && state.data) {
-      const { id , title, body } = state.data;
-      setId(id || '');
-      setTitle(title || '');
-      setContent(body || '');
+    const postIdToEdit = location.state?.postId;
+    if (postIdToEdit) {
+      setId(postIdToEdit);
       setIsEditing(true);
     }
-  }, [state]);
+  }, [location]);
 
   const handleComplete = () => {
     if (isChecked && password === "") {
@@ -210,13 +207,13 @@ export default function QuestionWrite() {
       return; 
     }
   
-   
+    
     setCertainPassword(password);
   };
   
   const handleSubmit = async (event) => {
     event.preventDefault();
-  
+    
     if (isChecked && !clicked ) {
       alert("비밀번호 입력 완료 버튼을 눌러주세요.");
       return;
@@ -235,27 +232,29 @@ export default function QuestionWrite() {
 
     else if(content === ""){
       alert("내용을 입력해주세요.");
-      return; 
+      return;  
     }
   
-    if(!isEditing)
-    {
+  
     try {
-      const apiUrl ='https://umcfriend.kro.kr/api/v1/qa';
-
+      const apiUrl = isEditing
+        ? `https://umcfriend.kro.kr/api/v1/Qa/${id}`
+        : 'https://umcfriend.kro.kr/api/v1/qa';
+  
+        
       const requestClass = {
         title: title,
         body: content, 
         author: 'author',
+       
         privacy: isChecked ? 'PRIVATE' : 'PUBLIC',
-        
         password: password,
       };
       requestClass.time = new Date();
   
   
       const response = await fetch(apiUrl, {
-        method: 'POST',
+        method: isEditing ? 'PUT' : 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -266,53 +265,17 @@ export default function QuestionWrite() {
       console.log('Server Response Data:', responseJson);
   
       if (response.ok) {
-        console.log('글 작성 완료!');
+        console.log(isEditing ? '글 수정 완료!' : '글 작성 완료!');
         navigate(-1);
       } else {
-        console.error('글 작성 실패:', response.status, response.statusText);
+        console.error('글 작성/수정 실패:', response.status, response.statusText);
       }
     } catch (error) {
-      console.error('글 작성 중 오류 발생:', error);
+      console.error('글 작성/수정 중 오류 발생:', error);
 
     }
-  }
-    else{
-      try {
-        const apiUrl =`https://umcfriend.kro.kr/api/v1/Qa/${id}`;
-    
-        const requestClass = {
-          title: title,
-          body: content, 
-          author: 'author',
-          privacy: isChecked ? 'PRIVATE' : 'PUBLIC',
-          password: password,
-        };
-        requestClass.time = new Date();
-    
-    
-        const response = await fetch(apiUrl, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(requestClass),
-        });
-    
-        const responseJson = await response.json();
-        console.log('Server Response Data:', responseJson);
-    
-        if (response.ok) {
-          console.log( '글 수정 완료!');
-          navigate(-1);
-        } else {
-          console.error('글 수정 실패:', response.status, response.statusText);
-        }
-      } catch (error) {
-        console.error('글 수정 중 오류 발생:', error);
+  };
   
-      }
-    }
-  }
   const handleCancel = () => {
     navigate(-1);
   };
@@ -348,7 +311,7 @@ export default function QuestionWrite() {
                   value={password}
                   onChange={(e) => {setPassword(e.target.value);}}
                 />
-               
+                {/* 조건문이 handleComplete()에 있으므로 setClicked(true)가 먼저 와야한다 */}
                 <CompleteButton type="button"  onClick={() => {setClicked(true); handleComplete(); }}> 
                완료
             </CompleteButton>
