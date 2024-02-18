@@ -152,7 +152,7 @@ const QnADetail = () => {
   useEffect(() => {
     const fetchQnADetail = async () => {
       try {
-        const apiUrl = `http://13.209.145.28:8080/api/v1/qa/${id}`;
+        const apiUrl = `https://umcfriend.kro.kr/api/v1/qa/${id}`;
         const response = await axios.get(apiUrl);
 
         if (response.data.code === 200 && response.data.message === 'SUCCESS') {
@@ -179,7 +179,7 @@ const QnADetail = () => {
     try {
       const userConfirmed = window.confirm('정말 삭제하시겠습니까?');
       if (userConfirmed) {
-        const apiUrl = `http://13.209.145.28:8080/api/v1/qa/${id}`;
+        const apiUrl = `https://umcfriend.kro.kr/api/v1/qa/${id}`;
         await axios.delete(apiUrl);
         console.log(`${id} 번 리뷰 삭제 완료`);
         navigate(-1);

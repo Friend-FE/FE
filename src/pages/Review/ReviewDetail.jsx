@@ -25,7 +25,7 @@ const ReviewDetail = () => {
   const fetchData = async () => {
 
     try {
-        const response = await axios.get(`http://13.209.145.28:8080/api/v1/myPage/getImgName/${userId}`, {userId});
+        const response = await axios.get(`https://umcfriend.kro.kr/api/v1/myPage/getImgName/${userId}`, {userId});
         setUserData(response.data.data);
     } catch (error) {
       console.error('오류 발생:', error);
@@ -44,7 +44,7 @@ const ReviewDetail = () => {
   useEffect(() => {
     const fetchNoticeDetail = async () => {
       try {
-        const response = await fetch(`http://13.209.145.28:8080/api/v1/review/{id}?id=${id}`);
+        const response = await fetch(`https://umcfriend.kro.kr/api/v1/review/{id}?id=${id}`);
         if (response.ok) {
           const data = await response.json();
           setReview((preReview) => ({ ...preReview, body: data.data.body }));
@@ -70,7 +70,7 @@ const ReviewDetail = () => {
 
   const handleDelete = async () => {
     try {
-      const response = await fetch(`http://13.209.145.28:8080/api/v1/review/${id}`, {
+      const response = await fetch(`https://umcfriend.kro.kr/api/v1/review/${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

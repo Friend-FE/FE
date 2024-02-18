@@ -226,8 +226,8 @@ export default function QuestionWrite() {
   
     try {
       const apiUrl = isEditing
-        ? `http://13.209.145.28:8080/api/v1/Qa/${id}`
-        : 'http://13.209.145.28:8080/api/v1/qa';
+        ? `https://umcfriend.kro.kr/api/v1/Qa/${id}`
+        : 'https://umcfriend.kro.kr/api/v1/qa';
   
         
       const requestClass = {

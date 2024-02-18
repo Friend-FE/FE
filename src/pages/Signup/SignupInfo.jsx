@@ -100,7 +100,7 @@ const SignupInfo = (props) => {
       formData.append("request", blob);
 
       axios
-        .post(`http://13.209.145.28:8080/api/v1/users`, formData, {
+        .post(`https://umcfriend.kro.kr/api/v1/users`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },

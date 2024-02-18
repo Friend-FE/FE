@@ -17,7 +17,7 @@ export default function ReportReceiptHistory() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://13.209.145.28:8080/api/v1/reports');
+      const response = await axios.get('https://umcfriend.kro.kr/api/v1/reports');
       // console.log(response.data.data);
       setHistory(response.data.data);
     } catch (error) {

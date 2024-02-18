@@ -14,7 +14,7 @@ export default function Profile_card() {
   useEffect(()=>{
     const userEmail = "match1@gmail.com"; //임시 이메일
     const apiEmail = email? email : userEmail;
-    axios.get(`http://13.209.145.28:8080/api/v1/myPage/getProfile/${apiEmail}`)
+    axios.get(`https://umcfriend.kro.kr/api/v1/myPage/getProfile/${apiEmail}`)
     .then(function (response) {
       // 성공적으로 응답 받았을 때의 처리
       setProfileData(response.data);

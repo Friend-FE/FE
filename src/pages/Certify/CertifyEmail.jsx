@@ -23,7 +23,7 @@ const CertifyEmail = () => {
     console.log("Submitted:", typeof email);
 
     if (isEmailFormValid) {
-      axios.post("http://13.209.145.28:8080/api/v1/certify/send", { email: email })
+      axios.post("https://umcfriend.kro.kr/api/v1/certify/send", { email: email })
         .then((response) => {
           console.log("POST 응답 데이터:", response.data);
           setWrongEmail(false);
@@ -41,7 +41,7 @@ const CertifyEmail = () => {
   const handleVerificationCodeSubmit = (event) => {
     event.preventDefault();
     axios.get(
-        `http://13.209.145.28:8080/api/v1/certify/verify?email=${email}&code=${parseInt(
+        `https://umcfriend.kro.kr/api/v1/certify/verify?email=${email}&code=${parseInt(
           verificationCode
         )}`
       )

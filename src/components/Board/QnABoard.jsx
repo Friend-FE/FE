@@ -227,7 +227,7 @@ const QnABoard = ({ info }) => {
     e.preventDefault();
      // 비밀번호가 맞다면 onPasswordSubmit(true) 호출, 아니면 false
     //try {
-    //  const response = await fetch(`http://13.209.145.28:8080/api/v1/qa/${id}`, {
+    //  const response = await fetch(`https://umcfriend.kro.kr/api/v1/qa/${id}`, {
     //    method: 'POST',
     //    headers: {
     //      'Content-Type': 'application/json',

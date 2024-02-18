@@ -17,7 +17,7 @@ export default function MatchingHistoryBoard() {
         const idOrUserId = id ? id : userId;
 
         try {
-            const response = await axios.get(`http://13.209.145.28:8080/api/v1/myPage/matchinglist/${idOrUserId}`, {idOrUserId});
+            const response = await axios.get(`https://umcfriend.kro.kr/api/v1/myPage/matchinglist/${idOrUserId}`, {idOrUserId});
             console.log(response.data.data);
             setMatchingData(response.data.data);
         } catch (error) {

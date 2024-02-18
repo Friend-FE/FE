@@ -55,7 +55,7 @@ export default function NonMannerUsers() {
         const idOrUserId = id ? id : userId;
 
         try {
-          const response = await axios.get(`http://13.209.145.28:8080/api/v1/report/reportList/${idOrUserId}`, {idOrUserId});
+          const response = await axios.get(`https://umcfriend.kro.kr/api/v1/report/reportList/${idOrUserId}`, {idOrUserId});
           setPerson(response.data.data);
           console.log('연결 성공');
 

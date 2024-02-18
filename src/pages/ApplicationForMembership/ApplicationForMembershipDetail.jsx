@@ -22,7 +22,7 @@ export default function ApplicationForMembershipDetail() {
 
     // API 호출
     try {
-      const response = await fetch('http://13.209.145.28:8080/api/v1/activate', {
+      const response = await fetch('https://umcfriend.kro.kr/api/v1/activate', {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json',
@@ -46,7 +46,7 @@ export default function ApplicationForMembershipDetail() {
     event.preventDefault();
 
     try{
-      const response = await fetch(`http://13.209.145.28:8080/api/v1/manager/member/deny/${email}`);
+      const response = await fetch(`https://umcfriend.kro.kr/api/v1/manager/member/deny/${email}`);
       if(response.ok){
           const data = await response.json();
           console.log(data);
@@ -71,7 +71,7 @@ export default function ApplicationForMembershipDetail() {
 
   useEffect(() => {
     axios
-      .get(`http://13.209.145.28:8080/api/v1/myPage/getProfile/${email}`)
+      .get(`https://umcfriend.kro.kr/api/v1/myPage/getProfile/${email}`)
       .then(function (response) {
         // 요청이 성공했을 때의 처리
         console.log("응답 데이터:", response.data);
