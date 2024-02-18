@@ -138,7 +138,7 @@ const QnADetail = () => {
   useEffect(() => {
     const fetchAnswerFromServer = async () => {
       try {
-        const apiUrl =  `https://umcfriend.kro.kr/api/v1/qa/nopassword/${id}`;
+        const apiUrl =  `https://umcfriend.kro.kr/api/v1/qa/${id}`;
         const response = await axios.get(apiUrl);
 
         if (response.data.code === 200 && response.data.message === 'SUCCESS') {
@@ -180,7 +180,7 @@ const QnADetail = () => {
         {review.answer && review.answer}
       </ResponseBox>
         <AnswerButton to={`/ManagerPage/QnA/QnAResponse/${review.id}`} state={{ item: review }}  
-             >답변 수정</AnswerButton>
+             >{review.status === 'COMPLETE' ? '답변 수정' : '답변 하기'}</AnswerButton>
       </ReviewWrapper>  
       <FooterContainer>
         <Footer />
