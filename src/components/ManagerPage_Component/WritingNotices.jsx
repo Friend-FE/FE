@@ -43,7 +43,7 @@ export default function WritingNotices() {
             const requestBody = {
               title: title,
               body: content,
-              author: 'author',
+              author: '관리자',
               password: 'password', 
             };
 

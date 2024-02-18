@@ -17,12 +17,35 @@ export default function ApplicationForMembershipDetail() {
 
   const navigate = useNavigate();
 
-  const onClickAccept = () => {
+  const onClickAccept = async (event) => {
+    event.preventDefault();
+
+    // API 호출
+    try {
+      const response = await fetch('http://13.209.145.28:8080/api/v1/activate', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email}),
+      });
+
+      if (!response.ok) {
+          // 에러 처리
+          alert('존재하지 않는 계정입니다. 다시 시도해주세요.');
+          throw new Error('Failed to log in');
+      }
     alert('수락되었습니다.');
     navigate(-1);
+  }catch (error) {
+    console.error('Error during activate:', error.message);
+  }
   };
 
   const onClickRefuse = () => {
+
+    
+
     alert('거절되었습니다.');
     navigate(-1);
   };
