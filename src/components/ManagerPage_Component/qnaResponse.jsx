@@ -6,7 +6,8 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../footer';
 import * as MAHD from '../ManagerPage_Component/MatchingAHDetailWoman'
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux'; 
 
 const TitleHR = styled.hr`
   margin-top: 10vh;
@@ -92,6 +93,7 @@ const CancelButton = styled.button`
   font-weight: 700;
   margin-right: 1vw;
   box-shadow: -2px 8px 6.1px 0px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
 `;
 
 const SubmitButton = styled.button`
@@ -105,15 +107,15 @@ const SubmitButton = styled.button`
   font-weight: 700;
   margin-left: 1vw;
   box-shadow: -2px 8px 6.1px 0px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
 `;
 
 const QnAResponse = () => {
-  const [id, setId] = useState(null);
+  const { id } = useParams();
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const navigate = useNavigate();
   const location = useLocation();
-
 
   useState(() => {
     if (location.state && location.state.item && location.state.item.title) {
@@ -125,16 +127,26 @@ const QnAResponse = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const apiUrl = `https://umcfriend.kro.kr/api/v1/???`;
+      
+  const memberId = 47;
+      console.log(memberId);
 
+      const apiUrl = `https://umcfriend.kro.kr/api/v1/qa/${id}/${memberId}`;
+
+      console.log(apiUrl);
+
+  
       const requestClass = {
         answer: content, 
+        status: "COMPLETE",
+        manager: 'Manager',
       };
 
       const response = await fetch(apiUrl, {
-        method:'PUT',
+        method:'PATCH',
         headers: {
           'Content-Type': 'application/json',
+          'Manager-Name': requestClass.manager,
         },
         body: JSON.stringify(requestClass),
       });
@@ -162,7 +174,7 @@ const QnAResponse = () => {
       <Title title="관리자 페이지" />
       <TitleHR />
       <TextBox>
-        <MAHD.HeadTitleH3>답변하기</MAHD.HeadTitleH3>
+        <MAHD.HeadTitleH3>Q&A 답변하기</MAHD.HeadTitleH3>
         <form onSubmit={handleSubmit}>
            <TitleInPut>
           <TextInput type="text" value={title} onChange={e => setTitle(e.target.value)} />

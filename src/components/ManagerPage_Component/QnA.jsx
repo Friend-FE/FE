@@ -66,9 +66,6 @@ const QnA = () => {
     fetchUserQuestions();
   }, []);
 
-  if (loading) {
-    return <div>Loading QnA data...</div>;
-  }
 
   return (
     <>

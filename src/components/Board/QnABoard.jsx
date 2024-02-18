@@ -150,25 +150,25 @@ const QnABoard = ({ info }) => {
     setSelectedItem(item);
 
        if(isCollectPage){
-        //선택한 항목이 비밀글인지 확인, status오류라서 안됨, item.status === 'INCOMPLETE'는 됨
+     
           if (item.privacy === 'PUBLIC') {
             setShowPasswordPrompt(true);
-            return; //함수 종료
+            return; 
             } 
-          //상세 페이지의 보드 클릭 시 네비게이트가 되는 문제를 해결
+        
           navigate(`/QnA/${item.id}`, { state: { item: selectedItem } });
         }
         else{
-          //클릭무시 
+        
         }
   };
 
     const handlePasswordSubmit = (isPasswordCorrect) => {
-    //handleSubmit 버튼과 동시에 동작 검증이 끝남과 동시에 모달꺼짐
+  
     setShowPasswordPrompt(false);
 
     if(isPasswordCorrect) {
-    //비밀번호가 맞다면 해당 게시글로 이동
+   
     navigate(`/QnA/${selectedItem.id}`, { state: { item: selectedItem } });
 
     } else {
