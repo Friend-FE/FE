@@ -12,7 +12,7 @@ import { useSelector } from 'react-redux';
 const Apply = () => {
 
   const id = useSelector(state => state.login.id);
-
+  console.log(id);
 
   const [isChecked1, setIsChecked1] = useState(false);
   const [isChecked2, setIsChecked2] = useState(false);
@@ -96,10 +96,10 @@ const Apply = () => {
     }else if (showModal) {
       alert('이미 매칭 신청이 완료되었습니다.');
     }else {
-      const userId = 41;
+      const userId = 1;
       const idOrUserId = id ? id : userId;
 
-      console.log('test', userId);
+      console.log('test', idOrUserId);
       
       try {
         const response = await axios.post(`https://umcfriend.kro.kr/api/v1/match/${idOrUserId}`, {id: idOrUserId});
@@ -113,7 +113,7 @@ const Apply = () => {
         catch (error) {
           console.error('매칭 신청 중 오류 발생:', error);
           console.log(idOrUserId);
-          alert('매칭 신청 오류가 발생했습니다. 다시 시도해주세요.');
+          alert('1주일 이내 매칭 신청내역이 있습니다');
         };
     }
   };
