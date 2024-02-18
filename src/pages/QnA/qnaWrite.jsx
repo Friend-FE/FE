@@ -182,7 +182,7 @@ export default function QuestionWrite() {
  
 
   useEffect(() => {
-
+   
     if (state && state.data) {
       const { id , title, body } = state.data;
       setId(id || '');
@@ -195,7 +195,7 @@ export default function QuestionWrite() {
   const handleComplete = () => {
     if (isChecked && password === "") {
       alert("비밀번호를 입력해주세요.");
-      setClicked(false);
+      setClicked(false); 
       return; 
     }
   
@@ -210,12 +210,14 @@ export default function QuestionWrite() {
       return; 
     }
   
+   
     setCertainPassword(password);
   };
   
   const handleSubmit = async (event) => {
     event.preventDefault();
-   if (isChecked && !clicked ) {
+  
+    if (isChecked && !clicked ) {
       alert("비밀번호 입력 완료 버튼을 눌러주세요.");
       return;
     }
@@ -246,7 +248,7 @@ export default function QuestionWrite() {
         body: content, 
         author: 'author',
         privacy: isChecked ? 'PRIVATE' : 'PUBLIC',
-      
+        
         password: password,
       };
       requestClass.time = new Date();
@@ -346,7 +348,7 @@ export default function QuestionWrite() {
                   value={password}
                   onChange={(e) => {setPassword(e.target.value);}}
                 />
-                {/* 조건문이 handleComplete()에 있으므로 setClicked(true)가 먼저 와야한다 */}
+               
                 <CompleteButton type="button"  onClick={() => {setClicked(true); handleComplete(); }}> 
                완료
             </CompleteButton>

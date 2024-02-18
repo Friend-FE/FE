@@ -17,10 +17,10 @@ const QnABoard = ({ info }) => {
 
   const handleRowClick = (item) => {
     if (isCollectPage) {
-     
+      
       navigate(`/ManagerPage/QnA/${item.id}`, { state: { item } });
     } else {
-    
+     
     }
   };
 
@@ -49,7 +49,7 @@ const QnABoard = ({ info }) => {
           <Row onClick={() => handleRowClick(item)} address="/ManagerPage/QnA" addressSub="/ManagerPage/QnA/" actualAddress={actualAddress}>
               <Title>{item.title} 
               {item.privacy === 'PRIVATE' && <PrivacyImage src={privacyImage} alt="privacy"/>}
-           
+        
               {isCollectPage && (
               <AnswerButton
               to={item.status !== 'COMPLETE' ? `/ManagerPage/QnA/QnAResponse/${item.id}` : null}
