@@ -19,7 +19,7 @@ const NoticeDetail = () => {
   useEffect(() => {
     const fetchNoticeDetail = async () => {
       try {
-        const response = await fetch(`http://13.209.145.28:8080/api/v1/post/${id}`);
+        const response = await fetch(`https://umcfriend.kro.kr/api/v1/post/${id}`);
         if (response.ok) {
           const data = await response.json();
           setNotice((prevNotice) => ({ ...prevNotice, body: data.data.body }));
@@ -52,7 +52,7 @@ const NoticeDetail = () => {
   
   const confirmDelete = async () => {
     try {
-      const response = await fetch(`http://13.209.145.28:8080/api/v1/post/${id}`, {
+      const response = await fetch(`https://umcfriend.kro.kr/api/v1/post/${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

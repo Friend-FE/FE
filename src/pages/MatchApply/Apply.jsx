@@ -102,7 +102,7 @@ const Apply = () => {
       console.log('test', userId);
       
       try {
-        const response = await axios.post(`http://13.209.145.28:8080/api/v1/match/${idOrUserId}`, {id: idOrUserId});
+        const response = await axios.post(`https://umcfriend.kro.kr/api/v1/match/${idOrUserId}`, {id: idOrUserId});
           if (response.status === 200) {
             console.log('매칭 신청 정상');
             setShowModal(true);

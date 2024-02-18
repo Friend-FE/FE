@@ -44,7 +44,7 @@ export default function Modifying_info() {
   useEffect(() => {
     const fetchNoticeDetail = async () => {
       try {
-        const response = await fetch(`http://13.209.145.28:8080/api/v1/myPage/getProfile/${email}`);
+        const response = await fetch(`https://umcfriend.kro.kr/api/v1/myPage/getProfile/${email}`);
         if (response.ok) {
           const data = await response.json();
           const profileData = data.data;
@@ -109,7 +109,7 @@ export default function Modifying_info() {
   const handleSubmitButton = async (event) => {
     //회원정보 수정하는 api 
     try {
-      const response = await fetch(`http://13.209.145.28:8080/api/v1/myPage/editProfile/${id}`, {
+      const response = await fetch(`https://umcfriend.kro.kr/api/v1/myPage/editProfile/${id}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

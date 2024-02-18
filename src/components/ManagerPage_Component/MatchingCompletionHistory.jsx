@@ -93,7 +93,7 @@ export default function ViewMembershipList() {
     console.log('api 전송용', sendData);
 
     try {
-      const response = await axios.get(`http://13.209.145.28:8080/api/v1/manager/matchList/{date}?date=${sendData}`);
+      const response = await axios.get(`https://umcfriend.kro.kr/api/v1/manager/matchList/{date}?date=${sendData}`);
       console.log(response.data.data);
       setApiData(response.data.data);
     } catch (error) {

@@ -34,7 +34,7 @@ function MatchingAHDetailWoman({onAddRedux}) {
         const id = userId;
         // console.log(id);
         try {
-            const response = await axios.get(`http://13.209.145.28:8080/api/v1/manager/profileDetail/${id}`, {id});
+            const response = await axios.get(`https://umcfriend.kro.kr/api/v1/manager/profileDetail/${id}`, {id});
             console.log(response.data.data);
             setPerson(response.data.data);
         } catch (error) {

@@ -18,7 +18,7 @@ const Review = () => {
   useEffect(() => {
     const fetchNoticeData = async () => {
       try {
-          const response = await fetch('http://13.209.145.28:8080/api/v1/reviews');
+          const response = await fetch('https://umcfriend.kro.kr/api/v1/reviews');
           const data = await response.json();
 
           const updatedReview = data.data.map(item => {

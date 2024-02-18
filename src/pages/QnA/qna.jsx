@@ -70,7 +70,7 @@ const Qna = () => {
 
   const fetchQnaData = async () => {
     try {
-      const response = await fetch('http://13.209.145.28:8080/api/v1/qas', {
+      const response = await fetch('https://umcfriend.kro.kr/api/v1/qas', {
         headers: {
           'Accept': 'application/json',
         },

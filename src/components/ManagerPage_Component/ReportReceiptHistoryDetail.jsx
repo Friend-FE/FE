@@ -31,7 +31,7 @@ const ReportReceiptHistoryDetail = () => {
     console.log('id 잘 넘어왔는지 test', id);
 
     try {
-    const response = await axios.post(`http://13.209.145.28:8080/api/v1/report/complete?id=${id}`);
+    const response = await axios.post(`https://umcfriend.kro.kr/api/v1/report/complete?id=${id}`);
       if (response.status === 200) {
         console.log('처리하기 정상');
       } else {
@@ -57,7 +57,7 @@ const ReportReceiptHistoryDetail = () => {
     console.log('경고 주려는 대상 id 잘 넘어왔는지 test', badMemberId);
 
     try {
-      const response = await axios.post( `http://13.209.145.28:8080/api/v1/report/addReportCount/${badMemberId}` , {
+      const response = await axios.post( `https://umcfriend.kro.kr/api/v1/report/addReportCount/${badMemberId}` , {
         badMemberId
        });
 

@@ -125,7 +125,7 @@ const QnAResponse = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const apiUrl = `http://13.209.145.28:8080/api/v1/???`;
+      const apiUrl = `https://umcfriend.kro.kr/api/v1/???`;
 
       const requestClass = {
         answer: content, 

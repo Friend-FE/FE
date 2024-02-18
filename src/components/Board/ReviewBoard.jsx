@@ -15,7 +15,7 @@ export default function ReviewDetailBoard({ info, selectView }) {
     const fetchData = async () => {
   
       try {
-          const response = await axios.get(`http://13.209.145.28:8080/api/v1/myPage/getImgName/${userId}`, {userId});
+          const response = await axios.get(`https://umcfriend.kro.kr/api/v1/myPage/getImgName/${userId}`, {userId});
           setUserData(response.data.data);
       } catch (error) {
         console.error('오류 발생:', error);

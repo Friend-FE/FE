@@ -37,7 +37,7 @@ export default function WritingNotices() {
       if(!isEditing)
       {
             // API 엔드포인트와 기타 세부 정보 설정
-            const apiUrl = 'http://13.209.145.28:8080/api/v1/post'; // 실제 엔드포인트로 변경해야 합니다.
+            const apiUrl = 'https://umcfriend.kro.kr/api/v1/post'; // 실제 엔드포인트로 변경해야 합니다.
 
             // Request body 구성
             const requestBody = {
@@ -74,7 +74,7 @@ export default function WritingNotices() {
       else
       {
           // API 엔드포인트와 기타 세부 정보 설정
-          const apiUrl = `http://13.209.145.28:8080/api/v1/post/${id}`; // 실제 엔드포인트로 변경해야 합니다.
+          const apiUrl = `https://umcfriend.kro.kr/api/v1/post/${id}`; // 실제 엔드포인트로 변경해야 합니다.
 
           const requestBody = {
             title: title,

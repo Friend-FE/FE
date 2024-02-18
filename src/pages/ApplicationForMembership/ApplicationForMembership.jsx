@@ -24,7 +24,7 @@ export default function ApplicationForMembership() {
   // 컴포넌트가 마운트되었을 때
   useEffect(() => {
     axios
-      .get("http://13.209.145.28:8080/api/v1/activateList")
+      .get("https://umcfriend.kro.kr/api/v1/activateList")
       .then(function (response) {
         // 요청이 성공했을 때의 처리
         console.log("응답 데이터:", response.data);

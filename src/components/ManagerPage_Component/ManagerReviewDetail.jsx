@@ -17,7 +17,7 @@ export default function ManagerReviewDetail() {
     useEffect(() => {
         const fetchNoticeDetail = async () => {
         try {
-            const response = await fetch(`http://13.209.145.28:8080/api/v1/review/{id}?id=${id}`);
+            const response = await fetch(`https://umcfriend.kro.kr/api/v1/review/{id}?id=${id}`);
             if (response.ok) {
             const data = await response.json();
             setReview((preReview) => ({ ...preReview, body: data.data.body }));
@@ -41,7 +41,7 @@ export default function ManagerReviewDetail() {
 
     const handleDelete = async () => {
         try {
-        const response = await fetch(`http://13.209.145.28:8080/api/v1/review/${id}`, {
+        const response = await fetch(`https://umcfriend.kro.kr/api/v1/review/${id}`, {
             method: 'DELETE',
             headers: {
             'Content-Type': 'application/json',
