@@ -51,10 +51,14 @@ const StyledP = styled.div`
   font-style: normal;
   font-weight: 800;
 
+  p{
+    margin-top: 1vw;
+  }
+
   h5{
     line-height: 0%;
     margin-top :10px;
-    font-size :1.2vw;
+    font-size :1vw;
     @media screen and (max-width: 700px) {
       font-size :2.7vw;
       margin: 20px;

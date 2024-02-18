@@ -126,6 +126,9 @@ const RoundedBox = styled.div`
   height: 25vw;
 
   p {
+    position: relative;
+    left: 7vw;
+    top: -3vw;
     color: 		#4169E1;
   }
 `;

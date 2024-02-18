@@ -212,6 +212,7 @@ const ForgotButton = styled.button`
   background: none;
   border: none;
   cursor: pointer;
+  margin: 0vw 0.5vw;
 
   position: relative;
   left: 5vw;

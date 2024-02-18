@@ -59,8 +59,11 @@ const RoundedBox = styled.div`
 const DiscriptionText = styled.div`
   font-size: 1.5vw;
   text-align : center;
-  margin : 1vw;
+  margin : 1.5vw 0vw;
   font-weight: bold; 
+
+  position: relative;
+  top: 3vw;
 `;
 
 const SubmitButton = styled.button`
