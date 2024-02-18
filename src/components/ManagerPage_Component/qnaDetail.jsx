@@ -180,7 +180,7 @@ const QnADetail = () => {
         {review.answer && review.answer}
       </ResponseBox>
         <AnswerButton to={`/ManagerPage/QnA/QnAResponse/${review.id}`} state={{ item: review }}  
-             >답변 수정</AnswerButton>
+             >{review.status === 'COMPLETE' ? '답변 수정' : '답변 하기'}</AnswerButton>
       </ReviewWrapper>  
       <FooterContainer>
         <Footer />
