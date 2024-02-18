@@ -17,14 +17,48 @@ export default function ApplicationForMembershipDetail() {
 
   const navigate = useNavigate();
 
-  const onClickAccept = () => {
+  const onClickAccept = async (event) => {
+    event.preventDefault();
+
+    // API 호출
+    try {
+      const response = await fetch('http://13.209.145.28:8080/api/v1/activate', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email}),
+      });
+
+      if (!response.ok) {
+          // 에러 처리
+          alert('수락에 실패했습니다.');
+          throw new Error('Failed to activate');
+      }
     alert('수락되었습니다.');
     navigate(-1);
+  }catch (error) {
+    console.error('Error during activate:', error.message);
+  }
   };
 
-  const onClickRefuse = () => {
-    alert('거절되었습니다.');
-    navigate(-1);
+  const onClickRefuse  = async (event) => {
+    event.preventDefault();
+
+    try{
+      const response = await fetch(`http://13.209.145.28:8080/api/v1/manager/member/deny/${email}`);
+      if(response.ok){
+          const data = await response.json();
+          console.log(data);
+          alert('회원가입 거절되었습니다.');
+          navigate(-1);
+      }
+      else{
+        console.error('API 호출 중 오류:');
+      }
+    }catch (error) {
+      console.error('API 호출 중 오류:', error.message);
+    }
   };
 
   const onClickBack = () => {
