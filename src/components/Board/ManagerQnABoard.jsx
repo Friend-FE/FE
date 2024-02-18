@@ -13,7 +13,7 @@ const QnABoard = ({ info }) => {
   const isCollectPage = window.location.pathname === "/ManagerPage/QnA" || window.location.pathname === "/ManagerPage/QnA/";
   const location = useLocation();
  
-  const actualAddress = location.pathname;
+  const actualaddress = location.pathname;
 
   const handleRowClick = (item) => {
     if (isCollectPage) {
@@ -46,7 +46,7 @@ const QnABoard = ({ info }) => {
         const maskedAuthor = item.author.charAt(0) + '**';
         return (
           <div key={item.id}>
-          <Row onClick={() => handleRowClick(item)} address="/ManagerPage/QnA" addressSub="/ManagerPage/QnA/" actualAddress={actualAddress}>
+          <Row onClick={() => handleRowClick(item)} address="/ManagerPage/QnA" addresssub="/ManagerPage/QnA/" actualaddress={actualaddress}>
               <Title>{item.title} 
               {item.privacy === 'PRIVATE' && <PrivacyImage src={privacyImage} alt="privacy"/>}
         
@@ -99,8 +99,8 @@ const Row = styled.div`
   font-size: 1vw;
   transform: translateY(-0.5vw); //추가
   // 페이지의 실제 주소가 주어진 주소와 일치할 때 스타일 적용(전체조회페이지에 적용)
-  ${props => props.actualAddress === props.address && 'margin-left: -1vw;'}
-  ${props => props.actualAddress === props.addressSub && 'margin-left: -1vw;'}
+  ${props => props.actualaddress === props.address && 'margin-left: -1vw;'}
+  ${props => props.actualaddress === props.addresssub && 'margin-left: -1vw;'}
 `;
 
 const Title = styled.div`
