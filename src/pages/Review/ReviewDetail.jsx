@@ -35,7 +35,9 @@ const ReviewDetail = () => {
   }
 
   useEffect(() => {
+    if(userId){
       fetchData();
+    }
   }, []);
 
 
