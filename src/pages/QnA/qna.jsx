@@ -89,11 +89,6 @@ const Qna = () => {
     fetchQnaData();
   }, []);
 
-  
-  if (loading) {
-    return <div>Loading QnA data...</div>;
-  }
-
 
   return (
     <>

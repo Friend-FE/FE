@@ -47,6 +47,7 @@ const ReviewBox = styled.div`
   justify-content: center;
   align-items: center;
   width: 80vw;
+  height: 5vw;
   border-radius: 2.08vw;
   border: 0.10vw solid #2ECAFD;
   background: #FFF;
@@ -83,7 +84,7 @@ const ResponseBox = styled.div`
   justify-content: center;
   align-items: center;
   width: 80vw;
-  /* height: 40vh; */
+  height: 5vw; /* 변경된 높이 */
   border-radius: 2.08vw;
   border: 0.10vw solid #2ECAFD;
   background: #FFF;
@@ -91,6 +92,11 @@ const ResponseBox = styled.div`
   text-align: center;
   
   margin-top: 3vw;
+
+  @media (max-width: 768px) {
+    position: relative;
+    top: 10vw;
+  }
 `;
 
 const ButtonContainer = styled.div`
@@ -152,7 +158,9 @@ const QnADetail = () => {
   useEffect(() => {
     const fetchQnADetail = async () => {
       try {
-        const apiUrl = `https://umcfriend.kro.kr/api/v1/qa/${id}`;
+        //비밀글상세조회에서 내용이 사라져있는 문제
+        const apiUrl = qnaData?.privacy === "PRIVATE" ? `https://umcfriend.kro.kr/api/v1/qa/${id}?password=${state?.pwd}` : `https://umcfriend.kro.kr/api/v1/qa/${id}`;
+        
         const response = await axios.get(apiUrl);
 
         if (response.data.code === 200 && response.data.message === 'SUCCESS') {
@@ -200,6 +208,9 @@ const QnADetail = () => {
         <ReviewBox>
         {qnaData?.body}
         </ReviewBox>
+        <ResponseBox>
+        {qnaData?.answer && qnaData?.answer}
+      </ResponseBox>
         <ButtonContainer>
           <ModifyButton onClick={handleModify}>수정</ModifyButton>
           <DeleteButton onClick={handleDelete}>삭제</DeleteButton>

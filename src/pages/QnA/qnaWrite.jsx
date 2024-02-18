@@ -174,80 +174,86 @@ export default function QuestionWrite() {
   const [content, setContent] = useState('');
   const [isEditing, setIsEditing] = useState(false);
   const navigate = useNavigate();
-  const location = useLocation();
+  const { state } = useLocation();
   const [isChecked, setIsChecked] = useState(false);
   const [clicked, setClicked] = useState(false);
   const [password, setPassword] = useState('');
   const [certainPassword, setCertainPassword] = useState('');
  
 
-  //수정을 하기 위해 이전페이지의 Id를 가져옴 Id가 있다면 수정
   useEffect(() => {
-    const postIdToEdit = location.state?.postId;
-    if (postIdToEdit) {
-      setId(postIdToEdit);
+
+    if (state && state.data) {
+      const { id , title, body } = state.data;
+      setId(id || '');
+      setTitle(title || '');
+      setContent(body || '');
       setIsEditing(true);
     }
-  }, [location]);
+  }, [state]);
 
   const handleComplete = () => {
-    if (isChecked && password === ""){
+    if (isChecked && password === "") {
       alert("비밀번호를 입력해주세요.");
-      setClicked(false); //클릭 무효
-      return; // 함수 종료
+      setClicked(false);
+      return; 
     }
-    //입력완료버튼을 누르고 난뒤의 비밀번호값
+  
+    else if (password.length < 4) {
+      alert("비밀번호는 4자리 이상이어야 합니다.");
+      setClicked(false);
+    }
+  
+    else if (/^(.)\1+$/.test(password)) {
+      alert("모든 문자가 동일한 비밀번호는 사용할 수 없습니다.");
+      setClicked(false); 
+      return; 
+    }
+  
     setCertainPassword(password);
   };
   
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // clicked는 한번 이상 클릭했을 때 적용, setClicked는 클릭상태
-    if (isChecked && !clicked ) {
+   if (isChecked && !clicked ) {
       alert("비밀번호 입력 완료 버튼을 눌러주세요.");
       return;
     }
-  // 입력확인을 누르고 비밀번호를 다시 지울 수 있으므로(수정은 submit버튼을 누를때 비밀번호값이기 때문에 비어있지 않기만 하면 된다) 위 조건문을 {!clicked || password === ""} 를 써도 되지만
-  // 수정했다는 사실을 알릴려면 아래와 같이 완료된 비밀번호로 조건문
-    else if(isChecked && clicked && (password=== "" || (certainPassword !== password && clicked)))
+ 
+    else if(isChecked && clicked && (password=== "" || (certainPassword !== password)))
     {
       alert("비밀번호 수정 후 비밀번호 입력 완료 버튼을 눌러주세요.");
       return;
     }
+
     else if(title === ""){
       alert("제목을 입력해주세요.");
       return;
     }
+
     else if(content === ""){
       alert("내용을 입력해주세요.");
-      return; // 함수 종료, 또는 아래부터 else로 감싸도 됨 
+      return; 
     }
   
-  
+    if(!isEditing)
+    {
     try {
-      const apiUrl = isEditing
-        ? `https://umcfriend.kro.kr/api/v1/Qa/${id}`
-        : 'https://umcfriend.kro.kr/api/v1/qa';
-  
-        
+      const apiUrl ='https://umcfriend.kro.kr/api/v1/qa';
+
       const requestClass = {
         title: title,
         body: content, 
         author: 'author',
-        //status는 답변받는 페이지에서 답변이 있으면 나오게 함
-       
-        // privacy: isChecked ? 'PUBLIC' : 'PRIVACY' 으로 순서를 바꿨을 경우에는 체크되어있을땐 
-        // 글작성이 되고 체크를 안했을 때 오류가 난다
-        privacy: isChecked ? 'PRIVACY' : 'PUBLIC',
-
-        //password는 애초에 보안상의 이유로 비밀번호는 서버에서 해싱해야 함, 백엔드가 작업하여 콘솔에는 찍히지 않음
+        privacy: isChecked ? 'PRIVATE' : 'PUBLIC',
+      
         password: password,
       };
       requestClass.time = new Date();
   
   
       const response = await fetch(apiUrl, {
-        method: isEditing ? 'PUT' : 'POST',
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -258,17 +264,53 @@ export default function QuestionWrite() {
       console.log('Server Response Data:', responseJson);
   
       if (response.ok) {
-        console.log(isEditing ? '글 수정 완료!' : '글 작성 완료!');
+        console.log('글 작성 완료!');
         navigate(-1);
       } else {
-        console.error('글 작성/수정 실패:', response.status, response.statusText);
+        console.error('글 작성 실패:', response.status, response.statusText);
       }
     } catch (error) {
-      console.error('글 작성/수정 중 오류 발생:', error);
+      console.error('글 작성 중 오류 발생:', error);
 
     }
-  };
+  }
+    else{
+      try {
+        const apiUrl =`https://umcfriend.kro.kr/api/v1/Qa/${id}`;
+    
+        const requestClass = {
+          title: title,
+          body: content, 
+          author: 'author',
+          privacy: isChecked ? 'PRIVATE' : 'PUBLIC',
+          password: password,
+        };
+        requestClass.time = new Date();
+    
+    
+        const response = await fetch(apiUrl, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(requestClass),
+        });
+    
+        const responseJson = await response.json();
+        console.log('Server Response Data:', responseJson);
+    
+        if (response.ok) {
+          console.log( '글 수정 완료!');
+          navigate(-1);
+        } else {
+          console.error('글 수정 실패:', response.status, response.statusText);
+        }
+      } catch (error) {
+        console.error('글 수정 중 오류 발생:', error);
   
+      }
+    }
+  }
   const handleCancel = () => {
     navigate(-1);
   };

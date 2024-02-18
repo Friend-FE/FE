@@ -9,18 +9,18 @@ import privacyImage from "../../images/Privacy.png";
 const QnABoard = ({ info }) => {
   const infoLength = info.length;
   const navigate = useNavigate();
-  // 끝에 /를 포함하는 주소도 고려
+ 
   const isCollectPage = window.location.pathname === "/ManagerPage/QnA" || window.location.pathname === "/ManagerPage/QnA/";
   const location = useLocation();
-  //실제주소
+ 
   const actualAddress = location.pathname;
 
   const handleRowClick = (item) => {
     if (isCollectPage) {
-       //상세 페이지의 보드 클릭 시 네비게이트가 되는 문제를 해결
+     
       navigate(`/ManagerPage/QnA/${item.id}`, { state: { item } });
     } else {
-      // 클릭 무시
+    
     }
   };
 
@@ -48,10 +48,19 @@ const QnABoard = ({ info }) => {
           <div key={item.id}>
           <Row onClick={() => handleRowClick(item)} address="/ManagerPage/QnA" addressSub="/ManagerPage/QnA/" actualAddress={actualAddress}>
               <Title>{item.title} 
-              {item.privacy === 'PUBLIC' && <PrivacyImage src={privacyImage} alt="privacy"/>}
-              {/* isCollectPage &&를 사용하여/ManagerPage/QnA 페이지일 때만 버튼생성, event.stopPropagation()를 사용하여 이후에 handleRowClick을 무력화 */}
-              {isCollectPage && <AnswerButton to={`/ManagerPage/QnA/QnAResponse/${item.id}`} state={{ item }}   
-               onClick={(event) => {event.stopPropagation();}}>답변하기</AnswerButton>}
+              {item.privacy === 'PRIVATE' && <PrivacyImage src={privacyImage} alt="privacy"/>}
+           
+              {isCollectPage && (
+              <AnswerButton
+              to={item.status !== 'COMPLETE' ? `/ManagerPage/QnA/QnAResponse/${item.id}` : null}
+                state={{ item }}
+                onClick={(event) => {
+                  event.stopPropagation();
+                }}
+              >
+                {item.status === 'COMPLETE' ? '답변완료' : '답변하기'}
+              </AnswerButton>
+            )}
               </Title>
               
               <Author style={{ transform: 'translateX(0.3vw)' }}>{maskedAuthor}</Author>

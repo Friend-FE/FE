@@ -42,19 +42,13 @@ export const HeadTitleH3 = styled.h3`
   }
 `;
 
-// const HR = styled.hr`
-//   height: 2px;
-//   background: #000;
-//   margin-top: 10px;
-//   margin-bottom: 10px;
-// `;
-
 
 const ReviewBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   width: 80vw;
+  height: 5vw;
   border-radius: 2.08vw;
   border: 0.10vw solid #2ECAFD;
   background: #FFF;
@@ -76,7 +70,7 @@ const ResponseBox = styled.div`
   justify-content: center;
   align-items: center;
   width: 80vw;
-  /* height: 40vh; */
+  height: 5vw;
   border-radius: 2.08vw;
   border: 0.10vw solid #2ECAFD;
   background: #FFF;
@@ -126,7 +120,7 @@ const FooterContainer = styled.div`
 `;
 
 const QnADetail = () => {
-  const { id } = useParams(); // id 변수를 qaId로 변경
+  const { id } = useParams(); 
   const { state } = useLocation();
   const navigate = useNavigate();
   const [review, setReview] = useState(state?.item);
@@ -137,12 +131,12 @@ const QnADetail = () => {
   useEffect(() => {
     const fetchAnswerFromServer = async () => {
       try {
-        const apiUrl = `https://umcfriend.kro.kr/api/v1/qa/${id}`;
+        const apiUrl =  `https://umcfriend.kro.kr/api/v1/qa/${id}`;
         const response = await axios.get(apiUrl);
 
         if (response.data.code === 200 && response.data.message === 'SUCCESS') {
           setReview(response.data.data); // API에서 받아온 상세 QnA 데이터를 상태에 저장
-          console.log(response.data.data);
+          console.log("@@",response.data.data);
         } else {
           console.error('상세 QnA 조회 실패:', response.data.message);
           // 실패 시에 대한 처리
@@ -170,19 +164,16 @@ const QnADetail = () => {
         <Title title = "관리자 페이지"/>
         <TitleHR/>
         <HeadTitleH3>Q&A 자세히 보기</HeadTitleH3>
-        <Board info={[review]} />
+        <Board  info={review ? [review] : []} />
         <ReviewBox>
-          {/* <Board info={[review]} /> 이걸 지워도  {review.body}이거는 존재함. body가 content인거같음 */}
+      
           {review.body}
         </ReviewBox>
         <ResponseBox>
-        {review.answer && (
-      <ResponseBox>
-        {review.answer}
+        {review.answer && review?.answer}
       </ResponseBox>
-    )}
-        </ResponseBox>
-       
+        <AnswerButton to={`/ManagerPage/QnA/QnAResponse/${review.id}`} state={{ item: review }}  
+             >답변 수정</AnswerButton>
       </ReviewWrapper>  
       <FooterContainer>
         <Footer />
