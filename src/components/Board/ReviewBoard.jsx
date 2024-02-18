@@ -25,7 +25,8 @@ export default function ReviewDetailBoard({ info, selectView }) {
     }
   
     useEffect(() => {
-        fetchData();
+        if(userId){
+          fetchData();}
     }, []);
     const infoLength = info.length;
     const navigate = useNavigate();
