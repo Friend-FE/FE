@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router-dom'
+import { useSelector } from 'react-redux';
 
 import Header from './components/header';
 
@@ -69,13 +70,19 @@ import QnADetail from './pages/QnA/qnaDetail';
 import QuestionWrite from './pages/QnA/qnaWrite';
 
 import Apply from './pages/MatchApply/Apply';
+import ManagerHeader from './components/header/manager_header';
 
 
 
 const App = ()=>{
+	const id = useSelector(state => state.login.id);
+	let isManager = false;
+	if(id === 47){
+	  isManager = true;
+	}
 	return (
 	  <div>
-			<Header></Header>
+			{isManager? <ManagerHeader/> : <Header/>}
 			<Routes>
 
 				{/* 메인 페이지 */}
