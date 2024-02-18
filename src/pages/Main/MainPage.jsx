@@ -91,7 +91,7 @@ const MainPage = () => {
         <TextBox>
           <h1> 100%</h1>
           <h1 className="blue">사람</h1>
-          <h1>이 매칭해준다는데 어떻게 매칭 해주나요?</h1> <br></br>
+          <h1>이 매칭해준다는데 어떻게 매칭해주나요?</h1> <br></br>
         </TextBox>
       </Box>
       <FlexBox>
@@ -248,6 +248,7 @@ const Box = styled.div`
     font-size: 20px;
     font-style: normal;
     font-weight: 800;
+    margin: 0.5vw 0vw;
     @media screen and (max-width: 800px) {
       margin: 0;
       font-size: 2.7vw;

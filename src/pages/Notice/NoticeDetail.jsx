@@ -128,6 +128,7 @@ const NoticeBox = styled.div`
   background: #FFF;
   padding: 1.38vw;
   text-align: center;
+  white-space: pre-line;
 
   font-size: 1vw;
 
