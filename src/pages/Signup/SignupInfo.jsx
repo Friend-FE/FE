@@ -340,7 +340,7 @@ const Separator = styled.div`
 
 //어떤 정보를 입력해야하는지, 알려주는 텍스트
 const InfoMessage = styled.div`
-  margin-bottom: 2vw;
+  margin-bottom: 1.5vw;
   align-items:flex-end ;
   justify-content: center;
   font-size: 2vw;
@@ -351,7 +351,7 @@ const InfoMessage = styled.div`
     margin-bottom: 1vw;
   }
   @media screen and (max-width: 970px) {
-    font-size:2.5vw;
+    /* font-size:2.5vw; */
   }
 `;
 
@@ -366,15 +366,19 @@ const Input = styled.input`
   height: 3vw;
   padding: 1vw;
   margin-bottom: 3vw;
+
+  font-size: 1vw;
   @media screen and (max-width: 700px) {
     height: 5vw;
-    font-size:3vw;
+    font-size: 1vw;
+
   }
 `;
 
 // 칸 마다 입력해야하는 정보 알려주는 작은 텍스트
 const InfoName = styled.div`
-  font-size: 2vw;
+  font-size: 1.5vw;
+  margin-bottom: 0.5vw;
 `;
 
 //취소, 이어서 가입 버튼
@@ -385,7 +389,7 @@ const ButtonContainer = styled.div`
 `;
 
 const CancelButton = styled.button`
-  font-weight : 1vw;
+  font-weight : 2vw;
   border: none;
   cursor: pointer;
   width: 15vw;
@@ -394,7 +398,7 @@ const CancelButton = styled.button`
   box-shadow: -2px 8px 6.1px 0px rgba(0, 0, 0, 0.25);
   color: #000;
   background-color: #ffffff;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 700px) {
     font-size : 2vw;
     width: 35vw;
     height : 7vw;
@@ -414,7 +418,7 @@ const SubmitButton = styled.button`
   background-color:#8BE3FF;
   text-align:center;
 
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 700px) {
     font-size : 2vw;
     width: 35vw;
     height : 7vw;
