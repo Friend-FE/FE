@@ -188,7 +188,7 @@ export default function Modifying_info() {
             autoComplete="new-password"
           />
           {wrongPW ? <p>비밀번호가 틀립니다.</p> : ""}
-          <InfoMessage>기본 정보 수정.&nbsp;<p>*</p></InfoMessage>
+          <InfoMessage>기본 정보 수정&nbsp;<p>*</p></InfoMessage>
           <InfoName>닉네임</InfoName>
           <Input
             type="text"
@@ -398,15 +398,17 @@ const Input = styled.input`
   height: 30px;
   padding: 8px;
   margin-bottom: 20px;
+  font-size: 1vw;
   @media screen and (max-width: 700px) {
     height: 15px;
-    font-size:0.7rem;
+    font-size: 1vw;
   }
 `;
 
 // 칸 마다 입력해야하는 정보 알려주는 작은 텍스트
 const InfoName = styled.div`
-  font-size: 15px;
+  font-size: 1.5vw;
+  margin-bottom: 0.5vw;
 `;
 
 //취소, 이어서 가입 버튼

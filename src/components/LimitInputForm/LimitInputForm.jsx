@@ -31,10 +31,13 @@ const Textarea = styled.textarea`
   height: 40px;
   padding: 8px;
   margin-bottom: 10px;
+  font-size:1vw;
+
   resize: none;
   @media screen and (max-width: 970px) {
     height:20px;
-    font-size:0.7rem;
+    font-size:1vw;
+
   }
 `;
 

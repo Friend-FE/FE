@@ -67,4 +67,5 @@ const CheckboxContainer = styled.div`
 
 const CheckboxLabel = styled.label`
   margin-left: 1vw;
+  font-size: 1vw;
 `;
