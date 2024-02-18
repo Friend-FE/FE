@@ -32,8 +32,8 @@ export default function ApplicationForMembershipDetail() {
 
       if (!response.ok) {
           // 에러 처리
-          alert('존재하지 않는 계정입니다. 다시 시도해주세요.');
-          throw new Error('Failed to log in');
+          alert('수락에 실패했습니다.');
+          throw new Error('Failed to activate');
       }
     alert('수락되었습니다.');
     navigate(-1);
@@ -42,12 +42,23 @@ export default function ApplicationForMembershipDetail() {
   }
   };
 
-  const onClickRefuse = () => {
+  const onClickRefuse  = async (event) => {
+    event.preventDefault();
 
-    
-
-    alert('거절되었습니다.');
-    navigate(-1);
+    try{
+      const response = await fetch(`http://13.209.145.28:8080/api/v1/manager/member/deny/${email}`);
+      if(response.ok){
+          const data = await response.json();
+          console.log(data);
+          alert('회원가입 거절되었습니다.');
+          navigate(-1);
+      }
+      else{
+        console.error('API 호출 중 오류:');
+      }
+    }catch (error) {
+      console.error('API 호출 중 오류:', error.message);
+    }
   };
 
   const onClickBack = () => {
