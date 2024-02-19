@@ -52,7 +52,7 @@ function ManagerHeader() {
       <NavLink to="/ManagerPage/ReportReceiptHistory" exact="true" activeclassname="active">
             신고접수
           </NavLink>
-          <NavLink to="/reviews" activeclassname="active">
+          <NavLink to="/ManagerPage/Review" activeclassname="active">
             솔직후기
           </NavLink>
           <NavLink to="/ManagerPage/MatchingApplicationHistoryWoman" activeclassname="active">
