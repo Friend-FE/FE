@@ -159,7 +159,7 @@ const QnADetail = () => {
     const fetchQnADetail = async () => {
       try {
         
-        const apiUrl = qnaData?.privacy === "PRIVATE" ? `https://umcfriend.kro.kr/api/v1/qa/${id}?password=${state?.pwd}` : `https://umcfriend.kro.kr/api/v1/qa/${id}`;
+        const apiUrl = qnaData?.privacy === "PRIVATE" ? `https://umcfriend.kro.kr/api/v1/qa/nopassword/${id}?password=${state?.pwd}` : `https://umcfriend.kro.kr/api/v1/qa/nopassword/${id}`;
         
         const response = await axios.get(apiUrl);
 

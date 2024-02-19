@@ -179,7 +179,7 @@ export default function QuestionWrite() {
   const [clicked, setClicked] = useState(false);
   const [password, setPassword] = useState('');
   const [certainPassword, setCertainPassword] = useState('');
- 
+  const [userData, setUserData] = useState('');
 
   useEffect(() => {
     const postIdToEdit = location.state?.postId;
@@ -245,7 +245,7 @@ export default function QuestionWrite() {
       const requestClass = {
         title: title,
         body: content, 
-        author: 'author',
+        author: userData.nickname ? userData.nickname : 'author',
        
         privacy: isChecked ? 'PRIVATE' : 'PUBLIC',
         password: password,
