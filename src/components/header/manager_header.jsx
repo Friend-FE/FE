@@ -30,7 +30,7 @@ function ManagerHeader() {
             {isLoggedIn ? (
               <>
                 <NavLink to="/" onClick={handleLogout}>LOGOUT</NavLink>
-                <NavLink to="/ManagerPage">관리자 페이지</NavLink>
+                <NavLink to="/MyPage">마이페이지</NavLink>
               </>
             ) : (
               <>

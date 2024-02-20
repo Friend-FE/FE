@@ -12,6 +12,9 @@ const TitleHR = styled.hr`
   border: 0;
   border-top: 1px solid #B8B8B8;
   width: 80vw; 
+
+  position: relative;
+  left: 10vw;
 `;
 
 const TextInput = styled.input`
